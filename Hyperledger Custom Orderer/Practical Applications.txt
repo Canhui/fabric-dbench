@@ -12,3 +12,7 @@ PPT file description: file:///C:/Users/chwang/Downloads/pluggableEndorsementAndV
 
 官方文档(推荐): https://buildmedia.readthedocs.org/media/pdf/hyperledger-fabric-doc/stable/hyperledger-fabric-doc.pdf
 
+Go Plugin: https://hyperledger-fabric.readthedocs.io/en/release-1.4/systemchaincode.html
+
+Go Plugin medium: https://medium.com/learning-the-go-programming-language/writing-modular-go-programs-with-plugins-ec46381ee1a9
+
