@@ -1,1 +1,14 @@
 Youtube guide1: https://www.youtube.com/watch?v=cBEv8-v0LyM
+
+Docs file description: https://docs.google.com/document/d/1YmWCdPOJAJU6kxO56vYoS6Ev_La32mx4PG-3pCUri6g/edit
+
+PPT file description: file:///C:/Users/chwang/Downloads/pluggableEndorsementAndValidation.pdf
+
+官方文档 (推荐): https://hyperledger-fabric.readthedocs.io/en/release-1.4/pluggable_endorsement_and_validation.html
+
+关于chaincode plugins: https://hyperledger-fabric.readthedocs.io/en/release-1.4/systemchaincode.html
+
+中文：https://zhuanlan.zhihu.com/p/46945117
+
+官方文档(推荐): https://buildmedia.readthedocs.org/media/pdf/hyperledger-fabric-doc/stable/hyperledger-fabric-doc.pdf
+
