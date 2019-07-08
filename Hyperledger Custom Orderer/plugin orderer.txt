@@ -1,0 +1,1 @@
+Hyperledger plugin orderer: https://hyperledger-fabric.readthedocs.io/en/release-1.2/pluggable_endorsement_and_validation.html
