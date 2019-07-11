@@ -28,7 +28,10 @@ Available commands are:
 ```
 
 
+<br />
+<br />
 
+## 2. gRPC P2P 代码
 
 
 
@@ -40,6 +43,9 @@ Available commands are:
 
 ## 参考资料
 [1. consul的安装方法] https://learn.hashicorp.com/consul/getting-started/install.html
+[2. gRPC p2p Github] https://github.com/ChanderG/grpc-p2p
+
+<br />
 
 #### 备注
 [备注一] 初稿，2019年07月11号。
