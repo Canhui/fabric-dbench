@@ -57,7 +57,7 @@ $ export PATH=$PATH:$GOPATH/bin
 <br />
 <br />
 
-## 2. 测试:运行helloworld
+## 2. 测试(1/3):运行helloworld
 
 上述gRPC安装好之后，其examples文件夹存放于`$GOPATH/src/google.golang.org/grpc/examples`。进入该路径测试helloworld例子如下，
 
@@ -91,7 +91,7 @@ $ sudo fuser -k 50051/tcp
 <br />
 <br />
 
-## 3. 测试:了解项目依赖/编译关系
+## 3. 测试(2/3):了解项目依赖/编译关系
 
 #### 3.1. 删除非核心文件
 删除非核心文件命令如下，
@@ -121,7 +121,7 @@ $ $ protoc -I helloworld/ helloworld/helloworld.proto --go_out=plugins=grpc:hell
 <br />
 <br />
 
-## 4. 测试:修改源代码，重新编译运行
+## 4. 测试(3/3):修改源代码，重新编译运行
 
 
 
