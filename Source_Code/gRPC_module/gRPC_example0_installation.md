@@ -115,8 +115,22 @@ $ $ protoc -I helloworld/ helloworld/helloworld.proto --go_out=plugins=grpc:hell
 
 
 第二个是/greeter_server/main.go服务端代码。
+```shell
+$ cd $HOME/go/src/google.golang.org/grpc/examples/helloworld/greeter_server
+$ ls
+main.go
+```
+
 
 第三个是/greeter_client/main.go客户端代码。
+
+```shell
+$ cd $HOME/go/src/google.golang.org/grpc/examples/helloworld/greeter_client
+$ ls
+main.go
+```
+
+
 
 <br />
 <br />
