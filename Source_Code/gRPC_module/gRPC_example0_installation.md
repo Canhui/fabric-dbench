@@ -105,7 +105,7 @@ $ rm -rf helloworld.pb.go
 <br />
 
 #### 3.2. 核心文件
-核心文件描述如下：第一个是Protocol Buffers v3编写的helloworld.proto文件。其中，helloworld.proto文件定义一些协议的方法。接着，protoc plugin for Go编译helloworld.proto文件生成helloworld.pb.go文件，如下，
+核心文件描述如下：第一个是Protocol Buffers v3编写的helloworld.proto文件。其中，/helloworld/helloworld.proto文件定义一些协议的方法。接着，protoc plugin for Go编译/helloworld/helloworld.proto文件生成/helloworld/helloworld.pb.go文件，如下，
 ```shell
 $ cd $HOME/go/src/google.golang.org/grpc/examples/helloworld
 $ $ protoc -I helloworld/ helloworld/helloworld.proto --go_out=plugins=grpc:helloworld
@@ -137,16 +137,203 @@ main.go
 
 ## 4. 测试(3/3):修改源代码，重新编译运行
 
+#### 4.1. 修改/helloworld/helloworld.proto文件
 
+进入/helloworld文件夹
+```shell
+$ cd /$HOME/go/src/google.golang.org/grpc/examples/helloworld/helloworld
+$ ls
+helloworld.proto
+```
 
+原始helloworld.proto文件内容如下，
 
+```go
+syntax = "proto3";
 
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.helloworld";
+option java_outer_classname = "HelloWorldProto";
 
+package helloworld;
 
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
 
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
 
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
+```
 
+新增一个SayHelloAgain()函数到协议函数定义中，修改后helloworld.proto文件如下，
 
+```go
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.helloworld";
+option java_outer_classname = "HelloWorldProto";
+
+package helloworld;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  // Sends another greeting
+  rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
+```
+
+接着，protoc plugin for Go编译/helloworld/helloworld.proto文件生成/helloworld/helloworld.pb.go文件，如下，
+```shell
+$ cd $HOME/go/src/google.golang.org/grpc/examples/helloworld
+$ $ protoc -I helloworld/ helloworld/helloworld.proto --go_out=plugins=grpc:helloworld
+```
+
+<br />
+
+#### 4.2. 修改/greeter_server/main.go文件
+
+然后，/greeter_server/main.go调用helloworld.pb.go文件的SayHelloAgain()函数。修改后的/greeter_server/main.go如下，
+
+```go
+package main
+
+import (
+    "context"
+    "log"
+    "net"
+
+    "google.golang.org/grpc"
+    pb "google.golang.org/grpc/examples/helloworld/helloworld"
+)
+
+const (
+    port = ":50051"
+)
+
+// server is used to implement helloworld.GreeterServer.
+type server struct{}
+
+// SayHello implements helloworld.GreeterServer
+func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+    log.Printf("Received: %v", in.Name)
+    return &pb.HelloReply{Message: "Hello " + in.Name}, nil
+}
+
+func (s *server) SayHelloAgain(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+        return &pb.HelloReply{Message: "Hello again " + in.Name}, nil
+}
+
+func main() {
+    lis, err := net.Listen("tcp", port)
+    if err != nil {
+        log.Fatalf("failed to listen: %v", err)
+    }
+    s := grpc.NewServer()
+    pb.RegisterGreeterServer(s, &server{})
+    if err := s.Serve(lis); err != nil {
+        log.Fatalf("failed to serve: %v", err)
+    }
+}
+```
+
+<br />
+
+#### 4.3. 修改/greeter_client/main.go文件
+
+同样地，/greeter_client/main.go调用helloworld.pb.go文件的SayHelloAgain()函数。修改后的/greeter_client/main.go如下，
+
+```go
+package main
+
+import (
+    "context"
+    "log"
+    "os"
+    "time"
+
+    "google.golang.org/grpc"
+    pb "google.golang.org/grpc/examples/helloworld/helloworld"
+)
+
+const (
+    address     = "localhost:50051"
+    defaultName = "world"
+)
+
+func main() {
+    // Set up a connection to the server.
+    conn, err := grpc.Dial(address, grpc.WithInsecure())
+    if err != nil {
+        log.Fatalf("did not connect: %v", err)
+    }
+    defer conn.Close()
+    c := pb.NewGreeterClient(conn)
+
+    // Contact the server and print out its response.
+    name := defaultName
+    if len(os.Args) > 1 {
+        name = os.Args[1]
+    }
+    ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+    defer cancel()
+    r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
+    if err != nil {
+        log.Fatalf("could not greet: %v", err)
+    }
+    log.Printf("Greeting: %s", r.Message)
+        r, err = c.SayHelloAgain(ctx, &pb.HelloRequest{Name: name})
+    if err != nil {
+            log.Fatalf("could not greet: %v", err)
+    }
+    log.Printf("Greeting: %s", r.Message)
+}
+```
+
+<br />
+
+#### 4.4. 运行
+
+进入目标文件夹
+
+```shell
+$ cd /$HOME/go/src/google.golang.org/grpc/examples/helloworld
+```
+
+运行server，
+
+```shell
+$ go run greeter_server/main.go
+```
+
+运行client,
+
+```shell
+$ go run greeter_client/main.go
+2019/07/12 14:48:04 Greeting: Hello world
+2019/07/12 14:48:04 Greeting: Hello again world
+```
 
 <br />
 <br />
