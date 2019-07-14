@@ -47,21 +47,9 @@ $ cd $HOME/go/src/google.golang.org/grpc/examples/helloworld
 $ go run greeter_client/main.go
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <br />
 <br />
+
 
 
 
@@ -73,6 +61,18 @@ $ go run greeter_client/main.go
 |--------|---------------------|
 | Server | 192.168.0.103:50051 |
 | Client | 192.168.0.106:50051 |
+
+<br />
+
+#### 2.1. 源代码
+
+
+
+
+
+
+
+
 
 
 <br />
