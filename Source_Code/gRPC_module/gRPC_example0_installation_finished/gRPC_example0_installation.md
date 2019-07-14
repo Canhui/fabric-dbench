@@ -8,7 +8,11 @@ $ go version
 go version go1.12.7 linux/amd64
 ```
 
-如果Go没有安装或者版本错误，参考[官方文档](https://golang.org/doc/install)。
+Go的安装配置参考作者的[博客](https://blog.csdn.net/Canhui_WANG/article/details/86648936)，其中，完整介绍了Go的源代码的/bin路径的配置，Go的默认工作路径的配置，Go的默认工作路径中的bin路径(区别于源代码中的bin路径)的配置————反复测试三大路径配置，全部通过。
+
+注：如果后文Go的操作失败，请回[此处](https://blog.csdn.net/Canhui_WANG/article/details/86648936)参照Go的三大路径配置。
+
+
 
 <br />
 
@@ -51,8 +55,10 @@ sudo mv protoc3/include/* /usr/local/include/
 
 ```shell
 $ go get -u github.com/golang/protobuf/protoc-gen-go
-$ export PATH=$PATH:$GOPATH/bin
 ```
+
+
+
 
 <br />
 <br />
