@@ -1,11 +1,57 @@
 ## 1. 新建项目'example2_file_transfer'
 
+#### 1.1. 工作目录
+
 进入工作目录
 ```shell
 $ cd $HOME/go/src/google.golang.org/grpc/examples
 $ mkdir example2_file_transfer
 $ cd example2_file_transfer
 ```
+
+<br />
+
+#### 1.2. Protocol Buffer v3代码
+
+新建目录transfer
+
+```shell
+$ cd $HOME/go/src/google.golang.org/grpc/examples/example2_file_transfer
+$ cd transfer
+$ touch transfer.proto
+$ vi transfer.proto
+```
+
+```go
+syntax = "proto3";
+
+package transfer;
+
+service GuploadService {
+    rpc Upload(stream Chunk) returns (UploadStatus) {}
+}
+
+message Chunk {
+    bytes Content = 1;
+    string totalSize = 2;
+    string received = 3;
+}
+
+enum UploadStatusCode {
+    Unknown = 0;
+    Ok = 1;
+    Failed = 2;
+}
+
+message UploadStatus {
+    string Message = 1;
+    UploadStatusCode Code = 2;
+}
+```
+
+
+
+
 
 
 
