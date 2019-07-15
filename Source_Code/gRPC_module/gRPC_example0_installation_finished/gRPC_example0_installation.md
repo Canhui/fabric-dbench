@@ -10,7 +10,8 @@ go version go1.12.7 linux/amd64
 
 Go的安装配置参考作者的[博客](https://blog.csdn.net/Canhui_WANG/article/details/86648936)，其中，完整介绍了Go的源代码的/bin路径的配置，Go的默认工作路径的配置，Go的默认工作路径中的bin路径(区别于源代码中的bin路径)的配置————反复测试三大路径配置，全部通过。
 
-注：如果后文Go的操作失败，请回[此处](https://blog.csdn.net/Canhui_WANG/article/details/86648936)参照Go的三大路径配置。
+注：如果后文Go的操作失败，请回[此处](https://blog.csdn.net/Canhui_WANG/article/details/86648936)参照Go的三大路径配置。配置成功之后，通过"go get + 相关Go模块"的命令安装缺失模块，比如，"go get github.com/pkg/errors"。
+
 
 
 
