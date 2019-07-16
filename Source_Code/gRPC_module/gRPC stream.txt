@@ -1,0 +1,7 @@
+gRPC stream Blog: https://segmentfault.com/a/1190000016503114
+
+gRPC stream blog: https://medium.com/@shijuvar/building-high-performance-apis-in-go-using-grpc-and-protocol-buffers-2eda5b80771b
+
+
+gRPC official website: https://www.grpc.io/docs/guides/concepts/
+
