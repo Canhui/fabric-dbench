@@ -1,16 +1,21 @@
 package main
 import "fmt"
-import "time"
 
-func printHello() {
+func printHello(ch chan int) {
     fmt.Println("hi, this is from printHello()")
+    ch <- 2 // send a value (2) to the channel
 }
 
 func main() {
+    ch := make(chan int) // make a channel
+
     go func() {
         fmt.Println("hi, this is from main.func()")
+        ch <- 1 // send a value (1) to the channel
     }()
-    go printHello()
-    fmt.Println("hi, this is from main")
-    time.Sleep(1*time.Second)
+
+    go printHello(ch)
+    i := <- ch
+    fmt.Println("Received", i)
+    <- ch
 }
