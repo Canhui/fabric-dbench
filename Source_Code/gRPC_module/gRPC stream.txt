@@ -5,3 +5,9 @@ gRPC stream blog: https://medium.com/@shijuvar/building-high-performance-apis-in
 
 gRPC official website: https://www.grpc.io/docs/guides/concepts/
 
+
+gRPC binary stream: http://www.ituring.com.cn/article/507208
+
+gRPC binary stream: https://segmentfault.com/a/1190000014803113
+
+
