@@ -11,3 +11,9 @@ gRPC binary stream: http://www.ituring.com.cn/article/507208
 gRPC binary stream: https://segmentfault.com/a/1190000014803113
 
 
+
+
+TODO Project: https://github.com/EDDYCJY/go-grpc-example/tree/master/client
+
+TODO Document: https://github.com/EDDYCJY/blog/blob/master/golang/gRPC/2018-09-24-带入gRPC-gRPC-Streaming-Client-and-Server.md
+
