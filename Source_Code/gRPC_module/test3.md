@@ -2,6 +2,8 @@
 
 Golang Context Package依赖两个核心概念: goroutine和channel。
 
+
+
 #### 1.1. Goroutine
 
 test3.go的线程函数如下，
@@ -133,20 +135,116 @@ Context被设计用于管理(比如中止)Goroutine线程。举个例子，如�
 <br />
 
 
-#### 2.1. context.Background()
+#### 2.1. context.WithCancel()
 
-该方法返回一个空的context，用于派生其他类型的context。
+通过context.WithCancel()管理Golang多线程，10秒后通过关闭context来结束多线程，如下，
 
 ```go
-ctx := context.Background()
+package main
+
+import (
+    "context"
+    "fmt"
+    "time"
+)
+
+func contextHandler() {
+    ctx, cancel := context.WithCancel(context.Background())
+    go doSomething(ctx)
+
+    // cancel() the context after 10 seconds
+    time.Sleep(10 * time.Second)
+    cancel()
+}
+
+func doSomething(ctx context.Context) {
+    for {
+        time.Sleep(1 * time.Second)
+        select {
+        case <- ctx.Done():
+            return
+        default:
+            fmt.Println("Work...")
+        }
+    }
+}
+
+func main() {
+    contextHandler()
+}
+```
+
+其中，context.Background()方法返回一个空的context，用于派生其他类型的context。
+
+运行，
+
+```
+Work...
+Work...
+Work...
+Work...
+Work...
+Work...
+Work...
+Work...
+Work...
+// 退出
 ```
 
 
+#### 2.2. context.WithTimeout()
 
+通过context.WithTimeout()管理Golang多线程，10秒后通过关闭context来结束多线程，如下，
 
+```go
+package main
 
+import (
+    "context"
+    "fmt"
+    "time"
+)
 
+func contextHandler() {
+    ctx, cancel:= context.WithTimeout(context.Background(), 10*time.Second)
 
+    go doSomething(ctx)
+
+    time.Sleep(10000 * time.Second) // 主线程main挂起不能早于子线程goroutine
+    cancel()
+}
+
+func doSomething(ctx context.Context) {
+    for {
+        time.Sleep(1 * time.Second)
+        select {
+        case <- ctx.Done():
+            return
+        default:
+            fmt.Println("Work...")
+        }
+    }
+}
+
+func main() {
+    contextHandler()
+}
+```
+
+运行，
+
+```
+Work...
+Work...
+Work...
+Work...
+Work...
+Work...
+Work...
+Work...
+Work...
+// 退出
+```
 
 
 
@@ -161,6 +259,20 @@ ctx := context.Background()
 [2. Golang context package的理解] http://p.agnihotry.com/post/understanding_the_context_package_in_golang/
 [3. Golang context examples] https://www.jianshu.com/p/d24bf8b6c869
 [4. Golang context more examples] https://medium.com/@cep21/how-to-correctly-use-context-context-in-go-1-7-8f2c0fafdf39
+
+<br />
+
+#### 备注
+[备注一] 初稿, 2019年07月17号。
+[备注二] TO DO, context结合channel管理goroutine线程。
+
+
+
+
+
+
+
+
 
 [5. Golang context例子] https://www.sohamkamani.com/blog/golang/2018-06-17-golang-using-context-cancellation/
 [6. Golang content例子] https://gist.github.com/astenmies/2f180213d310aa16b4b8c4e637be9441

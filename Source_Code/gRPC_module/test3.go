@@ -1,3 +1,71 @@
+package main
+
+import (
+    "context"
+    "fmt"
+    "time"
+)
+
+func contextHandler() {
+    ctx, cancel:= context.WithTimeout(context.Background(), 10*time.Second)
+
+    go doSomething(ctx)
+
+    time.Sleep(100 * time.Second) // 主线程main挂起不能早于子线程goroutine
+    cancel()
+}
+
+func doSomething(ctx context.Context) {
+    for {
+        time.Sleep(1 * time.Second)
+        select {
+        case <- ctx.Done():
+            return
+        default:
+            fmt.Println("Work...")
+        }
+    }
+}
+
+func main() {
+    contextHandler()
+}
+
+// package main
+
+// import (
+// 	"context"
+// 	"fmt"
+// 	"time"
+// )
+
+// func contextHandler() {
+// 	ctx, cancel:= context.WithTimeout(context.Background(), 10*time.Second)
+// 	defer cancel()
+
+// 	doSomething(ctx)
+// }
+
+// func doSomething(ctx context.Context) {
+// 	for {
+// 		time.Sleep(1 * time.Second)
+// 		select {
+// 		case <- ctx.Done():
+// 			return
+// 		default:
+// 			fmt.Println("Work...")
+// 		}
+// 	}
+// }
+
+// func main() {
+// 	contextHandler()
+// }
+
+
+
+// ---------------------------------------------------------------------
+
 // package main
 // import "fmt"
 
@@ -201,54 +269,54 @@
 
 // -----------------------------------------------------------------
 
-package main
+// package main
 
-import (
-	"bufio"
-	"context"
-	"fmt"
-	"log"
-	"os"
-	"time"
-)
+// import (
+// 	// "bufio"
+// 	"context"
+// 	"fmt"
+// 	"log"
+// 	// "os"
+// 	"time"
+// )
 
-func withTimeOut() {
-	ctx := context.Background()
-	ctx, cancel := context.WithTimeout(ctx, time.Second)
-	defer cancel()
+// func withTimeOut() {
+// 	ctx := context.Background()
+// 	ctx, cancel := context.WithTimeout(ctx, time.Second)
+// 	defer cancel()
 
-	sleepAndTalk(ctx, 5*time.Second, "Hello withTimeOut!")
-}
+// 	sleepAndTalk(ctx, 5*time.Second, "Hello withTimeOut!")
+// }
 
-func withCancel() {
-	ctx := context.Background()
-	ctx, cancel := context.WithCancel(ctx)
+// func withCancel() {
+// 	ctx := context.Background()
+// 	ctx, cancel := context.WithCancel(ctx)
 
-	go func() {
-		s := bufio.NewScanner(os.Stdin)
-		s.Scan()
-		cancel()
-	}()
+// 	// go func() {
+// 	// 	s := bufio.NewScanner(os.Stdin)
+// 	// 	s.Scan()
+// 	// 	cancel()
+// 	// }()
 
-	sleepAndTalk(ctx, 5*time.Second, "Hello withCancel!")
-}
+// 	sleepAndTalk(ctx, 5*time.Second, "Hello withCancel!")
+// }
 
-func background() {
-	ctx := context.Background()
-	sleepAndTalk(ctx, 5*time.Second, "Hello background!")
-}
+// func background() {
+// 	ctx := context.Background()
+// 	sleepAndTalk(ctx, 5*time.Second, "Hello background!")
+// }
 
-func sleepAndTalk(ctx context.Context, d time.Duration, s string) {
-	select {
-	case <-time.After(d):
-		fmt.Println(s)
-	case <-ctx.Done():
-		log.Println(ctx.Err())
-	}
-}
+// func sleepAndTalk(ctx context.Context, d time.Duration, s string) {
+// 	select {
+// 	case <-time.After(d):
+// 		fmt.Println(s)
+// 	case <-ctx.Done():
+// 		log.Println(ctx.Err())
+// 	}
+// }
 
-func main() {
-	background()
-	withCancel()
-	withTimeOut()
-}
+// func main() {
+// 	background()
+// 	withCancel()
+// 	withTimeOut()
+// }
