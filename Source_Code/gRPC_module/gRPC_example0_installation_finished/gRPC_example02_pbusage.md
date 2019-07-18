@@ -46,7 +46,7 @@ func main() {
 helloworld from lib.Test()
 ```
 
-
+<br />
 
 #### 1.2. example: interface 
 
@@ -107,6 +107,153 @@ func main() {
 ~/go/src/example2$ go run main.go
 12
 ```
+
+<br />
+
+#### 1.3. example: gRPC
+
+新建工作路径
+
+```shell
+$ cd $HOME/go/src/google.golang.org/grpc/examples
+$ mkdir example0_interface
+$ touch $HOME/go/src/google.golang.org/grpc/examples/example0_interface/lib/lib.proto
+$ touch $HOME/go/src/google.golang.org/grpc/examples/example0_interface/server/main.go
+$ touch $HOME/go/src/google.golang.org/grpc/examples/example0_interface/client/main.go
+```
+
+lib/lib.proto内容如下，
+
+```go
+syntax = "proto3";
+package lib; // go namespace
+
+message HelloRequest {
+    string Name = 1;
+}
+
+message HelloReply {
+    string Reply = 1;
+}
+
+service Greeter {
+    rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+```
+
+编译lib/lib.proto文件如下，
+
+```shell
+$ protoc -I lib/ lib/lib.proto --go_out=plugins=grpc:lib
+```
+
+<br />
+
+server/main.go内容如下。服务端实现interface中的SayHello()函数。
+
+```go
+package main
+
+import (
+    "context"
+    "google.golang.org/grpc"
+    "net"
+    "log"
+    pb "google.golang.org/grpc/examples/example0_interface/lib"
+)
+
+const (
+    port = ":50051"
+)
+
+type data struct{}
+
+// Implement SayHello() function of interface Greeter
+func (d *data) SayHello(ctx context.Context, in_var *pb.HelloRequest)(*pb.HelloReply, error){
+    log.Printf("Received at server side: %v", in_var.Name)
+    return &pb.HelloReply{Reply:"Hello" + in_var.Name}, nil
+}
+
+func main(){
+    lis, err := net.Listen("tcp", port)
+    if err != nil{
+        log.Fatalf("fail to listen: %v", err)
+    }
+
+    s := grpc.NewServer()
+    pb.RegisterGreeterServer(s, &data{})
+    if err := s.Serve(lis); err != nil {
+        log.Fatalf("fail to serve: %v", err)
+    }
+}
+```
+
+
+
+
+<br />
+
+client/main.go内容如下，客户端连接服务端，请求服务端的SayHello()函数。
+
+```go
+package main
+import (
+    "context"
+    "log"
+    "os"
+    "time"
+    "google.golang.org/grpc"
+    pb "google.golang.org/grpc/examples/example0_interface/lib"
+)
+
+const (
+    address = "localhost:50051"
+    defaultName = "world"
+)
+
+func main() {
+    // set up a connection to the server
+    conn, err := grpc.Dial(address, grpc.WithInsecure())
+    if err != nil {
+        log.Fatalf("fail to connect to server: %v", err)
+    }
+    defer conn.Close()
+    c := pb.NewGreeterClient(conn)
+
+    // construct the response and contact the server
+    value := defaultName
+    if len(os.Args) > 1 {
+        value = os.Args[1]
+    }
+    ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+    defer cancel()
+    r, err := c.SayHello(ctx, &pb.HelloRequest{Name: value})
+    if err != nil {
+        log.Fatalf("fail to greet: %v", err)
+    }
+    log.Printf("Greeting from server side: %s", r.Reply)
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br />
 <br />
