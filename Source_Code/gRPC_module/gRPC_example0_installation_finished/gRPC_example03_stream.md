@@ -4,6 +4,10 @@
 
 
 
+项目：joe@ubuntu01:~/go/src/google.golang.org/grpc/examples/example0_stream/client$
+
+博客：https://segmentfault.com/a/1190000016503114
+
 
 
 
