@@ -1,0 +1,174 @@
+\documentclass[10pt,journal,compsoc, twoside]{IEEEtran}
+
+% multirows
+\usepackage{multirow}
+
+\usepackage{setspace}
+
+\usepackage{subfigure}  
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{textcomp}
+
+\usepackage[linesnumbered, ruled, vlined]{algorithm2e}
+
+\usepackage{booktabs}
+
+\renewcommand\labelenumi{(\roman{enumi})}
+\renewcommand\theenumi\labelenumi
+
+\makeatletter
+\def\hlinew#1{%
+	\noalign{\ifnum0=`}\fi\hrule \@height #1 \futurelet
+	\reserved@a\@xhline}
+
+%\usepackage{amsmath,amssymb,amsfonts}
+% caption
+%\usepackage{caption}
+%\DeclareCaptionLabelSeparator{emdash}{\textemdash}
+%\captionsetup[figure]{labelsep=emdash,font=onehalfspacing,position=bottom}
+%\captionsetup{%
+%	singlelinecheck=off,
+%	skip=2pt,
+%	justification=centering,
+%}
+
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % The IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+   \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+   \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+
+
+% NOTE: PDF hyperlink and bookmark features are not required in IEEE
+%       papers and their use requires extra complexity and work.
+% *** IF USING HYPERREF BE SURE AND CHANGE THE EXAMPLE PDF ***
+% *** TITLE/SUBJECT/AUTHOR/KEYWORDS INFO BELOW!!           ***
+\newcommand\MYhyperrefoptions{bookmarks=true,bookmarksnumbered=true,
+pdfpagemode={UseOutlines},plainpages=false,pdfpagelabels=true,
+colorlinks=true,linkcolor={black},citecolor={black},urlcolor={black},
+pdftitle={Bare Demo of IEEEtran.cls for Computer Society Journals},%<!CHANGE!
+pdfsubject={Typesetting},%<!CHANGE!
+pdfauthor={Michael D. Shell},%<!CHANGE!
+pdfkeywords={Computer Society, IEEEtran, journal, LaTeX, paper,
+             template}}%<^!CHANGE!
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+
+\begin{document}
+
+\title{Towards Efficient Blockchain Storage on Hyperledger Fabric: Design, Implementation and Evaluation}
+
+%\title{Towards Storage and Bandwidth Efficient Blockchain over Hyperledger Fabric: Design, Implementation, and Evaluation}
+	
+%	Hyperledger-Erasure: Towards A Storage and Bandwidth Efficient Blockchain System}
+
+%\title{Storage and Bandwidth Efficient Blockchain Storage for }
+
+%\title{Measurement and Analysis of the Bitcoin\\ Networks: A View from Mining Pools}
+
+
+%\author{Canhui~Wang,~\IEEEmembership{Graduate Student Member,~IEEE,}
+%        Xiaowen~Chu,~\IEEEmembership{Senior Member,~IEEE,}
+%        and~Qin~Yang,~\IEEEmembership{Senior~Member,~IEEE}% <-this % stops a space
+%        
+%\IEEEcompsocitemizethanks{
+%	
+%	\IEEEcompsocthanksitem C. Wang is with Department of Computer Science, Hong Kong Baptist University, Kowloon Tong, Kowloon, Hong Kong, China. E-mail: chwang@comp.hkbu.edu.hk.
+%
+%	\IEEEcompsocthanksitem X. Chu is with Department of Computer Science, Hong Kong Baptist University, Kowloon Tong, Kowloon, Hong Kong, China. E-mail: chxw@comp.hkbu.edu.hk.
+%
+%	\IEEEcompsocthanksitem Q. Yang is with Department of Computer Science and Technology, Harbin Institute of Technology Shenzhen Graduate School, Shenzhen, China. E-mail: csyqin@hitsz.edu.cn.}% <-this % stops a space
+%
+%\thanks{Manuscript received XX XX, XXXX. (Corresponding author: Xiaowen Chu.)}
+%
+%}
+
+% The paper headers
+%\markboth{IEEE TRANSACTIONS ON PARALLEL AND DISTRIBUTED SYSTEMS. ,~Vol.~XX, No.~X, XX~XXXX}
+%{C.  Wang \MakeLowercase{\textit{et al.}}: Measurement and Analysis of Bitcoin Networks: A View from Mining Pools}
+
+
+\IEEEtitleabstractindextext{%
+
+\begin{abstract}
+	
+Bitcoin network
+
+\end{abstract}
+
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Bitcoin Network, Mining Pools, Malthusian Trap, Incentive Mechanism
+\end{IEEEkeywords}}
+
+
+% make the title area
+\maketitle
+\IEEEdisplaynontitleabstractindextext
+\IEEEpeerreviewmaketitle
+
+
+\ifCLASSOPTIONcompsoc
+\IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
+\else
+\section{Introduction}
+\label{sec:introduction}
+\fi
+
+
+
+\IEEEPARstart{B}{itcoin} \cite{nakamoto2008bitcoin} is a decentralized peer to peer (P2P) cryptocurrency that was first proposed by Satoshi Nakamoto in 2008. Without resorting to any trusted third party, Bitcoin adapts a cryptographic proof mechanism that enables anonymous peers to complete transactions through the P2P network. Blockchain is the core mechanism of the Bitcoin system. It not only records historical transactions from Bitcoin clients, but also prevents the Bitcoin network from double spending attacks \cite{karame2015misbehavior}. The Bitcoin network participants, who maintain and update the ongoing chain of blocks, are called miners. These miners compete in a mining race driven by an incentive mechanism \cite{lewenberg2015bitcoin, schrijvers2016incentive}, where the one who first solves the Bitcoin cryptographic puzzle \cite{giechaskiel2016bitcoin} has the right to collect unconfirmed transactions into a new block, append the new block to the main chain, i.e., the longest chain of blocks, and gain some BTCs \cite{BTC} as a mining reward.
+
+
+Test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test 
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{tpds}
+
+\vspace{240pt}
+
+
+
+
+\end{document}
+
+
