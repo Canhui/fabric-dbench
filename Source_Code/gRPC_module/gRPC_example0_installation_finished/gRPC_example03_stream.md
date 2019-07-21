@@ -215,6 +215,14 @@ func main() {
 ## 2. Client-Side Streaming RPC
 
 
+
+
+
+
+
+
+
+
 <br />
 <br />
 
@@ -251,3 +259,4 @@ func main() {
 ## 参考资料
 [1. gRPC Stream] https://colobu.com/2017/04/06/dive-into-gRPC-streaming/
 [2. gRPC Stream examples (tonight)] https://segmentfault.com/a/1190000016503114
+[3. gRPC official stream] https://www.grpc.io/docs/tutorials/basic/go/
