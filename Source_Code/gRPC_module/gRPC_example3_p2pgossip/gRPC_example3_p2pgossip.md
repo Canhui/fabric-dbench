@@ -31,6 +31,9 @@ $ consul agent -server -bootstrap -data-dir /tmp/consul -bind 192.168.0.106 -adv
 
 ## 3. 启动其他Servers (Server 2 & Server 3)
 
+我们启动另外一台机器运行Server，
+
+
 
 
 
