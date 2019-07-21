@@ -1,1 +1,0 @@
-consul usage: https://www.consul.io/intro/index.html
