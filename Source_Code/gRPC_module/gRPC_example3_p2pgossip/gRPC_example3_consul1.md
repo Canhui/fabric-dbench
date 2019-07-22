@@ -9,6 +9,7 @@
 解压，安装，
 
 ```shell
+$ wget https://releases.hashicorp.com/consul/1.5.2/consul_1.5.2_linux_amd64.zip
 $ unzip consul_1.5.2_linux_amd64.zip
 $ rm -rf consul_1.5.2_linux_amd64.zip
 $ sudo mv consul /usr/local/bin
@@ -28,12 +29,39 @@ $ consul agent -dev -bind 192.168.0.106 -advertise=192.168.0.106
 $ consul agent -server -bootstrap -data-dir /tmp/consul -bind 192.168.0.106 -advertise=192.168.0.106
 ```
 
+查看Peer Discovery，
 
-## 3. 启动其他Servers (Server 2 & Server 3)
+```shell
+$ consul members
+```
+
+
+
+
+## 3. 启动其他Servers without bootstrap(Server 2 & Server 3)
 
 我们启动另外一台机器运行Server，
 
+```shell
+$ consul agent -server -data-dir /tmp/consul
+```
 
+
+Server 1添加Server 2为邻居节点，
+
+```shell
+$ consul join 192.168.0.103
+```
+
+
+然后，Server 1和Server 2均可以查询邻居节点如下，
+
+```shell
+$ consul members
+Node      Address             Status  Type    Build  Protocol  DC   Segment
+ubuntu00  192.168.0.103:8301  alive   server  1.5.2  2         dc1  <all>
+ubuntu01  192.168.0.106:8301  alive   server  1.5.2  2         dc1  <all>
+```
 
 
 
