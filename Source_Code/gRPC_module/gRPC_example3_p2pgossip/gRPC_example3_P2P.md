@@ -139,33 +139,9 @@ func main() {
 
 
 
-准备启动前期：client持续请求连接，直到目标server端启动。
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 下一步，我们开始讲P2P代码的实现。新建peer.go文件，该文件将整合server.go和client.go的所有功能，这意味着，每一个peer节点既可以作为server进行listen监听，又可以作为client接收来自其他server的数据。
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -177,8 +153,53 @@ func main() {
 $ vi /home/joe/go/src/google.golang.org/grpc/examples/example3_p2p/bootstrap.go
 ```
 
+bootstrap节点的IP地址192.168.0.103，端口50000，
 
-bootstrap节点的IP地址192.168.0.103，端口90000，
+bootstrap.go的代码如下，
+
+```go
+package main
+
+import (
+    "context"
+    "log"
+    "net"
+
+    "google.golang.org/grpc"
+    pb "google.golang.org/grpc/examples/example3_p2p/proto"
+)
+
+const (
+    port = ":50000"
+)
+
+// server is used to implement helloworld.GreeterServer.
+type server struct{}
+
+// SayHello implements helloworld.GreeterServer
+func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+    log.Printf("Received: %v", in.Name)
+    return &pb.HelloReply{Message: "Hello " + in.Name}, nil
+}
+
+func main() {
+    lis, err := net.Listen("tcp", port)
+    if err != nil {
+        log.Fatalf("failed to listen: %v", err)
+    }
+
+    s := grpc.NewServer()
+    pb.RegisterGreeterServer(s, &server{})
+    if err := s.Serve(lis); err != nil {
+        log.Fatalf("failed to serve: %v", err)
+    }
+}
+```
+
+
+
+
+
 
 
 
@@ -193,7 +214,80 @@ bootstrap节点的IP地址192.168.0.103，端口90000，
 $ vi /home/joe/go/src/google.golang.org/grpc/examples/example3_p2p/peer1.go
 ```
 
-peer1节点服务端的IP地址192.168.0.103，端口50000；客户端连接IP地址192.168.0.103，端口90000.
+peer1节点服务端的IP地址192.168.0.103，端口50001；客户端连接IP地址192.168.0.103，端口50000.
+
+```go
+package main
+
+import (
+    "context"
+    "log"
+    "net"
+    "time"
+    "os"
+
+    "google.golang.org/grpc"
+    pb "google.golang.org/grpc/examples/example3_p2p/proto"
+)
+
+const (
+    port = "192.168.0.103:50001"
+    neighaddr = "192.168.0.103:50000"
+    defaultName = "world"
+)
+
+// server is used to implement helloworld.GreeterServer.
+type server struct{}
+
+// SayHello implements helloworld.GreeterServer
+func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+    log.Printf("Received: %v", in.Name)
+    return &pb.HelloReply{Message: "Hello " + in.Name}, nil
+}
+
+func listen(){
+    lis, err := net.Listen("tcp", port)
+    if err != nil {
+        log.Fatalf("failed to listen: %v", err)
+    }
+
+    s := grpc.NewServer()
+    pb.RegisterGreeterServer(s, &server{})
+    if err := s.Serve(lis); err != nil {
+        log.Fatalf("failed to serve: %v", err)
+    }
+}
+
+func main() {
+    // server on 192.168.0.103:50001
+    go listen()
+    
+    // client connect to bootstrap 192.168.0.103:50000
+    conn, err := grpc.Dial(neighaddr, grpc.WithInsecure())
+    if err != nil {
+        log.Fatalf("did not connect: %v", err)
+    }
+    defer conn.Close()
+    c := pb.NewGreeterClient(conn)
+
+    name := defaultName
+    if len(os.Args) > 1 {
+        name = os.Args[1]
+    }
+    ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+    defer cancel()
+    r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
+    if err != nil {
+        log.Fatalf("could not greet: %v", err)
+    }
+    log.Printf("Greeting: %s", r.Message)
+
+    time.Sleep(100*time.Second)
+}
+```
+
+
+
 
 
 
@@ -210,10 +304,80 @@ peer1节点服务端的IP地址192.168.0.103，端口50000；客户端连接IP�
 $ vi /home/joe/go/src/google.golang.org/grpc/examples/example3_p2p/peer2.go
 ```
 
-peer2节点服务端的IP地址192.168.0.106，端口50000；客户端连接IP地址
 
 
 
+peer2节点服务端的IP地址192.168.0.106，端口50002；客户端连接IP地址
+
+```go
+package main
+
+import (
+    "context"
+    "log"
+    "net"
+    "time"
+    "os"
+
+    "google.golang.org/grpc"
+    pb "google.golang.org/grpc/examples/example3_p2p/proto"
+)
+
+const (
+    port = "192.168.0.103:50002"
+    neighaddr = "192.168.0.103:50001"
+    defaultName = "world"
+)
+
+// server is used to implement helloworld.GreeterServer.
+type server struct{}
+
+// SayHello implements helloworld.GreeterServer
+func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+    log.Printf("Received: %v", in.Name)
+    return &pb.HelloReply{Message: "Hello " + in.Name}, nil
+}
+
+func listen(){
+    lis, err := net.Listen("tcp", port)
+    if err != nil {
+        log.Fatalf("failed to listen: %v", err)
+    }
+
+    s := grpc.NewServer()
+    pb.RegisterGreeterServer(s, &server{})
+    if err := s.Serve(lis); err != nil {
+        log.Fatalf("failed to serve: %v", err)
+    }
+}
+
+func main() {
+    // server on 192.168.0.103:50001
+    go listen()
+    
+    // client connect to bootstrap 192.168.0.103:50000
+    conn, err := grpc.Dial(neighaddr, grpc.WithInsecure())
+    if err != nil {
+        log.Fatalf("did not connect: %v", err)
+    }
+    defer conn.Close()
+    c := pb.NewGreeterClient(conn)
+
+    name := defaultName
+    if len(os.Args) > 1 {
+        name = os.Args[1]
+    }
+    ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+    defer cancel()
+    r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
+    if err != nil {
+        log.Fatalf("could not greet: %v", err)
+    }
+    log.Printf("Greeting: %s", r.Message)
+
+    time.Sleep(100*time.Second)
+}
+```
 
 
 

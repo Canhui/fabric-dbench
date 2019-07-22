@@ -148,7 +148,7 @@ main.go
 
 进入/helloworld文件夹
 ```shell
-$ cd /$HOME/go/src/google.golang.org/grpc/examples/helloworld/helloworld
+$ cd $HOME/go/src/google.golang.org/grpc/examples/helloworld/helloworld
 $ ls
 helloworld.proto
 ```
