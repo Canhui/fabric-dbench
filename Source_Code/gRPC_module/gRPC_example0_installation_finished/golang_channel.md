@@ -182,6 +182,52 @@ func main() {
 
 ## 6. eg6
 
+channel的只读模式，只写模式，代码如下，
+
+```go
+package main
+import "fmt"
+
+func greet(roc <- chan string) {
+    fmt.Println("Hello " + <- roc) // step2: 阻塞goroutine线程(channel的读/写都是阻塞的)，返回main线程
+}
+
+func main() {
+    c := make(chan string)
+    fmt.Println("Main thread started")
+    go greet(c)
+
+    c <- "J" // step1: 阻塞main线程(channel的读/写都是阻塞的)，进入goroutine线程
+    fmt.Println("Main thread ended")
+}
+```
+
+
+
+
+## 7. eg7
+
+匿名goroutine线程模式
+
+```go
+package main
+import "fmt"
+
+func main() {
+    c := make(chan string)
+    fmt.Println("Main thread started")
+
+    go func(c chan string) {
+        fmt.Println("Hello " + <- c)
+    }(c)
+
+    c <- "J"
+    fmt.Println("Main thread ended")
+}
+```
+
+
+
 
 
 
