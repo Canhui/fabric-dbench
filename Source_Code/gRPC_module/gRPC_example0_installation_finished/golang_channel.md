@@ -229,7 +229,7 @@ func main() {
 
 ## 8. eg8
 
-channel结合select-case语句，如下，
+channel结合select-case语句，如下，只要一个case成立，main线程就会继续。
 
 ```go
 package main
@@ -267,6 +267,50 @@ func main() {
 }
 ```
 
+注意，default会使得channel语境下的select-case语句由block变为un-blocking。
+
+
+如果请求5秒后无法返回，我们通过default语句，返回一个初步结果，
+
+```go
+package main
+import (
+    "fmt"
+    "time"
+)
+
+func service1(c chan string) {
+   // time.Sleep(3 * time.Second)
+    c <- "hello from service 1"
+}
+
+func service2(c chan string) {
+   // time.Sleep(3 * time.Second)
+    c <- "hello from service 2"
+}
+
+func main() {
+    start := time.Now()
+    fmt.Println("Main thread started", time.Since(start))
+
+    chan1 := make(chan string)
+    chan2 := make(chan string)
+
+    go service1(chan1)
+    go service2(chan2)
+
+    time.Sleep(3 * time.Second)
+
+    select {
+    case res := <- chan1:
+        fmt.Println("Response from service1", res)
+    case res := <- chan2:
+        fmt.Println("Response from service2", res)
+    default:
+        fmt.Println("Default makes things un-blocking")
+    }
+}
+```
 
 
 
