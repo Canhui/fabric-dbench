@@ -280,12 +280,10 @@ import (
 )
 
 func service1(c chan string) {
-   // time.Sleep(3 * time.Second)
     c <- "hello from service 1"
 }
 
 func service2(c chan string) {
-   // time.Sleep(3 * time.Second)
     c <- "hello from service 2"
 }
 
@@ -313,6 +311,37 @@ func main() {
 ```
 
 
+设置Timeout()，如下，
+
+```go
+package main
+import (
+    "fmt"
+    "time"
+)
+
+func service(c chan string) {
+    c <- "hello from service 1"
+}
+
+func main() {
+    start := time.Now()
+    fmt.Println("Main thread started", time.Since(start))
+
+    chan1 := make(chan string)
+    chan2 := make(chan string)
+
+    select {
+    case res := <- chan1:
+        fmt.Println("Response from service1", res)
+    case res := <- chan2:
+        fmt.Println("Response from service2", res)
+    case <-time.After(3*time.Second):
+        fmt.Println("Default makes things un-blocking")
+    }
+}
+```
+
 
 
 
@@ -325,3 +354,5 @@ func main() {
 
 ## 参考资料
 [1. main单信道channel挂起报错] https://studygolang.com/articles/9479
+[2. channel完美教程博客] https://medium.com/rungo/anatomy-of-channels-in-go-concurrency-in-go-1ec336086adb
+
