@@ -227,6 +227,54 @@ func main() {
 ```
 
 
+## 8. eg8
+
+channel结合select-case语句，如下，
+
+```go
+package main
+import (
+    "fmt"
+    "time"
+)
+
+func service1(c chan string) {
+    time.Sleep(4 * time.Second)
+    c <- "hello from service 1"
+}
+
+func service2(c chan string) {
+    time.Sleep(3 * time.Second)
+    c <- "hello from service 2"
+}
+
+func main() {
+    start := time.Now()
+    fmt.Println("Main thread started", time.Since(start))
+
+    chan1 := make(chan string)
+    chan2 := make(chan string)
+
+    go service1(chan1)
+    go service2(chan2)
+
+    select {
+    case res := <- chan1:
+        fmt.Println("Response from service1", res)
+    case res := <- chan2:
+        fmt.Println("Response from service2", res)
+    }
+}
+```
+
+
+
+
+
+
+
+
+
 
 
 
