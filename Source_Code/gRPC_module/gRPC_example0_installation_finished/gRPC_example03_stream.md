@@ -260,3 +260,4 @@ func main() {
 [1. gRPC Stream] https://colobu.com/2017/04/06/dive-into-gRPC-streaming/
 [2. gRPC Stream examples (tonight)] https://segmentfault.com/a/1190000016503114
 [3. gRPC official stream] https://www.grpc.io/docs/tutorials/basic/go/
+[4. gRPC stream perfect blog] https://rakyll.org/grpc-streaming/
