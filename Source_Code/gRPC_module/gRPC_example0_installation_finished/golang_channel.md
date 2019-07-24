@@ -344,7 +344,7 @@ func main() {
 
 
 
-## 9. eg9
+## 9. eg9 等待所有线程结束
 
 等待所有的groutine线程结束，
 
@@ -376,7 +376,12 @@ func main() {
 }
 ```
 
+
+
+## 10. eg10 等待所有channel的线程结束
+
 通过channel等待所有的goroutine线程结束
+
 ```go
 package main
 import (
@@ -418,6 +423,124 @@ func main() {
     fmt.Println("Main thread ended")
 }
 ```
+
+
+通过wg等待所有的goroutine线程结束
+
+```go
+package main
+import (
+    "fmt"
+    "sync"
+)
+
+func sqrWorker(wg *sync.WaitGroup, tasks <- chan int, results chan <- int) {
+    for num := range tasks {
+        fmt.Printf("worker receives task %v \n", num)
+        results <- num
+    }
+    // 同步goroutine都写完再返回main
+    wg.Done()
+}
+
+
+func main() {
+    var wg sync.WaitGroup
+    fmt.Println("Main thread started")
+    tasks := make(chan int, 5)
+    results := make(chan int, 5)
+
+    for i:=0; i < 5; i++ {
+        wg.Add(1)
+        go sqrWorker(&wg, tasks, results)
+    }
+
+    // pass three tasks from main thread to child thread
+    for i := 0; i < 5; i++ {
+        tasks <- i*2
+    }
+    close(tasks)
+
+    // 同步task写完再启动多线程
+    wg.Wait()
+    for i := 0; i < 5; i++ {
+        res := <- results
+        fmt.Println("child thread", i,"; Result:",res)
+    }
+
+    // main thread ended
+    fmt.Println("Main thread ended")
+}
+```
+
+
+
+## 11. eg11 线程原子操作
+
+确实所有线程都完成了，但是部分线程存在race condition竞争，导致结果错误
+
+```go
+package main
+import (
+    "fmt"
+    "sync"
+)
+
+var i int
+
+func worker(wg *sync.WaitGroup) {
+    i = i + 1
+    wg.Done()
+}
+
+func main() {
+    var wg sync.WaitGroup
+
+    for i := 0; i < 1000; i++ {
+        wg.Add(1)
+        go worker(&wg)
+    }
+    wg.Wait()
+
+    fmt.Println("Sum of i after 1000 operations is: ",i)
+}
+```
+
+
+所有线程都完成了，且每一个线程都是原子操作，结果正确
+
+```go
+package main
+import (
+    "fmt"
+    "sync"
+)
+
+var i int
+
+func worker(wg *sync.WaitGroup, m *sync.Mutex) {
+    m.Lock()
+    i = i + 1
+    m.Unlock()
+    wg.Done()
+}
+
+func main() {
+    var wg sync.WaitGroup
+    var m sync.Mutex
+
+    for i := 0; i < 1000; i++ {
+        wg.Add(1)
+        go worker(&wg, &m)
+    }
+    wg.Wait()
+
+    fmt.Println("Sum of i after 1000 operations is: ",i)
+
+
+```
+
+
 
 
 
