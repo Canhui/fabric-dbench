@@ -344,6 +344,80 @@ func main() {
 
 
 
+## 9. eg9
+
+等待所有的groutine线程结束，
+
+```go
+package main
+import (
+    "fmt"
+    "sync"
+    "time"
+)
+
+func service(wg *sync.WaitGroup, instance int) {
+    time.Sleep(2 * time.Second)
+    fmt.Println("Service called on instance", instance)
+    wg.Done()
+}
+
+func main() {
+    fmt.Println("Main thread started")
+    var wg sync.WaitGroup
+
+    for i := 1; i <=3; i++ {
+        wg.Add(1)
+        go service(&wg, i)
+    }
+
+    wg.Wait()
+    fmt.Println("Main thread ended")
+}
+```
+
+通过channel等待所有的goroutine线程结束
+```go
+package main
+import (
+    "fmt"
+    "time"
+)
+
+func sqrWorker(tasks <- chan int, results chan <- int, instance int) {
+    for num := range tasks {
+        time.Sleep(time.Millisecond)
+        fmt.Printf("worker %v sending result by worker %v \n", instance, instance)
+        results <- num
+    }
+}
+
+
+func main() {
+    fmt.Println("Main thread started")
+    tasks := make(chan int, 10)
+    results := make(chan int, 10)
+
+    for i:=0; i < 5; i++ {
+        go sqrWorker(tasks, results, i)
+    }
+
+    // pass three tasks from main thread to child thread
+    for i := 0; i < 5; i++ {
+        tasks <- i
+    }
+    
+    // child thread ended, return to main thread
+    close(tasks)
+    for i := 0; i < 5; i++ {
+        res := <- results
+        fmt.Println("child thread", i,"; Result:",res)
+    }
+
+    // main thread ended
+    fmt.Println("Main thread ended")
+}
+```
 
 
 
