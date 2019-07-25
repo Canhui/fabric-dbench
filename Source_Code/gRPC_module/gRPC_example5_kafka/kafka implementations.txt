@@ -1,1 +1,7 @@
 https://hyperledger-fabric.readthedocs.io/en/release-1.4/kafka.html
+
+blog: https://codeburst.io/the-abcs-of-kafka-in-hyperledger-fabric-81e6dc18da56
+
+
+
+what is the difference between kafka and zookeeper?
