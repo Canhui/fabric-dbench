@@ -1,0 +1,3 @@
+example: https://segmentfault.com/a/1190000016601783
+
+github: https://segmentfault.com/a/1190000016601857

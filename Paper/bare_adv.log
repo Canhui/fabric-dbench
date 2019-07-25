@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  19 JUL 2019 14:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  24 JUL 2019 22:22
 entering extended mode
 **./bare_adv.tex
 (bare_adv.tex
@@ -551,7 +551,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 139.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 147.
 
 
 (E:\Miktex\tex/latex/psnfss\ot1phv.fd
@@ -561,18 +561,18 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 LaTeX Warning: No \author given.
 
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <8.03> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 139.
-LaTeX Font Info:    Calculating math sizes for size <11.04124> on input line 13
-9.
-LaTeX Font Info:    Try loading font information for U+msa on input line 139.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 147.
+LaTeX Font Info:    Calculating math sizes for size <11.04124> on input line 14
+7.
+LaTeX Font Info:    Try loading font information for U+msa on input line 147.
 (E:\Miktex\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 139.
+LaTeX Font Info:    Try loading font information for U+msb on input line 147.
  (E:\Miktex\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+pzd on input line 139.
+LaTeX Font Info:    Try loading font information for U+pzd on input line 147.
 
 (E:\Miktex\tex/latex/psnfss\upzd.fd
 File: upzd.fd 2001/06/04 font definitions for U/pzd.
@@ -584,12 +584,12 @@ LaTeX Warning: No \author given.
 LaTeX Warning: No \author given.
 
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <11.04124> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 145.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 153.
 LaTeX Font Info:    Font shape `OT1/phv/bx/sc' in size <11.04124> not available
 
-(Font)              Font shape `OT1/phv/b/sc' tried instead on input line 145.
+(Font)              Font shape `OT1/phv/b/sc' tried instead on input line 153.
 
-Underfull \hbox (badness 1377) in paragraph at lines 153--154
+Underfull \hbox (badness 1377) in paragraph at lines 161--162
 []\OT1/ppl/m/sc/9.53561 itcoin \OT1/ppl/m/n/9.53561 [1] is a de-cen-tral-ized p
 eer to peer (P2P)
  []
@@ -603,7 +603,7 @@ map}
 ] (bare_adv.aux) ) 
 Here is how much of TeX's memory you used:
  5154 strings out of 492895
- 76053 string characters out of 3141861
+ 76051 string characters out of 3141861
  156180 words of memory out of 3000000
  8968 multiletter control sequences out of 15000+200000
  42138 words of font info for 97 fonts, out of 3000000 for 9000
@@ -613,7 +613,7 @@ Here is how much of TeX's memory you used:
 /urw/helvetic/uhvb8a.pfb><E:/Miktex/fonts/type1/urw/helvetic/uhvr8a.pfb><E:/Mik
 tex/fonts/type1/urw/palatino/uplr8a.pfb><E:/Miktex/fonts/type1/urw/palatino/upl
 ri8a.pfb><E:/Miktex/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on bare_adv.pdf (2 pages, 61959 bytes).
+Output written on bare_adv.pdf (2 pages, 61849 bytes).
 PDF statistics:
  30 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
