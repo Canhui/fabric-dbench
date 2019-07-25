@@ -129,6 +129,30 @@ func main() {
 
 
 
+## 2. 其他
+
+处理字符串IP地址：删除端口号，获取纯粹的IP地址。如下，
+
+```go
+package main
+import( 
+    "fmt"
+    "strings"
+)
+
+func main() {
+    ip := "192.168.0.103:50051"
+    comma := strings.Index(ip, ":")
+    fmt.Println(ip[:comma])
+}
+```
+
+
+
+
+
+
+
 ## 参考资料
 [1. 获取客户端IP参考] https://groups.google.com/forum/#!topic/grpc-io/UodEY4N78Sk
 [2. 获取客户端IP] https://github.com/grpc/grpc-go/blob/c962da7be9c620c4a19158d978d1bf995c480098/test/end2end_test.go#L138
