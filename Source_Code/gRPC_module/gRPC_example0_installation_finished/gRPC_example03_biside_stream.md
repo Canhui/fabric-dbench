@@ -20,7 +20,6 @@ service StreamService {
     rpc Route(stream StreamRequest) returns (stream StreamResponse) {};
 }
 
-
 message StreamPoint {
     string name = 1;
     int32 value = 2;
