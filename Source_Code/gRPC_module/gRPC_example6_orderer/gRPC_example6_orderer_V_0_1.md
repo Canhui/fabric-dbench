@@ -124,7 +124,7 @@ func main() {
 }
 ```
 
-## 1.2. anchor_peer1.go
+## 1.3. anchor_peer1.go
 
 源代码如下，
 
