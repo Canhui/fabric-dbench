@@ -1,20 +1,15 @@
-T=0: server阻塞式地监听来自client的请求
+T=0: server阻塞式地监听来自client的请求。
 
-T=1: client发送一个请求给server
-T=2: client关闭发送
+T=1: client发送一个请求给server，请求中包含一个command。
+T=2: client关闭发送。
 
-T=3: server中断阻塞式监听
-T=4: server持续发送响应
+T=3: server中断阻塞式监听。
+T=4: server根据收到的请求中的command，通过stream持续发送相应响应。
 
-T=5: client持续接收来自server的响应
-
---------------------------------------------------------------------------
-
-Q1: client端有没有缓冲区，存放来自server的响应？server的响应丢了怎么办？
-Q2: server如何根据client发送的信息的类型予以不同的回复？
-
+T=5: client持续接收来自server的响应。
 
 --------------------------------------------------------------------------
+
 
 ## 1.1. orderer.proto
 
@@ -52,8 +47,6 @@ message StreamResponse {
 protoc -I proto/ proto/orderer.proto --go_out=plugins=grpc:proto
 
 
-
-
 ## 1.2. orderer.go
 
 源代码如下，
@@ -85,31 +78,39 @@ func (s *StreamService) Route(stream pb.StreamService_RouteServer) error {
     if err != nil {
         return err
     }
-    log.Printf("stream.Recv pt.name: %s, pt.value: %s", r.Pt.Key, r.Pt.Value)
-    // Continuously send messages from server side to client side 
-    for n := 0; n <= 9; n++ {
-        err_send := stream.Send(&pb.StreamResponse{
-            Pt: &pb.StreamPoint{
-                Key:  "gPRC Stream Client: Key",
-                Value: "this is value"+strconv.Itoa(100),
-            },
-        })
-        if err_send != nil {
-            return err_send
-        }
-    }
-    for n := 0; n <= 9; n++ {
-        err_send := stream.Send(&pb.StreamResponse{
-            Pt: &pb.StreamPoint{
-                Key:  "gPRC Stream Client: Key",
-                Value: "this is value"+strconv.Itoa(101),
-            },
-        })
-        if err_send != nil {
-            return err_send
+
+    if r.Pt.Key == "getDataA" {
+        // Continuously send messages from server side to client side
+        log.Printf("Match command getDataA stream.Recv pt.name: %s; then the server will send file pt.value: %s to client", r.Pt.Key, r.Pt.Value) 
+        for n := 0; n <= 9; n++ {
+            err_send := stream.Send(&pb.StreamResponse{
+                Pt: &pb.StreamPoint{
+                    Key:  "gPRC Stream Client: Key",
+                    Value: "this is value"+strconv.Itoa(100),
+                },
+            })
+            if err_send != nil {
+                return err_send
+            }
         }
     }
 
+    if r.Pt.Key == "getDataB" {
+            log.Printf("Match command getDataB stream.Recv pt.name: %s; then the server will send file pt.value: %s to client", r.Pt.Key, r.Pt.Value)
+            // Continuously send messages from server side to client side 
+            for n := 0; n <= 9; n++ {
+                err_send := stream.Send(&pb.StreamResponse{
+                    Pt: &pb.StreamPoint{
+                        Key:  "gPRC Stream Client: Key",
+                        Value: "this is value"+strconv.Itoa(101),
+                    },
+                })
+                if err_send != nil {
+                    return err_send
+                }
+            }
+    } 
+    
     return nil
 }
 
@@ -125,7 +126,7 @@ func main() {
 }
 ```
 
-## 1.2. anchor_peer1.go
+## 1.3. anchor_peer1.go
 
 源代码如下，
 
@@ -178,9 +179,18 @@ func main() {
     defer conn.Close()
     client := pb.NewStreamServiceClient(conn)
 
-    err = connectOrderer(client, &pb.StreamRequest{Pt: &pb.StreamPoint{Key: "hello", Value: "world"}})
+    err = connectOrderer(client, &pb.StreamRequest{Pt: &pb.StreamPoint{Key: "getDataA", Value: "world"}})
+    if err != nil {
+        log.Fatalf("printLists.err: %v", err)
+    }
+
+    err = connectOrderer(client, &pb.StreamRequest{Pt: &pb.StreamPoint{Key: "getDataB", Value: "world"}})
     if err != nil {
         log.Fatalf("printLists.err: %v", err)
     }
 }
 ```
+
+
+
+
