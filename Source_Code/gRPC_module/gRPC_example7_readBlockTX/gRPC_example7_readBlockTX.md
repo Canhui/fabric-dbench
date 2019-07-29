@@ -271,6 +271,18 @@ func main() {
 
 configtxlator
 
+https://www.jianshu.com/p/8954afbeed9d
+
+
+读取block0.block每一个字节成json格式
+
+```shell
+$ /home/joe/fabric-samples/bin/configtxlator proto_decode --input block0.block --type common.Block
+```
+
+
+
+
 
 
 
