@@ -381,6 +381,17 @@ type SignatureHeader struct {
 
 下一步，metadata的具体代码？
 
+This section contains the time when the block was written, as well as the certificate, public key and signature of the block writer. Subsequently
+
+https://medium.com/@spsingh559/deep-dive-into-hyperledger-fabric-ledger-b7ecd671d55f
+
+
+
+
+
+
+
+
 
 
 
@@ -392,11 +403,23 @@ signature + payload
 其中payload分为data+header
 
 
+hyperledger transaction verification?
 
 
 
 
 
+
+
+
+
+
+整个数据结构去解析block4.json：https://github.com/XChainLab/documentation/blob/master/fabric/Fabric.block.data.structure.md
+
+
+
+
+整个block的操作：https://yuan1028.github.io/fabric-commit-block/
 
 
 
@@ -420,9 +443,37 @@ signature + payload
 
 #### 4.2. 关于证书链的使用
 
+关于TLS/MSP： https://www.geek-share.com/detail/2728217061.html
 
 
 
+TLS的KEY,CERT: https://medium.com/coinmonks/designing-a-hyperledger-fabric-network-7adcd78dabc3
+
+
+MSP的框架：https://hyperledger-fabric.readthedocs.io/en/release-1.2/idemix.html
+
+
+明天：https://www.cnblogs.com/wzjwffg/p/9882870.html
+
+
+
+
+
+#### 关于所有的证书
+
+Data部分
+creator, id_bytes
+endorsements, endorser
+endorsements, signature
+signature_header, id_bytes
+
+Header部分
+data_hash
+previous_hash
+
+Metadata部分
+sig1
+sig2
 
 
 
