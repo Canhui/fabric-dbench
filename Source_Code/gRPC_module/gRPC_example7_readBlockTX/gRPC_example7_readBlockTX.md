@@ -281,6 +281,47 @@ $ /home/joe/fabric-samples/bin/configtxlator proto_decode --input block0.block -
 ```
 
 
+```shell
+$ /home/joe/fabric-samples/bin/configtxlator proto_decode --type common.Block --input block4.block --output block4.json
+```
+
+
+block的格式如下：https://hyperledger-fabric.readthedocs.io/en/release-1.4/ledger/ledger.html
+
+
+Q: Hyperledger Block中的metadata是怎么回事？
+
+This section contains the time when the block was written, as well as the certificate, public key and signature of the block writer. Subsequently, the block committer also adds a valid or invalid indicator for every transaction, through this information is not included in the hash, as that is created when the block is created.
+
+
+
+
+
+
+
+## 4. TO DO
+
+#### 4.1. 关于Blockchain的区块格式
+
+说明书
+
+https://blockchain-fabric.blogspot.com/2017/04/hyperledger-fabric-v10-block-structure.html
+
+实际试验
+
+combine block4.json去进行分析，问题是如何分析json文件？结合协议进行分析。
+
+参考在线JSON解析网址：https://c.runoob.com/front-end/53
+
+目标：其一，论字节解析三个部分；其二，三大部分的依赖关系。
+
+
+
+
+
+
+
+#### 4.2. 关于证书链的使用
 
 
 
@@ -296,10 +337,7 @@ $ /home/joe/fabric-samples/bin/configtxlator proto_decode --input block0.block -
 
 
 
-
-
-
-
+## Reference
 
 从Hyperledger Fabric获取本地的文件系统中的Block File
 
