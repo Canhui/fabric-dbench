@@ -285,6 +285,12 @@ $ /home/joe/fabric-samples/bin/configtxlator proto_decode --input block0.block -
 $ /home/joe/fabric-samples/bin/configtxlator proto_decode --type common.Block --input block4.block --output block4.json
 ```
 
+encode格式如下
+
+```shell
+$ /home/joe/fabric-samples/bin/configtxlator proto_encode --type common.Block --input block4.json --output blockout.pb
+```
+
 
 block的格式如下：https://hyperledger-fabric.readthedocs.io/en/release-1.4/ledger/ledger.html
 
@@ -314,6 +320,97 @@ combine block4.json去进行分析，问题是如何分析json文件？结合协
 参考在线JSON解析网址：https://c.runoob.com/front-end/53
 
 目标：其一，论字节解析三个部分；其二，三大部分的依赖关系。
+
+
+Fabric's block consists of three segments which are data, header and metadata.
+
+
+
+
+#### 4.1.1. header
+
+The header of each block consists of three items which are data_hash, number and previous_hash, where data_hsh is the hash of the data segment of the current block, number if the block number and previous_hash is the hash of the previous block's header.
+
+
+代码参考： https://github.com/hyperledger/fabric/blob/release-1.4/protos/common/block.go
+
+```go
+type asn1Header struct {
+    Number       int64
+    PreviousHash []byte
+    DataHash     []byte
+}
+```
+
+采用SHA256生成hash。
+
+
+
+
+
+
+
+#### 4.1.2. metadata
+
+
+代码参考： https://github.com/hyperledger/fabric/blob/release-1.4/protos/common/common.proto
+
+
+```go
+type BlockMetadata struct {
+    Metadata [][]byte 
+}
+
+// Metadata is a common structure to be used to encode block metadata
+type Metadata struct {
+    Value      []byte               
+    Signatures []*MetadataSignature 
+}
+
+type MetadataSignature struct {
+    SignatureHeader []byte 
+    Signature       []byte 
+}
+
+type SignatureHeader struct {   
+    Creator []byte 
+    Nonce []byte 
+}
+```
+
+
+下一步，metadata的具体代码？
+
+
+
+
+
+#### 4.1.3. data
+
+signature + payload
+
+其中payload分为data+header
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
