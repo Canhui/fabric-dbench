@@ -125,6 +125,8 @@ $ openssl verify -CAfile RootCA_crt.pem -untrusted secondCA_crt.pem thirdCA_crt.
 
 
 
+
+
 #### 2.6. 多链验证问题
 
 If you are using intermediate certificates, you will need to make sure that the application using the certificate is sending the complete chain (including server certificate and intermediate certificate). This depends on the application you are using that uses the certificate. But usually you have to create a file containing the server certificate file and the intermediate certificate file. It is required to put the server certificate file first, and then the intermediat certificate files. 
@@ -133,9 +135,8 @@ If you are using intermediate certificates, you will need to make sure that the 
 
 
 
-
-
-
+<br />
+<br />
 
 
 ## 参考资料
