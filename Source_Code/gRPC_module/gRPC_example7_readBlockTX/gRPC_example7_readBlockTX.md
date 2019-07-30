@@ -441,19 +441,6 @@ hyperledger transaction verification?
 
 
 
-#### 4.2. 关于证书链的使用
-
-关于TLS/MSP： https://www.geek-share.com/detail/2728217061.html
-
-
-
-TLS的KEY,CERT: https://medium.com/coinmonks/designing-a-hyperledger-fabric-network-7adcd78dabc3
-
-
-MSP的框架：https://hyperledger-fabric.readthedocs.io/en/release-1.2/idemix.html
-
-
-明天：https://www.cnblogs.com/wzjwffg/p/9882870.html
 
 
 
