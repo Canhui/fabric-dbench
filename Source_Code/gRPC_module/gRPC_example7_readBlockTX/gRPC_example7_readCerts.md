@@ -14,6 +14,18 @@ x509证书包含三种文件: key, csr和crt。
 .crl格式: 证书吊销列表
 .pem格式: 用于导入导出证书的时候的证书格式
 
+When the CA is started for the first time, it will generate all of its required state and writes this state to the directory given in its configuration. The certificates for the CA services are self-signed as the current default. If those certificates shall be signed by some root CA, this ca be done manually by using the private and public keys in the CA state directory, and replacing the self-signed certificates with root-signed ones.
+
+参考: https://openblockchain.readthedocs.io/en/latest/Setup/ca-setup/
+
+关于TLS/MSP： https://www.geek-share.com/detail/2728217061.html
+
+TLS的KEY,CERT: https://medium.com/coinmonks/designing-a-hyperledger-fabric-network-7adcd78dabc3
+
+MSP的框架：https://hyperledger-fabric.readthedocs.io/en/release-1.2/idemix.html
+
+
+
 
 
 ## 2. 证书链的例子
@@ -39,7 +51,6 @@ touch index.txt
 ```
 
 
-
 #### 2.1. CA根证书的生成步骤
 
 ```shell
@@ -51,7 +62,6 @@ $ openssl req -new -x509 -days 3650 -key keys/RootCA.key -out keys/RootCA.crt
 ```
 
 注，其中Common Name写入RootCA。
-
 
 
 #### 2.2. 二级证书的生成步骤
@@ -67,7 +77,6 @@ $ openssl ca -extensions v3_ca -in keys/secondCA.csr -days 3650 -out keys/second
 注，其中Common Name写入SecondCA。
 
 
-
 #### 2.3. 三级证书的生成步骤
 
 ```shell
@@ -80,122 +89,56 @@ $ openssl ca -extensions v3_ca -in keys/thirdCA.csr -days 3650 -out keys/thirdCA
 注，其中Common Name写入ThirdCA。
 
 
+#### 2.4. 证书格式转换
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 1. 关于证书链的使用
-
-关于TLS/MSP： https://www.geek-share.com/detail/2728217061.html
-
-
-
-TLS的KEY,CERT: https://medium.com/coinmonks/designing-a-hyperledger-fabric-network-7adcd78dabc3
-
-
-MSP的框架：https://hyperledger-fabric.readthedocs.io/en/release-1.2/idemix.html
-
-
-
-
-## 2. Blog1: https://www.cnblogs.com/wzjwffg/p/9882870.html (仅生成一级证书)
-
-
-
-
-
-#### 2.2. CA根证书的生成步骤
+.crt证书也可以转换成.pem格式，命令如下，
 
 ```shell
-# ca.key: 生成根证书服务器的私钥
-$ openssl genrsa -out ca.key 2048 
-
-# ca.csr: 根证书申请请求
-$ openssl req -new -key ca.key -out ca.csr
-
-# ca.crt: 根证书服务器的私钥签署根证书请求，得到自签名的根证书
-$ openssl x509 -req -days 365 -in ca.csr -signkey ca.key -out ca.crt 
+$ openssl x509 -in RootCA.crt -out RootCA_crt.pem
 ```
 
-在实际软件开发工作中，往往服务器采用self signed certificate自签名的方式。
 
+#### 2.5. 证书认证/验证
 
-When the CA is started for the first time, it will generate all of its required state and writes this state to the directory given in its configuration. The certificates for the CA services are self-signed as the current default. If those certificates shall be signed by some root CA, this ca be done manually by using the private and public keys in the CA state directory, and replacing the self-signed certificates with root-signed ones.
-
-参考: https://openblockchain.readthedocs.io/en/latest/Setup/ca-setup/
-
-
-#### 2.3. 用户证书的生成步骤
+自签名证书RootCA_crt.pem的验证，命令如下，
 
 ```shell
-# server.key: 用户服务器的私钥
-$ openssl genrsa -des3 -out server.key 1024
-
-# server.csr: 用户证书申请请求
-$ openssl req -new -key server.key -out server.csr
-
-# server.crt: 根服务器的私钥ca.key签署用户证书
-$ openssl ca -in server.csr -out server.crt -cert ca.crt -keyfile ca.key 
+$ openssl verify RootCA_crt.pem
+RootCA_crt.pem: C = AU, ST = Some-State, O = Internet Widgits Pty Ltd, CN = RootCA
+error 18 at 0 depth lookup:self signed certificate
+OK
 ```
 
+验证RootCA_crt.pem是否签发secondCA_crt.pem证书，如下，
+```shell
+$ openssl verify -CAfile RootCA_crt.pem secondCA_crt.pem
+secondCA_crt.pem: OK
+```
 
-
-
-
-
-#### 2.4. 客户证书的生成步骤
+验证SecondCA_crt.pem是否签发thirdCA_crt.pem证书，如下，
 
 ```shell
-# client.key: 客户端私钥
-$ openssl genrsa -des3 -out client.key 1024
-
-# client.csr: 客户证书申请请求
-$ openssl req -new -key client.key -out client.csr
-
-# client.crt: 客户证书生成
-$ openssl ca -in client.csr -out client.crt -cert client.crt -keyfile client.key
-
-# openssl ca -in client.csr -out client.crt -cert server.crt -keyfile server.key
+$ openssl verify -CAfile RootCA_crt.pem -untrusted secondCA_crt.pem thirdCA_crt.pem
 ```
 
-
-## 3. Blog2: https://blog.csdn.net/u010129119/article/details/53419581 (仅生成多级证书)
-
-
-```
-openssl ca -in keys/secondCA.csr -days 3650 -out keys/secondCA.crt -cert keys/RootCA.crt -keyfile keys/RootCA.key
-```
-
-```
-openssl ca -in keys/thirdCA.csr -days 3650 -out keys/thirdCA.crt -cert keys/secondCA.crt -keyfile keys/secondCA.key
-```
-
-openssl ca -in keys/thirdCA.csr -days 3650 -out keys/thirdCA.crt -cert keys/secondCA.crt -keyfile keys/secondCA.key
+注，多个中间链的验证`-untrusted intermediate1.pem -untrusted intermediate2.pem`，参考 https://medium.com/@superseb/get-your-certificate-chain-right-4b117a9c0fce 。
 
 
 
+#### 2.6. 多链验证问题
+
+If you are using intermediate certificates, you will need to make sure that the application using the certificate is sending the complete chain (including server certificate and intermediate certificate). This depends on the application you are using that uses the certificate. But usually you have to create a file containing the server certificate file and the intermediate certificate file. It is required to put the server certificate file first, and then the intermediat certificate files. 
+
+参考： https://medium.com/@superseb/get-your-certificate-chain-right-4b117a9c0fce
+
+
+
+
+
+
+
+
+## 参考资料
 
 关于证书链的图示：https://www.pianyissl.com/support/page/10
 
@@ -207,7 +150,32 @@ openssl ca -in keys/thirdCA.csr -days 3650 -out keys/thirdCA.crt -cert keys/seco
 证书链的解释：https://blog.csdn.net/hanghang121/article/details/51774579
 
 
-openssl ca -extensions v3_ca -in keys/secondCA.csr -days 3650 -out keys/secondCA.crt -cert keys/RootCA.crt -keyfile keys/RootCA.key
 
-openssl ca -extensions v3_ca -in keys/thirdCA.csr -days 3650 -out keys/thirdCA.crt -cert keys/secondCA.crt -keyfile keys/secondCA.key
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
