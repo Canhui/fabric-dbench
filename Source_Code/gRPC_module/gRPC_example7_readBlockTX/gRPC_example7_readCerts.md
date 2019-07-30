@@ -12,7 +12,7 @@ MSP的框架：https://hyperledger-fabric.readthedocs.io/en/release-1.2/idemix.h
 
 
 
-## 2. Blog1: https://www.cnblogs.com/wzjwffg/p/9882870.html
+## 2. Blog1: https://www.cnblogs.com/wzjwffg/p/9882870.html (仅生成一级证书)
 
 x509证书包含三种文件: key, csr和crt。
 
@@ -66,7 +66,7 @@ $ openssl genrsa -des3 -out server.key 1024
 $ openssl req -new -key server.key -out server.csr
 
 # server.crt: 根服务器的私钥ca.key签署用户证书
-openssl ca -in server.csr -out /home/joe/go/src/readCerts/server.crt -cert ca.crt -keyfile ca.key 
+$ openssl ca -in server.csr -out server.crt -cert ca.crt -keyfile ca.key 
 ```
 
 
@@ -88,3 +88,47 @@ cd ./demoCA
 echo 00 > serial
 touch index.txt
 ```
+
+
+#### 2.4. 客户证书的生成步骤
+
+```shell
+# client.key: 客户端私钥
+$ openssl genrsa -des3 -out client.key 1024
+
+# client.csr: 客户证书申请请求
+$ openssl req -new -key client.key -out client.csr
+
+# client.crt: 客户证书生成
+$ openssl ca -in client.csr -out client.crt -cert client.crt -keyfile client.key
+
+# openssl ca -in client.csr -out client.crt -cert server.crt -keyfile server.key
+```
+
+
+## 3. Blog2: https://blog.csdn.net/u010129119/article/details/53419581 (仅生成多级证书)
+
+
+```
+openssl ca -in keys/secondCA.csr -days 3650 -out keys/secondCA.crt -cert keys/RootCA.crt -keyfile keys/RootCA.key
+```
+
+```
+openssl ca -in keys/thirdCA.csr -days 3650 -out keys/thirdCA.crt -cert keys/secondCA.crt -keyfile keys/secondCA.key
+```
+
+openssl ca -in keys/thirdCA.csr -days 3650 -out keys/thirdCA.crt -cert keys/secondCA.crt -keyfile keys/secondCA.key
+
+
+
+
+关于证书链的图示：https://www.pianyissl.com/support/page/10
+
+关于证书链的验证: https://medium.com/@superseb/get-your-certificate-chain-right-4b117a9c0fce
+
+
+证书链的验证: https://www.poftut.com/verify-certificate-chain-openssl/
+
+证书链的解释：https://blog.csdn.net/hanghang121/article/details/51774579
+
+
