@@ -1,3 +1,111 @@
+## 1. 关于证书链
+
+x509证书包含三种文件: key, csr和crt。
+
+其中，key是私钥；csr是证书请求文件，用于申请证书，在制作csr文件的时候，必须使用自己的私钥来签署申请，还可以设定一个密钥；crt是CA认证后的证书，是证书认证者用自己的私钥给你签署的一个证书。
+
+根证书是CA认证中心给自己颁发的证书，是证书链的起点。任何安装CA根证书的服务器都意味着该服务器是可信任的，也是信任的原点。
+
+数字证书是由证书认证机构对证书申请者的真实身份认证之后，用CA的根证书对申请人的一些基本信息以及申请人的公钥进行签名后形成的一个数字文件。数字证书包含有证书所标识的公钥。该证书的真实性由颁发机构保证。
+
+.key格式: 私钥
+.csr格式: 用户证书申请请求,包含有用户的公钥
+.crt格式: 证书文件
+.crl格式: 证书吊销列表
+.pem格式: 用于导入导出证书的时候的证书格式
+
+
+
+## 2. 证书链的例子
+
+#### 2.0. 问题和环境清理
+
+可能遇到的问题："Using configuration from /usr/lib/ssl/openssl.cnf
+I am unable to access the ./demoCA/newcerts directory
+./demoCA/newcerts: No such file or directory"，参考解决方案:https://ubuntuforums.org/showthread.php?t=2353936
+
+可能遇到serial的问题:
+https://stackoverflow.com/questions/39270992/creating-self-signed-certificates-with-open-ssl-on-windows
+
+```shell
+# 根目录下
+mkdir ./demoCA
+mkdir ./demoCA/newcerts
+mkdir ./demoCA/certs
+mkdir ./demoCA/crl
+cd ./demoCA
+echo 00 > serial
+touch index.txt
+```
+
+
+
+#### 2.1. CA根证书的生成步骤
+
+```shell
+# RootCA.key: 生成根证书服务器的私钥
+$ openssl genrsa -des3 -out keys/RootCA.key 2048
+
+# RootCA.crt: 根证书服务器的私钥签署根证书请求，得到自签名的根证书
+$ openssl req -new -x509 -days 3650 -key keys/RootCA.key -out keys/RootCA.crt
+```
+
+注，其中Common Name写入RootCA。
+
+
+
+#### 2.2. 二级证书的生成步骤
+
+```shell
+# SecondCA.key: 生成二级证书的私钥
+$ openssl genrsa -des3 -out keys/secondCA.key 2048
+$ openssl rsa -in keys/secondCA.key -out keys/secondCA.key
+$ openssl req -new -days 3650 -key keys/secondCA.key -out keys/secondCA.csr
+$ openssl ca -extensions v3_ca -in keys/secondCA.csr -days 3650 -out keys/secondCA.crt -cert keys/RootCA.crt -keyfile keys/RootCA.key
+```
+
+注，其中Common Name写入SecondCA。
+
+
+
+#### 2.3. 三级证书的生成步骤
+
+```shell
+# ThirdCA.key: 生成三级证书的私钥
+$ openssl genrsa -des3 -out keys/thirdCA.key 2048
+$ openssl rsa -in keys/thirdCA.key -out keys/thirdCA.key
+$ openssl req -new -days 3650 -key keys/thirdCA.key -out keys/thirdCA.csr
+$ openssl ca -extensions v3_ca -in keys/thirdCA.csr -days 3650 -out keys/thirdCA.crt -cert keys/secondCA.crt -keyfile keys/secondCA.key
+```
+注，其中Common Name写入ThirdCA。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 1. 关于证书链的使用
 
 关于TLS/MSP： https://www.geek-share.com/detail/2728217061.html
@@ -14,24 +122,7 @@ MSP的框架：https://hyperledger-fabric.readthedocs.io/en/release-1.2/idemix.h
 
 ## 2. Blog1: https://www.cnblogs.com/wzjwffg/p/9882870.html (仅生成一级证书)
 
-x509证书包含三种文件: key, csr和crt。
 
-其中，key是私钥；csr是证书请求文件，用于申请证书，在制作csr文件的时候，必须使用自己的私钥来签署申请，还可以设定一个密钥；crt是CA认证后的证书，是证书认证者用自己的私钥给你签署的一个证书。
-
-根证书是CA认证中心给自己颁发的证书，是证书链的起点。任何安装CA根证书的服务器都意味着该服务器是可信任的，也是信任的原点。
-
-
-数字证书是由证书认证机构对证书申请者的真实身份认证之后，用CA的根证书对申请人的一些基本信息以及申请人的公钥进行签名后形成的一个数字文件。数字证书包含有证书所标识的公钥。该证书的真实性由颁发机构保证。
-
-
-
-#### 2.1. openssl的后缀文件
-
-.key格式: 私钥
-.csr格式: 用户证书申请请求,包含有用户的公钥
-.crt格式: 证书文件
-.crl格式: 证书吊销列表
-.pem格式: 用于导入导出证书的时候的证书格式
 
 
 
@@ -71,23 +162,7 @@ $ openssl ca -in server.csr -out server.crt -cert ca.crt -keyfile ca.key
 
 
 
-可能遇到的问题："Using configuration from /usr/lib/ssl/openssl.cnf
-I am unable to access the ./demoCA/newcerts directory
-./demoCA/newcerts: No such file or directory"，参考解决方案:https://ubuntuforums.org/showthread.php?t=2353936
 
-可能遇到serial的问题:
-https://stackoverflow.com/questions/39270992/creating-self-signed-certificates-with-open-ssl-on-windows
-
-```shell
-# 根目录下
-mkdir ./demoCA
-mkdir ./demoCA/newcerts
-mkdir ./demoCA/certs
-mkdir ./demoCA/crl
-cd ./demoCA
-echo 00 > serial
-touch index.txt
-```
 
 
 #### 2.4. 客户证书的生成步骤
@@ -131,4 +206,8 @@ openssl ca -in keys/thirdCA.csr -days 3650 -out keys/thirdCA.crt -cert keys/seco
 
 证书链的解释：https://blog.csdn.net/hanghang121/article/details/51774579
 
+
+openssl ca -extensions v3_ca -in keys/secondCA.csr -days 3650 -out keys/secondCA.crt -cert keys/RootCA.crt -keyfile keys/RootCA.key
+
+openssl ca -extensions v3_ca -in keys/thirdCA.csr -days 3650 -out keys/thirdCA.crt -cert keys/secondCA.crt -keyfile keys/secondCA.key
 
