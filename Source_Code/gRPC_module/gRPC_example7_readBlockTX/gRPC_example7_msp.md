@@ -247,3 +247,4 @@ read-write set的丰富资料: https://hyperledgercn.github.io/hyperledgerDocs/r
 
 read-write set验证交易和更新worldState: https://hyperledgercn.github.io/hyperledgerDocs/read-write-set/
 
+
