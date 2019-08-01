@@ -25,6 +25,9 @@ The configtxgen tool does not have any dependency on runtime. TX file may be sig
 
 configtxgen -inspectBlock
 
-参考资料: https://hyperledgercn.github.io/hyperledgerDocs/configtxgen_zh/
+明天: https://hyperledgercn.github.io/hyperledgerDocs/configtxgen_zh/
+
+明天: https://github.com/CATechnologies/blockchain-tutorials/wiki/Tutorial:-Hyperledger-Fabric-v1.1-%E2%80%93-Create-a-Development-Business-Network-on-zLinux#create-channeltx-and-the-genesis-block-using-the-configtxgen-tool
+
 
 
