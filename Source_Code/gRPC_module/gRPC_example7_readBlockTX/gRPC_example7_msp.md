@@ -12,6 +12,8 @@ https://zhuanlan.zhihu.com/p/35855729
 
 ## 2. 关于local msp和channel msp的区别？
 
+核心官方解释: https://hyperledger-fabric.readthedocs.io/en/release-1.4/membership/membership.html
+
 英文原文: https://hyperledgercn.github.io/hyperledgerDocs/msp_zh/
 中文博客: https://blog.csdn.net/maixia24/article/details/79809759
 
@@ -248,3 +250,4 @@ read-write set的丰富资料: https://hyperledgercn.github.io/hyperledgerDocs/r
 read-write set验证交易和更新worldState: https://hyperledgercn.github.io/hyperledgerDocs/read-write-set/
 
 
+gRPC_genesisblock.md
