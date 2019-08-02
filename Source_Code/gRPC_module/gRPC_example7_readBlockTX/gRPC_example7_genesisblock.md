@@ -14,3 +14,9 @@ It is important to understand how the genesis block is used here. The genesis bl
 ## 关于genesis block的解读
 
 https://hyperledger-fabric.readthedocs.io/en/release-1.4/commands/configtxgen.html
+
+When a peer joins the blockchain network, the ledger enclave is initialized by the admin with the genesis block, which contains the blockchain configuration and the expected hash (mrenclave) of the ledger enclave.
+
+
+## Question: enabled TLS mode and genesis block?
+
