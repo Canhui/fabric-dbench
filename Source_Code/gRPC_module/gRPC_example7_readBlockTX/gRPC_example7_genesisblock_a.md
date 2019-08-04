@@ -1013,18 +1013,16 @@ UZ6LH2uYek4CIENIbvLQpzf9EHCCM6F1cDP6rQc1W5fMAwlrXm4F1fs6
 -----END CERTIFICATE-----
 ```
 
-
-
-
-
-
+<br />
+<br />
 
 ## TO DO. 使用私钥验证证书
 
 找到相应证书的私钥
 
 
-
+<br />
+<br />
 
 ## TO DO. configtxgen工具的使用
 
