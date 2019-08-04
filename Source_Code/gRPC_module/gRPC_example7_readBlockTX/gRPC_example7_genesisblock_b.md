@@ -241,3 +241,22 @@ MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgFrp2UlEs0iJ6JZdP
 下一步解决User在接入Peer的时候，证书验证如何工作？
 
 
+https://hyperledger-fabric.readthedocs.io/en/release-1.4/_images/membership.diagram.4.png
+
+Local and channel MSPs. The trust domain (e.g., the organization) of each peer is defined by the peer's local MSP, e.g., ORG1 or ORG2. Representation of an organization on a channel is achieved by adding the organization's MSP to the channel configuration. For example, the channel of this figure is managed by both ORG1 and ORG2. Similar principles apply for the network, orderers and users, but these are not shown here for simplicity.
+
+You may find it helpful to see how local and channel MSPs are used by seeing what happens when a blockchain administrator installs and instantiates a smart contract, as shown in the diagram. See https://hyperledger-fabric.readthedocs.io/en/release-1.4/membership/membership.html.
+
+
+
+
+
+下一步: openssl使用使用私钥，构造证书链；同时，反复读取官方解释。
+
+
+
+
+
+
+## 参考资料
+[1. Hyperledger TLS/MSP的解释] https://hyperledger-fabric.readthedocs.io/en/release-1.4/membership/membership.html
