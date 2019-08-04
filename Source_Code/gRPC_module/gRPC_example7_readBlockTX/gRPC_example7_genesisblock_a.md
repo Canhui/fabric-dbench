@@ -713,14 +713,11 @@ $ go build readBlock.go
 $ sudo ./readBlock
 ```
 
-将block0.block转换成block0.json格式，如下，
+将block0.block转换成block0.json格式 (这里有误，我们下次修改)，如下，
 
 ```shell
 /home/joe/fabric-samples/bin/configtxlator proto_decode --input block0.block --type common.Block --output block0.json
 ```
-
-
-
 
 
 <br />
@@ -778,6 +775,16 @@ ngIgWGzW1rK1BXXGvHP9jN4Z6z7rWvNJ+mVm7bhgSl/7IL8=
 ```
 1f32ec4af3760c508bd3d9effc5f026e16dd9917de8ac0652afa951249fdfb48_sk
 ```
+
+```
+-----BEGIN PRIVATE KEY-----
+MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg8MipjFs02MbBXzok
+PB1X6rZ/NcGj+YMUc2u4Q59mRs+hRANCAARd+TvXDnjTmtyL95m9qcO+pkx3Zgc7
+unU7LX5rOil3xI4EaBPXFLRBsYSW8wx0vqpTiUY8eS/PpHXE5j82d5Jq
+-----END PRIVATE KEY-----
+```
+
+
 
 #### 10.4. msp/signcerts/orderer.example.com-cert.pem
 
@@ -917,6 +924,16 @@ Jpbj+UJ6
 a37b045ed37907ed5b383dee85be238adcd4ec084f04abf59584ec0d938ef773_sk
 ```
 
+```
+-----BEGIN PRIVATE KEY-----
+MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgJq8E+NwMzIPGJvKJ
+XXj4qLYovHbgLwgL2Ridr4gTPL+hRANCAARClRlsfzUby/Q2hhDeygvbbJ2cjrX8
+z79LCLM77j+hs54ncKHSiJFuUau8Y0neD3Yl4Uv4A4dGafJ04Mz/KCIi
+-----END PRIVATE KEY-----
+```
+
+
+
 #### 11.4. msp/signcerts/peer0.org1.example.com-cert.pem
 
 ```
@@ -995,6 +1012,9 @@ cGVlcjAwCgYIKoZIzj0EAwIDRwAwRAIgRipCHsrvcbvKbR8FUd4nIWuBGnQujmyp
 UZ6LH2uYek4CIENIbvLQpzf9EHCCM6F1cDP6rQc1W5fMAwlrXm4F1fs6
 -----END CERTIFICATE-----
 ```
+
+
+
 
 
 

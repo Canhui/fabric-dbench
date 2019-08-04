@@ -7,5 +7,34 @@ Public keys for users are stored on the file system where user enrollment was in
 The results of following the Hyperledger Fabric client example can be used for reference. Within the SDK Demo 
 
 
-## 2. Where is the public key
+<br />
+<br />
+
+## 2. About the Public-Private Key System
+
+If you want the Fabric CA server to use a CA signing certificate and key file which you provide, you must place your files in the location referenced by ca.certfile and ca.keyfile respectively. Both files must be PEM-encoded and must not be encrypted. More specifically, the contents of the CA certificate file must begin with -----BEGIN CERTIFICATE----- and the contents of the key file must begin with -----BEGIN PRIVATE KEY-----.
+
+The CSR can be customized to generate X.509 certificates and keys that support Elliptic Curve (ECDSA). The following setting is an example of the implementation of Elliptic Curve Digital Signature Algorithm (ECDSA) with curve prime256v1 and signature algorithm ecdsa-with-SHA256.
+
+
+
+
+
+
+
+<br />
+<br />
+
+
+## 3. Where is the public key
+
+Question: Where is the keyValStore?
+
+
+
+<br />
+<br />
+
+## Reference
+[1. 关于Hyperledger的公钥私钥体系] https://hyperledger-fabric-ca.readthedocs.io/en/release-1.4/users-guide.html
 
