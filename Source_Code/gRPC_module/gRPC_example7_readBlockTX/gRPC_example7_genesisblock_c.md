@@ -40,6 +40,30 @@
 
 拥有certs/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem的Orderer的Admin用户拥有创建Channel的权限————The `peer channel` command allows administrators to perform channel related operations on a peer, such as joining a channel or listing the channels to which a peer is joined. --cafile <string> where string is a fully qualified path to a file containing PEM-encoded certificate chain of the certificate Authority of the orderer with who the peer is communicating. 
 
+问题: Orderer的Admin用户是拥有Orderer私钥的用户？ Orderer的Admin用户也是Peer的Admin用户? Orderer的Admin用户的私钥和Peer的Admin用户的私钥一样?
+
+Every node and user must have a local MSP defined, as it defines who has administrative or participatory rights at that level ()
+
+
+
+
+
+问题: TLS的证书就是所谓的local MSP？
+
+Peer需要通过TLS通信，以便连接到Orderer，然后获取Blockchain Ledger更新。https://zhuanlan.zhihu.com/p/35683522
+
+
+问题: 关于TLS连接？连接到一个Orderer或者是连接到一个Peer？连接过程验证什么？
+
+https://blog.csdn.net/u014120464/article/details/80069520
+
+
+
+
+
+
+
+
 注意: 其中.pem可以转化为private key，参考: https://stackoverflow.com/questions/13732826/convert-pem-to-crt-and-key
 
 
@@ -80,6 +104,13 @@ peer的msp/admincerts
 ```
 
 问题: 一个peer是如何加入channel中的？peer怎么验证自己加入channel中？
+
+Channel configurations contain all of the information relevant to the administration of a channel. Most importantly, the channel configuration specifies which organizations are members of channel, but it also includes other channel-wide configuration information such as channel access policies and block batch sizes--This configuration is stored on the ledger in a block, and is therefore known as a configuration block. Configuration blocks contains a single configuration. The first of these blocks is known as the "genesis block" and contains the initial configuration required to bootstrap a channel. Each time the configuration of a channel changes it is done through a new configuration block, with the latest configuration block representing the current channel configuration. Orderers and peers keep the current configuration in memory to facilitate all channel operations such as cutting a new block and validating block transactions.
+
+Because configurations are stored in blocks, updating a config happens through a process called a "configuration transaction". Update a config is a process of pulling the config, transalting into a format that humans can read, modifying it and then submitting it for approval. 更多参考: https://hyperledger-fabric.readthedocs.io/en/latest/config_update.html
+
+
+
 
 
 
