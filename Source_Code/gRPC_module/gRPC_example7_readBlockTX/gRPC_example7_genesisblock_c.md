@@ -13,6 +13,7 @@
 ~/fabric-samples$ ./bin/configtxgen -profile TwoOrgsChannel -outputCreateChannelTx mychannel.tx -channelID mychannel
 ```
 
+
 其中，channel的配置需要参考创世块的配置文件configtx.yaml文件，-profile就是在创世块configtx.yaml中定义的。
 
 
@@ -22,6 +23,9 @@
 ```shell
 ~/fabric-samples$ ./bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate Org1MSPanchors.tx -channelID mychannel -asOrg Org1MSP
 ```
+
+
+
 
 **步骤1.3.** 复制Orderer证书到Administor。
 
@@ -73,6 +77,9 @@ https://blog.csdn.net/u014120464/article/details/80069520
 ~/fabric-samples$ cd Admin@org1.example.com
 ~/fabric-samples/Admin@org1.example.com$ ./peer.sh channel create -o orderer.example.com:7050 -c mychannel -f ../mychannel.tx --tls true --cafile tlsca.example.com-cert.pem
 ```
+
+
+
 
 生成mychannel.block，其中，包含
 orderer的msp/signcerts
@@ -133,6 +140,8 @@ Because configurations are stored in blocks, updating a config happens through a
 
 
 
+
+
 <br />
 <br />
 
@@ -144,9 +153,11 @@ Because configurations are stored in blocks, updating a config happens through a
 
 
 
+```shell
+~/fabric-samples/Admin@org1.example.com$ ./peer.sh channel update -o orderer.example.com:7050 -c mychannel -f ../Org1MSPanchors.tx --tls true --cafile ./tlsca.example.com-cert.pem
+```
 
-
-
+添加anchor peer后，anchor peer的信息被写入到blockchain中。
 
 
 
