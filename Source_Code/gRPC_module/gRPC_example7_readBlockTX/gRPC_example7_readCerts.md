@@ -138,6 +138,20 @@ If you are using intermediate certificates, you will need to make sure that the 
 <br />
 <br />
 
+## 下一步
+
+.pem转化为private key: https://stackoverflow.com/questions/13732826/convert-pem-to-crt-and-key
+
+https://stackoverflow.com/questions/19979171/how-to-convert-pem-into-key
+
+
+关于证书验证的过程，
+
+
+
+
+
+
 
 ## 参考资料
 
