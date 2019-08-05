@@ -1,0 +1,1 @@
+上一篇博客我们成功配置了Hyperledger Fabric网络系统，

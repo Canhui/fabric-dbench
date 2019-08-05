@@ -225,6 +225,7 @@ q9Uh5TRP+Z+sv8j3sAIgAegqFPDFLVNb1EqOauY8RvF94SLkEeo4z0LGpOzOyx0=
 -----END CERTIFICATE-----
 ```
 
+
 #### 2.8. tls/client.key
 ```shell
 -----BEGIN PRIVATE KEY-----
@@ -254,9 +255,11 @@ You may find it helpful to see how local and channel MSPs are used by seeing wha
 下一步: openssl使用使用私钥，构造证书链；同时，反复读取官方解释。
 
 
-
+下一步: 完成Block/Channel中配置信息的解析，分析。
 
 
 
 ## 参考资料
 [1. Hyperledger TLS/MSP的解释] https://hyperledger-fabric.readthedocs.io/en/release-1.4/membership/membership.html
+
+
