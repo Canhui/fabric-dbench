@@ -168,4 +168,3 @@ Because configurations are stored in blocks, updating a config happens through a
 
 ## 参考资料
 [1. 关于多个channels的配置] https://medium.com/@kctheservant/demo-of-multi-channel-network-in-hyperledger-fabric-640f7158e2d3
-
