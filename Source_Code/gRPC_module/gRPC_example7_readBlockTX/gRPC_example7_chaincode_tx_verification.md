@@ -23,5 +23,7 @@ Question 3: chaincode security?
 
 
 
+
 Question 4: chaincode endorsement policy?
 
+Refer to: https://medium.com/kokster/understanding-hyperledger-fabric-chaincode-e7767d50f0b4
