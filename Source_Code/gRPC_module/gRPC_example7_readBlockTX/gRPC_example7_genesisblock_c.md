@@ -116,14 +116,6 @@ Channel configurations contain all of the information relevant to the administra
 
 Because configurations are stored in blocks, updating a config happens through a process called a "configuration transaction". Update a config is a process of pulling the config, transalting into a format that humans can read, modifying it and then submitting it for approval. 更多参考: https://hyperledger-fabric.readthedocs.io/en/latest/config_update.html
 
-
-
-
-
-
-
-
-
 <br />
 <br />
 
@@ -132,14 +124,6 @@ Because configurations are stored in blocks, updating a config happens through a
 之前的orderer的genesis block只有orderer的信息
 
 现在的peer的genesis block不仅有orderer的信息，也包括peer的信息。
-
-
-
-
-
-
-
-
 
 
 <br />
@@ -152,15 +136,11 @@ Because configurations are stored in blocks, updating a config happens through a
 问题: anchor peer加入信息到blockchain ledger，整个ledger如何变化？
 
 
-
 ```shell
 ~/fabric-samples/Admin@org1.example.com$ ./peer.sh channel update -o orderer.example.com:7050 -c mychannel -f ../Org1MSPanchors.tx --tls true --cafile ./tlsca.example.com-cert.pem
 ```
 
 添加anchor peer后，anchor peer的信息被写入到blockchain中。
-
-
-
 
 <br />
 <br />
