@@ -18,6 +18,27 @@ https://www.poftut.com/use-openssl-s_client-check-verify-ssltls-https-webserver/
 今晚: https://gist.github.com/denji/12b3a568f092ab951456
 
 
+gRPC TLS: https://bbengfort.github.io/programmer/2017/03/03/secure-grpc.html
+
+gRPC TLS: https://medium.com/pantomath/how-we-use-grpc-to-build-a-client-server-system-in-go-dd20045fa1c2
+
+gRPC TLS中文: https://segmentfault.com/a/1190000016601783
+
+
+OpenSSL证书教程: https://jamielinux.com/docs/openssl-certificate-authority/appendix/index.html
+
+关键博客: https://blog.didiyun.com/index.php/2018/12/12/grpc-golang-1/
+
+证书基本概念: https://www.jianshu.com/p/41f7ae43e37b
+
+
+TLS的原理:https://hacpai.com/article/1447920990604
+
+
+
+
+
+
 
 
 ## 3. MEDIUM博客
