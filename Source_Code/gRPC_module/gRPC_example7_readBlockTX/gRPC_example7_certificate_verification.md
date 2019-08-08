@@ -18,4 +18,3 @@ https://knowledge.digicert.com/solution/SO29559.html
 
 Hyperledger key pair verification example
 
-gRPC_example7_
