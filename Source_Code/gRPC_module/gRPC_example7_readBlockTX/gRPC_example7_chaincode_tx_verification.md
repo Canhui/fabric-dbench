@@ -45,6 +45,17 @@ Refer to: https://medium.com/kokster/hyperledger-fabric-endorsing-transactions-3
 chaincode running mechanism
 https://stackoverflow.com/questions/51053553/how-can-be-a-chaincode-executed-in-parallel
 
-下一步:验证chaincode通过grpc端口通信和peer节点
+下一步:验证chaincode通过grpc端口通信和peer节点？
+
+
+Docker access host Example 1:
+
+https://dev.to/bufferings/access-host-from-a-docker-container-4099
+
+https://github.com/bufferings/docker-access-host
+
+https://community.wia.io/d/15-accessing-the-host-from-inside-a-docker-container
+
+
 
 
