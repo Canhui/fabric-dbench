@@ -1,4 +1,4 @@
-## 1. chaincode
+## 1. chaincode concept
 
 Question 1: what is chaincode
 
@@ -32,4 +32,19 @@ Question 5: chaincode endorsement policy?
 Refer to: https://hyperledger-fabric.readthedocs.io/en/release-1.2/endorsement-policies.html
 
 Refer to: https://medium.com/kokster/hyperledger-fabric-endorsing-transactions-3c1b7251a709
+
+
+
+<br />
+<br />
+
+
+
+## 2. chaincode running mechanism
+
+chaincode running mechanism
+https://stackoverflow.com/questions/51053553/how-can-be-a-chaincode-executed-in-parallel
+
+下一步:验证chaincode通过grpc端口通信和peer节点
+
 
