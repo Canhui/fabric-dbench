@@ -45,6 +45,11 @@ peer0.org2: 192.168.0.112
 
 -------------------用户身份配置如下--------------------------------------
 peer0.org1的管理员身份:
+192.168.0.109上
+`fabric-samples/Admin@org1.example.com`
+`./peer.sh node status`
+
+peer0.org1的管理员身份:
 192.168.0.111上
 `fabric-samples/Admin@org1.example.com`
 `sudo ./peer.sh node status`
@@ -55,8 +60,15 @@ peer0.org2的管理员身份:
 `sudo ./peer.sh node status`
 
 
+-------------------channel配置如下--------------------------------------
 
 
+创建channel，然后peer分别加入channel。
+
+注: 多个channels在这里改进/部署。
+
+
+-------------------channel配置如下--------------------------------------
 
 
 
