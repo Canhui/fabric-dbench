@@ -18,17 +18,45 @@ Transaction Arrival Rate: 90 TPS --> see throughput results
 Transaction Arrival Rate: 100 TPS --> see throughput results
 
 
-
-
-
 #### 1.2. Reasons/Analysis
 
-TO DO: See transaction timeout. Timeout set for validating transaction of hyperledger.
-TO DO: See transaction dealy.
+TO DO 1: See transaction timeout. Timeout set for validating transaction of hyperledger.
+TO DO 2: See transaction dealy.
+TO DO 3: see transaction size (transaction size越大，峰值越向左移).
+TO DO 4: see queue length.
+TO DO 5: see failed transactions.
+TO DO 6: see what is the content of a transaction?
+TO DO 7: see number of transactions in a block?
+TO DO 8: multi-channels to throughput?
+
 A large number of transactions results in a longer delay?
 How to see transaction size? Transaction proposal size? 
 How to see the length of a queue?
 Why a higher transaction arrival rate results in a lower throughput?
+
+
+#### 1.3. Experiments
+-------------------基础网络环境配置如下--------------------------------------
+实验环境配置如下，其中orderer采用solo模式，
+Orderer: 192.168.0.109
+peer0.org1: 192.168.0.109
+peer1.org1: 192.168.0.111
+peer0.org2: 192.168.0.112
+
+-------------------用户身份配置如下--------------------------------------
+peer0.org1的管理员身份:
+192.168.0.111上
+`fabric-samples/Admin@org1.example.com`
+`sudo ./peer.sh node status`
+
+peer0.org2的管理员身份: 
+192.168.0.112上面
+`fabric-samples/Admin@org2.example.com`
+`sudo ./peer.sh node status`
+
+
+
+
 
 
 
