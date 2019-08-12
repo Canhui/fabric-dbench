@@ -68,14 +68,33 @@ peer0.org2的管理员身份:
 注: 多个channels在这里改进/部署。
 
 
--------------------channel配置如下--------------------------------------
+-------------------chaincode配置如下--------------------------------------
+
+每一个peer都安装一份相应的chaincode。
+
+sudo ./peer.sh chaincode invoke -o orderer.example.com:7050  --tls true --cafile ./tlsca.example.com-cert.pem -C mychannel -n demo -c '{"Args":["write","key1","keydfsqqfghqqghqqfghqqdfsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqdfsqfdfghqqwerqqfghqwerqqwrwerqfghqdfsqqthqqgfhwerqqwerwerwdfgreeqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdftyfqgfhqqqdfgqwwerqqwrwerqfghqdfsqqthqqgfhwerqqwerwerwdfgreeqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwfghjkl;fghjkl;dfghjcvbnm,sdfghjkl;fghjkl;dfghjcvbnm,sdfghjkl;fghjkl;dfghjcvbnm,sdfghjkl;fghjkl;dfghjfwersdfrtyqst"]}'
+
+sudo ./peer.sh chaincode query -C mychannel -n demo -c '{"Args":["query","key1"]}'
 
 
 
-./peer.sh chaincode invoke -o orderer.example.com:7050  --tls true --cafile ./tlsca.example.com-cert.pem -C mychannel -n demo -c '{"Args":["write","key1","keydfsqqfghqqghqqfghqqdfsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqdfsqfdfghqqwerqqfghqwerqqwrwerqfghqdfsqqthqqgfhwerqqwerwerwdfgreeqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdftyfqgfhqqqdfgqwwerqqwrwerqfghqdfsqqthqqgfhwerqqwerwerwdfgreeqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwerqqdfghsqqqyrtyfqgfhqqqdfgqwwfghjkl;fghjkl;dfghjcvbnm,sdfghjkl;fghjkl;dfghjcvbnm,sdfghjkl;fghjkl;dfghjcvbnm,sdfghjkl;fghjkl;dfghjfwersdfrtyq"]}'
+
+-----------------测试方案:制造不同的workload，查看Throughput如下------------------
+
+orderer所在机器: 192.168.0.109
+peer0.org1的管理员所在机器: 192.168.0.111
+
+目标: 通过peer0.org1的管理员制造不同的workload，orderer处理workload，查看整个hyperledger系统的Throughput性能。
+
+工具: 采用Jmeter
 
 
-./peer.sh chaincode query -C mychannel -n demo -c '{"Args":["query","key1"]}'
+
+
+
+
+
+
 
 
 
