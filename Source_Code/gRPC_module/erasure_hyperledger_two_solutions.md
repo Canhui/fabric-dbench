@@ -1,0 +1,6 @@
+## 1. Solution 1
+about multi-channels
+
+
+## 2. Solution 2
+about private data
