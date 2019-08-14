@@ -46,13 +46,13 @@ Key: 1 byte
 Value: 1 byte
 
 
-Latex table 如下，
+Latex result table (TAR from 1 tps to 5 tps)如下，
 
 ```latex
 \begin{table}[]
 \begin{tabular}{|l|l|l|l|l|l|l|l|}
 \hline
-\begin{tabular}[c]{@{}l@{}}Tx Arrival Rate\\ (Txs per second)\end{tabular} & Test Rounds & \begin{tabular}[c]{@{}l@{}}Accepted Txs\\ (per Round)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Rejected Txs\\ (per Round)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Throughput\\ (Txs per second)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Avg Tx Delay\\ (second)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Min Tx Delay\\ (second)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Max Tx Delay\\ (second)\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Tx Arrival Rate\\ (Txs per second)\end{tabular} & Test Rounds & \begin{tabular}[c]{@{}l@{}}Accepted Txs\\ (per Round)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Rejected Txs\\ (per Round)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Throughput\\ (Txs per second per Round)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Avg Tx Delay\\ (second)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Min Tx Delay\\ (second)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Max Tx Delay\\ (second)\end{tabular} \\ \hline
 1                                                                          & 10          & 1                                                                  & 0                                                                  & 1                                                                     & 2.353                                                           & 2.319                                                           & 2.386                                                           \\ \hline
 2                                                                          & 10          & 2                                                                  & 0                                                                  & 2                                                                     & 2.338                                                           & 1.875                                                           & 2.391                                                           \\ \hline
 3                                                                          & 10          & 3                                                                  & 0                                                                  & 3                                                                     & 2.251                                                           & 1.697                                                           & 2.381                                                           \\ \hline
@@ -102,11 +102,40 @@ Case 3: Transaction Arrival Rate: > 5 TPS, and transaction size is <= `Preferred
 Key: 1 byte
 Value: 1 byte
 
+Latex result table (TAR from 10 tps to 50 tps)如下，
+
+```latex
+\begin{table}[]
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+\begin{tabular}[c]{@{}l@{}}Tx Arrival Rate\\ (Txs per second)\end{tabular} & Test Rounds & \begin{tabular}[c]{@{}l@{}}Accepted Txs\\ (per Round)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Rejected Txs\\ (per Round)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Throughput\\ (Txs per second per Round)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Avg Tx Delay\\ (second)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Min Tx Delay\\ (second)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Max Tx Delay\\ (second)\end{tabular} \\ \hline
+10                                                                         & 10          & 10                                                                 & 0                                                                  & 10                                                                              & 0.543                                                           & 0.342                                                           & 2.018                                                           \\ \hline
+20                                                                         & 10          & 20                                                                 & 0                                                                  & 20                                                                              & 0.753                                                           & 0.378                                                           & 2.641                                                           \\ \hline
+30                                                                         & 10          & 30                                                                 & 0                                                                  & 30                                                                              & 0.890                                                           & 0.477                                                           & 2.843                                                           \\ \hline
+40                                                                         & 10          & 40                                                                 & 0                                                                  & 40                                                                              & 0.930                                                           & 0.422                                                           & 2.742                                                           \\ \hline
+50                                                                         & 10          & 50                                                                 & 0                                                                  & 50                                                                              & 1.083                                                           & 0.608                                                           & 2.872                                                           \\ \hline
+\end{tabular}
+\end{table}
+```
+
+
+
+
+Latex result table (TAR from 100 tps to 300 tps)如下，
+
+```latex
+
+```
+
+
+
 
 
 
 
 Case 4: Transaction Arrival Rate: >5 TPS, and transaction size is > `PreferredMaxBytes` => To benchmark throughput
+
+
 
 
 
