@@ -65,18 +65,29 @@ Latex result table (TAR from 1 tps to 5 tps)如下，
 readxml.py代码如下，
 ```py
 import xml.etree.ElementTree as ET
+
+
 tree = ET.parse('./res.xml')
 root = tree.getroot()
 num = []
-
+fail = 0
+success = 0
+#print('root-tag:',root.tag,',root-attrib:',root.attrib,',root-text:',root.text)
 for child in root:
+     #print('child-tag is:',child.tag,',child.attrib:',child.attrib,',child.text:',child.text)
     for sub in child:
-        num.append(float(sub.text.strip('\n')))    
-        
-print len(num)
-print sum(num)/len(num)
-print min(num)
-print max(num)
+        try:
+            #print (1)
+            success = success + 1
+            num.append(float(sub.text.strip('\n')))
+        except:
+            fail = fail + 1
+
+print "tx fail:", fail
+print "tx success:", len(num)
+print "avg tx delay:", sum(num)/len(num)
+print "min tx delay:", min(num)
+print "max tx delay:", max(num)
 ```
 
 
