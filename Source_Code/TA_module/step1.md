@@ -2,6 +2,9 @@
 
 step 1 is to translate a web page into a string in Java. There are two methods to implement it.
 
+There are many ways to write a program to download web pages in Jave. The simpler way is using the URL class with its input stream. The following example function is used to download a web page and return a string. Without any error, the string contains the full content of the target web page including HTML tags and values. If you want to remove all HTML tags. So, you need to use Regular Expression to match the HTML tags and delete them.
+
+
 
 #### Method 1.  Reading Directly from a URL
 
@@ -29,7 +32,7 @@ public class hello {
 ```
 
 
-#### Method 2.  Check Size of the Web Page before Downloading
+#### Method 2.  Check Size of the Web Page before Downloading (Recommended)
 
 Instead directly download the web page, the web downloader will first check the size of the web page. For example, for these web pages whose sizes are larger than 1024 bytes, the web downloader will fail to download them. 
 
