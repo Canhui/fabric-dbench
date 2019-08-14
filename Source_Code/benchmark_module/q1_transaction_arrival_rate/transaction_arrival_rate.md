@@ -1,0 +1,123 @@
+
+
+
+
+
+
+## 1. Transaction Arrival Rate
+
+
+
+
+
+#### Orderer Setting
+
+Settings are given as follows,
+
+```yaml
+BatchTimeout: 2s               # the amount of time to wait before creating a batch.
+BatchSize:
+    MaxMessageCount: 10        # the max number of messages to permit in a batch. 
+    AbsoluteMaxBytes: 99MB     # the absolute maximum number of bytes allowed for the serialized messages in a batch.
+    PreferredMaxBytes: 512 KB  # a message larger than the preferred max bytes will result in a batch larger than preferred max bytes
+```
+
+Transactions are collected into blocks/batches on the ordering service first. Blocks are cut either when the `BatchSize` is met (), or when `BatchTimeout` elapses. `Orderer.BatchTimeout` for instance may be specified differently on one channel than another.
+
+It means that the ordering service will not cut a block until either of these two conditions (BatchTimeout and BatchSize) are met. You are sending less than `MaxMessageCount` transactions, so the ordering service needs to wait `BatchTimeout` seconds before it cuts the block. So in order to decrease the time it takes for the transaction to show up in your ledger, set `BatchTimeout` to a small value and `MaxMessageCount` to 1 -- But this will result block overhead for transactions (say one transaction per block).
+
+[Ref1](https://stackoverflow.com/questions/50226153/orderer-and-committer-taking-time-to-put-data-into-ledger)
+[Ref2](https://stackoverflow.com/questions/42756681/how-exactly-blocks-are-created-in-hyperledger-fabric)
+
+
+
+
+
+
+
+#### Transaction Size
+
+
+
+
+Case 1: Transaction Arrival Rate: <= 5 TPS, and transaction size is <= `PreferredMaxBytes` => bottleneck is to wait `BatchTimeout` 
+
+Key: 1 byte
+Value: 1 byte
+
+
+Latex table 如下，
+
+```latex
+\begin{table}[]
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+\begin{tabular}[c]{@{}l@{}}Tx Arrival Rate\\ (Txs per second)\end{tabular} & Test Rounds & \begin{tabular}[c]{@{}l@{}}Accepted Txs\\ (per Round)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Rejected Txs\\ (per Round)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Throughput\\ (Txs per second)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Avg Tx Delay\\ (second)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Min Tx Delay\\ (second)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Max Tx Delay\\ (second)\end{tabular} \\ \hline
+1                                                                          & 10          & 1                                                                  & 0                                                                  & 1                                                                     & 2.353                                                           & 2.319                                                           & 2.386                                                           \\ \hline
+2                                                                          & 10          & 2                                                                  & 0                                                                  & 2                                                                     & 2.338                                                           & 1.875                                                           & 2.391                                                           \\ \hline
+3                                                                          & 10          & 3                                                                  & 0                                                                  & 3                                                                     & 2.251                                                           & 1.697                                                           & 2.381                                                           \\ \hline
+4                                                                          & 10          & 4                                                                  & 0                                                                  & 4                                                                     & 2.280                                                           & 1.519                                                           & 2.393                                                           \\ \hline
+5                                                                          & 10          & 5                                                                  & 0                                                                  & 5                                                                     & 2.239                                                           & 1.535                                                           & 2.407                                                           \\ \hline
+\end{tabular}
+\end{table}
+```
+
+readxml.py代码如下，
+```py
+import xml.etree.ElementTree as ET
+tree = ET.parse('./res.xml')
+root = tree.getroot()
+num = []
+
+for child in root:
+    for sub in child:
+        num.append(float(sub.text.strip('\n')))    
+        
+print len(num)
+print sum(num)/len(num)
+print min(num)
+print max(num)
+```
+
+
+
+
+
+
+
+
+
+Case 2: Transaction Arrival Rate: <= 5 TPS, and transaction size is > `PreferredMaxBytes` => TO EXPLORE
+
+
+
+
+
+
+
+
+
+Case 3: Transaction Arrival Rate: > 5 TPS, and transaction size is <= `PreferredMaxBytes` => To benchmark throughput (most of papers)
+
+Key: 1 byte
+Value: 1 byte
+
+
+
+
+
+Case 4: Transaction Arrival Rate: >5 TPS, and transaction size is > `PreferredMaxBytes` => To benchmark throughput
+
+
+
+
+
+
+
+
+
+#### Transaction Delay
+
+
+
+
