@@ -14,7 +14,7 @@ The `ParserCallback` class provides the methods for handling the web content.
 
 We can define a new `ParserCallback` class based on the original `ParserCallback` class. For example, the `handleText()` function is very useful for scraping the web content in the plain text format. So, we now define a new `ParserCallback` class and override the `hadleText()` method for outputting a plain text content of a target web page.
 
-完整版 (在step1的基础上)
+混沌完整版 (在step1的基础上)
 
 ```java
 // read web page
@@ -95,7 +95,7 @@ public class hello {
 
 
 
-核心版 (删除step1的代码)
+核心完整版 (删除step1的代码)
 
 ```java
 // read web page
@@ -151,3 +151,9 @@ public class hello {
 }
 ```
 
+
+## 2.3. Conclusion
+
+The handleText() method accepts two parameters: data and pos. The parameter data contains the bodu text of a tag, and pos indicates the starting position of the body text. 
+
+The parse() method of the `ParserDelegator` instance drives the callback to parse the web content retrived from the input stream reader. The last parameter  
