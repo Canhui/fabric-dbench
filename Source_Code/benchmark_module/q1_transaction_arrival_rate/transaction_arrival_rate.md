@@ -135,8 +135,19 @@ Latex result table (TAR from 10 tps to 50 tps)如下，
 Latex result table (TAR from 100 tps to 300 tps)如下，
 
 ```latex
-
+\begin{table}[]
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+\begin{tabular}[c]{@{}l@{}}Tx Arrival Rate in Configuration\\ (Txs per second)\end{tabular} & Test Rounds & \begin{tabular}[c]{@{}l@{}}Total Txs Generated\\ (10 Rounds)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Total Accepted Txs\\ (10 Rounds)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Rejected Txs\\ (per Rounds)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Avg Tx Delay\\ (second)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Min Tx Delay\\ (second)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Max Tx Delay\\ (second)\end{tabular} \\ \hline
+100                                                                                         & 10          & 1000                                                                      & 980                                                                      & 20                                                                  & 1.588                                                           & 0.390                                                           & 2.986                                                           \\ \hline
+150                                                                                         & 10          & 1500                                                                      & 1254                                                                     & 246                                                                 & 2.080                                                           & 0.666                                                           & 3.108                                                           \\ \hline
+200                                                                                         & 10          & 2000                                                                      & 1317                                                                     & 683                                                                 & 2.320                                                           & 0.881                                                           & 3.223                                                           \\ \hline
+250                                                                                         & 10          & 2500                                                                      & 989                                                                      & 1511                                                                & 2.513                                                           & 0.527                                                           & 3.421                                                           \\ \hline
+300                                                                                         & 10          & 3000                                                                      & 532                                                                      & 2468                                                                & 2.417                                                           & 0.558                                                           & 3.673                                                           \\ \hline
+\end{tabular}
+\end{table}
 ```
+
 
 
 
@@ -160,4 +171,9 @@ Case 4: Transaction Arrival Rate: >5 TPS, and transaction size is > `PreferredMa
 
 
 
+
+
+
+
+关于constant throughput timer的介绍: https://www.blazemeter.com/blog/how-use-jmeters-throughput-constant-timer/
 
