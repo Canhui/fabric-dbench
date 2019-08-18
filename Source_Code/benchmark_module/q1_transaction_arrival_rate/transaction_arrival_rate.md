@@ -1,13 +1,4 @@
-
-
-
-
-
-
 ## 1. Transaction Arrival Rate
-
-
-
 
 
 #### Orderer Setting
