@@ -267,21 +267,50 @@ blockfile_000000包含文件: block0.block -> block2571.block
 进阶问题: blockfile文件包含多少Txs数量？
 
 
+----------------------------------------------------------------
+
+当前：blockfile_000025 包含 block5418.block, block5419.block
+
+生成20个Transactions之后，
+
+变成: blockfile_000025 包含 
+
+```shell
+$ sudo ./readBlock_v2
+[sudo] password for joe: 
+Block: Number=[5418], CurrentBlockHash=[TXfEazDaV/JWDa82ln9nVhPePGSaYzluh0A4MAK55U4=], PreviousBlockHash=[aydLbT1pGlg1BPKIPt/sxcpF9MRBcKCXWa4bC3Sz5ak=]
+    txid=9eddeceadad93e9ff398e124ed4d5f6ee75fb60e9148155c35e403042ff1301d
+Block: Number=[5419], CurrentBlockHash=[2I0slEf4C/kpMsKodTORGU0OxO8ThNUIHSxlDTfFaw8=], PreviousBlockHash=[D5PEAPUWMZepMhBAlySv2AQn++QNBIkarZTGmKnfy88=]
+    txid=530068ba925c29d8c5ab0d36a425e9ba643c97d18dfc3bdb93937463ef72b5b0
+Block: Number=[5420], CurrentBlockHash=[7UEiwAZ5g/2tpHzIIOmeZVqUr78bkfOd+P+HfcfAMeA=], PreviousBlockHash=[EQ1QiIMaom59PE7ou8fexWAFFnTB3LRXgHuDrv0HBJE=]
+    txid=e7d8a59118cb8df1082ee574958815c2601b6b35b0e24acf9aa65fe37f551e63
+    txid=e2547f3fa69308d1eb1e1791da24a7df67a8be23c12d1ff42c0a87fddaa1a5f1
+    txid=46be77311b563771fc6a1a3487694492d237823a00933bdea5981510aaf05642
+    txid=da9bc65e5faec8c537e5711abbaf8741c060807955218172a21f277e9dd32a01
+    txid=beb02b85b44e070f14370e8ebb5869d9b894d16d4be1cd00e8b58a09b6fba632
+Block: Number=[5421], CurrentBlockHash=[oDXSoqySe48f80Kvvrb1fJTlwvrbCAPtOmvCQKGkeK4=], PreviousBlockHash=[K+cfZTJBoYGd8bDPUm2o2yUhL1IRdYMfST709pztuvI=]
+    txid=254a6f5de0a2ec921bab8cc288bfac92774ea027afba62a40b3e03b7dc79c635
+    txid=4b8eb53c50f274a7478e2bd4a11856dd238104772250dd3696d3f641d46b58ac
+    txid=0f8f7417adcffbada1e628f42f36840954b9a46339e8c0797fdb310fdf493eba
+    txid=e3baef5439d1452cbd3f482e82699795762a472b9c7ae0d4f15f3773322db520
+    txid=1c4ed667ef3d68c65b91c3e5cd78e357227bfd37f2d6618b760541ccfae5aae1
+    txid=fdf0e9469405a61fecf8016e21f8be564f28d40a4ef032474e2397a8b171c7e8
+    txid=1ce36f12a4543491e5b6cc73fc998853a6fc1d0d6e68e306ca136a4b2b3554b3
+    txid=9842edc5348c7678e054d577df08af4ba7a7dce72b7febe241d728da0521acbb
+    txid=625b9a08db029a0e7b00dd461fdccddeba9b496cd87f6718f0836d1e2c45f77a
+    txid=6fa5d7c1ca5bc852ff173b6cae4690b5ea62a3a3d5a376f837def06beef9e489
+Block: Number=[5422], CurrentBlockHash=[ZBaiW7mypnC0MjaDvSOjVtiFrieI14pu1aW3nMXydR0=], PreviousBlockHash=[QvBT+VphGAGqUvazdAzHMIMEzeB0qCTN7rURmpCHSWs=]
+    txid=f963c59e374be3aacd1b313bca0efa39f1245895abed81a525f058361de89e7b
+    txid=0a84be355604a1a0b7f90829b986b7987bd8df6acff442a349ef71fa5738d927
+    txid=abcd1fce352c4c77d5de148736035831c44ec699798805f22b49beabae8cf31e
+    txid=1f696970a254f9b11e3ba30dca4062f29d75ae3228403f2925dc4add858c2553
+    txid=7c4af99a962c957a9b76b6d9395c58564275ce7e9285f05ee06629d0d8b69df2
+```
+
+完美！
 
 
 
 
 
-
-
-
-
-
-
-
-
-## 2.2. blockfile_000001
-
-blockfile_000001大小: 66466041
-blockfile_000001包含文件: block2572.block -> block3942.block
 
