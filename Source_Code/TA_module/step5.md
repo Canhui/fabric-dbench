@@ -1,4 +1,4 @@
-## 5. Sprint Boot to Build a Web Server: building up
+## 5. Spring Boot to Build a Web Server: building up
 
 Spring Boot is a framework for creating stand-alone. 
 
@@ -6,10 +6,13 @@ Spring Boot is a framework for creating stand-alone.
 **步骤5.1.** eclipse安装spring boot插件spring tool suite
 https://www.cnblogs.com/zjdxr-up/p/8617242.html
 
-**步骤5.2.** eclipse创建springboot项目时pom文件报错
+**步骤5.2.** 新建spring boot项目
+其中注意service URL: https://start.spring.io
+
+**步骤5.3.** eclipse创建springboot项目时pom文件报错
 强制更新maven: https://blog.csdn.net/qq_38347685/article/details/80768176
 
-**步骤5.3.** 测试运行
+**步骤5.4.** 测试运行
 右击项目，run as "Sprint Boot App"，默认配置下的运行结果如下，
 
 ```
@@ -26,3 +29,7 @@ https://www.cnblogs.com/zjdxr-up/p/8617242.html
 2019-08-18 10:45:26.946  INFO 20140 --- [           main] h.edu.hkbu.comp.SearchEngineApplication  : No active profile set, falling back to default profiles: default
 2019-08-18 10:45:27.174  INFO 20140 --- [           main] h.edu.hkbu.comp.SearchEngineApplication  : Started SearchEngineApplication in 0.379 seconds (JVM running for 0.824)
 ```
+
+浏览器输入
+https://start.spring.io/
+
