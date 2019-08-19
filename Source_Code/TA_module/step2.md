@@ -145,7 +145,8 @@ public class hello {
     // main()
     //
     public static void main(String[] args) throws Exception {
-        String url = "https://www.york.ac.uk/teaching/cws/wws/webpage1.html";
+        String url = "https://docs.oracle.com/javase/tutorial/networking/urls/readingURL.html";
+        // String url = "https://www.york.ac.uk/teaching/cws/wws/webpage1.html";
         System.out.println(loadPlainText(url));
     }
 }
