@@ -1,4 +1,4 @@
-## Day One
+## Chapter One
 
 Pipeline of machine learning project, with a focus on data preprocessing, e.g., splitting the data set, missing data, how to handle numerical data and categorical data (one-hot coding).
 
@@ -61,8 +61,20 @@ Ecalat算法
 
 
 
+<br />
+<br />
+
+## Chapter Two
+
+RMSE 和 MAE 都是测量预测值和目标值两个向量距离的方法。
 
 
+加州湾区房价分析的一个例子。
+
+
+
+<br />
+<br />
 
 
 ## 参考资料
