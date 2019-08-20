@@ -99,9 +99,6 @@ class MyParserCallback extends HTMLEditorKit.ParserCallback {
             URL_Pool.remove(srcPage);
         }
         
-        // Extract all words from this web page: srcPage
-        // TO DO <-----------------------
-        
         URL url = new URL(srcPage);
         InputStreamReader reader = new InputStreamReader(url.openStream());
 
