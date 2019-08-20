@@ -1,48 +1,22 @@
-## 1. Implement the URLs Extraction Algorithm
+## 1. Extract all unique words of a page
 
-#### 1.1. Blacklist of URLs
+#### 1.1. Blacklist of Words
 
- This blacklist contains the URLs of the web pages that the search engine would not scollect information from. In our implementation, these URLs are expressed in regular form.
+Blacklist of words: This blacklist contains the words that the search engine would not record and serve.
 
-In our implementation, by default, the `Blacklist_of_URLs` is empty as follows. 
-```java
-public static List<String> Blacklist_of_URLs = new ArrayList<String>();
-```
-
-Users can add new blacklist of URLs to the `Blacklist_of_URLs` as follows,
-```java
-callback.setBlacklistURLs("https://computer.howstuffworks.com/question246.htm");
-callback.setBlacklistURLs("https://computer.howstuffworks.com/web-server.htm");
-callback.setBlacklistURLs("https://computer.howstuffworks.com/program.htm");
-```
-
-#### 1.2. Data Structure of URLs
-
-`URL_Pool` and `Processed_URL_Pool` are used to store URLs, where `URL_Pool` can store at most `X_URLs` URLs. If the number of URLs in the `Processed_URL_Pool` is not less than `Y_URLs`, then it stops.
-
-```java
-public int X_URLs = 1024; // initial value, at most extract 1024 URLs
-public int Y_URLs = 6; // initial value, at least read with 512 URLs
-public static List<String> URL_Pool = new ArrayList<String>();
-public static List<String> Processed_URL_Pool = new ArrayList<String>();
-```
-
-Note that both `X_URLs` and `Y_URLs` are design parameters. Initially, `int X_URLs = 1024` and `int Y_URLs = 6`. We can alse change it in the run time,
+We support set blacklist of words as follows,
 ```java
 // new an object of the MyParserCallback class
 MyParserCallback callback = new MyParserCallback();
 callback.setX(1024);
 callback.setY(10);
+callback.setBlacklistWords("a");
+callback.setBlacklistWords("about");
+callback.setBlacklistWords("able");
+callback.setBlacklistWords("the");
 ```
 
-#### 1.3. Algorithm
-
-Extract all URLs from a web page. For each of these URLs, add it to the URL Pool if it satisfies four conditions: First, it is not listed in the given blacklist; Second, it does not appear in URL Pool; Third, it does not appear in the Processed URL Pool and the number of URLs in the URL Pool is less than X. 
-
-If the number of URLs in the Processed URL Pool is less than Y, then retrieve and remove the first URL from the URL Pool add this URL to Processed URL Pool, and get the corresponding web page. Otherwise, stop.
-
-
-## Source Code
+#### 1.2. Source Code
 
 ```java
 import javax.swing.text.html.*;
@@ -52,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.List;
 import javax.swing.text.*;
@@ -102,7 +77,7 @@ class MyParserCallback extends HTMLEditorKit.ParserCallback {
         
         // Extract all words from this web page: srcPage
         // TO DO <-----------------------
-
+        
         URL url = new URL(srcPage);
         InputStreamReader reader = new InputStreamReader(url.openStream());
 
@@ -120,7 +95,7 @@ class MyParserCallback extends HTMLEditorKit.ParserCallback {
     
     // get number of URLs to be processed
     public int getSizeURLs() {
-        System.out.println(URL_Pool.size());
+//      System.out.println(URL_Pool.size());
         return URL_Pool.size();
     }
     
@@ -153,17 +128,68 @@ class MyParserCallback extends HTMLEditorKit.ParserCallback {
     public void setBlacklistURLs(String x) {
         MyParserCallback.Blacklist_of_URLs.add(x);
     }
+    
+    // ---------------------------------------------------
+    // handle text of a page
+    // ---------------------------------------------------
+    public String content = new String();
+    public static List<String> Blacklist_of_Words = new ArrayList<String>();
+
+    // handle text of a web page
+    @Override
+    public void handleText(char[] data, int pos) {
+        content += " " + new String(data);
+    }
+    
+    // load text of a web page
+    public static String loadPlainText(String urlString) throws IOException {
+        MyParserCallback callback = new MyParserCallback();
+        ParserDelegator parser = new ParserDelegator();
+        
+        URL url = new URL(urlString);
+        InputStreamReader reader = new InputStreamReader(url.openStream());
+        parser.parse(reader, callback, true);
+            
+        return callback.content;
+    }
+    
+    // get unique words of a web page
+    public static List<String> getUniqueWords(String text) {
+        String[] words = text.split("[0-9\\W]+");
+        ArrayList<String> uniqueWords = new ArrayList<String>();
+
+        for (String w : words) {
+            w = w.toLowerCase();
+
+            if (!uniqueWords.contains(w) && !Blacklist_of_Words.contains(w))
+                uniqueWords.add(w);
+        }
+        
+        uniqueWords.sort(new Comparator<String>() {
+            @Override
+            public int compare(String a, String b) {
+                return a.compareTo(b);
+            }
+        });
+
+        return uniqueWords;
+    }
+    
+    // set Blacklist Words
+    public void setBlacklistWords(String x) {
+        MyParserCallback.Blacklist_of_Words.add(x);
+    }
+    
 }
 
 
 public class hello {
-
+    
     public static void main(String[] args) throws Exception {
 //      String url = "https://www.york.ac.uk/teaching/cws/wws/webpage1.html";
 //        String url = "https://www.g7website.com/website-categories/html-websites.html";
 //      String url = "https://www.facebook.com/HowStuffWorks";
 //      String seedurl = "http://www.microsoft.com/catalog/default.asp";
-        //
         
         // seed url address
         String seedurl = "https://computer.howstuffworks.com/internet/basics/question226.htm";
@@ -175,24 +201,30 @@ public class hello {
         callback.setBlacklistURLs("https://computer.howstuffworks.com/question246.htm");
         callback.setBlacklistURLs("https://computer.howstuffworks.com/web-server.htm");
         callback.setBlacklistURLs("https://computer.howstuffworks.com/program.htm");
+        callback.setBlacklistWords("a");
+        callback.setBlacklistWords("about");
+        callback.setBlacklistWords("able");
+        callback.setBlacklistWords("the");
         
         // run the seed url
-        System.out.println(callback.getURLs(seedurl));
+        callback.getURLs(seedurl);
+//      System.out.println(callback.getURLs(seedurl));
+        System.out.println(callback.getUniqueWords(callback.loadPlainText(seedurl)));
+        
         
         // run the URLs extraction algorithm
         while(callback.getSizeURLs() > 0) {
             if(callback.getSizeProcessedURLs()<callback.getY()) {
-                System.out.println(callback.getURLs(callback.getFirstItemURLs()));
+                callback.getURLs(callback.getFirstItemURLs());
+                System.out.println(callback.getUniqueWords(callback.loadPlainText(callback.getFirstItemURLs())));
+//              System.out.println(callback.getURLs(callback.getFirstItemURLs()));
             }else {
                 break;
             }
         }
-        System.out.println(callback.getSizeProcessedURLs());
+//      System.out.println(callback.getSizeProcessedURLs());
     
     }
+    
 }
 ```
-
-
-
-
