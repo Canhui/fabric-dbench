@@ -73,3 +73,44 @@ public class hello {
     }
 }
 ```
+
+
+final version
+
+本步骤：获取seedURL的内容
+
+```java
+import java.net.*;
+import java.io.*;
+
+public class hello {
+    
+    // Load the content of a web page
+    public static String loadWebPage(String urlString) {
+        byte[] buffer = new byte[1024];
+        String content = new String();
+        
+        try {
+            URL url = new URL(urlString);
+            InputStream in = url.openStream();
+            
+            int len;
+            while((len = in.read(buffer)) != -1) {
+                content += new String(buffer);
+            }
+        } catch (IOException e) {
+                content = "<h1>Unable to download the page</h1>" + urlString;
+        }
+        return content;
+    }
+    
+    // main
+    public static void main(String[] args) throws Exception {
+        String seedurl = "https://docs.oracle.com/javase/tutorial/networking/urls/readingURL.html";
+        System.out.println(loadWebPage(seedurl));
+    }
+}
+```
+
+下一步，从seedURL获取URLs
+
