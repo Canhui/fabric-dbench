@@ -32,6 +32,9 @@ OrdererOrgs:
         Locality: HongKong
     Specs:
       - Hostname: orderer
+        SANS:
+          - "localhost"
+          - "127.0.0.1"
       
 PeerOrgs:
   - Name: Org1
@@ -43,6 +46,9 @@ PeerOrgs:
         Locality: HongKong
     Template:
       Count: 1
+      SANS:
+          - "localhost"
+          - "127.0.0.1"
     Users:
       Count: 1
   - Name: Org2
@@ -54,6 +60,9 @@ PeerOrgs:
         Locality: HongKong
     Template:
       Count: 1
+      SANS:
+          - "localhost"
+          - "127.0.0.1"
     Users:
       Count: 1
 ```
@@ -136,8 +145,8 @@ General:
         Certificate: ./tls/server.crt
         RootCAs:
           - ./tls/ca.crt
-#        ClientAuthRequired: false
-#        ClientRootCAs:
+        ClientAuthRequired: true
+        ClientRootCAs:
     # Keepalive settings for the GRPC server.
     Keepalive:
         # ServerMinInterval is the minimum permitted time between client pings.
