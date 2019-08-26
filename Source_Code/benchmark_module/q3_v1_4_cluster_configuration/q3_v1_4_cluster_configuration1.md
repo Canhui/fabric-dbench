@@ -92,6 +92,8 @@ PeerOrgs:
 ~/fabric-samples/orderer.example.com$ vi orderer.yaml
 ```
 
+并往"orderer.yaml"中写入下列内容。
+
 ```yaml
 # Copyright IBM Corp. All Rights Reserved.
 #
@@ -126,11 +128,11 @@ General:
     TLS:
         Enabled: true
         # PrivateKey governs the file location of the private key of the TLS certificate.
-        PrivateKey: tls/server.key
+        PrivateKey: ./tls/server.key
         # Certificate governs the file location of the server TLS certificate.
-        Certificate: tls/server.crt
+        Certificate: ./tls/server.crt
         RootCAs:
-          - tls/ca.crt
+          - ./tls/ca.crt
 #        ClientAuthRequired: false
 #        ClientRootCAs:
     # Keepalive settings for the GRPC server.
@@ -163,12 +165,12 @@ General:
     # Genesis file: The file containing the genesis block to use when
     # initializing the orderer system channel and GenesisMethod is set to
     # "file". Ignored if GenesisMethod is set to "provisional".
-    GenesisFile: genesisblock
+    GenesisFile: ./genesisblock
 
     # LocalMSPDir is where to find the private crypto material needed by the
     # orderer. It is set relative here as a default for dev environments but
     # should be changed to the real location in production.
-    LocalMSPDir: msp
+    LocalMSPDir: ./msp
 
     # LocalMSPID is the identity to register the local MSP material with the MSP
     # manager. IMPORTANT: The local MSP ID of an orderer needs to match the MSP
@@ -651,25 +653,25 @@ peer:
     # not mutual TLS auth. See comments on chaincodeListenAddress for more info
     tls:
         # Require server-side TLS
-        enabled:  false
+        enabled:  true
         # Require client certificates / mutual TLS.
         # Note that clients that are not configured to use a certificate will
         # fail to connect to the peer.
-        clientAuthRequired: false
+        # clientAuthRequired: false
         # X.509 certificate used for TLS server
         cert:
-            file: tls/server.crt
+            file: ./tls/server.crt
         # Private key used for TLS server (and client if clientAuthEnabled
         # is set to true
         key:
-            file: tls/server.key
+            file: ./tls/server.key
         # Trusted root certificate chain for tls.cert
         rootcert:
-            file: tls/ca.crt
+            file: ./tls/ca.crt
         # Set of root certificate authorities used to verify client certificates
         clientRootCAs:
             files:
-              - tls/ca.crt
+              - ./tls/ca.crt
         # Private key used for TLS when making client connections.  If
         # not set, peer.tls.key.file will be used instead
         clientKey:
@@ -1050,41 +1052,9 @@ ledger:
     # All history 'index' will be stored in goleveldb, regardless if using
     # CouchDB or alternate database for the state.
     enableHistoryDatabase: true
-
-###############################################################################
-#
-#    Metrics section
-#
-#
-###############################################################################
-metrics:
-        # enable or disable metrics server
-        enabled: false
-
-        # when enable metrics server, must specific metrics reporter type
-        # currently supported type: "statsd","prom"
-        reporter: statsd
-
-        # determines frequency of report metrics(unit: second)
-        interval: 1s
-
-        statsdReporter:
-
-              # statsd server address to connect
-              address: 0.0.0.0:8125
-
-              # determines frequency of push metrics to statsd server(unit: second)
-              flushInterval: 2s
-
-              # max size bytes for each push metrics request
-              # intranet recommend 1432 and internet recommend 512
-              flushBytes: 1432
-
-        promReporter:
-
-              # prometheus http server listen address for pull metrics
-              listenAddress: 0.0.0.0:8080
 ```
+
+
 
 **步骤4.5.** 新建data目录存放peer0.org1数据。
 ```shell
