@@ -60,6 +60,8 @@ PS vs. MPI allreduce
 batch or minibatch?
 
 
+
+
 #### Machine Learning
 
 Forward and Backward

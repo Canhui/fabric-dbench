@@ -6,35 +6,51 @@
 192.168.0.106 peer0.org2.example.com
 ```
 
+
 <br />
 <br />
 
 ## 2. 准备证书 (Orderer+Peers)
 
-**步骤2.1.** 创建“crypto-config.yaml”文件于"cd $HOME/fabric-samples"路径下。注："crypto-config.yaml"参考"cd $HOME/fabric-samples/config"路径下默认的配置文件。
+**步骤2.1.** 创建"cryptogen.yaml"文件，1.4版本"crypto-config.yaml"文件更改为"cryptogen.yaml"，文件于"cd $HOME/fabric-samples"路径下，
+
 
 ```shell
 $ cd $HOME/fabric-samples
-~/fabric-samples$ touch crypto-config.yaml
+~/fabric-samples$ vi cryptogen.yaml
 ```
-
-下列内容写入“crypto-config.yaml”。
 
 ```yaml
 OrdererOrgs:
   - Name: Orderer
+    #Domain: orgorderer1
     Domain: example.com
+    CA:
+        Country: CN
+        Province: HongKong
+        Locality: HongKong
     Specs:
       - Hostname: orderer
+      
 PeerOrgs:
   - Name: Org1
     Domain: org1.example.com
+    EnableNodeOUs: true
+    CA:
+        Country: CN
+        Province: HongKong
+        Locality: HongKong
     Template:
       Count: 1
     Users:
       Count: 1
   - Name: Org2
     Domain: org2.example.com
+    EnableNodeOUs: true
+    CA:
+        Country: CN
+        Province: HongKong
+        Locality: HongKong
     Template:
       Count: 1
     Users:
@@ -42,14 +58,16 @@ PeerOrgs:
 ```
 
 **步骤2.2.** 生成配置文件，并将配置文件写入"certs"文件夹。
+
 ```shell
-~/fabric-samples$ ./bin/cryptogen generate --config=crypto-config.yaml --output ./certs
-org1.example.com
-org2.example.com
+/fabric-samples$ ./bin/cryptogen generate --config=./cryptogen.yaml --output ./certs
 ```
+
 
 <br />
 <br />
+
+
 
 ## 3. 配置Orderer
 
@@ -69,12 +87,11 @@ org2.example.com
 ~/fabric-samples$ cp -rf certs/ordererOrganizations/example.com/orderers/orderer.example.com/* orderer.example.com/
 ```
 
-**步骤3.4.** 复制"orderer.yaml"文件到"orderer.example.com"文件夹下。
+**步骤3.4.** 创建"orderer.yaml"文件到"orderer.example.com"文件夹下。
 ```shell
-~/fabric-samples/config$ cp orderer.yaml /home/joe/fabric-samples/orderer.example.com
+~/fabric-samples/orderer.example.com$ vi orderer.yaml
 ```
 
-注意orderer.yaml文件: OrdererMSP -> SampleOrg，替换genesisblock file，替换区块文件路径，如下，
 ```yaml
 # Copyright IBM Corp. All Rights Reserved.
 #
@@ -127,34 +144,6 @@ General:
         # ServerTimeout is the duration the server waits for a response from
         # a client before closing the connection.
         ServerTimeout: 20s
-    # Cluster settings for ordering service nodes that communicate with other ordering service nodes
-    # such as Raft based ordering service.
-    Cluster:
-        # ClientCertificate governs the file location of the client TLS certificate
-        # used to establish mutual TLS connections with other ordering service nodes.
-        ClientCertificate:
-        # ClientPrivateKey governs the file location of the private key of the client TLS certificate.
-        ClientPrivateKey:
-        # DialTimeout governs the maximum duration of time after which connection
-        # attempts are considered as failed.
-        DialTimeout: 5s
-        # RPCTimeout governs the maximum duration of time after which RPC
-        # attempts are considered as failed.
-        RPCTimeout: 7s
-        # RootCAs governs the file locations of certificates of the Certificate Authorities
-        # which authorize connections to remote ordering service nodes.
-        RootCAs:
-          - tls/ca.crt
-        # ReplicationBuffersSize is the maximum number of bytes that can be allocated
-        # for each in-memory buffer used for block replication from other cluster nodes.
-        # Each channel has its own memory buffer.
-        ReplicationBufferSize: 20971520 # 20MB
-        # PullTimeout is the maximum duration the ordering node will wait for a block
-        # to be received before it aborts.
-        ReplicationPullTimeout: 5s
-        # ReplicationRetryTimeout is the maximum duration the ordering node will wait
-        # between 2 consecutive attempts.
-        ReplicationRetryTimeout: 5s
 
     # Genesis method: The method by which the genesis block for the orderer
     # system channel is specified. Available options are "provisional", "file":
@@ -313,11 +302,6 @@ Kafka:
         # https://godoc.org/github.com/Shopify/sarama#Config
         Consumer:
             RetryBackoff: 2s
-    # Settings to use when creating Kafka topics.  Only applies when
-    # Kafka.Version is v0.10.1.0 or higher
-    Topic:
-        # The number of Kafka brokers across which to replicate the topic
-        ReplicationFactor: 3
     # Verbose: Enable logging for interactions with the Kafka cluster.
     Verbose: false
 
@@ -349,111 +333,11 @@ Kafka:
         # As an alternative to specifying the RootCAs here, uncomment the
         # following "File" key and specify the file name from which to load the
         # value of RootCAs.
-        #File: path/to/RootCAs
-
-    # SASLPlain: Settings for using SASL/PLAIN authentication with Kafka brokers
-    SASLPlain:
-      # Enabled: Use SASL/PLAIN to authenticate with Kafka brokers
-      Enabled: false
-      # User: Required when Enabled is set to true
-      User:
-      # Password: Required when Enabled is set to true
-      Password:
+        #File: path/to/RootCA
 
     # Kafka protocol version used to communicate with the Kafka cluster brokers
     # (defaults to 0.10.2.0 if not specified)
     Version:
-
-################################################################################
-#
-#   Debug Configuration
-#
-#   - This controls the debugging options for the orderer
-#
-################################################################################
-Debug:
-
-    # BroadcastTraceDir when set will cause each request to the Broadcast service
-    # for this orderer to be written to a file in this directory
-    BroadcastTraceDir:
-
-    # DeliverTraceDir when set will cause each request to the Deliver service
-    # for this orderer to be written to a file in this directory
-    DeliverTraceDir:
-
-################################################################################
-#
-#   Operations Configuration
-#
-#   - This configures the operations server endpoint for the orderer
-#
-################################################################################
-Operations:
-    # host and port for the operations server
-    ListenAddress: 127.0.0.1:8443
-
-    # TLS configuration for the operations endpoint
-    TLS:
-        # TLS enabled
-        Enabled: false
-
-        # Certificate is the location of the PEM encoded TLS certificate
-        Certificate:
-
-        # PrivateKey points to the location of the PEM-encoded key
-        PrivateKey:
-
-        # Require client certificate authentication to access all resources
-        ClientAuthRequired: false
-
-        # Paths to PEM encoded ca certificates to trust for client authentication
-        RootCAs: []
-
-################################################################################
-#
-#   Metrics  Configuration
-#
-#   - This configures metrics collection for the orderer
-#
-################################################################################
-Metrics:
-    # The metrics provider is one of statsd, prometheus, or disabled
-    Provider: disabled
-
-    # The statsd configuration
-    Statsd:
-      # network type: tcp or udp
-      Network: udp
-
-      # the statsd server address
-      Address: 127.0.0.1:8125
-
-      # The interval at which locally cached counters and gauges are pushed
-      # to statsd; timings are pushed immediately
-      WriteInterval: 30s
-
-      # The prefix is prepended to all emitted statsd metrics
-      Prefix:
-
-################################################################################
-#
-#   Consensus Configuration
-#
-#   - This section contains config options for a consensus plugin. It is opaque
-#     to orderer, and completely up to consensus implementation to make use of.
-#
-################################################################################
-Consensus:
-    # The allowed key-value pairs here depend on consensus plugin. For etcd/raft,
-    # we use following options:
-
-    # WALDir specifies the location at which Write Ahead Logs for etcd/raft are
-    # stored. Each channel will have its own subdir named after channel ID.
-    WALDir: /var/hyperledger/production/orderer/etcdraft/wal
-
-    # SnapDir specifies the location at which snapshots for etcd/raft are
-    # stored. Each channel will have its own subdir named after channel ID.
-    SnapDir: /var/hyperledger/production/orderer/etcdraft/snapshot
 ```
 
 **步骤3.5.** 新建data目录存放orderer数据。
@@ -462,10 +346,790 @@ Consensus:
 ~/fabric-samples/orderer.example.com$ mkdir data
 ```
 
+
+## 4. 创建peer0.org1.example.com
+
+**步骤4.1.** 新建"peer0.org1.example.com"文件夹，用于存放peer0.org1节点启动运行所需的全部文件。
+
+```shell
+~/fabric-samples$ mkdir peer0.org1.example.com
+```
+
+**步骤4.2.** 拷贝“fabric-samples/bin/peer”到文件夹。
+
+```shell
+~/fabric-samples$ cp bin/peer peer0.org1.example.com/
+```
+
+**步骤4.3.** 拷贝"fabric-sample/certs/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/"路径下的所有内容到文件夹。
+
+```shell
+~/fabric-samples$ cp -rf certs/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/* peer0.org1.example.com/
+```
+
+
+**步骤4.4.** 创建"core.yaml"文件到"peer0.org1.example.com"文件夹下。
+
+```shell
+~/fabric-samples$ cd peer0.org1.example.com
+~/fabric-samples/peer0.org1.example.com$ touch core.yaml
+```
+
+并往"core.yaml"中写入下列内容。
+
+```yaml
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+###############################################################################
+#
+#    LOGGING section
+#
+###############################################################################
+logging:
+
+    # Default logging levels are specified here.
+
+    # Valid logging levels are case-insensitive strings chosen from
+
+    #     CRITICAL | ERROR | WARNING | NOTICE | INFO | DEBUG
+
+    # The overall default logging level can be specified in various ways,
+    # listed below from strongest to weakest:
+    #
+    # 1. The --logging-level=<level> command line option overrides all other
+    #    default specifications.
+    #
+    # 2. The environment variable CORE_LOGGING_LEVEL otherwise applies to
+    #    all peer commands if defined as a non-empty string.
+    #
+    # 3. The value of `level` that directly follows in this file.
+    #
+    # If no overall default level is provided via any of the above methods,
+    # the peer will default to INFO (the value of defaultLevel in
+    # common/flogging/logging.go)
+
+    # Default for all modules running within the scope of a peer.
+    # Note: this value is only used when --logging-level or CORE_LOGGING_LEVEL
+    #       are not set
+    level:       info
+
+    # The overall default values mentioned above can be overridden for the
+    # specific components listed in the override section below.
+
+    # Override levels for various peer modules. These levels will be
+    # applied once the peer has completely started. They are applied at this
+    # time in order to be sure every logger has been registered with the
+    # logging package.
+    # Note: the modules listed below are the only acceptable modules at this
+    #       time.
+    cauthdsl:   warning
+    gossip:     warning
+    grpc:       error
+    ledger:     info
+    msp:        warning
+    policies:   warning
+    peer:
+        gossip: warning
+
+    # Message format for the peer logs
+    format: '%{color}%{time:2006-01-02 15:04:05.000 MST} [%{module}] %{shortfunc} -> %{level:.4s} %{id:03x}%{color:reset} %{message}'
+
+###############################################################################
+#
+#    Peer section
+#
+###############################################################################
+peer:
+
+    # The Peer id is used for identifying this Peer instance.
+    id: peer0.org1.example.com
+
+    # The networkId allows for logical seperation of networks
+    networkId: dev
+
+    # The Address at local network interface this Peer will listen on.
+    # By default, it will listen on all network interfaces
+    listenAddress: 0.0.0.0:7051
+
+    # The endpoint this peer uses to listen for inbound chaincode connections.
+    # If this is commented-out, the listen address is selected to be
+    # the peer's address (see below) with port 7052
+    # chaincodeListenAddress: 0.0.0.0:7052
+
+    # The endpoint the chaincode for this peer uses to connect to the peer.
+    # If this is not specified, the chaincodeListenAddress address is selected.
+    # And if chaincodeListenAddress is not specified, address is selected from
+    # peer listenAddress.
+    # chaincodeAddress: 0.0.0.0:7052
+
+    # When used as peer config, this represents the endpoint to other peers
+    # in the same organization. For peers in other organization, see
+    # gossip.externalEndpoint for more info.
+    # When used as CLI config, this means the peer's endpoint to interact with
+    address: 0.0.0.0:7051
+
+    # Whether the Peer should programmatically determine its address
+    # This case is useful for docker containers.
+    addressAutoDetect: false
+
+    # Setting for runtime.GOMAXPROCS(n). If n < 1, it does not change the
+    # current setting
+    gomaxprocs: -1
+
+    # Keepalive settings for peer server and clients
+    keepalive:
+        # MinInterval is the minimum permitted time between client pings.
+        # If clients send pings more frequently, the peer server will
+        # disconnect them
+        minInterval: 60s
+        # Client keepalive settings for communicating with other peer nodes
+        client:
+            # Interval is the time between pings to peer nodes.  This must
+            # greater than or equal to the minInterval specified by peer
+            # nodes
+            interval: 60s
+            # Timeout is the duration the client waits for a response from
+            # peer nodes before closing the connection
+            timeout: 20s
+        # DeliveryClient keepalive settings for communication with ordering
+        # nodes.
+        deliveryClient:
+            # Interval is the time between pings to ordering nodes.  This must
+            # greater than or equal to the minInterval specified by ordering
+            # nodes.
+            interval: 60s
+            # Timeout is the duration the client waits for a response from
+            # ordering nodes before closing the connection
+            timeout: 20s
+
+
+    # Gossip related configuration
+    gossip:
+        # Bootstrap set to initialize gossip with.
+        # This is a list of other peers that this peer reaches out to at startup.
+        # Important: The endpoints here have to be endpoints of peers in the same
+        # organization, because the peer would refuse connecting to these endpoints
+        # unless they are in the same organization as the peer.
+        bootstrap: 127.0.0.1:7051
+
+        # NOTE: orgLeader and useLeaderElection parameters are mutual exclusive.
+        # Setting both to true would result in the termination of the peer
+        # since this is undefined state. If the peers are configured with
+        # useLeaderElection=false, make sure there is at least 1 peer in the
+        # organization that its orgLeader is set to true.
+
+        # Defines whenever peer will initialize dynamic algorithm for
+        # "leader" selection, where leader is the peer to establish
+        # connection with ordering service and use delivery protocol
+        # to pull ledger blocks from ordering service. It is recommended to
+        # use leader election for large networks of peers.
+        useLeaderElection: true
+        # Statically defines peer to be an organization "leader",
+        # where this means that current peer will maintain connection
+        # with ordering service and disseminate block across peers in
+        # its own organization
+        orgLeader: false
+
+        # Overrides the endpoint that the peer publishes to peers
+        # in its organization. For peers in foreign organizations
+        # see 'externalEndpoint'
+        endpoint:
+        # Maximum count of blocks stored in memory
+        maxBlockCountToStore: 100
+        # Max time between consecutive message pushes(unit: millisecond)
+        maxPropagationBurstLatency: 10ms
+        # Max number of messages stored until a push is triggered to remote peers
+        maxPropagationBurstSize: 10
+        # Number of times a message is pushed to remote peers
+        propagateIterations: 1
+        # Number of peers selected to push messages to
+        propagatePeerNum: 3
+        # Determines frequency of pull phases(unit: second)
+        # Must be greater than digestWaitTime + responseWaitTime
+        pullInterval: 4s
+        # Number of peers to pull from
+        pullPeerNum: 3
+        # Determines frequency of pulling state info messages from peers(unit: second)
+        requestStateInfoInterval: 4s
+        # Determines frequency of pushing state info messages to peers(unit: second)
+        publishStateInfoInterval: 4s
+        # Maximum time a stateInfo message is kept until expired
+        stateInfoRetentionInterval:
+        # Time from startup certificates are included in Alive messages(unit: second)
+        publishCertPeriod: 10s
+        # Should we skip verifying block messages or not (currently not in use)
+        skipBlockVerification: false
+        # Dial timeout(unit: second)
+        dialTimeout: 3s
+        # Connection timeout(unit: second)
+        connTimeout: 2s
+        # Buffer size of received messages
+        recvBuffSize: 20
+        # Buffer size of sending messages
+        sendBuffSize: 200
+        # Time to wait before pull engine processes incoming digests (unit: second)
+        # Should be slightly smaller than requestWaitTime
+        digestWaitTime: 1s
+        # Time to wait before pull engine removes incoming nonce (unit: milliseconds)
+        # Should be slightly bigger than digestWaitTime
+        requestWaitTime: 1500ms
+        # Time to wait before pull engine ends pull (unit: second)
+        responseWaitTime: 2s
+        # Alive check interval(unit: second)
+        aliveTimeInterval: 5s
+        # Alive expiration timeout(unit: second)
+        aliveExpirationTimeout: 25s
+        # Reconnect interval(unit: second)
+        reconnectInterval: 25s
+        # This is an endpoint that is published to peers outside of the organization.
+        # If this isn't set, the peer will not be known to other organizations.
+        externalEndpoint:
+        # Leader election service configuration
+        election:
+            # Longest time peer waits for stable membership during leader election startup (unit: second)
+            startupGracePeriod: 15s
+            # Interval gossip membership samples to check its stability (unit: second)
+            membershipSampleInterval: 1s
+            # Time passes since last declaration message before peer decides to perform leader election (unit: second)
+            leaderAliveThreshold: 10s
+            # Time between peer sends propose message and declares itself as a leader (sends declaration message) (unit: second)
+            leaderElectionDuration: 5s
+
+        pvtData:
+            # pullRetryThreshold determines the maximum duration of time private data corresponding for a given block
+            # would be attempted to be pulled from peers until the block would be committed without the private data
+            pullRetryThreshold: 60s
+            # As private data enters the transient store, it is associated with the peer's ledger's height at that time.
+            # transientstoreMaxBlockRetention defines the maximum difference between the current ledger's height upon commit,
+            # and the private data residing inside the transient store that is guaranteed not to be purged.
+            # Private data is purged from the transient store when blocks with sequences that are multiples
+            # of transientstoreMaxBlockRetention are committed.
+            transientstoreMaxBlockRetention: 1000
+            # pushAckTimeout is the maximum time to wait for an acknowledgement from each peer
+            # at private data push at endorsement time.
+            pushAckTimeout: 3s
+            # Block to live pulling margin, used as a buffer
+            # to prevent peer from trying to pull private data
+            # from peers that is soon to be purged in next N blocks.
+            # This helps a newly joined peer catch up to current
+            # blockchain height quicker.
+            btlPullMargin: 10
+
+    # EventHub related configuration
+    events:
+        # The address that the Event service will be enabled on the peer
+        address: 0.0.0.0:7053
+
+        # total number of events that could be buffered without blocking send
+        buffersize: 100
+
+        # timeout configures how long to block when attempting to add an event to a full buffer:
+        #   when timeout < 0 then discard the event and continue
+        #   when timeout = 0 then block until event is added to the buffer
+        #   when timeout > 0 then block and discard the event if the timeout expires
+        timeout: 10ms
+
+        # timewindow is the acceptable difference between the peer's current
+        # time and the client's time as specified in a registration event
+        timewindow: 15m
+
+        # Keepalive settings for peer server and clients
+        keepalive:
+            # MinInterval is the minimum permitted time in seconds which clients
+            # can send keepalive pings.  If clients send pings more frequently,
+            # the events server will disconnect them
+            minInterval: 60s
+
+        # the timeout to send events over the GRPC stream to clients
+        sendTimeout: 60s
+
+    # TLS Settings
+    # Note that peer-chaincode connections through chaincodeListenAddress is
+    # not mutual TLS auth. See comments on chaincodeListenAddress for more info
+    tls:
+        # Require server-side TLS
+        enabled:  false
+        # Require client certificates / mutual TLS.
+        # Note that clients that are not configured to use a certificate will
+        # fail to connect to the peer.
+        clientAuthRequired: false
+        # X.509 certificate used for TLS server
+        cert:
+            file: tls/server.crt
+        # Private key used for TLS server (and client if clientAuthEnabled
+        # is set to true
+        key:
+            file: tls/server.key
+        # Trusted root certificate chain for tls.cert
+        rootcert:
+            file: tls/ca.crt
+        # Set of root certificate authorities used to verify client certificates
+        clientRootCAs:
+            files:
+              - tls/ca.crt
+        # Private key used for TLS when making client connections.  If
+        # not set, peer.tls.key.file will be used instead
+        clientKey:
+            file:
+        # X.509 certificate used for TLS when making client connections.
+        # If not set, peer.tls.cert.file will be used instead
+        clientCert:
+            file:
+
+    # Authentication contains configuration parameters related to authenticating
+    # client messages
+    authentication:
+        # the acceptable difference between the current server time and the
+        # client's time as specified in a client request message
+        timewindow: 15m
+
+    # Path on the file system where peer will store data (eg ledger). This
+    # location must be access control protected to prevent unintended
+    # modification that might corrupt the peer operations.
+    fileSystemPath: /opt/app/fabric/peer/data
+
+    # BCCSP (Blockchain crypto provider): Select which crypto implementation or
+    # library to use
+    BCCSP:
+        Default: SW
+        # Settings for the SW crypto provider (i.e. when DEFAULT: SW)
+        SW:
+            # TODO: The default Hash and Security level needs refactoring to be
+            # fully configurable. Changing these defaults requires coordination
+            # SHA2 is hardcoded in several places, not only BCCSP
+            Hash: SHA2
+            Security: 256
+            # Location of Key Store
+            FileKeyStore:
+                # If "", defaults to 'mspConfigPath'/keystore
+                KeyStore:
+        # Settings for the PKCS#11 crypto provider (i.e. when DEFAULT: PKCS11)
+        PKCS11:
+            # Location of the PKCS11 module library
+            Library:
+            # Token Label
+            Label:
+            # User PIN
+            Pin:
+            Hash:
+            Security:
+            FileKeyStore:
+                KeyStore:
+
+    # Path on the file system where peer will find MSP local configurations
+    mspConfigPath: msp
+
+    # Identifier of the local MSP
+    # ----!!!!IMPORTANT!!!-!!!IMPORTANT!!!-!!!IMPORTANT!!!!----
+    # Deployers need to change the value of the localMspId string.
+    # In particular, the name of the local MSP ID of a peer needs
+    # to match the name of one of the MSPs in each of the channel
+    # that this peer is a member of. Otherwise this peer's messages
+    # will not be identified as valid by other nodes.
+    localMspId: Org1MSP
+
+    # CLI common client config options
+    client:
+        # connection timeout
+        connTimeout: 3s
+
+    # Delivery service related config
+    deliveryclient:
+        # It sets the total time the delivery service may spend in reconnection
+        # attempts until its retry logic gives up and returns an error
+        reconnectTotalTimeThreshold: 3600s
+
+        # It sets the delivery service <-> ordering service node connection timeout
+        connTimeout: 3s
+
+        # It sets the delivery service maximal delay between consecutive retries
+        reConnectBackoffThreshold: 3600s
+
+    # Type for the local MSP - by default it's of type bccsp
+    localMspType: bccsp
+
+    # Used with Go profiling tools only in none production environment. In
+    # production, it should be disabled (eg enabled: false)
+    profile:
+        enabled:     false
+        listenAddress: 0.0.0.0:6060
+
+    # The admin service is used for administrative operations such as
+    # control over log module severity, etc.
+    # Only peer administrators can use the service.
+    adminService:
+        # The interface and port on which the admin server will listen on.
+        # If this is commented out, or the port number is equal to the port
+        # of the peer listen address - the admin service is attached to the
+        # peer's service (defaults to 7051).
+        #listenAddress: 0.0.0.0:7055
+
+    # Handlers defines custom handlers that can filter and mutate
+    # objects passing within the peer, such as:
+    #   Auth filter - reject or forward proposals from clients
+    #   Decorators  - append or mutate the chaincode input passed to the chaincode
+    #   Endorsers   - Custom signing over proposal response payload and its mutation
+    # Valid handler definition contains:
+    #   - A name which is a factory method name defined in
+    #     core/handlers/library/library.go for statically compiled handlers
+    #   - library path to shared object binary for pluggable filters
+    # Auth filters and decorators are chained and executed in the order that
+    # they are defined. For example:
+    # authFilters:
+    #   -
+    #     name: FilterOne
+    #     library: /opt/lib/filter.so
+    #   -
+    #     name: FilterTwo
+    # decorators:
+    #   -
+    #     name: DecoratorOne
+    #   -
+    #     name: DecoratorTwo
+    #     library: /opt/lib/decorator.so
+    # Endorsers are configured as a map that its keys are the endorsement system chaincodes that are being overridden.
+    # Below is an example that overrides the default ESCC and uses an endorsement plugin that has the same functionality
+    # as the default ESCC.
+    # If the 'library' property is missing, the name is used as the constructor method in the builtin library similar
+    # to auth filters and decorators.
+    # endorsers:
+    #   escc:
+    #     name: DefaultESCC
+    #     library: /etc/hyperledger/fabric/plugin/escc.so
+    handlers:
+        authFilters:
+          -
+            name: DefaultAuth
+          -
+            name: ExpirationCheck    # This filter checks identity x509 certificate expiration
+        decorators:
+          -
+            name: DefaultDecorator
+        endorsers:
+          escc:
+            name: DefaultEndorsement
+            library:
+        validators:
+          vscc:
+            name: DefaultValidation
+            library:
+
+    #    library: /etc/hyperledger/fabric/plugin/escc.so
+    # Number of goroutines that will execute transaction validation in parallel.
+    # By default, the peer chooses the number of CPUs on the machine. Set this
+    # variable to override that choice.
+    # NOTE: overriding this value might negatively influence the performance of
+    # the peer so please change this value only if you know what you're doing
+    validatorPoolSize:
+
+    # The discovery service is used by clients to query information about peers,
+    # such as - which peers have joined a certain channel, what is the latest
+    # channel config, and most importantly - given a chaincode and a channel,
+    # what possible sets of peers satisfy the endorsement policy.
+    discovery:
+        enabled: true
+        # Whether the authentication cache is enabled or not.
+        authCacheEnabled: true
+        # The maximum size of the cache, after which a purge takes place
+        authCacheMaxSize: 1000
+        # The proportion (0 to 1) of entries that remain in the cache after the cache is purged due to overpopulation
+        authCachePurgeRetentionRatio: 0.75
+        # Whether to allow non-admins to perform non channel scoped queries.
+        # When this is false, it means that only peer admins can perform non channel scoped queries.
+        orgMembersAllowedAccess: false
+###############################################################################
+#
+#    VM section
+#
+###############################################################################
+vm:
+
+    # Endpoint of the vm management system.  For docker can be one of the following in general
+    # unix:///var/run/docker.sock
+    # http://localhost:2375
+    # https://localhost:2376
+    endpoint: unix:///var/run/docker.sock
+
+    # settings for docker vms
+    docker:
+        tls:
+            enabled: false
+            ca:
+                file: docker/ca.crt
+            cert:
+                file: docker/tls.crt
+            key:
+                file: docker/tls.key
+
+        # Enables/disables the standard out/err from chaincode containers for
+        # debugging purposes
+        attachStdout: false
+
+        # Parameters on creating docker container.
+        # Container may be efficiently created using ipam & dns-server for cluster
+        # NetworkMode - sets the networking mode for the container. Supported
+        # standard values are: `host`(default),`bridge`,`ipvlan`,`none`.
+        # Dns - a list of DNS servers for the container to use.
+        # Note:  `Privileged` `Binds` `Links` and `PortBindings` properties of
+        # Docker Host Config are not supported and will not be used if set.
+        # LogConfig - sets the logging driver (Type) and related options
+        # (Config) for Docker. For more info,
+        # https://docs.docker.com/engine/admin/logging/overview/
+        # Note: Set LogConfig using Environment Variables is not supported.
+        hostConfig:
+            NetworkMode: host
+            Dns:
+               # - 192.168.0.1
+            LogConfig:
+                Type: json-file
+                Config:
+                    max-size: "50m"
+                    max-file: "5"
+            Memory: 2147483648
+
+###############################################################################
+#
+#    Chaincode section
+#
+###############################################################################
+chaincode:
+
+    # The id is used by the Chaincode stub to register the executing Chaincode
+    # ID with the Peer and is generally supplied through ENV variables
+    # the `path` form of ID is provided when installing the chaincode.
+    # The `name` is used for all other requests and can be any string.
+    id:
+        path:
+        name:
+
+    # Generic builder environment, suitable for most chaincode types
+    builder: $(DOCKER_NS)/fabric-ccenv:latest
+
+    # Enables/disables force pulling of the base docker images (listed below)
+    # during user chaincode instantiation.
+    # Useful when using moving image tags (such as :latest)
+    pull: false
+
+    golang:
+        # golang will never need more than baseos
+        runtime: $(BASE_DOCKER_NS)/fabric-baseos:$(ARCH)-$(BASE_VERSION)
+
+        # whether or not golang chaincode should be linked dynamically
+        dynamicLink: false
+
+    car:
+        # car may need more facilities (JVM, etc) in the future as the catalog
+        # of platforms are expanded.  For now, we can just use baseos
+        runtime: $(BASE_DOCKER_NS)/fabric-baseos:$(ARCH)-$(BASE_VERSION)
+
+    java:
+        # This is an image based on java:openjdk-8 with addition compiler
+        # tools added for java shim layer packaging.
+        # This image is packed with shim layer libraries that are necessary
+        # for Java chaincode runtime.
+        Dockerfile:  |
+            from $(DOCKER_NS)/fabric-javaenv:$(ARCH)-1.1.0
+
+    node:
+        # need node.js engine at runtime, currently available in baseimage
+        # but not in baseos
+        runtime: $(BASE_DOCKER_NS)/fabric-baseimage:$(ARCH)-$(BASE_VERSION)
+
+    # Timeout duration for starting up a container and waiting for Register
+    # to come through. 1sec should be plenty for chaincode unit tests
+    startuptimeout: 300s
+
+    # Timeout duration for Invoke and Init calls to prevent runaway.
+    # This timeout is used by all chaincodes in all the channels, including
+    # system chaincodes.
+    # Note that during Invoke, if the image is not available (e.g. being
+    # cleaned up when in development environment), the peer will automatically
+    # build the image, which might take more time. In production environment,
+    # the chaincode image is unlikely to be deleted, so the timeout could be
+    # reduced accordingly.
+    executetimeout: 30s
+
+    # There are 2 modes: "dev" and "net".
+    # In dev mode, user runs the chaincode after starting peer from
+    # command line on local machine.
+    # In net mode, peer will run chaincode in a docker container.
+    mode: net
+
+    # keepalive in seconds. In situations where the communiction goes through a
+    # proxy that does not support keep-alive, this parameter will maintain connection
+    # between peer and chaincode.
+    # A value <= 0 turns keepalive off
+    keepalive: 0
+
+    # system chaincodes whitelist. To add system chaincode "myscc" to the
+    # whitelist, add "myscc: enable" to the list below, and register in
+    # chaincode/importsysccs.go
+    system:
+        cscc: enable
+        lscc: enable
+        escc: enable
+        vscc: enable
+        qscc: enable
+
+    # System chaincode plugins: in addition to being imported and compiled
+    # into fabric through core/chaincode/importsysccs.go, system chaincodes
+    # can also be loaded as shared objects compiled as Go plugins.
+    # See examples/plugins/scc for an example.
+    # Like regular system chaincodes, plugins must also be white listed in the
+    # chaincode.system section above.
+    systemPlugins:
+      # example configuration:
+      # - enabled: true
+      #   name: myscc
+      #   path: /opt/lib/myscc.so
+      #   invokableExternal: true
+      #   invokableCC2CC: true
+
+    # Logging section for the chaincode container
+    logging:
+      # Default level for all loggers within the chaincode container
+      level:  info
+      # Override default level for the 'shim' module
+      shim:   warning
+      # Format for the chaincode container logs
+      format: '%{color}%{time:2006-01-02 15:04:05.000 MST} [%{module}] %{shortfunc} -> %{level:.4s} %{id:03x}%{color:reset} %{message}'
+
+###############################################################################
+#
+#    Ledger section - ledger configuration encompases both the blockchain
+#    and the state
+#
+###############################################################################
+ledger:
+
+  blockchain:
+
+  state:
+    # stateDatabase - options are "goleveldb", "CouchDB"
+    # goleveldb - default state database stored in goleveldb.
+    # CouchDB - store state database in CouchDB
+    stateDatabase: goleveldb
+    couchDBConfig:
+       # It is recommended to run CouchDB on the same server as the peer, and
+       # not map the CouchDB container port to a server port in docker-compose.
+       # Otherwise proper security must be provided on the connection between
+       # CouchDB client (on the peer) and server.
+       couchDBAddress: 127.0.0.1:5984
+       # This username must have read and write authority on CouchDB
+       username:
+       # The password is recommended to pass as an environment variable
+       # during start up (eg LEDGER_COUCHDBCONFIG_PASSWORD).
+       # If it is stored here, the file must be access control protected
+       # to prevent unintended users from discovering the password.
+       password:
+       # Number of retries for CouchDB errors
+       maxRetries: 3
+       # Number of retries for CouchDB errors during peer startup
+       maxRetriesOnStartup: 10
+       # CouchDB request timeout (unit: duration, e.g. 20s)
+       requestTimeout: 35s
+       # Limit on the number of records to return per query
+       queryLimit: 10000
+       # Limit on the number of records per CouchDB bulk update batch
+       maxBatchUpdateSize: 1000
+       # Warm indexes after every N blocks.
+       # This option warms any indexes that have been
+       # deployed to CouchDB after every N blocks.
+       # A value of 1 will warm indexes after every block commit,
+       # to ensure fast selector queries.
+       # Increasing the value may improve write efficiency of peer and CouchDB,
+       # but may degrade query response time.
+       warmIndexesAfterNBlocks: 1
+
+  history:
+    # enableHistoryDatabase - options are true or false
+    # Indicates if the history of key updates should be stored.
+    # All history 'index' will be stored in goleveldb, regardless if using
+    # CouchDB or alternate database for the state.
+    enableHistoryDatabase: true
+
+###############################################################################
+#
+#    Metrics section
+#
+#
+###############################################################################
+metrics:
+        # enable or disable metrics server
+        enabled: false
+
+        # when enable metrics server, must specific metrics reporter type
+        # currently supported type: "statsd","prom"
+        reporter: statsd
+
+        # determines frequency of report metrics(unit: second)
+        interval: 1s
+
+        statsdReporter:
+
+              # statsd server address to connect
+              address: 0.0.0.0:8125
+
+              # determines frequency of push metrics to statsd server(unit: second)
+              flushInterval: 2s
+
+              # max size bytes for each push metrics request
+              # intranet recommend 1432 and internet recommend 512
+              flushBytes: 1432
+
+        promReporter:
+
+              # prometheus http server listen address for pull metrics
+              listenAddress: 0.0.0.0:8080
+```
+
+**步骤4.5.** 新建data目录存放peer0.org1数据。
+```shell
+~/fabric-samples/peer0.org1.example.com$ mkdir data
+```
+
+<br />
+<br />
+
+
+
+## 6. 配置 peer0.org2.example.com
+
+**步骤6.1.** 新建"peer0.org2.example.com"文件夹，并复制替换msp, tls。
+
+```shell
+~/fabric-samples$ cp -rf peer0.org1.example.com/ peer0.org2.example.com/
+~/fabric-samples$ rm -rf peer0.org2.example.com/msp/
+~/fabric-samples$ rm -rf peer0.org2.example.com/tls/
+~/fabric-samples$ cp -rf certs/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/*  peer0.org2.example.com/
+```
+
+**步骤6.2.** 修改core.yaml。
+
+```shell
+~/fabric-samples$ sed -i "s/peer0.org1.example.com/peer0\.org2\.example.com/g" peer0.org2.example.com/core.yaml
+```
+
+**步骤6.3.** 修改core.yaml。
+
+```shell
+~/fabric-samples$ sed -i "s/Org1MSP/Org2MSP/g" peer0.org2.example.com/core.yaml
+```
+
+
+
+
+
+
+
 <br />
 <br />
 
 ## 7. 部署Orderer
+
 **步骤7.1.** 创建/opt/app/fabric/orderer目录。
 ```shell
 ~/fabric-samples$ sudo mkdir -p /opt/app/fabric/orderer
@@ -476,61 +1140,176 @@ Consensus:
 ~/fabric-samples$ sudo cp -r orderer.example.com/* /opt/app/fabric/orderer/
 ```
 
+
+<br />
+<br />
+
+## 8. 部署 peer0.org1.example.com
+
+**步骤8.1.** 创建/opt/app/fabric/peer目录。
+```shell
+~/fabric-samples$ sudo mkdir -p /opt/app/fabric/peer
+```
+
+**步骤8.2.** 复制配置文件到/opt/app/fabric/peer目录。
+```shell
+~/fabric-samples$ sudo cp -r peer0.org1.example.com/* /opt/app/fabric/peer/
+```
+
+
+<br />
+<br />
+
+## 10. 部署 peer0.org2.example.com
+
+**步骤10.1.** 创建/opt/app/fabric/peer目录。
+
+ubuntu01上，
+```shell
+~/fabric-samples$ sudo mkdir -p /opt/app/fabric/peer
+```
+
+**步骤10.2.** 复制配置文件到/opt/app/fabric/peer目录。
+
+ubuntu00上，
+```shell
+~/fabric-samples$ scp -r peer0.org2.example.com joe@192.168.0.106:/tmp/
+```
+
+ubuntu01上，
+```shell
+$ sudo cp -r /tmp/peer0.org2.example.com/* /opt/app/fabric/peer/
+```
+
+
+
+
+
+
+
+
+
 <br />
 <br />
 
 ## 11. 部署创世块和锚点
 **步骤11.1.** 复制configtx.yaml文件
 ```shell
-~/fabric-samples/config$ cp configtx.yaml /home/joe/fabric-samples
+~/fabric-samples$ vi configtx.yaml
 ```
+
 
 ```yaml
 # Copyright IBM Corp. All Rights Reserved.
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-
+ 
 ---
 ################################################################################
 #
-#   ORGANIZATIONS
+#   Section: Organizations
 #
-#   This section defines the organizational identities that can be referenced
-#   in the configuration profiles.
+#   - This section defines the different organizational identities which will
+#   be referenced later in the configuration.
 #
 ################################################################################
 Organizations:
-
-    # SampleOrg defines an MSP using the sampleconfig. It should never be used
-    # in production but may be used as a template for other definitions.
+ 
+    # SampleOrg defines an MSP using the sampleconfig.  It should never be used
+    # in production but may be used as a template for other definitions
     - &OrdererOrg
+        # DefaultOrg defines the organization which is used in the sampleconfig
+        # of the fabric.git development environment
         Name: OrdererOrg
+ 
+        # ID to load the MSP definition as
         ID: OrdererMSP
+ 
+        # MSPDir is the filesystem path which contains the MSP configuration
         MSPDir: ./certs/ordererOrganizations/example.com/msp
-
+ 
+        # Policies defines the set of policies at this level of the config tree
+        # For organization policies, their canonical path is usually
+        #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('OrdererMSP.member')"
+            Writers:
+                Type: Signature
+                Rule: "OR('OrdererMSP.member')"
+            Admins:
+                Type: Signature
+                Rule: "OR('OrdererMSP.admin')"
+ 
     - &Org1
+        # DefaultOrg defines the organization which is used in the sampleconfig
+        # of the fabric.git development environment
         Name: Org1MSP
+ 
+        # ID to load the MSP definition as
         ID: Org1MSP
+ 
         MSPDir: ./certs/peerOrganizations/org1.example.com/msp
+ 
+        # Policies defines the set of policies at this level of the config tree
+        # For organization policies, their canonical path is usually
+        #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('Org1MSP.admin', 'Org1MSP.peer', 'Org1MSP.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('Org1MSP.admin', 'Org1MSP.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('Org1MSP.admin')"
+ 
         AnchorPeers:
+            # AnchorPeers defines the location of peers which can be used
+            # for cross org gossip communication.  Note, this value is only
+            # encoded in the genesis block in the Application section context
             - Host: peer0.org1.example.com
               Port: 7051
-
+ 
     - &Org2
+        # DefaultOrg defines the organization which is used in the sampleconfig
+        # of the fabric.git development environment
         Name: Org2MSP
+ 
+        # ID to load the MSP definition as
         ID: Org2MSP
+ 
         MSPDir: ./certs/peerOrganizations/org2.example.com/msp
+ 
+        # Policies defines the set of policies at this level of the config tree
+        # For organization policies, their canonical path is usually
+        #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('Org2MSP.admin', 'Org2MSP.peer', 'Org2MSP.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('Org2MSP.admin', 'Org2MSP.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('Org2MSP.admin')"
+ 
         AnchorPeers:
+            # AnchorPeers defines the location of peers which can be used
+            # for cross org gossip communication.  Note, this value is only
+            # encoded in the genesis block in the Application section context
             - Host: peer0.org2.example.com
               Port: 7051
-
-
+ 
 ################################################################################
 #
-#   CAPABILITIES
+#   SECTION: Capabilities
 #
-#   This section defines the capabilities of fabric network. This is a new
+#   - This section defines the capabilities of fabric network. This is a new
 #   concept as of v1.1.0 and should not be utilized in mixed networks with
 #   v1.0.x peers and orderers.  Capabilities define features which must be
 #   present in a fabric binary for that binary to safely participate in the
@@ -547,129 +1326,52 @@ Organizations:
 ################################################################################
 Capabilities:
     # Channel capabilities apply to both the orderers and the peers and must be
-    # supported by both.
-    # Set the value of the capability to true to require it.
-    Channel: &ChannelCapabilities
-        # V1.3 for Channel is a catchall flag for behavior which has been
-        # determined to be desired for all orderers and peers running at the v1.3.x
-        # level, but which would be incompatible with orderers and peers from
-        # prior releases.
-        # Prior to enabling V1.3 channel capabilities, ensure that all
-        # orderers and peers on a channel are at v1.3.0 or later.
-        V1_3: true
-
-    # Orderer capabilities apply only to the orderers, and may be safely
-    # used with prior release peers.
-    # Set the value of the capability to true to require it.
-    Orderer: &OrdererCapabilities
-        # V1.1 for Orderer is a catchall flag for behavior which has been
-        # determined to be desired for all orderers running at the v1.1.x
-        # level, but which would be incompatible with orderers from prior releases.
-        # Prior to enabling V1.1 orderer capabilities, ensure that all
-        # orderers on a channel are at v1.1.0 or later.
+    # supported by both.  Set the value of the capability to true to require it.
+    Global: &ChannelCapabilities
+        # V1.1 for Global is a catchall flag for behavior which has been
+        # determined to be desired for all orderers and peers running v1.0.x,
+        # but the modification of which would cause incompatibilities.  Users
+        # should leave this flag set to true.
         V1_1: true
-
+ 
+    # Orderer capabilities apply only to the orderers, and may be safely
+    # manipulated without concern for upgrading peers.  Set the value of the
+    # capability to true to require it.
+    Orderer: &OrdererCapabilities
+        # V1.1 for Order is a catchall flag for behavior which has been
+        # determined to be desired for all orderers running v1.0.x, but the
+        # modification of which  would cause incompatibilities.  Users should
+        # leave this flag set to true.
+        V1_1: true
+ 
     # Application capabilities apply only to the peer network, and may be safely
-    # used with prior release orderers.
-    # Set the value of the capability to true to require it.
+    # manipulated without concern for upgrading orderers.  Set the value of the
+    # capability to true to require it.
     Application: &ApplicationCapabilities
-        # V1.3 for Application enables the new non-backwards compatible
-        # features and fixes of fabric v1.3.
-        V1_3: true
-        # V1.2 for Application enables the new non-backwards compatible
-        # features and fixes of fabric v1.2 (note, this need not be set if
-        # later version capabilities are set)
-        V1_2: false
-        # V1.1 for Application enables the new non-backwards compatible
-        # features and fixes of fabric v1.1 (note, this need not be set if
-        # later version capabilities are set).
-        V1_1: false
-
+        # V1.1 for Application is a catchall flag for behavior which has been
+        # determined to be desired for all peers running v1.0.x, but the
+        # modification of which would cause incompatibilities.  Users should
+        # leave this flag set to true.
+        V1_2: true
+ 
 ################################################################################
 #
-#   APPLICATION
+#   SECTION: Application
 #
-#   This section defines the values to encode into a config transaction or
-#   genesis block for application-related parameters.
+#   - This section defines the values to encode into a config transaction or
+#   genesis block for application related parameters
 #
 ################################################################################
 Application: &ApplicationDefaults
-    ACLs: &ACLsDefault
-        # This section provides defaults for policies for various resources
-        # in the system. These "resources" could be functions on system chaincodes
-        # (e.g., "GetBlockByNumber" on the "qscc" system chaincode) or other resources
-        # (e.g.,who can receive Block events). This section does NOT specify the resource's
-        # definition or API, but just the ACL policy for it.
-        #
-        # User's can override these defaults with their own policy mapping by defining the
-        # mapping under ACLs in their channel definition
-
-        #---Lifecycle System Chaincode (lscc) function to policy mapping for access control---#
-
-        # ACL policy for lscc's "getid" function
-        lscc/ChaincodeExists: /Channel/Application/Readers
-
-        # ACL policy for lscc's "getdepspec" function
-        lscc/GetDeploymentSpec: /Channel/Application/Readers
-
-        # ACL policy for lscc's "getccdata" function
-        lscc/GetChaincodeData: /Channel/Application/Readers
-
-        # ACL Policy for lscc's "getchaincodes" function
-        lscc/GetInstantiatedChaincodes: /Channel/Application/Readers
-
-        #---Query System Chaincode (qscc) function to policy mapping for access control---#
-
-        # ACL policy for qscc's "GetChainInfo" function
-        qscc/GetChainInfo: /Channel/Application/Readers
-
-        # ACL policy for qscc's "GetBlockByNumber" function
-        qscc/GetBlockByNumber: /Channel/Application/Readers
-
-        # ACL policy for qscc's  "GetBlockByHash" function
-        qscc/GetBlockByHash: /Channel/Application/Readers
-
-        # ACL policy for qscc's "GetTransactionByID" function
-        qscc/GetTransactionByID: /Channel/Application/Readers
-
-        # ACL policy for qscc's "GetBlockByTxID" function
-        qscc/GetBlockByTxID: /Channel/Application/Readers
-
-        #---Configuration System Chaincode (cscc) function to policy mapping for access control---#
-
-        # ACL policy for cscc's "GetConfigBlock" function
-        cscc/GetConfigBlock: /Channel/Application/Readers
-
-        # ACL policy for cscc's "GetConfigTree" function
-        cscc/GetConfigTree: /Channel/Application/Readers
-
-        # ACL policy for cscc's "SimulateConfigTreeUpdate" function
-        cscc/SimulateConfigTreeUpdate: /Channel/Application/Readers
-
-        #---Miscellanesous peer function to policy mapping for access control---#
-
-        # ACL policy for invoking chaincodes on peer
-        peer/Propose: /Channel/Application/Writers
-
-        # ACL policy for chaincode to chaincode invocation
-        peer/ChaincodeToChaincode: /Channel/Application/Readers
-
-        #---Events resource to policy mapping for access control###---#
-
-        # ACL policy for sending block events
-        event/Block: /Channel/Application/Readers
-
-        # ACL policy for sending filtered block events
-        event/FilteredBlock: /Channel/Application/Readers
-
-    # Organizations lists the orgs participating on the application side of the
-    # network.
+ 
+    # Organizations is the list of orgs which are defined as participants on
+    # the application side of the network
     Organizations:
-
+ 
     # Policies defines the set of policies at this level of the config tree
     # For Application policies, their canonical path is
     #   /Channel/Application/<PolicyName>
-    Policies: &ApplicationDefaultPolicies
+    Policies:
         Readers:
             Type: ImplicitMeta
             Rule: "ANY Readers"
@@ -679,75 +1381,52 @@ Application: &ApplicationDefaults
         Admins:
             Type: ImplicitMeta
             Rule: "MAJORITY Admins"
-
+ 
     # Capabilities describes the application level capabilities, see the
     # dedicated Capabilities section elsewhere in this file for a full
     # description
     Capabilities:
         <<: *ApplicationCapabilities
-
+ 
 ################################################################################
 #
-#   ORDERER
+#   SECTION: Orderer
 #
-#   This section defines the values to encode into a config transaction or
-#   genesis block for orderer related parameters.
+#   - This section defines the values to encode into a config transaction or
+#   genesis block for orderer related parameters
 #
 ################################################################################
 Orderer: &OrdererDefaults
-
-    # Orderer Type: The orderer implementation to start.
-    # Available types are "solo" and "kafka".
+ 
+    # Orderer Type: The orderer implementation to start
+    # Available types are "solo" and "kafka"
+    # OrdererType: kafka
     OrdererType: solo
-
-    # Addresses here is a nonexhaustive list of orderers the peers and clients can
-    # connect to. Adding/removing nodes from this list has no impact on their
-    # participation in ordering.
-    # NOTE: In the solo case, this should be a one-item list.
+ 
     Addresses:
         - 127.0.0.1:7050
-
-    # Batch Timeout: The amount of time to wait before creating a batch.
+        # - orderer0.example.com:7050
+        # - orderer1.example.com:7050
+        # - orderer2.example.com:7050
+ 
+    # Batch Timeout: The amount of time to wait before creating a batch
     BatchTimeout: 2s
-
-    # Batch Size: Controls the number of messages batched into a block.
-    # The orderer views messages opaquely, but typically, messages may
-    # be considered to be Fabric transactions.  The 'batch' is the group
-    # of messages in the 'data' field of the block.  Blocks will be a few kb
-    # larger than the batch size, when signatures, hashes, and other metadata
-    # is applied.
+ 
+    # Batch Size: Controls the number of messages batched into a block
     BatchSize:
-
-        # Max Message Count: The maximum number of messages to permit in a
-        # batch.  No block will contain more than this number of messages.
+ 
+        # Max Message Count: The maximum number of messages to permit in a batch
         MaxMessageCount: 10
-
+ 
         # Absolute Max Bytes: The absolute maximum number of bytes allowed for
-        # the serialized messages in a batch. The maximum block size is this value
-        # plus the size of the associated metadata (usually a few KB depending
-        # upon the size of the signing identities). Any transaction larger than
-        # this value will be rejected by ordering. If the "kafka" OrdererType is
-        # selected, set 'message.max.bytes' and 'replica.fetch.max.bytes' on
-        # the Kafka brokers to a value that is larger than this one.
-        AbsoluteMaxBytes: 10 MB
-
-        # Preferred Max Bytes: The preferred maximum number of bytes allowed
-        # for the serialized messages in a batch. Roughly, this field may be considered
-        # the best effort maximum size of a batch. A batch will fill with messages
-        # until this size is reached (or the max message count, or batch timeout is
-        # exceeded).  If adding a new message to the batch would cause the batch to
-        # exceed the preferred max bytes, then the current batch is closed and written
-        # to a block, and a new batch containing the new message is created.  If a
-        # message larger than the preferred max bytes is received, then its batch
-        # will contain only that message.  Because messages may be larger than
-        # preferred max bytes (up to AbsoluteMaxBytes), some batches may exceed
-        # the preferred max bytes, but will always contain exactly one transaction.
+        # the serialized messages in a batch.
+        AbsoluteMaxBytes: 98 MB
+ 
+        # Preferred Max Bytes: The preferred maximum number of bytes allowed for
+        # the serialized messages in a batch. A message larger than the preferred
+        # max bytes will result in a batch larger than preferred max bytes.
         PreferredMaxBytes: 512 KB
-
-    # Max Channels is the maximum number of channels to allow on the ordering
-    # network. When set to 0, this implies no maximum number of channels.
-    MaxChannels: 0
-
+ 
     Kafka:
         # Brokers: A list of Kafka brokers to which the orderer connects. Edit
         # this list to identify the brokers of the ordering service.
@@ -756,11 +1435,12 @@ Orderer: &OrdererDefaults
             - kafka0:9092
             - kafka1:9092
             - kafka2:9092
-
-    # Organizations lists the orgs participating on the orderer side of the
-    # network.
+            # - kafka3:9092
+ 
+    # Organizations is the list of orgs which are defined as participants on
+    # the orderer side of the network
     Organizations:
-
+ 
     # Policies defines the set of policies at this level of the config tree
     # For Orderer policies, their canonical path is
     #   /Channel/Orderer/<PolicyName>
@@ -779,13 +1459,13 @@ Orderer: &OrdererDefaults
         BlockValidation:
             Type: ImplicitMeta
             Rule: "ANY Writers"
-
+ 
     # Capabilities describes the orderer level capabilities, see the
     # dedicated Capabilities section elsewhere in this file for a full
     # description
     Capabilities:
         <<: *OrdererCapabilities
-
+ 
 ################################################################################
 #
 #   CHANNEL
@@ -811,160 +1491,86 @@ Channel: &ChannelDefaults
         Admins:
             Type: ImplicitMeta
             Rule: "MAJORITY Admins"
-
-
+ 
+ 
     # Capabilities describes the channel level capabilities, see the
     # dedicated Capabilities section elsewhere in this file for a full
     # description
     Capabilities:
         <<: *ChannelCapabilities
-
+ 
 ################################################################################
 #
-#   PROFILES
+#   Profile
 #
-#   Different configuration profiles may be encoded here to be specified as
-#   parameters to the configtxgen tool. The profiles which specify consortiums
-#   are to be used for generating the orderer genesis block. With the correct
-#   consortium members defined in the orderer genesis block, channel creation
-#   requests may be generated with only the org member names and a consortium
-#   name.
+#   - Different configuration profiles may be encoded here to be specified
+#   as parameters to the configtxgen tool
 #
 ################################################################################
 Profiles:
-
-    # SampleSingleMSPSolo defines a configuration which uses the Solo orderer,
-    # and contains a single MSP definition (the MSP sampleconfig).
-    # The Consortium SampleConsortium has only a single member, SampleOrg.
-    SampleSingleMSPSolo:
+ 
+    TwoOrgsOrdererGenesis:
         <<: *ChannelDefaults
         Orderer:
             <<: *OrdererDefaults
             Organizations:
-                - *SampleOrg
+                - *OrdererOrg
         Consortiums:
             SampleConsortium:
                 Organizations:
-                    - *SampleOrg
-
-    # SampleSingleMSPKafka defines a configuration that differs from the
-    # SampleSingleMSPSolo one only in that it uses the Kafka-based orderer.
-    SampleSingleMSPKafka:
-        <<: *ChannelDefaults
-        Orderer:
-            <<: *OrdererDefaults
-            OrdererType: kafka
-            Organizations:
-                - *SampleOrg
-        Consortiums:
-            SampleConsortium:
-                Organizations:
-                    - *SampleOrg
-
-    # SampleInsecureSolo defines a configuration which uses the Solo orderer,
-    # contains no MSP definitions, and allows all transactions and channel
-    # creation requests for the consortium SampleConsortium.
-    SampleInsecureSolo:
-        <<: *ChannelDefaults
-        Orderer:
-            <<: *OrdererDefaults
-        Consortiums:
-            SampleConsortium:
-                Organizations:
-
-    # SampleInsecureKafka defines a configuration that differs from the
-    # SampleInsecureSolo one only in that it uses the Kafka-based orderer.
-    SampleInsecureKafka:
-        <<: *ChannelDefaults
-        Orderer:
-            OrdererType: kafka
-            <<: *OrdererDefaults
-        Consortiums:
-            SampleConsortium:
-                Organizations:
-
-    # SampleDevModeSolo defines a configuration which uses the Solo orderer,
-    # contains the sample MSP as both orderer and consortium member, and
-    # requires only basic membership for admin privileges. It also defines
-    # an Application on the ordering system channel, which should usually
-    # be avoided.
-    SampleDevModeSolo:
-        <<: *ChannelDefaults
-        Orderer:
-            <<: *OrdererDefaults
-            Organizations:
-                - <<: *SampleOrg
-                  Policies:
-                      <<: *SampleOrgPolicies
-                      Admins:
-                          Type: Signature
-                          Rule: "OR('SampleOrg.member')"
-        Application:
-            <<: *ApplicationDefaults
-            Organizations:
-                - <<: *SampleOrg
-                  Policies:
-                      <<: *SampleOrgPolicies
-                      Admins:
-                          Type: Signature
-                          Rule: "OR('SampleOrg.member')"
-        Consortiums:
-            SampleConsortium:
-                Organizations:
-                    - <<: *SampleOrg
-                      Policies:
-                          <<: *SampleOrgPolicies
-                          Admins:
-                              Type: Signature
-                              Rule: "OR('SampleOrg.member')"
-
-    # SampleDevModeKafka defines a configuration that differs from the
-    # SampleDevModeSolo one only in that it uses the Kafka-based orderer.
-    SampleDevModeKafka:
-        <<: *ChannelDefaults
-        Orderer:
-            <<: *OrdererDefaults
-            OrdererType: kafka
-            Organizations:
-                - <<: *SampleOrg
-                  Policies:
-                      <<: *SampleOrgPolicies
-                      Admins:
-                          Type: Signature
-                          Rule: "OR('SampleOrg.member')"
-        Application:
-            <<: *ApplicationDefaults
-            Organizations:
-                - <<: *SampleOrg
-                  Policies:
-                      <<: *SampleOrgPolicies
-                      Admins:
-                          Type: Signature
-                          Rule: "OR('SampleOrg.member')"
-        Consortiums:
-            SampleConsortium:
-                Organizations:
-                    - <<: *SampleOrg
-                      Policies:
-                          <<: *SampleOrgPolicies
-                          Admins:
-                              Type: Signature
-                              Rule: "OR('SampleOrg.member')"
-
-    # SampleSingleMSPChannel defines a channel with only the sample org as a
-    # member. It is designed to be used in conjunction with SampleSingleMSPSolo
-    # and SampleSingleMSPKafka orderer profiles.   Note, for channel creation
-    # profiles, only the 'Application' section and consortium # name are
-    # considered.
-    SampleSingleMSPChannel:
+                    - *Org1
+                    - *Org2
+ 
+    TwoOrgsChannel:
         Consortium: SampleConsortium
         Application:
             <<: *ApplicationDefaults
             Organizations:
-                - *SampleOrg
+                - *Org1
+                - *Org2
 ```
 
 **步骤11.2** 生成创世块和锚点配置
 ```shell
-./bin/configtxgen -profile SampleSingleMSPSolo -outputBlock ./genesisblock
+./bin/configtxgen -profile TwoOrgsOrdererGenesis -outputBlock ./genesisblock
 ```
+
+**步骤11.4.** 复制创世块和锚点到Orderer。
+```shell
+~/fabric-samples$ sudo cp genesisblock /opt/app/fabric/orderer/
+```
+
+
+<br />
+<br />
+
+## 12. 启动Hyperledger
+
+ubuntu00启动orderer。
+```shell
+$ cd /opt/app/fabric/orderer
+$ sudo ./orderer
+```
+
+ububtu00启动 peer0.org1.example.com。
+
+```shell
+$ cd /opt/app/fabric/peer
+$ sudo ./peer node start 
+```
+
+ubuntu01启动 peer0.org2.example.com。
+
+```shell
+$ cd /opt/app/fabric/peer
+$ sudo ./peer node start 
+```
+
+
+
+
+
+参考资料: https://jicki.me/fabric,kubernetes/2019/01/21/hyperledger-fabric-1.4-to-k8s/
+
+
+
