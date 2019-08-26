@@ -32,9 +32,6 @@ OrdererOrgs:
         Locality: HongKong
     Specs:
       - Hostname: orderer
-        SANS:
-          - "localhost"
-          - "127.0.0.1"
       
 PeerOrgs:
   - Name: Org1
@@ -46,9 +43,6 @@ PeerOrgs:
         Locality: HongKong
     Template:
       Count: 1
-      SANS:
-          - "localhost"
-          - "127.0.0.1"
     Users:
       Count: 1
   - Name: Org2
@@ -60,9 +54,6 @@ PeerOrgs:
         Locality: HongKong
     Template:
       Count: 1
-      SANS:
-          - "localhost"
-          - "127.0.0.1"
     Users:
       Count: 1
 ```
@@ -145,8 +136,8 @@ General:
         Certificate: ./tls/server.crt
         RootCAs:
           - ./tls/ca.crt
-        ClientAuthRequired: true
-        ClientRootCAs:
+#        ClientAuthRequired: true
+#        ClientRootCAs:
     # Keepalive settings for the GRPC server.
     Keepalive:
         # ServerMinInterval is the minimum permitted time between client pings.
@@ -528,7 +519,7 @@ peer:
         # Important: The endpoints here have to be endpoints of peers in the same
         # organization, because the peer would refuse connecting to these endpoints
         # unless they are in the same organization as the peer.
-        bootstrap: 127.0.0.1:7051
+        #bootstrap: 127.0.0.1:7051
         bootstrap: peer0.org1.example.com:7051
 
         # NOTE: orgLeader and useLeaderElection parameters are mutual exclusive.
@@ -1389,7 +1380,7 @@ Orderer: &OrdererDefaults
     OrdererType: solo
  
     Addresses:
-        - 127.0.0.1:7050
+        - orderer.example.com:7050
         # - orderer0.example.com:7050
         # - orderer1.example.com:7050
         # - orderer2.example.com:7050
