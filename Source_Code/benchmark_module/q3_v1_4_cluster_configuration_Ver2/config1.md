@@ -72,6 +72,8 @@ PeerOrgs:
 
 
 
+
+
 ## 3. 配置Orderer
 
 **步骤3.1.** 新建"orderer.example.com"文件夹，用于存放Orderer节点启动运行所需的全部文件。
@@ -350,6 +352,12 @@ Kafka:
 ```shell
 ~/fabric-samples/orderer.example.com$ mkdir data
 ```
+
+
+<br />
+<br />
+
+
 
 
 
@@ -1071,6 +1079,8 @@ ledger:
 
 
 
+
+
 ## 6. 配置 peer0.org2.example.com
 
 **步骤6.1.** 新建"peer0.org2.example.com"文件夹，并复制替换msp, tls。
@@ -1082,11 +1092,16 @@ ledger:
 ~/fabric-samples$ cp -rf certs/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/*  peer0.org2.example.com/
 ```
 
+
+
+
 **步骤6.2.** 修改core.yaml。
 
 ```shell
 ~/fabric-samples$ sed -i "s/peer0.org1.example.com/peer0\.org2\.example.com/g" peer0.org2.example.com/core.yaml
 ```
+
+
 
 **步骤6.3.** 修改core.yaml。
 
@@ -1508,7 +1523,7 @@ Profiles:
 
 **步骤11.2** 生成创世块和锚点配置
 ```shell
-./bin/configtxgen -profile TwoOrgsOrdererGenesis -outputBlock ./genesisblock
+~/fabric-samples$ ./bin/configtxgen -profile TwoOrgsOrdererGenesis -outputBlock ./genesisblock
 ```
 
 **步骤11.4.** 复制创世块和锚点到Orderer。

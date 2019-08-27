@@ -12,10 +12,13 @@
 ~/fabric-samples$ cp -rf certs/peerOrganizations/org1.example.com/users/Admin\@org1.example.com/* Admin\@org1.example.com/
 ```
 
+
 **步骤1.3.** 复制core.yaml文件。
 ```shell
 ~/fabric-samples$ cp peer0.org1.example.com/core.yaml  Admin\@org1.example.com/
 ```
+
+
 
 **步骤1.4.** 为了方便，创建peer.sh文件，该文件包含Admin@org1.example.com用户的启动参数。
 ```shell
@@ -44,6 +47,7 @@ export CORE_LOGGING_LEVEL=INFO
 
 peer $*
 ```
+
 
 **步骤1.4.** 测试该peer.sh脚本。
 ```shell

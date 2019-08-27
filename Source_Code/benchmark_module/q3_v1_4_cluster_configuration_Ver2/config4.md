@@ -20,6 +20,8 @@ Wrote signed package to signed-demo-pack.out successfully
 2019-06-10 20:40:52.556 HKT [main] main -> INFO 001 Exiting.....
 ```
 
+
+
 **步骤1.2.** peer0@org1.example.com安装，查询合约。
 ```shell
 ~/fabric-samples/Admin@org1.example.com$ ./peer.sh chaincode install ./signed-demo-pack.out
@@ -29,6 +31,8 @@ Get installed chaincodes on peer:
 Name: demo, Version: 0.0.1, Path: github.com/introclass/hyperledger-fabric-chaincodes/demo, Id: c8a9b1a9dbb99d5cc030ce931edb01a1bf110e9778fad852bdd4abbeba92eec2
 2019-06-10 20:41:59.285 HKT [main] main -> INFO 001 Exiting.....
 ```
+
+
 
 **步骤1.4.** peer0@org2.example.com安装，查询合约。
 ```shell
@@ -50,6 +54,9 @@ Name: demo, Version: 0.0.1, Path: github.com/introclass/hyperledger-fabric-chain
 2019-06-10 20:50:07.713 HKT [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
 2019-06-10 20:50:32.222 HKT [main] main -> INFO 003 Exiting.....
 ```
+
+
+
 
 <br />
 <br />
