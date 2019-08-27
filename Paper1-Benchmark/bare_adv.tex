@@ -191,7 +191,16 @@ BatchSize:
 \end{lstlisting}
 
 
+Case 1 without considering block size, we have the following model,
 
+\begin{equation}
+BlockTime=\left\{
+\begin{array}{rcl}
+\infty  & & {TAR=0}\\
+BatchTimeout & & {0 < TAR \leq \frac{MaxMessageCount}{BatchTimeout}}\\
+\frac{MaxMessageCount}{TAR} & & {S_R \leq 0}
+\end{array} \right.
+\end{equation}
 
 
 

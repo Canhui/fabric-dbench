@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  27 AUG 2019 21:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  27 AUG 2019 22:24
 entering extended mode
 **./bare_adv.tex
 (bare_adv.tex
@@ -639,26 +639,37 @@ Underfull \hbox (badness 1377) in paragraph at lines 177--178
 eer to peer (P2P)
  []
 
+LaTeX Font Info:    Calculating math sizes for size <9.53561> on input line 196
+.
+
+Overfull \hbox (53.24597pt too wide) detected at line 203
+\OML/cmm/m/it/10 BlockTime \OT1/cmr/m/n/10 = []
+ []
+
 (bare_adv.bbl) [1{C:/Users/chwang/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex
 .map}
 
 
 ] (bare_adv.aux) ) 
 Here is how much of TeX's memory you used:
- 7215 strings out of 492895
- 102065 string characters out of 3141861
- 189482 words of memory out of 3000000
- 11010 multiletter control sequences out of 15000+200000
- 42813 words of font info for 98 fonts, out of 3000000 for 9000
+ 7234 strings out of 492895
+ 102401 string characters out of 3141861
+ 190482 words of memory out of 3000000
+ 11029 multiletter control sequences out of 15000+200000
+ 44736 words of font info for 107 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 41i,6n,39p,1109b,1014s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,8n,39p,1109b,1014s stack positions out of 5000i,500n,10000p,200000b,50000s
 {E:/Miktex/fonts/enc/dvips/base/8r.enc}<E:/Miktex/fonts/type1
-/urw/helvetic/uhvb8a.pfb><E:/Miktex/fonts/type1/urw/helvetic/uhvr8a.pfb><E:/Mik
-tex/fonts/type1/urw/palatino/uplr8a.pfb><E:/Miktex/fonts/type1/urw/palatino/upl
-ri8a.pfb><E:/Miktex/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on bare_adv.pdf (1 page, 62458 bytes).
+/public/amsfonts/cm/cmex10.pfb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmmi10
+.pfb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/Miktex/fonts/type1
+/public/amsfonts/cm/cmr10.pfb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb><E:/Miktex/fonts/type1/urw/helvetic/uhvb8a.pfb><E:/Miktex/fonts/type1/urw/h
+elvetic/uhvr8a.pfb><E:/Miktex/fonts/type1/urw/palatino/uplr8a.pfb><E:/Miktex/fo
+nts/type1/urw/palatino/uplri8a.pfb><E:/Miktex/fonts/type1/urw/zapfding/uzdr.pfb
+>
+Output written on bare_adv.pdf (1 page, 109843 bytes).
 PDF statistics:
- 27 PDF objects out of 1000 (max. 8388607)
+ 47 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
