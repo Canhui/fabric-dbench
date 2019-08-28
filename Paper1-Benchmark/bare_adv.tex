@@ -104,7 +104,10 @@ pdfkeywords={Computer Society, IEEEtran, journal, LaTeX, paper,
 
 \begin{document}
 
-\title{Bandwidth-Efficient and Storage-Efficient Blockchain on Hyperledger Fabric}
+
+
+\title{Measurements, Analysis and Modeling of Hyperledger Fabric}
+
 
 
 %: Design, Implementation and Evaluation
@@ -176,9 +179,20 @@ Bitcoin Network, Mining Pools, Malthusian Trap, Incentive Mechanism
 
 \IEEEPARstart{B}{itcoin} \cite{nakamoto2008bitcoin} is a decentralized peer to peer (P2P) cryptocurrency that was first proposed by Satoshi Nakamoto in 2008. Without resorting to any trusted third party, Bitcoin adapts a cryptographic proof mechanism that enables anonymous peers to complete transactions through the P2P network. Blockchain is the core mechanism of the Bitcoin system. It not only records historical transactions from Bitcoin clients, but also prevents the Bitcoin network from double spending attacks \cite{karame2015misbehavior}. The Bitcoin network participants, who maintain and update the ongoing chain of blocks, are called miners. These miners compete in a mining race driven by an incentive mechanism \cite{lewenberg2015bitcoin, schrijvers2016incentive}, where the one who first solves the Bitcoin cryptographic puzzle \cite{giechaskiel2016bitcoin} has the right to collect unconfirmed transactions into a new block, append the new block to the main chain, i.e., the longest chain of blocks, and gain some BTCs \cite{BTC} as a mining reward.
 
+\section{Environment}
+
+Hyperledger Fabric version 1.4
+
+Fabric SDK v1.0.0
+
+Jmeter
 
 
-\section{Solo Orderer Mode}
+
+
+\section{BlockTime Solo Orderer Mode}
+
+\subsection{Model of Orderer's Configuration}
 
 The configuration file, i.e., configtx.yaml, configures the orderer service as follows.
 
@@ -198,13 +212,123 @@ BlockTime=\left\{
 \begin{array}{rcl}
 \infty  & & {TAR=0}\\
 BatchTimeout & & {0 < TAR \leq \frac{MaxMessageCount}{BatchTimeout}}\\
-\frac{MaxMessageCount}{TAR} & & {S_R \leq 0}
+\sigma  & & {\frac{MaxMessageCount}{BatchTimeout}< TAR}
 \end{array} \right.
 \end{equation}
 
+If $TAR=0$, then $BlockTime=\infty$. It means that if there are no transactions, there are no blocks.
+
+If $0 < TAR \leq \frac{MaxMessageCount}{BatchTimeout}$. It means that the number of transactions are less than MaxMessageCount given a BatchTimeout. Therefore, blocks are created for each BatchTimeout.
+
+If $\frac{MaxMessageCount}{BatchTimeout}< TAR$. It means that the number of transactions are larger than MaxMessageCount in each BatchTimeout. Therefore, blocks are created as soon as possible and $\sigma$ is a small value.
 
 
+\subsubsection{Experiment 1: Uniform Random Distribution of TAR}
+
+\begin{table}[htbp]
+	\caption{Different Configuration of BatchTimeout}
+	\begin{tabular}{|l|l|l|l|l|l|l|l|}
+		\hline
+		BatchTimeout (s) & 0.1 & 0.5 & 1 & 2 & 5 & 10 & 30 \\ \hline
+		BlockTime (s)    & a   & a   & a & a & a & a  & a  \\ \hline
+	\end{tabular}
+\end{table}
+
+Table shows how different configuration of BatchTimeout affect BlockTime. Following our model, and the experiments, we can have a comparison results as follows,
+
+Here we need a figure with a comparison of the model result and the experimental results.
+
+
+See more about Uniform Random Timer $http://2min2code.com/articles/jmeter_intro/random_timer$
+
+
+
+\subsubsection{Experiment 2: Poisson Distribution of TAR}
+
+\begin{table}[htbp]
+	\caption{Different Configuration of BatchTimeout}
+	\begin{tabular}{|l|l|l|l|l|l|l|l|}
+		\hline
+		BatchTimeout (s) & 0.1 & 0.5 & 1 & 2 & 5 & 10 & 30 \\ \hline
+		BlockTime (s)    & a   & a   & a & a & a & a  & a  \\ \hline
+	\end{tabular}
+\end{table}
+
+Table shows how different configuration of BatchTimeout affect BlockTime. Following our model, and the experiments, we can have a comparison results as follows,
+
+Jmeter Poisson Distribution of TAR: $https://www.blazemeter.com/blog/comprehensive-guide-using-jmeter-timers/$
+
+
+
+
+\subsubsection{Experiment 3: Constant Distribution of TAR}
+
+Jmeter Constant Distribution of TAR: $https://www.blazemeter.com/blog/comprehensive-guide-using-jmeter-timers/$
+
+\begin{table}[htbp]
+	\caption{Different Configuration of BatchTimeout}
+	\begin{tabular}{|l|l|l|l|l|l|l|l|}
+		\hline
+		BatchTimeout (s) & 0.1 & 0.5 & 1 & 2 & 5 & 10 & 30 \\ \hline
+		BlockTime (s)    & a   & a   & a & a & a & a  & a  \\ \hline
+	\end{tabular}
+\end{table}
+
+Table shows how different configuration of BatchTimeout affect BlockTime. Following our model, and the experiments, we can have a comparison results as follows,
+
+
+
+
+
+\subsection{Transaction Delay (For Peer)}
  
+Here we need to discuss something about transaction delay in this section. 
+
+
+\subsubsection{Transaction Size}
+
+How transaction size affects transaction delay, transaction loss
+
+\subsubsection{Experiment 1: Transaction Size 1 byte}
+
+
+
+\subsubsection{Experiment 2: Transaction Size 300 byte}
+
+
+
+\subsubsection{Experiment 3: Transaction Size 10 Mbyte}
+
+
+
+
+
+
+
+
+\subsubsection{Endorsement Policy} 
+
+\subsubsection{Experiment 1: Policy a}
+
+
+\subsubsection{Experiment 2: Policy b}
+
+
+\subsubsection{Experiment 3: Policy c}
+
+Here we need to know how endorsement policy affect transaction delay
+
+
+
+
+
+\section{Kafka Orderer Mode}
+
+
+\subsection{Model of Kafka Orderer's Configuration}
+
+The configuration file of Kafka
+
 
 
 
