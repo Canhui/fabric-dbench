@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  28 AUG 2019 10:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  28 AUG 2019 11:46
 entering extended mode
 **./bare_adv.tex
 (bare_adv.tex
@@ -640,42 +640,30 @@ eer to peer (P2P)
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9.53561> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 195.
-LaTeX Font Info:    Calculating math sizes for size <9.53561> on input line 210
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 186.
+LaTeX Font Info:    Calculating math sizes for size <9.53561> on input line 229
 .
 
-Overfull \hbox (44.09845pt too wide) detected at line 217
+Overfull \hbox (44.09845pt too wide) detected at line 236
 \OML/cmm/m/it/10 BlockTime \OT1/cmr/m/n/10 = []
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9.53561> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 226.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 245.
 
-Underfull \hbox (badness 2846) in paragraph at lines 242--243
+Underfull \hbox (badness 2846) in paragraph at lines 261--262
 []\OT1/ppl/m/n/9.53561 See more about Uni-form Ran-dom Timer $\OML/cmm/m/it/10 
 http \OT1/cmr/m/n/10 :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 259--260
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
 []\OT1/ppl/m/n/9.53561 Jmeter Pois-son Dis-tri-bu-tion of TAR: $\OML/cmm/m/it/1
 0 https \OT1/cmr/m/n/10 :
  []
 
 
-Underfull \hbox (badness 1394) in paragraph at lines 259--260
-\OML/cmm/m/it/10 ==www:blazemeter:com=blog=comprehensive \OMS/cmsy/m/n/10   \OM
-L/cmm/m/it/10 guide \OMS/cmsy/m/n/10  
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 266--267
-\OT1/ppl/m/n/9.53561 Jmeter Con-stant Dis-tri-bu-tion of TAR: $\OML/cmm/m/it/10
- https \OT1/cmr/m/n/10 :
- []
-
-
-Underfull \hbox (badness 1394) in paragraph at lines 266--267
+Underfull \hbox (badness 1394) in paragraph at lines 278--279
 \OML/cmm/m/it/10 ==www:blazemeter:com=blog=comprehensive \OMS/cmsy/m/n/10   \OM
 L/cmm/m/it/10 guide \OMS/cmsy/m/n/10  
  []
@@ -684,26 +672,35 @@ L/cmm/m/it/10 guide \OMS/cmsy/m/n/10  
 
 
 ]
-(bare_adv.bbl) [2
+Underfull \hbox (badness 10000) in paragraph at lines 285--286
+\OT1/ppl/m/n/9.53561 Jmeter Con-stant Dis-tri-bu-tion of TAR: $\OML/cmm/m/it/10
+ https \OT1/cmr/m/n/10 :
+ []
 
-] (bare_adv.aux) ) 
+
+Underfull \hbox (badness 1394) in paragraph at lines 285--286
+\OML/cmm/m/it/10 ==www:blazemeter:com=blog=comprehensive \OMS/cmsy/m/n/10   \OM
+L/cmm/m/it/10 guide \OMS/cmsy/m/n/10  
+ []
+
+(bare_adv.bbl) [2] (bare_adv.aux) ) 
 Here is how much of TeX's memory you used:
  7241 strings out of 492895
  102500 string characters out of 3141861
- 190482 words of memory out of 3000000
+ 188482 words of memory out of 3000000
  11033 multiletter control sequences out of 15000+200000
  48255 words of font info for 111 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
  41i,8n,39p,1109b,1014s stack positions out of 5000i,500n,10000p,200000b,50000s
-{E:/Miktex/fonts/enc/dvips/base/8r.enc}<E:/Miktex/fonts/type1
-/public/amsfonts/cm/cmex10.pfb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmmi10
-.pfb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/Miktex/fonts/type1
-/public/amsfonts/cm/cmr10.pfb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb><E:/Miktex/fonts/type1/urw/helvetic/uhvb8a.pfb><E:/Miktex/fonts/type1/urw/h
-elvetic/uhvr8a.pfb><E:/Miktex/fonts/type1/urw/helvetic/uhvro8a.pfb><E:/Miktex/f
-onts/type1/urw/palatino/uplr8a.pfb><E:/Miktex/fonts/type1/urw/palatino/uplri8a.
-pfb><E:/Miktex/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on bare_adv.pdf (2 pages, 129484 bytes).
+{E:/Miktex/fonts/enc/dvips/base/8r.enc}<E:/M
+iktex/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/Miktex/fonts/type1/public/a
+msfonts/cm/cmmi10.pfb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/M
+iktex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/Miktex/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb><E:/Miktex/fonts/type1/urw/helvetic/uhvb8a.pfb><E:/Miktex/
+fonts/type1/urw/helvetic/uhvr8a.pfb><E:/Miktex/fonts/type1/urw/helvetic/uhvro8a
+.pfb><E:/Miktex/fonts/type1/urw/palatino/uplr8a.pfb><E:/Miktex/fonts/type1/urw/
+palatino/uplri8a.pfb><E:/Miktex/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on bare_adv.pdf (2 pages, 130017 bytes).
 PDF statistics:
  54 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
