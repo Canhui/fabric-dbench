@@ -13,7 +13,7 @@
 \usepackage[linesnumbered, ruled, vlined]{algorithm2e}
 
 \usepackage{booktabs}
-
+\usepackage{tikz}
 
 \usepackage{listings}
 \usepackage{xcolor}
@@ -63,25 +63,26 @@
 
 
 % *** GRAPHICS RELATED PACKAGES ***
+%\usepackage[pdftex]{graphicx}
 %
-\ifCLASSINFOpdf
-   \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-\else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
-   \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../eps/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.eps}
-\fi
+%\ifCLASSINFOpdf
+%   \usepackage[pdftex]{graphicx}
+%  % declare the path(s) where your graphic files are
+%  % \graphicspath{{../pdf/}{../jpeg/}}
+%  % and their extensions so you won't have to specify these with
+%  % every instance of \includegraphics
+%  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+%\else
+%  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+%  % will default to the driver specified in the system graphics.cfg if no
+%  % driver is specified.
+%   \usepackage[dvips]{graphicx}
+%  % declare the path(s) where your graphic files are
+%  % \graphicspath{{../eps/}}
+%  % and their extensions so you won't have to specify these with
+%  % every instance of \includegraphics
+%  % \DeclareGraphicsExtensions{.eps}
+%\fi
 
 
 % NOTE: PDF hyperlink and bookmark features are not required in IEEE
@@ -183,9 +184,18 @@ Bitcoin Network, Mining Pools, Malthusian Trap, Incentive Mechanism
 
 \section{Preliminary}
 
+\subsection{Cluster Configuration}
+
+This is about cluster configuration
+
+
+
 \subsection{MSP}
 
 Certificates
+
+
+
 
 \subsection{TLS}
 
@@ -211,6 +221,43 @@ Jmeter
 
 \section{BlockTime Solo Orderer Mode}
 
+\subsection{Model Definition}
+
+\begin{table}[]
+	\caption{Configuration Notations}
+	\begin{tabular}{|l|l|}
+		\hline
+		Notations    & Descriptions                                                                                             \\ \hline
+		$N_{msg}$    & MaxMessageCount                                                                                          \\ \hline
+		$S_{max}$    & AbsoluteMaxBytes                                                                                         \\ \hline
+		$S_{pref}$   & PreferredMaxBytes                                                                                        \\ \hline
+		$T_{batch}$  & \begin{tabular}[c]{@{}l@{}}Time to generate a block when MaxMessageCount\\ is not satisfied\end{tabular} \\ \hline
+	\end{tabular}
+\end{table}
+
+
+
+
+\begin{table}[]
+	\caption{Customized Notations}
+	\begin{tabular}{|l|l|}
+		\hline
+		Notations     & Descriptions                                                                                         \\ \hline
+		$T_{\sigma}$  & \begin{tabular}[c]{@{}l@{}}Time to generate a block when MaxMessageCount\\ is satisfied\end{tabular} \\ \hline
+		$TAR$         & Transaction arrival rate                                                                             \\ \hline
+		$BlockTime$   & Time it takes to generate a block                                                                    \\ \hline
+		$TxDelay$     & Time it takes to issue a transaction                                                                 \\ \hline
+		$S_{payload}$ & Size of transaction payload                                                                          \\ \hline
+		$Throughput$     & Throughput of transactions                                                                 \\ \hline
+	\end{tabular}
+\end{table}
+
+
+
+
+
+
+
 \subsection{Model of Orderer's Configuration}
 
 The configuration file, i.e., configtx.yaml, configures the orderer service as follows.
@@ -224,14 +271,16 @@ BatchSize:
 \end{lstlisting}
 
 
-Case 1 without considering block size, we have the following model,
+Case Study 1 without considering block size, we have the following model, Given a $TAR$ of which $\Delta t=1$, the time it costs is given as follows,
+
 
 \begin{equation}
-BlockTime=\left\{
+Time=\left\{
 \begin{array}{rcl}
 \infty  & & {TAR=0}\\
-BatchTimeout & & {0 < TAR \leq \frac{MaxMessageCount}{BatchTimeout}}\\
-\sigma  & & {\frac{MaxMessageCount}{BatchTimeout}< TAR}
+$$T_{batch}$$ & & $$0 < Tar \leq \frac{N_{msg}}{T_{batch}}$$\\
+$$\left \lfloor \frac{TAR}{N_{msg}}-1 \right \rfloor \cdot T_\sigma$$  & & $$\frac{N_{msg}}{T_{batch}}< TAR, TAR\mid N_{msg} $$\\
+\left \lfloor \frac{TAR}{N_{msg}}-1 \right \rfloor \cdot T_\sigma + T_{batch}  & & otherwise
 \end{array} \right.
 \end{equation}
 
@@ -240,6 +289,104 @@ If $TAR=0$, then $BlockTime=\infty$. It means that if there are no transactions,
 If $0 < TAR \leq \frac{MaxMessageCount}{BatchTimeout}$. It means that the number of transactions are less than MaxMessageCount given a BatchTimeout. Therefore, blocks are created for each BatchTimeout.
 
 If $\frac{MaxMessageCount}{BatchTimeout}< TAR$. It means that the number of transactions are larger than MaxMessageCount in each BatchTimeout. Therefore, blocks are created as soon as possible and $\sigma$ is a small value.
+
+
+
+\begin{figure}[htbp]
+	\centering
+	\scalebox{.8}{
+		\begin{tikzpicture}
+		
+		% Jmeter
+		\node [below] at (-2, 0+3) {Jmeter:};
+		\node [below] at (-2, -0.5+3) {($TAR=30$};
+		\node [below] at (-2, -1+3) {$\Delta t=1$)};
+		
+		% node 1
+		\node [below] at (0, 0+3) {10Txs};
+		\draw (-0.5,-0.5+3) rectangle (0.5,0+3);
+		
+		% node 2
+		\node [below] at (0+1.5, 0+3) {10Txs};
+		\draw (-0.5+1.5,-0.5+3) rectangle (0.5+1.5,0+3);
+		
+		% node 3
+		\node [below] at (0+3, 0+3) {10Txs};
+		\draw (-0.5+3,-0.5+3) rectangle (0.5+3,0+3);
+		
+		% node 4
+		% \node [below] at (0+7, 0+3) {1Txs};
+		% \draw (-0.5+7,-0.5+3) rectangle (0.5+7,0+3);
+		
+		% dash line of node 1
+		\draw  [dashed](0-0.5,0+3) -- (0-0.5,-1.2+3);
+		\node[rotate = 360] at (0.2, -1.2+3) {$\underbrace{\hspace{1.4cm}}$};
+		\node [below] at (0.2, -1.3+3) {$T_{\sigma}$};
+		
+		% dash line of node 2
+		\draw  [dashed](0-0.5+1.5,0+3) -- (0-0.5+1.5,-1.2+3);
+		\node[rotate = 360] at (0.2+1.5, -1.2+3) {$\underbrace{\hspace{1.4cm}}$};
+		\node [below] at (0.2+1.5, -1.3+3) {$T_{\sigma}$};
+		
+		% dash line of node 3
+		\draw  [dashed](0-0.5+3,0+3) -- (0-0.5+3,-1.2+3);
+		
+		% dash line of node 3
+		% \draw  [dashed](0-0.5+7,0+3) -- (0-0.5+7,-1.2+3);
+		% \node[rotate = 360] at (4.5, -1.2+3) {$\underbrace{\hspace{3.9cm}}$};
+		% \node [below] at (4.5, -1.3+3) {$T_{batch}$};
+		
+		
+		
+		% ------------------------------------------------------
+		% Jmeter
+		\node [below] at (-2, 0) {Jmeter:};
+		\node [below] at (-2, -0.5) {($TAR=31$};
+		\node [below] at (-2, -1) {$\Delta t=1$)};
+		
+		% node 1
+		\node [below] at (0, 0) {10Txs};
+		\draw (-0.5,-0.5) rectangle (0.5,0);
+		
+		% node 2
+		\node [below] at (0+1.5, 0) {10Txs};
+		\draw (-0.5+1.5,-0.5) rectangle (0.5+1.5,0);
+		
+		% node 3
+		\node [below] at (0+3, 0) {10Txs};
+		\draw (-0.5+3,-0.5) rectangle (0.5+3,0);
+		
+		% node 4
+		\node [below] at (0+7, 0) {1Txs};
+		\draw (-0.5+7,-0.5) rectangle (0.5+7,0);
+		
+		% dash line of node 1
+		\draw  [dashed](0-0.5,0) -- (0-0.5,-1.2);
+		\node[rotate = 360] at (0.2, -1.2) {$\underbrace{\hspace{1.4cm}}$};
+		\node [below] at (0.2, -1.3) {$T_{\sigma}$};
+		
+		% dash line of node 2
+		\draw  [dashed](0-0.5+1.5,0) -- (0-0.5+1.5,-1.2);
+		\node[rotate = 360] at (0.2+1.5, -1.2) {$\underbrace{\hspace{1.4cm}}$};
+		\node [below] at (0.2+1.5, -1.3) {$T_{\sigma}$};
+		
+		% dash line of node 3
+		\draw  [dashed](0-0.5+3,0) -- (0-0.5+3,-1.2);
+		
+		% dash line of node 3
+		\draw  [dashed](0-0.5+7,0) -- (0-0.5+7,-1.2);
+		\node[rotate = 360] at (4.5, -1.2) {$\underbrace{\hspace{3.9cm}}$};
+		\node [below] at (4.5, -1.3) {$T_{batch}$};
+		
+		\end{tikzpicture}
+		
+	}
+	\caption{The $TAR$ Configurations}
+\end{figure}
+
+
+
+
 
 
 \subsubsection{Experiment 1: Uniform Random Distribution of TAR}

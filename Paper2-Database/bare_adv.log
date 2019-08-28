@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  28 AUG 2019 11:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  28 AUG 2019 14:54
 entering extended mode
 **./bare_adv.tex
 (bare_adv.tex
@@ -589,9 +589,24 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/sc' in size <11.04124> not available
 
 (Font)              Font shape `OT1/phv/b/sc' tried instead on input line 153.
 
-Underfull \hbox (badness 1377) in paragraph at lines 161--162
+Underfull \hbox (badness 1377) in paragraph at lines 162--163
 []\OT1/ppl/m/sc/9.53561 itcoin \OT1/ppl/m/n/9.53561 [1] is a de-cen-tral-ized p
 eer to peer (P2P)
+ []
+
+
+Underfull \hbox (badness 3514) in paragraph at lines 168--169
+\OT1/ppl/m/n/9.53561 ric and its Ap-pli-ca-tion in Sup-ply Chain Finance>--
+ []
+
+
+Underfull \hbox (badness 2903) in paragraph at lines 168--169
+\OT1/ppl/m/n/9.53561 is tamper-proof, trace-able, and trust-wor-thy. This ar-
+ []
+
+
+Underfull \hbox (badness 3428) in paragraph at lines 168--169
+\OT1/ppl/m/n/9.53561 ti-cle in-tro-duces a well-known blockchain tech-nol-ogy
  []
 
 (bare_adv.bbl [1{C:/Users/chwang/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.
@@ -604,16 +619,16 @@ map}
 Here is how much of TeX's memory you used:
  5154 strings out of 492895
  76111 string characters out of 3141861
- 156180 words of memory out of 3000000
+ 152180 words of memory out of 3000000
  8968 multiletter control sequences out of 15000+200000
  42138 words of font info for 97 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 41i,5n,31p,4423b,307s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,5n,31p,1109b,307s stack positions out of 5000i,500n,10000p,200000b,50000s
 {E:/Miktex/fonts/enc/dvips/base/8r.enc}<E:/Miktex/fonts/type1
 /urw/helvetic/uhvb8a.pfb><E:/Miktex/fonts/type1/urw/helvetic/uhvr8a.pfb><E:/Mik
 tex/fonts/type1/urw/palatino/uplr8a.pfb><E:/Miktex/fonts/type1/urw/palatino/upl
 ri8a.pfb><E:/Miktex/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on bare_adv.pdf (2 pages, 61877 bytes).
+Output written on bare_adv.pdf (2 pages, 66335 bytes).
 PDF statistics:
  30 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
