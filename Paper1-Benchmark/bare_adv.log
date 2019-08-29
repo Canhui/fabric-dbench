@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  29 AUG 2019 16:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  29 AUG 2019 21:21
 entering extended mode
 **./bare_adv.tex
 (bare_adv.tex
@@ -935,31 +935,31 @@ Overfull \hbox (76.73796pt too wide) in paragraph at lines 414--415
  []
 
 
-Underfull \hbox (badness 2846) in paragraph at lines 461--462
+Underfull \hbox (badness 2846) in paragraph at lines 462--463
 []\OT1/ppl/m/n/9.53561 See more about Uni-form Ran-dom Timer $\OML/cmm/m/it/10 
 http \OT1/cmr/m/n/10 :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 480--481
+Underfull \hbox (badness 10000) in paragraph at lines 481--482
 []\OT1/ppl/m/n/9.53561 Jmeter Pois-son Dis-tri-bu-tion of TAR: $\OML/cmm/m/it/1
 0 https \OT1/cmr/m/n/10 :
  []
 
 
-Underfull \hbox (badness 1394) in paragraph at lines 480--481
+Underfull \hbox (badness 1394) in paragraph at lines 481--482
 \OML/cmm/m/it/10 ==www:blazemeter:com=blog=comprehensive \OMS/cmsy/m/n/10   \OM
 L/cmm/m/it/10 guide \OMS/cmsy/m/n/10  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 487--488
+Underfull \hbox (badness 10000) in paragraph at lines 488--489
 \OT1/ppl/m/n/9.53561 Jmeter Con-stant Dis-tri-bu-tion of TAR: $\OML/cmm/m/it/10
  https \OT1/cmr/m/n/10 :
  []
 
 
-Underfull \hbox (badness 1394) in paragraph at lines 487--488
+Underfull \hbox (badness 1394) in paragraph at lines 488--489
 \OML/cmm/m/it/10 ==www:blazemeter:com=blog=comprehensive \OMS/cmsy/m/n/10   \OM
 L/cmm/m/it/10 guide \OMS/cmsy/m/n/10  
  []
@@ -986,7 +986,7 @@ vetic/uhvr8a.pfb><E:/Miktex/fonts/type1/urw/helvetic/uhvro8a.pfb><E:/Miktex/fon
 ts/type1/urw/palatino/uplb8a.pfb><E:/Miktex/fonts/type1/urw/palatino/uplr8a.pfb
 ><E:/Miktex/fonts/type1/urw/palatino/uplri8a.pfb><E:/Miktex/fonts/type1/urw/zap
 fding/uzdr.pfb>
-Output written on bare_adv.pdf (3 pages, 186634 bytes).
+Output written on bare_adv.pdf (3 pages, 186708 bytes).
 PDF statistics:
  76 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
