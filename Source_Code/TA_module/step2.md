@@ -1,12 +1,13 @@
 ## 2. Retrive Text from Web Page
 
+
 step2 is to retrive text from the web page. The `javax.swing.text.html.HTMLEditorKit` package provides a parser for parsing web pages. With the parser, we can download a web page that the HTML tags and the text of the target web page are separated.
+
+
 
 #### 2.1. ParserCallback
 
 The `ParserCallback` class provides the methods for handling the web content.
-
-
 
 
 
@@ -151,6 +152,7 @@ public class hello {
     }
 }
 ```
+
 
 
 ## 2.3. Conclusion
