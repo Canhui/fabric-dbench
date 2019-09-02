@@ -213,9 +213,6 @@ return sdkUtils.newKeyValueStore({
 }).catch((err) => {
     console.error('Failed to invoke successfully :: ' + err);
 });        
-
-
 ```
-
 
 ./peer.sh chaincode query -C mychannel -n demo3 -c '{"Args":["query","key1"]}'
