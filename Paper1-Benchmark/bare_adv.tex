@@ -274,18 +274,29 @@ BatchSize:
 \end{lstlisting}
 
 
-Case Study 1 without considering block size, we have the following model, Given a $TAR$ of which $\Delta t=1$, the time it costs is given as follows,
+Case Study 1 without considering block size, we have the following model, Given a $TAR$ of which $\Delta t=1$, the time it costs is given as follows, the average block time is,
 
 
 \begin{equation}
-Time=\left\{
-\begin{array}{rcl}
-\infty  & & {TAR=0}\\
-$$T_{batch}$$ & & $$0 < Tar \leq \frac{N_{msg}}{T_{batch}}$$\\
-$$\left \lfloor \frac{TAR}{N_{msg}}-1 \right \rfloor \cdot T_\sigma$$  & & $$\frac{N_{msg}}{T_{batch}}< TAR, TAR\mid N_{msg} $$\\
-\left \lfloor \frac{TAR}{N_{msg}}-1 \right \rfloor \cdot T_\sigma + T_{batch}  & & otherwise
-\end{array} \right.
+	BlkTime=\left\{
+	\begin{array}{rcl}
+	\infty  & & {TAR=0}\\
+	$$T_{batch}$$ & & $$0 < TAR \leq \frac{N_{msg}}{T_{batch}}$$\\
+	\frac{N_{msg}}{TAR} && \frac{N_{msg}}{T_{batch}}<TAR\leq \frac{N_{msg}}{T_{\sigma}}\\
+	$$\left \lfloor \frac{TAR}{N_{msg}}-1 \right \rfloor \cdot T_\sigma$$  & & $$\frac{N_{msg}}{T_{\sigma}}< TAR, TAR\mid N_{msg} $$\\
+	\left \lfloor \frac{TAR}{N_{msg}}-1 \right \rfloor \cdot T_\sigma + T_{batch}  & & otherwise
+	\end{array} \right.
 \end{equation}
+
+%\begin{equation}
+%Time=\left\{
+%\begin{array}{rcl}
+%\infty  & & {TAR=0}\\
+%$$T_{batch}$$ & & $$0 < Tar \leq \frac{N_{msg}}{T_{batch}}$$\\
+%$$\left \lfloor \frac{TAR}{N_{msg}}-1 \right \rfloor \cdot T_\sigma$$  & & $$\frac{N_{msg}}{T_{batch}}< TAR, TAR\mid N_{msg} $$\\
+%\left \lfloor \frac{TAR}{N_{msg}}-1 \right \rfloor \cdot T_\sigma + T_{batch}  & & otherwise
+%\end{array} \right.
+%\end{equation}
 
 If $TAR=0$, then $BlockTime=\infty$. It means that if there are no transactions, there are no blocks.
 
@@ -402,11 +413,15 @@ In this section, we focus on how $TAR$ affects the block time when MaxMessageCou
 	\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
 		\hline
 		$TAR$           & 20    & 30     & 40     & 50     & 60     & 70     & 80              & 90              & 100             & \underline{150 }      \\ \hline
-		$T_{sigma}$.AVG & 0.338 & 0.3828 & 0.4151 & 0.4035 & 0.5730 & 0.4866 & \textbf{1.1803} & \textbf{1.1792} & \textbf{1.0968} & \textbf{1.0285} \\ \hline
-		$T_{sigma}$.MAX & 0.325 & 0.4040 & 0.5727 & 0.5260 & 0.6412 & 0.5290 & \textbf{1.5029} & \textbf{1.5668} & \textbf{1.3033} & \textbf{1.4904} \\ \hline
-		$T_{sigma}$.MIN & 0.35  & 0.3715 & 0.3337 & 0.3362 & 0.4634 & 0.4492 & 0.6994          & 0.4832          & 0.7277          & 0.7244          \\ \hline
+		$BlkTime$.AVG & 0.338 & 0.3828 & 0.4151 & 0.4035 & 0.5730 & 0.4866 & \textbf{1.1803} & \textbf{1.1792} & \textbf{1.0968} & \textbf{1.0285} \\ \hline
+		$BlkTime$.MAX & 0.325 & 0.4040 & 0.5727 & 0.5260 & 0.6412 & 0.5290 & \textbf{1.5029} & \textbf{1.5668} & \textbf{1.3033} & \textbf{1.4904} \\ \hline
+		$BlkTime$.MIN & 0.35  & 0.3715 & 0.3337 & 0.3362 & 0.4634 & 0.4492 & 0.6994          & 0.4832          & 0.7277          & 0.7244          \\ \hline
 	\end{tabular}
 \end{table*}
+
+Experiment 1 -- Setup: for normal TAR we can use workload generators "Thread Group" on Ubuntu 01; while for small TAR we can use other workload generators "Ultimate Thread Group" on Ubuntu 01.
+
+Experiment 1 -- Setup: for experiment analysis, we can check with logs in a peer. We have a program to analyze the log data, see $readdata.py$ at Github benchmark module at the $q3 v1 4$ folder.  
 
 
 Experiment 1 -- Observation 1: when TAR achieves a high value (e.g., 80 tps, 90 tps), then a block cannot be fully make used (e.g., 8 transactions per block + 2 transactions per block, instead of 10 transactions per block).
@@ -424,9 +439,9 @@ TO DO -- why 70 tps to 80 tps, much not-full used blocks are created?
 	\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
 		\hline
 		$TAR$           & 11     & 21     & 31     & 41     & 51     & 61     & 71     & 81              & 91              & {\underline{141}}    \\ \hline
-		$T_{sigma}$.AVG & 2.2673 & 1.2507 & 1.0408 & 0.9152 & 0.7564 & 0.7073 & 0.7243 & \textbf{0.9656} & \textbf{0.7010} & \textbf{nll} \\ \hline
-		$T_{sigma}$.MAX & 2.4900 & 1.2920 & 1.3040 & 1.1757 & 0.8044 & 0.8395 & 0.9021 & \textbf{1.3219} & \textbf{0.8963} & \textbf{nll} \\ \hline
-		$T_{sigma}$.MIN & 2.0030 & 1.1800 & 0.8203 & 0.7715 & 0.7222 & 0.6288 & 0.5626 & 0.5490          & 0.5187          & nll          \\ \hline
+		$BlkTime$.AVG & 2.2673 & 1.2507 & 1.0408 & 0.9152 & 0.7564 & 0.7073 & 0.7243 & \textbf{0.9656} & \textbf{0.7010} & \textbf{nll} \\ \hline
+		$BlkTime$.MAX & 2.4900 & 1.2920 & 1.3040 & 1.1757 & 0.8044 & 0.8395 & 0.9021 & \textbf{1.3219} & \textbf{0.8963} & \textbf{nll} \\ \hline
+		$BlkTime$.MIN & 2.0030 & 1.1800 & 0.8203 & 0.7715 & 0.7222 & 0.6288 & 0.5626 & 0.5490          & 0.5187          & nll          \\ \hline
 	\end{tabular}
 \end{table*}
 
@@ -441,62 +456,147 @@ TO DO --: why $TAR$=91 results in fewer null-fully used blocks than $TAR$=90?
 
 
 
+\subsubsection{Endorsement Policy (OR) on Transaction Delay}
 
+Experiment 3 - Setup: Endorsement Policy (OR) the source code is at Ubuntu 01 - nodeTest invoke3.js.
 
-\subsubsection{Experiment : Uniform Random Distribution of TAR}
+Experiment 3 - Setup: we can calculate with timestamps at invoke3.js.
 
-\begin{table}[htbp]
-	\caption{Different Configuration of BatchTimeout}
-	\begin{tabular}{|l|l|l|l|l|l|l|l|}
-		\hline
-		BatchTimeout (s) & 0.1 & 0.5 & 1 & 2 & 5 & 10 & 30 \\ \hline
-		BlockTime (s)    & a   & a   & a & a & a & a  & a  \\ \hline
-	\end{tabular}
-\end{table}
+Experiment 3 - Setup: we save the timestamp results with Jmeter in a res.xml file.
 
-Table shows how different configuration of BatchTimeout affect BlockTime. Following our model, and the experiments, we can have a comparison results as follows,
+Experiment 3 - Setup: we can summary the timestamp results with readxml.py at Github benchmark module of q1 transaction arrival rate.
 
-Here we need a figure with a comparison of the model result and the experimental results.
+Experiment 3 - Setup: get proposal approval from localhost, see invoke3.js nodeTest in ubuntu 01.
 
-
-See more about Uniform Random Timer $http://2min2code.com/articles/jmeter_intro/random_timer$
+Experiment 3: Set up: get proposal approval from remote peer, see invoke3a.js nodeTest in ubuntu 01.
 
 
 
 
 
-\subsubsection{Experiment : Poisson Distribution of TAR}
-
-\begin{table}[htbp]
-	\caption{Different Configuration of BatchTimeout}
-	\begin{tabular}{|l|l|l|l|l|l|l|l|}
-		\hline
-		BatchTimeout (s) & 0.1 & 0.5 & 1 & 2 & 5 & 10 & 30 \\ \hline
-		BlockTime (s)    & a   & a   & a & a & a & a  & a  \\ \hline
-	\end{tabular}
-\end{table}
-
-Table shows how different configuration of BatchTimeout affect BlockTime. Following our model, and the experiments, we can have a comparison results as follows,
-
-Jmeter Poisson Distribution of TAR: $https://www.blazemeter.com/blog/comprehensive-guide-using-jmeter-timers/$
 
 
 
 
-\subsubsection{Experiment : Constant Distribution of TAR}
+%\subsubsection{Endorsement Policy (AND) on Transaction Delay}
+%
+%Experiment 3 - Setup: Endorsement Policy (AND) see Github benchmark module the config7.md and the config8.md files.
+%
+%Experiment 3 - Observation 1:
 
-Jmeter Constant Distribution of TAR: $https://www.blazemeter.com/blog/comprehensive-guide-using-jmeter-timers/$
 
-\begin{table}[htbp]
-	\caption{Different Configuration of BatchTimeout}
-	\begin{tabular}{|l|l|l|l|l|l|l|l|}
-		\hline
-		BatchTimeout (s) & 0.1 & 0.5 & 1 & 2 & 5 & 10 & 30 \\ \hline
-		BlockTime (s)    & a   & a   & a & a & a & a  & a  \\ \hline
-	\end{tabular}
-\end{table}
 
-Table shows how different configuration of BatchTimeout affect BlockTime. Following our model, and the experiments, we can have a comparison results as follows,
+
+
+
+
+
+
+%\subsubsection{Endorsement Policy (AND/OR) on Throughput}
+%
+%Here we need to analyze how endorsement policy (AND/OR) on Throughput.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\subsubsection{Experiment : linear and Uniform Random Distribution of TAR}
+%
+%Delay Definition: one request (thread) waits for some time, until next request is generated. We call this time "Delay", denoted by $Delay$.
+%
+%
+%Model Definition: For a request i,  $Delay_i$ follows a uniform distribution between zero and $T$ seconds, as follows, Probability density function is as follows,
+%
+%\begin{equation}
+%	f(Delay_i)=\left\{
+%	\begin{array}{rcl}
+%	0  & & {Delay_i< 0}\\
+%	$$\frac{1}{T}$$ & & $$ 0 \leq  Delay_i \leq T$$\\
+%	0  & & $$ T < Delay_i $$
+%	\end{array} \right.
+%\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+%\begin{table}[htbp]
+%	\caption{Different Configuration of BatchTimeout}
+%	\begin{tabular}{|l|l|l|l|l|l|l|l|}
+%		\hline
+%		BatchTimeout (s) & 0.1 & 0.5 & 1 & 2 & 5 & 10 & 30 \\ \hline
+%		BlockTime (s)    & a   & a   & a & a & a & a  & a  \\ \hline
+%	\end{tabular}
+%\end{table}
+%
+%See experiment 1 and experiment 2
+%
+%Table shows how different configuration of BatchTimeout affect BlockTime. Following our model, and the experiments, we can have a comparison results as follows. Here we need a figure with a comparison of the model result and the experimental results.
+%
+%See more about Uniform Random Timer $http://2min2code.com/articles/jmeter_intro/random_timer$
+%
+%linear and uniform random distribution of TAR: $https://flood.io/blog/planning-for-high-concurrency-load-tests-with-jmeter/$ 
+
+
+
+
+
+%\subsubsection{Experiment : Poisson Distribution of TAR}
+%
+%\begin{table}[htbp]
+%	\caption{Different Configuration of BatchTimeout}
+%	\begin{tabular}{|l|l|l|l|l|l|l|l|}
+%		\hline
+%		BatchTimeout (s) & 0.1 & 0.5 & 1 & 2 & 5 & 10 & 30 \\ \hline
+%		BlockTime (s)    & a   & a   & a & a & a & a  & a  \\ \hline
+%	\end{tabular}
+%\end{table}
+%
+%Table shows how different configuration of BatchTimeout affect BlockTime. Following our model, and the experiments, we can have a comparison results as follows,
+%
+%Jmeter Poisson Distribution of TAR: $https://www.blazemeter.com/blog/comprehensive-guide-using-jmeter-timers/$
+%
+%Jmeter Poisson Distribution of TAR: $https://medium.com/@malith.jayasinghe/performance-testing-with-a-think-time-64b6b737e3f9$
+%
+%The lambda in the Poisson distribution is the average time between the completion of one request and the start of the next request.
+
+
+
+
+
+
+%\subsubsection{Experiment : Constant Distribution of TAR}
+%
+%Jmeter Constant Distribution of TAR: $https://www.blazemeter.com/blog/comprehensive-guide-using-jmeter-timers/$
+%
+%\begin{table}[htbp]
+%	\caption{Different Configuration of BatchTimeout}
+%	\begin{tabular}{|l|l|l|l|l|l|l|l|}
+%		\hline
+%		BatchTimeout (s) & 0.1 & 0.5 & 1 & 2 & 5 & 10 & 30 \\ \hline
+%		BlockTime (s)    & a   & a   & a & a & a & a  & a  \\ \hline
+%	\end{tabular}
+%\end{table}
+%
+%Table shows how different configuration of BatchTimeout affect BlockTime. Following our model, and the experiments, we can have a comparison results as follows,
 
 
 

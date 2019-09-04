@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  31 AUG 2019 13:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  4 SEP 2019 11:47
 entering extended mode
 **./bare_adv.tex
 (bare_adv.tex
@@ -906,87 +906,55 @@ Overfull \hbox (38.85382pt too wide) in paragraph at lines 246--256
  []
 
 
-Overfull \hbox (49.3602pt too wide) detected at line 288
-\OML/cmm/m/it/10 Time \OT1/cmr/m/n/10 = []
+Overfull \hbox (63.69034pt too wide) detected at line 289
+\OML/cmm/m/it/10 BlkTime \OT1/cmr/m/n/10 = []
  []
 
 [1{C:/Users/chwang/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]
-LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 387.
+LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 398.
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9.53561> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 393.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 404.
 
-Underfull \hbox (badness 5622) in paragraph at lines 393--393
+Underfull \hbox (badness 5622) in paragraph at lines 404--404
  \OT1/phv/m/sl/9.53561 4.2.1 Ex-per-i-ment 1: How $\OML/cmm/m/it/10 TAR$ \OT1/p
 hv/m/sl/9.53561 af-fects $\OML/cmm/m/it/10 T[]$ \OT1/phv/m/sl/9.53561 and
  []
 
 
-Underfull \hbox (badness 2103) in paragraph at lines 414--415
+Underfull \hbox (badness 2103) in paragraph at lines 429--430
 \OT1/ppl/m/n/9.53561 will be re-jected by the peer. See more er-ror about
  []
 
 
-Overfull \hbox (76.73796pt too wide) in paragraph at lines 414--415
+Overfull \hbox (76.73796pt too wide) in paragraph at lines 429--430
 \OT1/ppl/m/n/9.53561 PKIid:6830efc127d4818973edd435ee7df6fa6fdf3e23286479b1e34d
 1229266559b5
  []
 
-
-Underfull \hbox (badness 2846) in paragraph at lines 462--463
-[]\OT1/ppl/m/n/9.53561 See more about Uni-form Ran-dom Timer $\OML/cmm/m/it/10 
-http \OT1/cmr/m/n/10 :
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 481--482
-[]\OT1/ppl/m/n/9.53561 Jmeter Pois-son Dis-tri-bu-tion of TAR: $\OML/cmm/m/it/1
-0 https \OT1/cmr/m/n/10 :
- []
-
-
-Underfull \hbox (badness 1394) in paragraph at lines 481--482
-\OML/cmm/m/it/10 ==www:blazemeter:com=blog=comprehensive \OMS/cmsy/m/n/10   \OM
-L/cmm/m/it/10 guide \OMS/cmsy/m/n/10  
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 488--489
-\OT1/ppl/m/n/9.53561 Jmeter Con-stant Dis-tri-bu-tion of TAR: $\OML/cmm/m/it/10
- https \OT1/cmr/m/n/10 :
- []
-
-
-Underfull \hbox (badness 1394) in paragraph at lines 488--489
-\OML/cmm/m/it/10 ==www:blazemeter:com=blog=comprehensive \OMS/cmsy/m/n/10   \OM
-L/cmm/m/it/10 guide \OMS/cmsy/m/n/10  
- []
-
-(bare_adv.bbl) [2] [3
-
-] (bare_adv.aux) ) 
+(bare_adv.bbl) [2] [3] (bare_adv.aux) ) 
 Here is how much of TeX's memory you used:
  17070 strings out of 492895
  313718 string characters out of 3141861
- 384794 words of memory out of 3000000
+ 380794 words of memory out of 3000000
  20649 multiletter control sequences out of 15000+200000
  50785 words of font info for 121 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
  55i,15n,48p,1109b,1014s stack positions out of 5000i,500n,10000p,200000b,50000s
-{E:/Miktex/fonts/enc/dvips/base/8r.enc}<E:/Miktex/fonts/type1
-/public/amsfonts/cm/cmex10.pfb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmmi10
-.pfb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmmi5.pfb><E:/Miktex/fonts/type1
-/public/amsfonts/cm/cmmi6.pfb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmmi7.p
-fb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmmi8.pfb><E:/Miktex/fonts/type1/p
-ublic/amsfonts/cm/cmr10.pfb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b><E:/Miktex/fonts/type1/urw/helvetic/uhvb8a.pfb><E:/Miktex/fonts/type1/urw/hel
-vetic/uhvr8a.pfb><E:/Miktex/fonts/type1/urw/helvetic/uhvro8a.pfb><E:/Miktex/fon
-ts/type1/urw/palatino/uplb8a.pfb><E:/Miktex/fonts/type1/urw/palatino/uplr8a.pfb
-><E:/Miktex/fonts/type1/urw/palatino/uplri8a.pfb><E:/Miktex/fonts/type1/urw/zap
-fding/uzdr.pfb>
-Output written on bare_adv.pdf (3 pages, 186708 bytes).
+{E:/Miktex/fonts/enc/dvips/base/8r.enc}<
+E:/Miktex/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/Miktex/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmmi5.pfb><
+E:/Miktex/fonts/type1/public/amsfonts/cm/cmmi6.pfb><E:/Miktex/fonts/type1/publi
+c/amsfonts/cm/cmmi7.pfb><E:/Miktex/fonts/type1/public/amsfonts/cm/cmmi8.pfb><E:
+/Miktex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/Miktex/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb><E:/Miktex/fonts/type1/urw/helvetic/uhvb8a.pfb><E:/Mikte
+x/fonts/type1/urw/helvetic/uhvr8a.pfb><E:/Miktex/fonts/type1/urw/helvetic/uhvro
+8a.pfb><E:/Miktex/fonts/type1/urw/palatino/uplb8a.pfb><E:/Miktex/fonts/type1/ur
+w/palatino/uplr8a.pfb><E:/Miktex/fonts/type1/urw/palatino/uplri8a.pfb><E:/Mikte
+x/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on bare_adv.pdf (3 pages, 184298 bytes).
 PDF statistics:
  76 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
