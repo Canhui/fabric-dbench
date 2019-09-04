@@ -464,11 +464,74 @@ Experiment 3 - Setup: we can calculate with timestamps at invoke3.js.
 
 Experiment 3 - Setup: we save the timestamp results with Jmeter in a res.xml file.
 
-Experiment 3 - Setup: we can summary the timestamp results with readxml.py at Github benchmark module of q1 transaction arrival rate.
+Experiment 3 - Setup: we can summary the timestamp results with readxml.py at nodeTest in ubuntutu 01.
 
 Experiment 3 - Setup: get proposal approval from localhost, see invoke3.js nodeTest in ubuntu 01.
 
-Experiment 3: Set up: get proposal approval from remote peer, see invoke3a.js nodeTest in ubuntu 01.
+Experiment 3: Set up: transaction payload size 2 bytes
+
+
+\begin{table*}[htbp]
+	\caption{Experiment 3: Endorsement Policy "OR", with local proposer}
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+		\hline
+		\multirow{2}{*}{$TAR$} & \multicolumn{2}{l|}{Phase 1: Tx Proposal Delay} & \multicolumn{2}{l|}{Phase 2: Tx Orderer Delay} & \multirow{2}{*}{Total Tx Delay} & \multirow{2}{*}{Rounds} & \multirow{2}{*}{Accepted Txs} & \multirow{2}{*}{Rejected Txs} \\ \cline{2-5}
+		& Delay (s)              & Proportion (\%)        & Delay (s)             & Proportion (\%)        &                                 &                         &                               &                               \\ \hline
+		5                      & 0.75                   & 24.67                  & 2.29                  & 75.33                  & 3.04                            & 5                       & 25                            & 0                             \\ \hline
+		10                     & 1.52                   & 71.69                  & 0.60                  & 28.31                  & 2.12                            & 5                       & 50                            & 0                             \\ \hline
+		30                     & 4.58                   & 82.67                  & 0.96                  & 17.33                  & 5.54                            & 5                       & 150                           & 0                             \\ \hline
+		50                     & 7.88                   & 85.65                  & 1.32                  & 14.35                  & 9.2                             & 5                       & 250                           & 0                             \\ \hline
+		70                     & 11.19                  & 88.11                  & 1.51                  & 11.89                  & 12.70                           & 5                       & 350                           & 0                             \\ \hline
+		\textbf{90}            & \textbf{14.39}         & \textbf{89.10}         & \textbf{1.76}         & \textbf{10.90}         & \textbf{16.15}                  & \textbf{5}              & \textbf{436}                  & \textbf{14}                   \\ \hline
+	\end{tabular}
+\end{table*}
+
+
+Experiment 3 - Observation 1: when $TAR$ are higher than 10 transactions per second, the transaction delay will increase up, since the length of the waiting line is longer.
+
+Experiment 3 - Observation 2: when Tx Orderer Delay are larger than 3 seconds, the transaction proposal will be rejected.
+
+Experiment 3 - Observation 3: transaction proposal delay increases linearly with transaction arrival rate, while orderer transaction delay is not.
+
+
+Experiment 3 - Observation 4: why these 14 transactions are rejected? It is nothing about orderer. It is limited to the capacility of ubuntu01 local peer. While the next experiment 4, the ubuntu00 remote peer has more powerful computing capacity.
+
+Optimal Solution to this problem: try to let different peers to help to send transaction proposals at the same time. 
+
+
+
+\subsubsection{Endorsement Policy (OR) on Transaction Delay}
+
+Experiment 4 - Setup: Endorsement Policy (OR) the source code is at Ubuntu 01 - nodeTest invoke3a.js.
+
+Experiment 4 - Setup: we can calculate with timestamps at invoke3a.js.
+
+Experiment 4 - Setup: we save the timestamp results with Jmeter in a res.xml file.
+
+Experiment 4 - Setup: we can summary the timestamp results with readxml.py at nodeTest in ubuntutu 01.
+
+Experiment 4: Set up: get proposal approval from remote peer, see invoke3a.js nodeTest in ubuntu 01.
+
+Experiment 4: Set up: transaction payload size 2 bytes
+
+
+\begin{table*}[htbp]
+	\caption{Experiment 4: Endorsement Policy "OR", with remote proposer}
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+		\hline
+		\multirow{2}{*}{$TAR$} & \multicolumn{2}{l|}{Phase 1: Tx Proposal Delay} & \multicolumn{2}{l|}{Phase 2: Tx Orderer Delay} & \multirow{2}{*}{Total Tx Delay} & \multirow{2}{*}{Rounds} & \multirow{2}{*}{Accepted Txs} & \multirow{2}{*}{Rejected Txs} \\ \cline{2-5}
+		& Delay (s)           & Proportion (\%)           & Delay (s)           & Proportion (\%)          &                                 &                         &                               &                               \\ \hline
+		5                      & 0.80                & 26.05                     & 2.27                & 73.95                    & 3.07                            & 5                       & 25                            & 0                             \\ \hline
+		10                     & 1.52                & 73.07                     & 0.56                & 26.93                    & 2.08                            & 5                       & 50                            & 0                             \\ \hline
+		30                     & 4.51                & 83.82                     & 0.87                & 16.18                    & 5.38                            & 5                       & 150                           & 0                             \\ \hline
+		50                     & 7.60                & 86.75                     & 1.16                & 13.25                    & 8.76                            & 5                       & 250                           & 0                             \\ \hline
+		70                     & 10.88               & 88.62                     & 1.41                & 11.48                    & 12.29                           & 5                       & 350                           & 0                             \\ \hline
+		90                     & 14.33               & 89.67                     & 1.65                & 10.33                    & 15.98                           & 5                       & 450                           & 0                             \\ \hline
+	\end{tabular}
+\end{table*}
+
+
+Experiment 4 - Observation 1: we can not find any performance difference between local proposers and remote proposers.
 
 
 
@@ -478,11 +541,19 @@ Experiment 3: Set up: get proposal approval from remote peer, see invoke3a.js no
 
 
 
-%\subsubsection{Endorsement Policy (AND) on Transaction Delay}
-%
-%Experiment 3 - Setup: Endorsement Policy (AND) see Github benchmark module the config7.md and the config8.md files.
-%
-%Experiment 3 - Observation 1:
+
+\subsubsection{Endorsement Policy (AND) on Transaction Delay}
+
+Experiment 5 - Setup: Endorsement Policy (AND) see Github benchmark module the config7.md and the config8.md files.
+
+Experiment 5 - Setup: Endorsement Policy (AND) see invoke5.js at nodeTest folder in Ubuntu01 machine.
+
+
+
+
+
+Experiment 5 - Observation 1:
+
 
 
 

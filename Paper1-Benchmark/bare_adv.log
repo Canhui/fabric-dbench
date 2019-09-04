@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  4 SEP 2019 11:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.3)  4 SEP 2019 16:25
 entering extended mode
 **./bare_adv.tex
 (bare_adv.tex
@@ -934,11 +934,21 @@ Overfull \hbox (76.73796pt too wide) in paragraph at lines 429--430
 1229266559b5
  []
 
-(bare_adv.bbl) [2] [3] (bare_adv.aux) ) 
+
+Overfull \hbox (21.00224pt too wide) in paragraph at lines 476--487
+[][] 
+ []
+
+
+Overfull \hbox (21.00224pt too wide) in paragraph at lines 520--531
+[][] 
+ []
+
+[2] (bare_adv.bbl) [3] (bare_adv.aux) ) 
 Here is how much of TeX's memory you used:
  17070 strings out of 492895
  313718 string characters out of 3141861
- 380794 words of memory out of 3000000
+ 389794 words of memory out of 3000000
  20649 multiletter control sequences out of 15000+200000
  50785 words of font info for 121 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -954,7 +964,7 @@ x/fonts/type1/urw/helvetic/uhvr8a.pfb><E:/Miktex/fonts/type1/urw/helvetic/uhvro
 8a.pfb><E:/Miktex/fonts/type1/urw/palatino/uplb8a.pfb><E:/Miktex/fonts/type1/ur
 w/palatino/uplr8a.pfb><E:/Miktex/fonts/type1/urw/palatino/uplri8a.pfb><E:/Mikte
 x/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on bare_adv.pdf (3 pages, 184298 bytes).
+Output written on bare_adv.pdf (3 pages, 188258 bytes).
 PDF statistics:
  76 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
