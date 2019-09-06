@@ -35,6 +35,9 @@ log.retention.ms = -1
 
 另外注意: 可能需要把Advertisement.Addr修改成为可以被解析的DNS name或者IP地址。
 
+修改zookeeper.connect的地址。
+
+
 
 
 启动kafka命令如下，
@@ -44,3 +47,20 @@ log.retention.ms = -1
 ```
 
 
+测试kafka命令之创建topic如下，
+
+```shell
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+```
+
+创建成功之后显示如下，
+
+```shell
+Created topic "test".
+```
+
+测试kafka命令之查看topic如下，
+
+```shell
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+```
