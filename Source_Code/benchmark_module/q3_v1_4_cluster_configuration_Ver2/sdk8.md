@@ -8,3 +8,16 @@ tar -xvf kafka_2.12-1.1.1.tgz
 cd kafka_2.12-1.1.1/
 ```
 
+
+## 2. 启动kafka自带的zookeeper
+
+启动kafka自带的zookeeper命令如下，
+
+```shell
+./bin/zookeeper-server-start.sh config/zookeeper.properties 
+```
+
+
+## 3. 启动kafka
+
+接着，启动kafka。启动kafka之前，需要对kafka的参数做一些修改，方便更好地适配到Hyperledger上，
