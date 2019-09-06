@@ -33,4 +33,14 @@ replica.fetch.max.bytes = 10485760
 log.retention.ms = -1
 ```
 
+另外注意: 可能需要把Advertisement.Addr修改成为可以被解析的DNS name或者IP地址。
+
+
+
+启动kafka命令如下，
+
+```shell
+./bin/kafka-server-start.sh config/server.properties
+```
+
 
