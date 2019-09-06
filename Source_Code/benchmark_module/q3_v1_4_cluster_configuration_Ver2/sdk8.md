@@ -20,4 +20,17 @@ cd kafka_2.12-1.1.1/
 
 ## 3. 启动kafka
 
-接着，启动kafka。启动kafka之前，需要对kafka的参数做一些修改，方便更好地适配到Hyperledger上，
+接着，启动kafka。启动kafka之前，需要对kafka的参数做一些修改，方便更好地适配到Hyperledger上，（kafka的一些配置文件，方便hyperledger使用），
+
+"server.properties"文件配置好之后，如下，
+```shell
+####################### kafka configuration for Hyperledger ########################
+unclean.leader.election.enable = false
+min.insync.replicas = 1
+default.replication.factor = 1
+message.max.bytes = 10000120
+replica.fetch.max.bytes = 10485760
+log.retention.ms = -1
+```
+
+
