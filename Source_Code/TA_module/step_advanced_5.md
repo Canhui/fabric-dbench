@@ -21,6 +21,13 @@ Java基本算法如下：
 
 本地实现：Test/Test1.java
 
+```java
+import java.util.ArrayList;
+import java.util.Stack;
+
+
+```
+
 
 
 
@@ -31,6 +38,10 @@ Java基本算法如下：
 目标：处理逆波兰表达式。
 
 基本算法：
+
+Step 1: 输入字符串类型表达式 "90+(3-1)*3+10/2"
+
+Step 2: 通过toOpArray()函数，将字符串类型表达式转换成逆波兰表达
 
 
 

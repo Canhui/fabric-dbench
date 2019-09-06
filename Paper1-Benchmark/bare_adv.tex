@@ -549,10 +549,58 @@ Experiment 5 - Setup: Endorsement Policy (AND) see Github benchmark module the c
 Experiment 5 - Setup: Endorsement Policy (AND) see invoke5.js at nodeTest folder in Ubuntu01 machine.
 
 
+\begin{table*}[htbp]
+	\caption{Experiment 5: Endorsement Policy "AND", with remote proposer}
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+		\hline
+		\multirow{2}{*}{$TAR$} & \multicolumn{2}{l|}{Phase 1: Tx Proposal Delay} & \multicolumn{2}{l|}{Phase 2: Tx Orderer Delay} & \multirow{2}{*}{Total Tx Delay} & \multirow{2}{*}{Rounds} & \multirow{2}{*}{Accepted Txs} & \multirow{2}{*}{Rejected Txs} \\ \cline{2-5}
+		& Delay (s)           & Proportion (\%)           & Delay (s)           & Proportion (\%)          &                                 &                         &                               &                               \\ \hline
+		5                      & 0.74                & 24.74                     & 2.25                & 75.25                    & 2.99                            & 5                       & 25                            & 0                             \\ \hline
+		10                     & 1.56                & 71.88                     & 0.61                & 28.12                    & 2.17                            & 5                       & 50                            & 0                             \\ \hline
+		30                     & 4.65                & 82.88                     & 0.96                & 17.12                    & 5.61                            & 5                       & 150                           & 0                             \\ \hline
+		50                     & 7.82                & 86.12                     & 1.26                & 13.88                    & 9.08                            & 5                       & 250                           & 0                             \\ \hline
+		70                     & 11.09               & 87.59                     & 1.57                & 12.41                    & 12.66                           & 5                       & 347                           & 3                             \\ \hline
+		90                     & 14.34               & 88.62                     & 1.84                & 11.37                    & 16.18                           & 5                       & 438                           & 12                            \\ \hline
+	\end{tabular}
+\end{table*}
 
 
 
-Experiment 5 - Observation 1:
+Experiment 5 - Observation 1: endorsement policy (AND) will have relatively small larger in transaction delay than endorsement policy (OR), when there are only two peers.
+
+Experiment 5 - Observation 2: if the endorsement policy (AND), we will have more responses say two times, and the peer ubuntu00 will have double burdens, resulting in peer channel problem.
+
+Experiment 5 - Next Steps: if we have more peers say 16 peers using the endorsement policy (AND), then how about the transaction delay?
+
+Experiment 5: Next Steps: what is the technical solutions to the error problem with the eventhub? the eventhub shutdown problem see $https://stackoverflow.com/questions/52773529/hyperledger-fabric-nodejs-sdk-eventhub-has-been-shutdown$. Then try to build up your own queue on the peer nodes.
+
+Solutions to the eventhub problem: build up your own queue $https://stackoverflow.com/questions/52773529/hyperledger-fabric-nodejs-sdk-eventhub-has-been-shutdown$. See Event hub with read-write conflict transactions $https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8751453$. 
+
+
+
+
+
+
+
+\subsubsection{Transaction Size on Transaction Delay}
+
+Experiment 6 - Setup: Transaction size 1 KB
+
+Experiment 6 - Setup: invoke3.js in "nodeTest" folder in ubuntu 01.
+
+\begin{table*}[htbp]
+	\caption{Experiment 6: Transaction Size on Transaction Delay 1 KB}
+	\begin{tabular}{|l|l|l|l|l|l|l|}
+		\hline
+		$TAR$ & Phase 1: Tx Proposal Delay & Phase 2: Tx Orderer Delay & Total Tx Delay & Rounds & Accepted Txs & Rejected Txs \\ \hline
+		5     & 0.78                       & 2.33                      & 3.11           & 5      & 25           & 0            \\ \hline
+		10    & 1.54                       & 0.68                      & 2.22           & 5      & 50           & 0            \\ \hline
+		30    & 4.67                       & 0.94                      & 5.61           & 5      & 150          & 0            \\ \hline
+		50    & 7.83                       & 1.25                      & 9.08           & 5      & 250          & 0            \\ \hline
+		70    & 11.14                      & 1.48                      & 12.62          & 5      & 350          & 0            \\ \hline
+		90    & 14.54                      & 1.86                      & 16.4           & 5      & 449          & 1            \\ \hline
+	\end{tabular}
+\end{table*}
 
 
 
@@ -563,9 +611,22 @@ Experiment 5 - Observation 1:
 
 
 
-%\subsubsection{Endorsement Policy (AND/OR) on Throughput}
-%
-%Here we need to analyze how endorsement policy (AND/OR) on Throughput.
+
+
+\subsubsection{Transaction Size on Transaction Delay}
+
+Experiment 7 - Setup: Transaction size 10 KB
+
+Experiment 7 - Setup: invoke3.js in "nodeTest" folder in ubuntu 01.
+
+
+
+
+
+
+
+
+
 
 
 
