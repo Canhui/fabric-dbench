@@ -64,3 +64,18 @@ Created topic "test".
 ```shell
 bin/kafka-topics.sh --list --zookeeper localhost:2181
 ```
+
+测试kafka命令之启动生产者，并输入任意字符
+
+```shell
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+```
+
+测试kafka命令之启动消费者，接收到生产者的输入 (这个需要重新开启一个窗口)
+
+```shell
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+```
+
+
+
