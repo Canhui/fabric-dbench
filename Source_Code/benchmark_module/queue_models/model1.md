@@ -30,10 +30,35 @@ Case 6: 向银行存款100元，采用最小极限时间复利方式存款，年
 
 ## 2. 二项分布
 
+二项分布，即重复n次伯努利试验。事件发生的概率为p，事件不发生的概率为1-p，即n次独立重复伯努利试验中，事件发生k次的概率是
+P(X=k)=\left ( \begin{matrix}n\\ k\end{matrix} \right )p^{k}\left ( 1-p \right )^{n-k}
+=\frac{n!}{(n-k)!k!}p^{k}\left ( 1-p \right )^{n-k}
+
+
 一个袋子，40%是黑球，60%是白球。有放回地拿球。现拿三次球，并记录每次球的颜色。问拿一个白球和两个黑球的概率P是多少？
 
+重复n=3次伯努利试验，事件发生的概率p=0.4，事件不发生的概率为1-p=0.6，即事件发生2次的概率是
 
-二项分布公式查看：https://baike.baidu.com/item/%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83/1442377?fr=aladdin
+
+
+$$P(X=2)=\left ( \begin{matrix}3\\ 2\end{matrix} \right )0.4^{2}\left \times( 0.6 \right )^{1}$$
+
+
+
+
+## 3. 泊松分布
+
+
+
+应用到排队论: 1天内，k=10分钟，来30个transactions的概率，来300个transactions的概率。
+
+
+下一步：Matlab函数实现，具体应用例子https://wenku.baidu.com/view/4a53348fddccda38366baf5a.html
+
+下下步：泊松分布数据如何生成https://www.zhihu.com/question/38167673
+
+下下下步：jmeter值泊松分布程序如何实现？
+
 
 
 
@@ -43,3 +68,5 @@ Case 6: 向银行存款100元，采用最小极限时间复利方式存款，年
 ## 参考资料
 [1. 自然对数] https://zhuanlan.zhihu.com/p/26263743
 [2. 公式推导参考] https://blog.csdn.net/a493823882/article/details/78175824
+[3. 二项分布公式查看] https://baike.baidu.com/item/%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83/1442377?fr=aladdin
+[4. 泊松分布的前提] https://wenku.baidu.com/view/4a53348fddccda38366baf5a.html
