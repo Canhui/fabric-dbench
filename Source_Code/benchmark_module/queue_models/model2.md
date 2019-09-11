@@ -8,3 +8,6 @@ http://210.42.35.80/G2S/eWebEditor/uploadfile/20111010165938_419382246347.pdf
 
 
 系统的状态及其马尔可夫状态切换：https://wenku.baidu.com/view/95f1cfd249649b6648d74773.html
+
+
+泊松分布等待时间负指数分布: https://towardsdatascience.com/the-poisson-distribution-and-poisson-process-explained-4e2cb17d459
