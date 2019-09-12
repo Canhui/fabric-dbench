@@ -11,3 +11,12 @@ http://210.42.35.80/G2S/eWebEditor/uploadfile/20111010165938_419382246347.pdf
 
 
 泊松分布等待时间负指数分布: https://towardsdatascience.com/the-poisson-distribution-and-poisson-process-explained-4e2cb17d459
+
+
+排队论批量服务模型：https://www.docin.com/p-1225114030.html
+
+Bulk queue: batch service
+
+论文： https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8726831
+
+https://pdfs.semanticscholar.org/5fd9/2ffbf76953fadc6c2571372f5eef15e9abe7.pdf
