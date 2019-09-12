@@ -286,7 +286,6 @@ return sdkUtils.newKeyValueStore({
 }).catch((err) => {
     console.error('Failed to invoke successfully :: ' + err);
 });
-
 ```
 
 #### 1.4. 单方背书的invoke代码实现(ubuntu01端)

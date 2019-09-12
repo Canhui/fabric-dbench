@@ -613,175 +613,46 @@ Experiment 6 - Setup: invoke3.js in "nodeTest" folder in ubuntu 01.
 
 
 
-\subsubsection{Transaction Size on Transaction Delay}
-
-Experiment 7 - Setup: Transaction size 10 KB
-
-Experiment 7 - Setup: invoke3.js in "nodeTest" folder in ubuntu 01.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%\subsubsection{Experiment : linear and Uniform Random Distribution of TAR}
-%
-%Delay Definition: one request (thread) waits for some time, until next request is generated. We call this time "Delay", denoted by $Delay$.
-%
-%
-%Model Definition: For a request i,  $Delay_i$ follows a uniform distribution between zero and $T$ seconds, as follows, Probability density function is as follows,
-%
-%\begin{equation}
-%	f(Delay_i)=\left\{
-%	\begin{array}{rcl}
-%	0  & & {Delay_i< 0}\\
-%	$$\frac{1}{T}$$ & & $$ 0 \leq  Delay_i \leq T$$\\
-%	0  & & $$ T < Delay_i $$
-%	\end{array} \right.
-%\end{equation}
-
-
-
-
-
-
-
-
-
-
-
-%\begin{table}[htbp]
-%	\caption{Different Configuration of BatchTimeout}
-%	\begin{tabular}{|l|l|l|l|l|l|l|l|}
-%		\hline
-%		BatchTimeout (s) & 0.1 & 0.5 & 1 & 2 & 5 & 10 & 30 \\ \hline
-%		BlockTime (s)    & a   & a   & a & a & a & a  & a  \\ \hline
-%	\end{tabular}
-%\end{table}
-%
-%See experiment 1 and experiment 2
-%
-%Table shows how different configuration of BatchTimeout affect BlockTime. Following our model, and the experiments, we can have a comparison results as follows. Here we need a figure with a comparison of the model result and the experimental results.
-%
-%See more about Uniform Random Timer $http://2min2code.com/articles/jmeter_intro/random_timer$
-%
-%linear and uniform random distribution of TAR: $https://flood.io/blog/planning-for-high-concurrency-load-tests-with-jmeter/$ 
-
-
-
-
-
-%\subsubsection{Experiment : Poisson Distribution of TAR}
-%
-%\begin{table}[htbp]
-%	\caption{Different Configuration of BatchTimeout}
-%	\begin{tabular}{|l|l|l|l|l|l|l|l|}
-%		\hline
-%		BatchTimeout (s) & 0.1 & 0.5 & 1 & 2 & 5 & 10 & 30 \\ \hline
-%		BlockTime (s)    & a   & a   & a & a & a & a  & a  \\ \hline
-%	\end{tabular}
-%\end{table}
-%
-%Table shows how different configuration of BatchTimeout affect BlockTime. Following our model, and the experiments, we can have a comparison results as follows,
-%
-%Jmeter Poisson Distribution of TAR: $https://www.blazemeter.com/blog/comprehensive-guide-using-jmeter-timers/$
-%
-%Jmeter Poisson Distribution of TAR: $https://medium.com/@malith.jayasinghe/performance-testing-with-a-think-time-64b6b737e3f9$
-%
-%The lambda in the Poisson distribution is the average time between the completion of one request and the start of the next request.
-
-
-
-
-
-
-%\subsubsection{Experiment : Constant Distribution of TAR}
-%
-%Jmeter Constant Distribution of TAR: $https://www.blazemeter.com/blog/comprehensive-guide-using-jmeter-timers/$
-%
-%\begin{table}[htbp]
-%	\caption{Different Configuration of BatchTimeout}
-%	\begin{tabular}{|l|l|l|l|l|l|l|l|}
-%		\hline
-%		BatchTimeout (s) & 0.1 & 0.5 & 1 & 2 & 5 & 10 & 30 \\ \hline
-%		BlockTime (s)    & a   & a   & a & a & a & a  & a  \\ \hline
-%	\end{tabular}
-%\end{table}
-%
-%Table shows how different configuration of BatchTimeout affect BlockTime. Following our model, and the experiments, we can have a comparison results as follows,
-
-
-
-
-
-\subsection{Transaction Delay (For Peer)}
- 
-Here we need to discuss something about transaction delay in this section. 
-
-
-\subsubsection{Transaction Size}
-
-How transaction size affects transaction delay, transaction loss
-
-\subsubsection{Experiment 1: Transaction Size 1 byte}
-
-
-
-\subsubsection{Experiment 2: Transaction Size 300 byte}
-
-
-
-\subsubsection{Experiment 3: Transaction Size 10 Mbyte}
-
-
-
-
-
-
-
-
-\subsubsection{Endorsement Policy} 
-
-\subsubsection{Experiment 1: Policy a}
-
-
-\subsubsection{Experiment 2: Policy b}
-
-
-\subsubsection{Experiment 3: Policy c}
-
-Here we need to know how endorsement policy affect transaction delay
-
-
-
 
 
 \section{Kafka Orderer Mode}
 
 
-\subsection{Model of Kafka Orderer's Configuration}
+\subsubsection{Endorsement Policy (OR) on Transaction Delay}
 
-The configuration file of Kafka
+Experiment 6 - Setup: Endorsement Policy (OR) the source code is at Ubuntu 01 - nodeTest invoke3.js.
+
+Experiment 6 - Setup: we can calculate with timestamps at invoke3.js.
+
+Experiment 6 - Setup: we save the timestamp results with Jmeter in a res.xml file.
+
+Experiment 6 - Setup: we can summary the timestamp results with readxml.py at nodeTest in ubuntutu 01.
+
+Experiment 6 - Setup: get proposal approval from localhost, see invoke3.js nodeTest in ubuntu 01.
+
+Experiment 6: Set up: transaction payload size 2 bytes
+
+Experiment 6: setup python analysis file readxml.py is in nodeTest/bench\_result. Usage of the readxml.py: each time there is a new experiment data, people should run python readxml.py to analyze the res.xml data file. After finishing it, people should delete the res.xml file. 
+
+
+\begin{table*}[htbp]
+	\caption{Experiment 6: Endorsement Policy "OR", with local proposer}
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+		\hline
+		\multirow{2}{*}{$TAR$} & \multicolumn{2}{l|}{Phase 1: Tx Proposal Delay} & \multicolumn{2}{l|}{Phase 2: Tx Orderer Delay} & \multirow{2}{*}{Total Tx Delay} & \multirow{2}{*}{Rounds} & \multirow{2}{*}{Accepted Txs} & \multirow{2}{*}{Rejected Txs} \\ \cline{2-5}
+		& Delay (s)           & Proportion (\%)           & Delay (s)           & Proportion (\%)          &                                 &                         &                               &                               \\ \hline
+		5                      & 0.74                & 24.18                     & 2.32                & 75.82                    & 3.06                            & 5                       & 25                            & 0                             \\ \hline
+		10                     & 1.52                & 71.36                     & 0.61                & 28.64                    & 2.13                            & 5                       & 50                            & 0                             \\ \hline
+		30                     & 4.62                & 81.76                     & 1.03                & 18.24                    & 5.65                            & 5                       & 150                           & 0                             \\ \hline
+		50                     & 7.92                & 85.81                     & 1.31                & 14.19                    & 9.23                            & 5                       & 250                           & 0                             \\ \hline
+		70                     & 11.15               & 87.72                     & 1.56                & 12.28                    & 12.71                           & 5                       & 350                           & 0                             \\ \hline
+		90                     & 14.07               & 88.21                     & 1.88                & 11.79                    & 15.95                           & 5                       & 433                           & 17                            \\ \hline
+	\end{tabular}
+\end{table*}
+
+Observation 1: the experiment 6 should have a comparison with the experiment 3, from which we know the difference between Hyperledger Solo orderer and Hyperledger Kafka orderer.
+
+Observation 2: the experiment 6 shows almost the same results with experiment 3. When the transaction arrival rate are going high e.g., 90 transactions per second, then the performance bottleneck will be in peer. Specifically, it will be when peer sends proposals. 
 
 
 
