@@ -51,6 +51,61 @@ $ ansible all -m file -a "path=/home/t716/joe/ansdir state=absent"
 
 ## 4. 关于copy模块
 
+拷贝一个文件到其他机器上去，
+
+```shell
+$ ansible all -m copy -a "src=/home/t716/joe/testfile dest=/home/t716/joe mode=0644"
+```
+
+拷贝一个目录到其他机器上去，
+
+```shell
+$ ansible all -m copy -a "src=/home/t716/joe/copydir dest=/home/t716/joe mode=0775"
+```
+
+或者读写无执行权限如下，
+
+```shell
+$ ansible all -m copy -a "src=/home/t716/joe/copydir dest=/home/t716/joe mode=0644"
+```
 
 
+## 5. 关于service模块
+
+关闭集群的nginx服务
+
+```shell
+$ ansible all -m service -a "name=nginx state=stopped"
+```
+
+启动集群的nginx服务
+
+```shell
+$ ansible all -m service -a "name=nginx state=started"
+```
+
+10秒后重启集群的nginx服务
+
+```shell
+$ ansible all -m service -a "name=nginx state=restarted sleep 10"
+```
+
+重启eth0网卡
+
+```shell
+$ ansible all -m service -a "name=network state=restarted args=eth0"
+```
+
+
+
+## 6. 关于cron模块
+
+创建一个任务，每次重启的时候执行一次
+
+```shell
+$ ansible all -m cron -a "name='running a job when reboot' special_time=reboot job=/opt/aaa.sh"
+```
+
+
+## 7. 关于yum模块
 
