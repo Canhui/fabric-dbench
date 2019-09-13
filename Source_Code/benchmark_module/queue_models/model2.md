@@ -20,3 +20,37 @@ Bulk queue: batch service
 论文： https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8726831
 
 https://pdfs.semanticscholar.org/5fd9/2ffbf76953fadc6c2571372f5eef15e9abe7.pdf
+
+
+
+## 1. M/G/1模型的应用
+
+https://wenku.baidu.com/view/417c9023af45b307e8719712.html
+
+
+
+## 2. M/D/1模型的应用
+
+M/D/1模型和M/G/1模型的差别是: M/D/1模型的服务时间是一个固定的常数。
+
+
+
+
+## 3. G/G/1模型的应用
+
+https://pdfs.semanticscholar.org/5fd9/2ffbf76953fadc6c2571372f5eef15e9abe7.pdf
+
+
+
+
+## 4. M/Gk/1模型的应用
+
+http://www.kurims.kyoto-u.ac.jp/EMIS/journals/HOA/IJSA/Volume9_2/219.pdf
+
+
+
+## 5. Overview应用
+
+http://web.mst.edu/~gosavia/queuing_formulas.pdf
+
+https://www.win.tue.nl/~iadan/queueing.pdf
