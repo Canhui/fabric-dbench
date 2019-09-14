@@ -7,6 +7,7 @@ $ ansible all -m ping
 ```
 
 
+
 ## 2. 关于setup模块
 
 master节点获取workers节点的所有主机信息，
@@ -20,6 +21,8 @@ master节点获取workers节点的过滤后的内存信息，
 ```shell
 $ ansible all -m setup -a 'filter=ansible_memory_mb'
 ```
+
+
 
 
 ## 3. 关于file模块
@@ -108,4 +111,13 @@ $ ansible all -m cron -a "name='running a job when reboot' special_time=reboot j
 
 
 ## 7. 关于yum模块
+
+安装nginx软件包
+
+```shell
+$ ansible all -m yum -a "name=nginx state=latest"
+```
+
+
+## 8. 关于get_url模块
 

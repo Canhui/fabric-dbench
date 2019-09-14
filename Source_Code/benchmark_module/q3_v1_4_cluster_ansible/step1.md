@@ -23,6 +23,12 @@ $ ansible all -m command -a 'curl --version'
 $ ansible all -m command -a 'go version'
 ```
 
+## 1.4. 查看curl的版本信息
+
+```shell
+$ ansible all -m command -a "curl --version"
+```
+
 
 ---------------------------------------------------------
 
