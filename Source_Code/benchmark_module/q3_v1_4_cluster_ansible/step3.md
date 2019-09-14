@@ -135,13 +135,13 @@ $ ansible peer -m get_url -a "url=https://dl.google.com/go/go1.9.7.linux-amd64.t
 
 解压文件到指定目录[peer]
 ```shell
-$ ansible peer -m unarchive -a "src=/home/t716/joe/go1.9.7.linux-amd64.tar.gz dest=/home/t716/joe mode=0755 copy=no"
+$ ansible peer -m unarchive -a "src=/home/t716/go1.9.7.linux-amd64.tar.gz dest=/home/t716 mode=0755 copy=no"
 ```
 
 移动文件到指定目录[peer]
 
 ```shell
-$ ansible peer -m shell -a "echo [T716rrs722] | sudo mv /home/t716/joe/go /usr/local"
+$ ansible peer -m shell -a "echo [T716rrs722] | sudo mv /home/t716/go /usr/local"
 ```
 
 写入配置信息[peer]
@@ -177,23 +177,25 @@ $ ansible test -m shell -a "/usr/local/go/bin/go version"
 删除旧版的golang
 ```shell
 $ ansible peer -m shell -a "echo [T716rrs722] | sudo rm -rf /usr/local/go"
+$ ansible peer -m shell -a "echo [T716rrs722] | sudo rm -rf /home/t716/go"
 ```
+
 
 
 下载文件到指定目录[peer]
 ```shell
-$ ansible peer -m get_url -a "url=https://dl.google.com/go/go1.12.9.linux-amd64.tar.gz dest=/home/t716/joe mode=0440 force=yes"
+$ ansible peer -m get_url -a "url=https://dl.google.com/go/go1.12.9.linux-amd64.tar.gz dest=/home/t716 mode=0440 force=yes"
 ```
 
 解压文件到指定目录[peer]
 ```shell
-$ ansible peer -m unarchive -a "src=/home/t716/joe/go1.12.9.linux-amd64.tar.gz dest=/home/t716/joe mode=0755 copy=no"
+$ ansible peer -m unarchive -a "src=/home/t716/go1.12.9.linux-amd64.tar.gz dest=/home/t716 mode=0755 copy=no"
 ```
 
 移动文件到指定目录[peer]
 
 ```shell
-$ ansible peer -m shell -a "echo [T716rrs722] | sudo mv /home/t716/joe/go /usr/local"
+$ ansible peer -m shell -a "echo [T716rrs722] | sudo mv /home/t716/go /usr/local"
 ```
 
 写入配置信息[peer]
