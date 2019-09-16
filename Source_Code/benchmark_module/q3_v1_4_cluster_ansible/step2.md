@@ -60,6 +60,11 @@ $ ansible all -m file -a "path=/home/t716/joe/ansdir state=absent"
 $ ansible all -m copy -a "src=/home/t716/joe/testfile dest=/home/t716/joe mode=0644"
 ```
 
+ansible 192.168.0.103 -m copy -a "src=/home/t716/joe/fabric-samples/peer0.org2.example.com/ dest=/home/t716/joe/fabric/peer"
+
+
+
+
 拷贝一个目录到其他机器上去，
 
 ```shell
