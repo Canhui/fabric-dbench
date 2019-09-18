@@ -39,6 +39,11 @@ $ ansible all -m file -a "path=/home/t716/joe/ansfile state=touch"
 $ ansible all -m file -a "path=/home/t716/joe/ansdir state=directory"
 ```
 
+
+
+
+
+
 删除目录/home/t716/joe下的一个文件，如下，
 
 ```shell
@@ -62,7 +67,7 @@ $ ansible all -m copy -a "src=/home/t716/joe/testfile dest=/home/t716/joe mode=0
 
 ansible 192.168.0.103 -m copy -a "src=/home/t716/joe/fabric-samples/peer0.org2.example.com/ dest=/home/t716/joe/fabric/peer"
 
-
+scp -r /home/t716/joe/fabric-samples/peer0.org2.example.com/* t716@peer0.org2.example.com:/home/t716/joe/fabric/peer
 
 
 拷贝一个目录到其他机器上去，
