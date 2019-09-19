@@ -5,6 +5,7 @@
 There are many ways to write a program to download web pages in Java. The simpler way is using the URL class with its input stream. The following example function is used to download a web page and return a string.
 
 
+
 #### 1.2. Examples
 
 First version without functions
@@ -84,3 +85,5 @@ See more BufferedReader function reference at https://docs.oracle.com/javase/8/d
 Without any error, the string contains the full content of the target web page including HTML tags and values. If you want to remove all HTML tags such as "body", "html" and "script" tags etc. So, we need to use Regular Expression to match the HTML tags and delete them.
 
 The javax.swing.text.html.HTMLEditorKit package provides a parser for parsing web pages. With the parser, we can download a web page that the HTML tags and the text of the target web page are separated. 
+
+We have some updated.
