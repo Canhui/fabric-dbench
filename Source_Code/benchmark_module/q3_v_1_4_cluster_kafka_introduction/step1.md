@@ -15,18 +15,34 @@ Kafka uses Zookeeper to do leadership election of kafka broker and topic partiti
 
 **Question 3:** what is kafka brokers?
 
-A Kafka broker is modelled as kafka server that hosts topics. 
+A Kafka broker is modelled as kafka server that hosts topics. A kafka server, a kafka broker and a kafka node all refer to the same concept. 
+
+Given topics are always partitioned across brokers in a cluster. A single broker hosts topic partitions of one or more topics actually. 
+
+kafka brokers can create a kafka cluster by sharing information between each pther directly or indirectly using Zookeeper. Within such a Zookeeper cluster, all kafka brokers share the consensused information.
 
 
 
 
+**Question 4:** what is kafka topics?
+
+A topic is a category to which messages are stored and published. All kafka messages are organized into topics. We can send a message to specific topic and read a message from the topic name. 
+
+
+
+**Tutorial:** Setting up multi-zookeeper
+
+https://medium.com/@kiranps11/kafka-and-zookeeper-multinode-cluster-setup-3511aef4a505
 
 
 
 
-**Tutorial:** Setting up multi-broker
+**Tutorial:** Setting up multi-kafka-broker
 
 https://kafka.apache.org/quickstart
+
+
+
 
 
 
@@ -39,3 +55,6 @@ https://kafka.apache.org/quickstart
 ## Reference
 [1. Zookeeper and Kafka introduction] http://cloudurable.com/blog/kafka-architecture/index.html
 [2. Multi Kafka Brokers Setting Up] https://kafka.apache.org/quickstart
+[3. Kafka Broker introduction] https://jaceklaskowski.gitbooks.io/apache-kafka/kafka-brokers.html
+[4. Kafka topics] https://medium.com/@kiranps11/kafka-and-zookeeper-multinode-cluster-setup-3511aef4a505
+[5. Multi-zookeeper] https://medium.com/@kiranps11/kafka-and-zookeeper-multinode-cluster-setup-3511aef4a505
