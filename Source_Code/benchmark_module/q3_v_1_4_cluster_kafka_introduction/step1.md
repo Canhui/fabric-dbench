@@ -22,34 +22,24 @@ Given topics are always partitioned across brokers in a cluster. A single broker
 kafka brokers can create a kafka cluster by sharing information between each pther directly or indirectly using Zookeeper. Within such a Zookeeper cluster, all kafka brokers share the consensused information.
 
 
-
-
 **Question 4:** what is kafka topics?
 
 A topic is a category to which messages are stored and published. All kafka messages are organized into topics. We can send a message to specific topic and read a message from the topic name. 
 
 
 
-**Tutorial:** Setting up multi-zookeeper
+**Tutorial 1:** Setting up multi-zookeeper
 
 https://medium.com/@kiranps11/kafka-and-zookeeper-multinode-cluster-setup-3511aef4a505
 
 
 
-
-**Tutorial:** Setting up multi-kafka-broker
+**Tutorial 2:** Setting up multi-kafka-broker
 
 https://kafka.apache.org/quickstart
 
 
-
-
-
-
 **Question:** 每个channel一个topic，每个topic一个broker，性能会不会比solo更好？
-
-
-
 
 
 ## Reference

@@ -1,16 +1,15 @@
 One Zookeeper, One Kafka Broker
 
-
 ## 1. 部署Kafka
 
 #### 1.1. 下载Kafka数据包
 
-192.168.0.101机器上，下载v2.1版本的kafka，其中kafka的官方下载地址如下，
+192.168.0.101机器上，下载v2.3版本的kafka，其中kafka的官方下载地址如下，
 
 ```shell
-$ wget https://archive.apache.org/dist/kafka/2.1.0/kafka_2.12-2.1.0.tgz
-$ tar -xvf kafka_2.12-2.1.0.tgz
-$ cd kafka_2.12-2.1.0
+$ wget https://archive.apache.org/dist/kafka/2.3.0/kafka_2.12-2.3.0.tgz
+$ tar -xvf kafka_2.12-2.3.0.tgz
+$ cd kafka_2.12-2.3.0
 ```
 
 
@@ -19,7 +18,7 @@ $ cd kafka_2.12-2.1.0
 192.168.0.101机器上，启动一个kafka自带的zookeeper节点，命令如下，
 
 ```shell
-$ ./bin/zookeeper-server-start.sh config/zookeeper.properties
+$ bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
 
 
@@ -42,7 +41,7 @@ log.retention.ms = -1
 然后，启动kafka server (or kafka broker)的命令如下，
 
 ```shell
-$ ./bin/kafka-server-start.sh config/server.properties
+$ bin/kafka-server-start.sh config/server.properties
 ```
 
 
@@ -53,13 +52,7 @@ $ ./bin/kafka-server-start.sh config/server.properties
 测试kafka，下面是创建kafka之topic命令，如下，
 
 ```shell
-$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic topic1
-```
-
-topic创建成功之后，显示如下，
-
-```shell
-Created topic "topic1".
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic topic
 ```
 
 
@@ -68,30 +61,43 @@ Created topic "topic1".
 测试kafka，下面是查询kafka之topic命令，如下，
 
 ```shell
-$ bin/kafka-topics.sh --list --zookeeper localhost:2181
-```
-
-topic查询成功之后，显示如下，
-
-```shell
-__consumer_offsets
-test
-topic1
+$ bin/kafka-topics.sh --list --bootstrap-server localhost:9092
 ```
 
 
 **测试三:**
 
-测试kafka，下面是创建kafka生产者，消费者的命令，如下，
+测试kafka，下面是创建kafka生产者的命令，如下，
 
 ```shell
-
+$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic topic
 ```
 
+输入消息，如下，
+```shell
+>this
+>is 
+>a 
+>hello world message
+>for
+>topic1
+```
 
+类似地，下面是创建kafka消费者的命令，如下，
 
+```shell
+$ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic --from-beginning
+```
 
-
+返回消息，如下，
+```shell
+>this
+>is 
+>a 
+>hello world message
+>for
+>topic1
+```
 
 
 
