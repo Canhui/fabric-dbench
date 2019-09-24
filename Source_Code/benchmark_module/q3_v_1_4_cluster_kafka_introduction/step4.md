@@ -15,9 +15,7 @@ rm -rf /home/t716/joe/kafka_2.12-2.3.0
 
 ## 1. Zookeepers部署
 
-
 #### 1.1. 配置myid文件
-
 
 #### 1.2. 配置zookeeper-1,2,3.properties文件
 
@@ -28,6 +26,16 @@ tickTime=2000
 initLimit=5
 syncLimit=2
 ```
+
+tickTime表示leader node和worker node之间维持心跳的时间间隔，也就是每隔tickTime时间就会发送一个心跳，以毫秒为单位。
+
+initLimit表示leader node和worker node之间初始链接时候，最多能容忍的心跳数，以tickTime为单位。
+
+syncLimit表示leader node和worker node的请求和回答之间，最多能容忍的心跳数，以tickTime为单位。
+
+
+
+
 
 下一步：弄明白zookeeper中的上述三个参数。
 
