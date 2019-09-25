@@ -7,18 +7,12 @@
 
 #### 2.1. Hyperledger Fabric v1.4.0
 
-[Hyperledger Fabric](https://github.com/hyperledger/fabric)
-
-```shell
-curl -sSL http://bit.ly/2ysbOFE | bash -s -- 1.4.0
-```
+Install the Hyperledger Fabric v1.4.0 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric). 
 
 
+#### 2.2. The Hosts File
 
-#### 2.1. Fabric-Samples
-
-Coding Storage Techniques
-
+Each node of the cluster has a host file under the `/etc/hosts` directory.
 
 ```shell
 # ---------------------------------------------------------------------------
@@ -70,3 +64,8 @@ Coding Storage Techniques
 192.168.0.116 broker11
 192.168.0.119 broker12
 ```
+
+#### 2.3. The Hyperledger Configuration Files
+
+The `orderer.example.com` node generates all configuration files and then distributes it to corresponding nodes of the cluster. 
+
