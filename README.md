@@ -69,3 +69,4 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 
 The `orderer.example.com` node generates all configuration files and then distributes it to corresponding nodes of the cluster. 
 
+The first Hyperledger configuration file is `$HOME/fabric-samples/configyaml/core.yaml`.
