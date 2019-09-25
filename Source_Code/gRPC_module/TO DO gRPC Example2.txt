@@ -1,1 +1,0 @@
-gRPC_example2: Run helloworld independently.

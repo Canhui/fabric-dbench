@@ -1,3 +1,0 @@
-step 1: orderer read file
-
-step 2: orderer distributes file to peers
