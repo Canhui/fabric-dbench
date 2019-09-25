@@ -1,1 +1,0 @@
-how hyperledger chaincode interacts with external database

@@ -1,3 +1,0 @@
-here we need to discuss some chaincode based data base operations
-
-Reference: https://blockgeeks.com/guides/hyperledger-fabric-tutorial-2/
