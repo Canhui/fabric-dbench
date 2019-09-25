@@ -1,1 +1,0 @@
-Here we need to discuss the hyperledger fabric transaction's flow with data base.
