@@ -1,16 +1,15 @@
-## 1. Introduction
 **Fabric-DBench** is a distributed benchmark platform for Hyperledger Fabric.
 
 
 
-## 2. Prerequirements
+## 1. Prerequirements
 
-#### 2.1. Hyperledger Fabric v1.4.0
+#### 1.1. Hyperledger Fabric v1.4.0
 
 Install the Hyperledger Fabric v1.4.0 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric). 
 
 
-#### 2.2. The Hosts File
+#### 1.2. The Hosts File
 
 Each node of the cluster has a host file under the `/etc/hosts` directory.
 
@@ -65,8 +64,18 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 192.168.0.119 broker12
 ```
 
-#### 2.3. The Hyperledger Configuration Files
+
+
+
+
+
+
+
+
+
+<!-- 
+#### 1.3. The Hyperledger Configuration Files
 
 The `orderer.example.com` node generates all configuration files and then distributes it to corresponding nodes of the cluster. 
 
-The first Hyperledger configuration file is `$HOME/fabric-samples/configyaml/core.yaml`.
+The first Hyperledger configuration file is `$HOME/fabric-samples/configyaml/core.yaml`. -->
