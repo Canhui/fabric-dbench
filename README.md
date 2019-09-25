@@ -7,7 +7,7 @@
 
 #### 2.1. Hyperledger Fabric v1.4.0
 
-[Hyperledger Fabric]{https://github.com/hyperledger/fabric}
+[Hyperledger Fabric](https://github.com/hyperledger/fabric)
 
 ```shell
 curl -sSL http://bit.ly/2ysbOFE | bash -s -- 1.4.0
