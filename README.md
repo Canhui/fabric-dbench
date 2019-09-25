@@ -3,9 +3,22 @@
 
 
 
-## 2. Cluster Information
+## 2. Prerequirements
 
-#### 2.1. /etc/hosts 
+#### 2.1. Hyperledger Fabric v1.4.0
+
+[Hyperledger Fabric]{https://github.com/hyperledger/fabric}
+
+```shell
+curl -sSL http://bit.ly/2ysbOFE | bash -s -- 1.4.0
+```
+
+
+
+#### 2.1. Fabric-Samples
+
+Coding Storage Techniques
+
 
 ```shell
 # ---------------------------------------------------------------------------
@@ -57,7 +70,3 @@
 192.168.0.116 broker11
 192.168.0.119 broker12
 ```
-
-#### 2.1. Fabric-Samples
-
-Coding Storage Techniques
