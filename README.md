@@ -64,8 +64,18 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 192.168.0.119 broker12
 ```
 
+## 2. Example: Setup the Network
 
+Download the source code
+```shell
+$ cd $HOME
+$ git clone https://github.com/Canhui/fabric-dbench.git
+```
 
+Setup the network
+```shell
+
+```
 
 
 
