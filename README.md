@@ -84,13 +84,14 @@ Setup the network
 ./step1_config_cluster.sh
 ```
 
-```
+Clean the configuration files
+```shell
 ./step1_cleanup.sh
 ```
 
 
 
-## 3. Example: Setup the Network (of 10 organization)
+## 3. Example: Setup the Network (of 10 organizations)
 
 Download the source code
 
@@ -110,7 +111,8 @@ Setup the network
 ./step1_config_cluster.sh
 ```
 
-```
+Clean the configuration files
+```shell
 ./step1_cleanup.sh
 ```
 
