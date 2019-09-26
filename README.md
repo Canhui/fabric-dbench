@@ -64,7 +64,7 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 192.168.0.119 broker12
 ```
 
-## 2. Example of `step1_config_cluster.sh`
+## 2. Usage of `step1_config_cluster.sh`
 
 #### 2.1. Setup the Network (of 1 organization)
 
@@ -106,9 +106,19 @@ Your_Hostname="t716"
 Number_of_Organizations=10
 ```
 
-Setup the network
+Config the network
 ```shell
 ./step1_config_cluster.sh
+```
+
+Go to `$home/fabric-dbench/run/orderer` directory and run the orderer
+```shell
+sudo ./orderer
+```
+
+Go to `$home/fabric-dbench/run/peer` directory and run the peer
+```shell
+sudo ./peer node start
 ```
 
 Clean the configuration files
@@ -117,7 +127,48 @@ Clean the configuration files
 ```
 
 
-This 
+
+## 3. Usage of `step2_config_admins.sh`
+
+Config the `step1_config_cluster.sh` file
+```shell
+Your_Hostname="t716"
+Number_of_Organizations=1
+```
+
+Config the network
+```shell
+./step1_config_cluster.sh
+```
+
+Go to `$home/fabric-dbench/run/orderer` directory and run the orderer
+```shell
+sudo ./orderer
+```
+
+Go to `$home/fabric-dbench/run/peer` directory and run the peer
+```shell
+sudo ./peer node start
+```
+
+
+Config the `step2_config_admins.sh` file
+```shell
+Number_of_Organizations=1
+```
+
+Config the admins
+```shell
+./step2_config_admins.sh
+```
+
+Clean the configuration files
+```shell
+./step2_cleanup.sh
+./step1_cleanup.sh
+```
+
+
 
 
 
