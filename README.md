@@ -64,7 +64,9 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 192.168.0.119 broker12
 ```
 
-## 2. Example: Setup the Network (of 1 organization)
+## 2. Example of `step1_config_cluster.sh`
+
+#### 2.1. Setup the Network (of 1 organization)
 
 Download the source code
 
@@ -89,9 +91,7 @@ Clean the configuration files
 ./step1_cleanup.sh
 ```
 
-
-
-## 3. Example: Setup the Network (of 10 organizations)
+#### 2.2. Setup the Network (of 10 organization2)
 
 Download the source code
 
@@ -116,6 +116,8 @@ Clean the configuration files
 ./step1_cleanup.sh
 ```
 
+
+This 
 
 
 
