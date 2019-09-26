@@ -66,7 +66,7 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 
 ## 2. Usage of `step1_config_cluster.sh`
 
-#### 2.1. Setup the Network (of 1 organization)
+#### 2.1. Setup the Network (of 3 organizations)
 
 Download the source code
 
@@ -78,32 +78,7 @@ $ git clone https://github.com/Canhui/fabric-dbench.git
 Config the `step1_config_cluster.sh` file
 ```shell
 Your_Hostname="t716"
-Number_of_Organizations=1
-```
-
-Setup the network
-```shell
-./step1_config_cluster.sh
-```
-
-Clean the configuration files
-```shell
-./step1_cleanup.sh
-```
-
-#### 2.2. Setup the Network (of 10 organizations)
-
-Download the source code
-
-```shell
-$ cd $HOME
-$ git clone https://github.com/Canhui/fabric-dbench.git
-```
-
-Config the `step1_config_cluster.sh` file
-```shell
-Your_Hostname="t716"
-Number_of_Organizations=10
+Number_of_Organizations=3
 ```
 
 Config the network
@@ -130,31 +105,11 @@ Clean the configuration files
 
 ## 3. Usage of `step2_config_admins.sh`
 
-Config the `step1_config_cluster.sh` file
-```shell
-Your_Hostname="t716"
-Number_of_Organizations=1
-```
-
-Config the network
-```shell
-./step1_config_cluster.sh
-```
-
-Go to `$home/fabric-dbench/run/orderer` directory and run the orderer
-```shell
-sudo ./orderer
-```
-
-Go to `$home/fabric-dbench/run/peer` directory and run the peer
-```shell
-sudo ./peer node start
-```
-
+#### 3.1. Config Admins (of 3 organizations)
 
 Config the `step2_config_admins.sh` file
 ```shell
-Number_of_Organizations=1
+Number_of_Organizations=3
 ```
 
 Config the admins
@@ -162,19 +117,17 @@ Config the admins
 ./step2_config_admins.sh
 ```
 
+Check the admins
+```shell
+cd fabric-dbench/Admin@org1.example.com
+./peer.sh node status
+```
+
 Clean the configuration files
 ```shell
 ./step2_cleanup.sh
-./step1_cleanup.sh
 ```
 
 
 
 
-
-<!-- 
-#### 1.3. The Hyperledger Configuration Files
-
-The `orderer.example.com` node generates all configuration files and then distributes it to corresponding nodes of the cluster. 
-
-The first Hyperledger configuration file is `$HOME/fabric-samples/configyaml/core.yaml`. -->
