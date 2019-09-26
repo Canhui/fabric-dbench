@@ -64,9 +64,10 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 192.168.0.119 broker12
 ```
 
-## 2. Example 1: Setup the Network (of 1 organization)
+## 2. Example: Setup the Network (of 1 organization)
 
 Download the source code
+
 ```shell
 $ cd $HOME
 $ git clone https://github.com/Canhui/fabric-dbench.git
@@ -83,13 +84,35 @@ Setup the network
 ./step1_config_cluster.sh
 ```
 
-Clean the configuration files
-```shell
+```
 ./step1_cleanup.sh
 ```
 
 
 
+## 3. Example: Setup the Network (of 10 organization)
+
+Download the source code
+
+```shell
+$ cd $HOME
+$ git clone https://github.com/Canhui/fabric-dbench.git
+```
+
+Config the `step1_config_cluster.sh` file
+```shell
+Your_Hostname="t716"
+Number_of_Organizations=10
+```
+
+Setup the network
+```shell
+./step1_config_cluster.sh
+```
+
+```
+./step1_cleanup.sh
+```
 
 
 

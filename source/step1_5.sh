@@ -1,6 +1,3 @@
-Total_Orgs=3
-
-
 echo "------------------------------------------------------------"
 echo "Build the peer configuration files"
 echo "------------------------------------------------------------"
@@ -10,8 +7,8 @@ cp -rf $HOME/fabric-dbench/certs/peerOrganizations/org1.example.com/peers/peer0.
 cp $HOME/fabric-dbench/configs/core.yaml $HOME/fabric-dbench/peer0.org1.example.com/
 mkdir $HOME/fabric-dbench/peer0.org1.example.com/data
 
-if (($Total_Orgs > 1)); then
-    for ((i=2;i<=$Total_Orgs;i++))
+if (($1 > 1)); then
+    for ((i=2;i<=$1;i++))
 	do
 		cp -rf $HOME/fabric-dbench/peer0.org1.example.com/ $HOME/fabric-dbench/peer0.org$i.example.com/
 		rm -rf $HOME/fabric-dbench/peer0.org$i.example.com/msp/
@@ -21,18 +18,3 @@ if (($Total_Orgs > 1)); then
 		sed -i "s/Org1MSP/Org${i}MSP/g" $HOME/fabric-dbench/peer0.org$i.example.com/core.yaml
 	done
 fi
-
-
-
-
-
-#for ((i=2;i<=$ORGS;i++))
-#do
-#    cp -rf /home/t716/joe/fabric-samples/peer0.org1.example.com/ /home/t716/joe/fabric-samples/peer0.org$i.example.com/
-#    rm -rf /home/t716/joe/fabric-samples/peer0.org$i.example.com/msp/
-#    rm -rf /home/t716/joe/fabric-samples/peer0.org$i.example.com/tls/
-#    cp -rf /home/t716/joe/fabric-samples/certs/peerOrganizations/org$i.example.com/peers/peer0.org$i.example.com/* /home/t716/joe/fabric-samples/peer0.org$i.example.com/
-#    sed -i "s/peer0.org1.example.com/peer0\.org$i\.example.com/g" /home/t716/joe/fabric-samples/peer0.org$i.example.com/core.yaml
-#    sed -i "s/Org1MSP/Org${i}MSP/g" /home/t716/joe/fabric-samples/peer0.org$i.example.com/core.yaml
-#done
-#echo "<---------------Step 5 successfully finished--------------->"
