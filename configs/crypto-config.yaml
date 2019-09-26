@@ -1,0 +1,45 @@
+OrdererOrgs:
+  - Name: Orderer
+    #Domain: orgorderer1
+    Domain: example.com
+    CA:
+        Country: CN
+        Province: HongKong
+        Locality: HongKong
+    Specs:
+      - Hostname: orderer
+      
+PeerOrgs:
+  - Name: Org1
+    Domain: org1.example.com
+    EnableNodeOUs: true
+    CA:
+        Country: CN
+        Province: HongKong
+        Locality: HongKong
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+  - Name: Org2
+    Domain: org2.example.com
+    EnableNodeOUs: true
+    CA:
+        Country: CN
+        Province: HongKong
+        Locality: HongKong
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+  - Name: Org3
+    Domain: org3.example.com
+    EnableNodeOUs: true
+    CA:
+        Country: CN
+        Province: HongKong
+        Locality: HongKong
+    Template:
+      Count: 1
+    Users:
+      Count: 1
