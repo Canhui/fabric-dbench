@@ -1,8 +1,10 @@
+#Number_of_Organizations=2
+
 echo "------------------------------------------------------------"
 echo "Build the peer configuration files"
 echo "------------------------------------------------------------"
 mkdir $HOME/fabric-dbench/peer0.org1.example.com
-cp $HOME/fabric-samples/bin/peer $HOME/fabric-dbench/peer0.org1.example.com/
+cp $HOME/fabric-dbench/fabric-samples/bin/peer $HOME/fabric-dbench/peer0.org1.example.com/
 cp -rf $HOME/fabric-dbench/certs/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/* $HOME/fabric-dbench/peer0.org1.example.com/
 cp $HOME/fabric-dbench/configs/core.yaml $HOME/fabric-dbench/peer0.org1.example.com/
 mkdir $HOME/fabric-dbench/peer0.org1.example.com/data

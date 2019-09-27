@@ -311,7 +311,9 @@ peer:
     # location must be access control protected to prevent unintended
     # modification that might corrupt the peer operations.
     # fileSystemPath: /opt/app/fabric/peer/data
-    fileSystemPath: /home/t716/joe/fabric/peer/data
+    fileSystemPath: $HOME/fabric-dbench/solo/peer/data
+        #/home/t716/fabric-dbench/run/peer/data
+        #  /home/t716/joe/fabric/peer/data
 
 
     # BCCSP (Blockchain crypto provider): Select which crypto implementation or

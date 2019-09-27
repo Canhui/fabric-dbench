@@ -131,7 +131,9 @@ FileLedger:
     # the orderer is restarted, using the prefix specified by Prefix.
     # Location: /var/hyperledger/production/orderer
     # Location:  /opt/app/fabric/orderer/data
-    Location:  /home/t716/joe/fabric/orderer/data
+    Location: $HOME/fabric-dbench/solo/orderer/data  
+        #/home/t716/fabric-dbench/run/orderer/data
+        #   /home/t716/joe/fabric/orderer/data
 
     # The prefix to use when generating a ledger directory in temporary space.
     # Otherwise, this value is ignored.

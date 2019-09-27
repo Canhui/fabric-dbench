@@ -66,7 +66,7 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 
 ## 2. Usage of `step1_config_cluster.sh`
 
-#### 2.1. Setup the Network (of 3 organizations)
+#### 2.1. Setup the Network (e.g., of 3 organizations)
 
 Download the source code
 
@@ -105,7 +105,7 @@ Clean the configuration files
 
 ## 3. Usage of `step2_config_admins.sh`
 
-#### 3.1. Config Admins (of 3 organizations)
+#### 3.1. Config Admins (e.g., of 3 organizations)
 
 Config the `step2_config_admins.sh` file
 ```shell
