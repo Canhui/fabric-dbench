@@ -64,46 +64,63 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 192.168.0.119 broker12
 ```
 
-## 2. Usage of `step1_config_cluster.sh`
+## 2. Setup
 
-#### 2.1. Setup the Network (e.g., of 3 organizations)
+#### 2.1. Download fabric-dbench from Github
 
-Download the source code
+Download the source code to your $HOME directory
 
 ```shell
 $ cd $HOME
 $ git clone https://github.com/Canhui/fabric-dbench.git
 ```
 
-Config the `step1_config_cluster.sh` file
+
+#### 2.2. Copy fabric-samples to fabric-dbench
+
+Copy the fabric-samples to the directory of `$HOME/fabric-dbench`
+
 ```shell
-Your_Hostname="t716"
+$ cd $HOME
+$ cp -r fabric-samples $HOME/fabric-dbench
+```
+
+
+
+
+## 3. Usage of `step1_config_cluster.sh`
+
+#### 3.1. Config the Network (e.g., of 3 organizations)
+
+Go to `$HOME/fabric-dbench/bin` and config the `step1_config_cluster.sh` file
+```shell
+Hostname="t716"
+Password="T716rrs722"
 Number_of_Organizations=3
 ```
 
-Config the network
+Then config the network
 ```shell
-./step1_config_cluster.sh
+$ ./step1_config_cluster.sh
 ```
 
-Go to `$home/fabric-dbench/run/orderer` directory and run the orderer
+Go to `$home/fabric-dbench/solo/orderer` directory and run the orderer
 ```shell
-sudo ./orderer
+$ cd $home/fabric-dbench/solo/orderer
+$ sudo ./orderer
 ```
 
-Go to `$home/fabric-dbench/run/peer` directory and run the peer
+Go to `$home/fabric-dbench/solo/peer` directory and run the peer
 ```shell
-sudo ./peer node start
-```
-
-Clean the configuration files
-```shell
-./step1_cleanup.sh
+$ cd $home/fabric-dbench/solo/peer
+$ sudo ./peer node start
 ```
 
 
 
-## 3. Usage of `step2_config_admins.sh`
+
+
+<!-- ## 3. Usage of `step2_config_admins.sh`
 
 #### 3.1. Config Admins (e.g., of 3 organizations)
 
@@ -126,7 +143,7 @@ cd fabric-dbench/Admin@org1.example.com
 Clean the configuration files
 ```shell
 ./step2_cleanup.sh
-```
+``` -->
 
 
 
