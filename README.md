@@ -68,7 +68,7 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 
 #### 2.1. Download fabric-dbench from Github
 
-Download the source code to your $HOME directory
+Download the source code to your `$HOME` directory
 
 ```shell
 $ cd $HOME
@@ -78,7 +78,7 @@ $ git clone https://github.com/Canhui/fabric-dbench.git
 
 #### 2.2. Copy fabric-samples to fabric-dbench
 
-Copy the fabric-samples to the directory of `$HOME/fabric-dbench`
+Copy the `fabric-samples` to the directory of `$HOME/fabric-dbench`
 
 ```shell
 $ cd $HOME
@@ -99,7 +99,7 @@ Password="T716rrs722"
 Number_of_Organizations=3
 ```
 
-Then config the network
+then config the network
 ```shell
 $ ./step1_config_cluster.sh
 ```
@@ -115,6 +115,38 @@ Go to `$home/fabric-dbench/solo/peer` directory and setup the peer
 $ cd $home/fabric-dbench/solo/peer
 $ sudo ./peer node start
 ```
+
+## 4. Usage of `bin/step2_config_admins.sh`
+
+Go to `$HOME/fabric-dbench/bin` and config the `step2_config_admins.sh` file
+```shell
+Number_of_Organizations=3
+```
+
+then config the administrators 
+```shell
+$ ./step2_config_admins.sh
+```
+
+Go to `$HOME/fabric-dbench/Admin@org1.example.com` directory and check the adminstrator of the first organization
+```shell
+$ cd $HOME/fabric-dbench/Admin@org1.example.com
+$ ./peer.sh node status
+```
+
+Go to `$HOME/fabric-dbench/Admin@org2.example.com` directory and check the adminstrator of the second organization
+```shell
+$ cd $HOME/fabric-dbench/Admin@org2.example.com
+$ ./peer.sh node status
+```
+
+Go to `$HOME/fabric-dbench/Admin@org3.example.com` directory and check the adminstrator of the second organization
+```shell
+$ cd $HOME/fabric-dbench/Admin@org3.example.com
+$ ./peer.sh node status
+```
+
+
 
 
 
