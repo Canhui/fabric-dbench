@@ -88,7 +88,7 @@ $ cp -r fabric-samples $HOME/fabric-dbench
 
 
 
-## 3. Usage of `step1_config_cluster.sh`
+## 3. Usage of `bin/step1_config_cluster.sh`
 
 #### 3.1. Config the Network (e.g., of 3 organizations)
 
@@ -104,13 +104,13 @@ Then config the network
 $ ./step1_config_cluster.sh
 ```
 
-Go to `$home/fabric-dbench/solo/orderer` directory and run the orderer
+Go to `$home/fabric-dbench/solo/orderer` directory and setup the orderer
 ```shell
 $ cd $home/fabric-dbench/solo/orderer
 $ sudo ./orderer
 ```
 
-Go to `$home/fabric-dbench/solo/peer` directory and run the peer
+Go to `$home/fabric-dbench/solo/peer` directory and setup the peer
 ```shell
 $ cd $home/fabric-dbench/solo/peer
 $ sudo ./peer node start
