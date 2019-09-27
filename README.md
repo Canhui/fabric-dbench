@@ -118,6 +118,8 @@ $ sudo ./peer node start
 
 ## 4. Usage of `bin/step2_config_admins.sh`
 
+#### 4.1. Config the Adminstrators (e.g., of 3 organizations)
+
 Go to `$HOME/fabric-dbench/bin` and config the `step2_config_admins.sh` file
 ```shell
 Number_of_Organizations=3
