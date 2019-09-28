@@ -1,21 +1,19 @@
 ORGS=3
-chaincode_name="demo9"
-channel_name="mychannel9"
-
+chaincode_name="demo2"
+channel_name="mychannel2"
 
 
 echo "------------------------------------------------------------"
 echo "Clean SDK Environment"
 echo "------------------------------------------------------------"
-rm -rf /home/t716/joe/fabric-samples/sdk.org*.example.com
-
+rm -rf /home/t716/fabric-dbench/fabric-samples/sdk.org*.example.com
 
 
 echo "------------------------------------------------------------"
 echo "Org1 Configure Nodejs SDK Environment"
 echo "------------------------------------------------------------"
-mkdir /home/t716/joe/fabric-samples/sdk.org1.example.com
-cat>/home/t716/joe/fabric-samples/sdk.org1.example.com/package.json<<EOF
+mkdir /home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com
+cat>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/package.json<<EOF
 {
     "name": "nodeTest",
     "version": "1.0.0",
@@ -37,7 +35,7 @@ cat>/home/t716/joe/fabric-samples/sdk.org1.example.com/package.json<<EOF
     ]
 }
 EOF
-cd /home/t716/joe/fabric-samples/sdk.org1.example.com
+cd /home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com
 npm install
 
 
@@ -45,7 +43,7 @@ npm install
 echo "------------------------------------------------------------"
 echo "Org1 Creates query.js"
 echo "------------------------------------------------------------"
-cat>/home/t716/joe/fabric-samples/sdk.org1.example.com/query.js<<EOF
+cat>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/query.js<<EOF
 var hfc = require('fabric-client');
 var path = require('path');
 var sdkUtils = require('fabric-client/lib/utils');
@@ -56,9 +54,9 @@ var options = {
     channel_id:'$channel_name',
     chaincode_id:'$chaincode_name',
     network_url:'grpcs://peer0.org1.example.com:7051',
-    privateKeyFolder:'/home/t716/joe/fabric-samples/Admin@org1.example.com/msp/keystore',
-    signedCert:'/home/t716/joe/fabric-samples/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem',
-    tls_cacerts:'/home/t716/joe/fabric-samples/peer0.org1.example.com/tls/ca.crt',
+    privateKeyFolder:'/home/t716/fabric-dbench/fabric-samples/Admin@org1.example.com/msp/keystore',
+    signedCert:'/home/t716/fabric-dbench/fabric-samples/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem',
+    tls_cacerts:'/home/t716/fabric-dbench/fabric-samples/peer0.org1.example.com/tls/ca.crt',
     server_hostname:'peer0.org1.example.com'
 };
 
@@ -129,10 +127,10 @@ Promise.resolve().then(function() {
 });
 EOF
 
-cat>/home/t716/joe/fabric-samples/sdk.org1.example.com/query.sh<<EOF
-node /home/t716/joe/fabric-samples/sdk.org1.example.com/query.js
+cat>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/query.sh<<EOF
+node /home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/query.js
 EOF
-chmod +x /home/t716/joe/fabric-samples/sdk.org1.example.com/query.sh
+chmod +x /home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/query.sh
 
 
 
@@ -141,10 +139,8 @@ echo "Copy SDK query.js to All Peers"
 echo "------------------------------------------------------------"
 for ((i=2;i<=$ORGS;i++))
 do
-    cp -rf  /home/t716/joe/fabric-samples/sdk.org1.example.com/ /home/t716/joe/fabric-samples/sdk.org$i.example.com/
-    sed -i "s/org1/org$i/g" /home/t716/joe/fabric-samples/sdk.org$i.example.com/query.js
-    sed -i "s/Org1/Org$i/g" /home/t716/joe/fabric-samples/sdk.org$i.example.com/query.js
-    sed -i "s/org1/org$i/g" /home/t716/joe/fabric-samples/sdk.org$i.example.com/query.sh
+    cp -rf  /home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/ /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com/
+    sed -i "s/org1/org$i/g" /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com/query.js
+    sed -i "s/Org1/Org$i/g" /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com/query.js
+    sed -i "s/org1/org$i/g" /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com/query.sh
 done
-
-

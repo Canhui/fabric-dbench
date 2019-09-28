@@ -1,6 +1,6 @@
 ORGS=3
-chaincode_name="demo9"
-channel_name="mychannel9"
+chaincode_name="demo2"
+channel_name="mychannel2"
 key="key1"
 value="value1"
 
@@ -8,7 +8,7 @@ value="value1"
 echo "------------------------------------------------------------"
 echo "Clean the Invoke Environment"
 echo "------------------------------------------------------------"
-rm -rf /home/t716/joe/fabric-samples/sdk.org*.example.com/invoke_and_*.js
+rm -rf /home/t716/fabric-dbench/fabric-samples/sdk.org*.example.com/invoke_and_*.js
 
 
 echo "------------------------------------------------------------"
@@ -16,7 +16,7 @@ echo "Each Org Creates Invoke Function under Endorsement Policy 'AND'"
 echo "------------------------------------------------------------"
 
 
-cat>>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js<<EOF
+cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js<<EOF
 'use strict';
 
 var hfc = require('fabric-client'); 
@@ -35,25 +35,25 @@ EOF
 
 for ((i=1;i<=$ORGS;i++))
 do
-	echo "var options$i = {">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-	echo "    user_id: 'Admin@org$i.example.com',">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-	echo "    msp_id:'Org${i}MSP',">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-	echo "    channel_id: '$channel_name',">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-    echo "    chaincode_id: '$chaincode_name',">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-    echo "    peer_url: 'grpcs://peer0.org$i.example.com:7051',// TLS->grpcs; no TLS->grpc">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-    echo "    event_url: 'grpcs://peer0.org$i.example.com:7053',">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-    echo "    orderer_url: 'grpcs://orderer.example.com:7050',">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-    echo "    privateKeyFolder:'/home/t716/joe/fabric-samples/Admin@org$i.example.com/msp/keystore',">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-    echo "    signedCert:'/home/t716/joe/fabric-samples/Admin@org$i.example.com/msp/signcerts/Admin@org$i.example.com-cert.pem',">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-    echo "    peer_tls_cacerts:'/home/t716/joe/fabric-samples/peer0.org$i.example.com/tls/ca.crt',">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-    echo "    orderer_tls_cacerts:'/home/t716/joe/fabric-samples/orderer.example.com/tls/ca.crt',">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-    echo "    server_hostname: \"peer0.org$i.example.com\"">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-    echo "};">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+	echo "var options$i = {">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+	echo "    user_id: 'Admin@org$i.example.com',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+	echo "    msp_id:'Org${i}MSP',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+	echo "    channel_id: '$channel_name',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+    echo "    chaincode_id: '$chaincode_name',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+    echo "    peer_url: 'grpcs://peer0.org$i.example.com:7051',// TLS->grpcs; no TLS->grpc">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+    echo "    event_url: 'grpcs://peer0.org$i.example.com:7053',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+    echo "    orderer_url: 'grpcs://orderer.example.com:7050',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+    echo "    privateKeyFolder:'/home/t716/fabric-dbench/fabric-samples/Admin@org$i.example.com/msp/keystore',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+    echo "    signedCert:'/home/t716/fabric-dbench/fabric-samples/Admin@org$i.example.com/msp/signcerts/Admin@org$i.example.com-cert.pem',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+    echo "    peer_tls_cacerts:'/home/t716/fabric-dbench/fabric-samples/peer0.org$i.example.com/tls/ca.crt',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+    echo "    orderer_tls_cacerts:'/home/t716/fabric-dbench/fabric-samples/orderer.example.com/tls/ca.crt',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+    echo "    server_hostname: \"peer0.org$i.example.com\"">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+    echo "};">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
 done
 
 
 
-cat>>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js<<EOF
+cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js<<EOF
 // Functions to Get the private key files under the keystore directory
 const getKeyFilesInDir = (dir) => { 
         const files = fs.readdirSync(dir) 
@@ -92,36 +92,36 @@ EOF
 
 
 
-echo "//<-------------------------Modification4: Three Data--------------------------------------->">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+echo "//<-------------------------Modification4: Three Data--------------------------------------->">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
 for ((i=1;i<=$ORGS;i++))
 do
-	echo "    let data$i = fs.readFileSync(options$i.peer_tls_cacerts);">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+	echo "    let data$i = fs.readFileSync(options$i.peer_tls_cacerts);">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
 done
 
 
 
-echo "//<-------------------------Modification5: Three Peers--------------------------------------->">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+echo "//<-------------------------Modification5: Three Peers--------------------------------------->">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
 for ((i=1;i<=$ORGS;i++))
 do
-	echo "    let peer$i = client.newPeer(options$i.peer_url,">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-	echo "        {">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-	echo "            pem: Buffer.from(data$i).toString(),">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-	echo "            'ssl-target-name-override': options$i.server_hostname">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-	echo "        }">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-	echo "    );">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+	echo "    let peer$i = client.newPeer(options$i.peer_url,">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+	echo "        {">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+	echo "            pem: Buffer.from(data$i).toString(),">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+	echo "            'ssl-target-name-override': options$i.server_hostname">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+	echo "        }">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+	echo "    );">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
 done
 
 
 
-echo "//<-------------------------Modification6: Three Peers(within one channel)--------------------------------------->">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+echo "//<-------------------------Modification6: Three Peers(within one channel)--------------------------------------->">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
 for ((i=1;i<=$ORGS;i++))
 do
-	echo "    channel.addPeer(peer$i);">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+	echo "    channel.addPeer(peer$i);">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
 done
 
 
 
-cat>>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js<<EOF
+cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js<<EOF
     // Handle the TLS files for the orderer
     let odata = fs.readFileSync(optionsIDXXX.orderer_tls_cacerts); 
     let caroots = Buffer.from(odata).toString(); 
@@ -134,15 +134,15 @@ EOF
 
 
 
-echo "//<-------------------------Modification7: Three Peers--------------------------------------->">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+echo "//<-------------------------Modification7: Three Peers--------------------------------------->">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
 for ((i=1;i<=$ORGS;i++))
 do
-    echo "    targets.push(peer$i);">>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+    echo "    targets.push(peer$i);">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
 done
 
 
 
-cat>>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js<<EOF
+cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js<<EOF
     return; 
 }).then(() => { 
 	// get a transaction id object based on the current user assigned to fabric client
@@ -261,10 +261,10 @@ EOF
 
 
 
-cat>/home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.sh<<EOF
-node /home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+cat>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.sh<<EOF
+node /home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
 EOF
-chmod +x /home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.sh
+chmod +x /home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.sh
 
 
 
@@ -273,14 +273,14 @@ echo "Copy SDK invoke_and_all_orgs.js to All Peers"
 echo "------------------------------------------------------------"
 for ((i=2;i<=$ORGS;i++))
 do
-	cp -rf /home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js /home/t716/joe/fabric-samples/sdk.org$i.example.com
-	cp -rf /home/t716/joe/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js /home/t716/joe/fabric-samples/sdk.org$i.example.com/invoke_and_all_orgs.sh
-	sed -i "s/org1/org$i/g" /home/t716/joe/fabric-samples/sdk.org$i.example.com/invoke_and_all_orgs.sh
+	cp -rf /home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com
+	cp -rf /home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com/invoke_and_all_orgs.sh
+	sed -i "s/org1/org$i/g" /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com/invoke_and_all_orgs.sh
 done
 
 
 
 for ((i=1;i<=$ORGS;i++))
 do
-	sed -i "s/IDXXX/$i/g" /home/t716/joe/fabric-samples/sdk.org$i.example.com/invoke_and_all_orgs.js
+	sed -i "s/IDXXX/$i/g" /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com/invoke_and_all_orgs.js
 done
