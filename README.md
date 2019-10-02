@@ -173,7 +173,7 @@ $ ./step3_config_channel.sh
 ```
 
 
-**Note1:** Modify `ORGS` of file `run/step3_1.sh` to add more peers.
+**Note1:** Modify `ORGS` of file `run/step3_1.sh` to add more peers.<br/>
 **Note2:** Modify `channel_name` of file `run/step3_1.sh` to create another new channel.
 
 
@@ -193,9 +193,9 @@ $ ./step4_config_chaincode.sh
 ```
 
 
-**Note1:** Modify `ORGS` of the file `run/step4_1.sh` to add more peers.
-**Note2:** Modify `chaincode_name` of the file `run/step4_1.sh` to create another new chaincode.
-**Note3:** Modify `endorsement_policy` of the file `run/step4_1.sh` to create another new endorsement policy.
+**Note1:** Modify `ORGS` of the file `run/step4_1.sh` to add more peers.<br/>
+**Note2:** Modify `chaincode_name` of the file `run/step4_1.sh` to create another new chaincode.<br/>
+**Note3:** Modify `endorsement_policy` of the file `run/step4_1.sh` to create another new endorsement policy.<br/>
 **Note4:** Modify `channel_name` of the file `run/step4_1.sh` to use the channel we created previously.
 
 
