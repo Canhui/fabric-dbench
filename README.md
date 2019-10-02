@@ -6,7 +6,8 @@
 
 #### 1.1. Hyperledger Fabric v1.4.0
 
-Install the Hyperledger Fabric v1.4.0 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric), and be able to run the `/fabric-samples/first-network` successfully.
+Install the Hyperledger Fabric v1.4.0 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric) and ensure running `fabric-samples/first-network` successfully.
+
 
 
 #### 1.2. The Hosts File
@@ -45,10 +46,20 @@ $ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.0-
 ```
 
 
+#### 2.2. Add an execution authority to .sh files
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples
+$ sudo chmod +x *.sh
+$ cd $HOME/fabric-dbench/fabric-samples/run
+$ sudo chmod +x *.sh
+```
 
 
 
-## 3. Usage of `bin/step1_config_cluster.sh`
+
+## 3. Usage of `fabric-dbench/fabric-samples/run1_config_network.sh`
+
 
 #### 3.1. Config the Network (e.g., of 3 organizations)
 
@@ -58,6 +69,8 @@ Hostname="t716"
 Password="T716rrs722"
 Number_of_Organizations=3
 ```
+
+
 
 then config the network
 ```shell
@@ -141,4 +154,7 @@ Clean the configuration files
 
 
 
+./peer.sh chaincode invoke -o orderer.example.com:7050  --tls true --cafile ./tlsca.example.com-cert.pem -C mychannel1 -n demo1 -c '{"Args":["write","key1","key1valueisabc"]}'
+
+./peer.sh chaincode query -C mychannel1 -n demo1 -c '{"Args":["query","key1"]}'
 
