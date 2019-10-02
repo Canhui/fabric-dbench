@@ -68,7 +68,79 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 
 #### 1.3. Prepare the Kafka/Zookeeper Cluster
 
-Here we need to write something to setup the kafka/zookeeper cluster.
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run0_config_zkkafka.sh` to configure the kafka/zookeeper cluster.
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples
+$ ./run0_config_zkkafka.sh
+```
+
+Go to `zookeeper1` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the zookeeper.
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/zookeeper-server-start.sh config/zookeeper-1.properties
+```
+
+
+Go to `zookeeper2` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the zookeeper.
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/zookeeper-server-start.sh config/zookeeper-2.properties
+```
+
+Go to `zookeeper3` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the zookeeper.
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/zookeeper-server-start.sh config/zookeeper-3.properties
+```
+
+
+
+Go to `zookeeper1` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the kafka server (i.e., broker).
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/kafka-server-start.sh config/server-1.properties
+```
+
+
+Go to `zookeeper2` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the kafka server (i.e., broker).
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/kafka-server-start.sh config/server-2.properties
+```
+
+
+Go to `zookeeper3` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the kafka server (i.e., broker).
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/kafka-server-start.sh config/server-3.properties
+```
+
+
+
+One zookeeper node creates a topic. Go to `zookeeper1` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Create a new topic which should has the same name with fabric channel that you are going to make use of.
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mychannel
+```
+
+
+The rest of zookeepers make use of the topic. List tpics
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/kafka-topics.sh --list --zookeeper localhost:2181
+```
+
+
+
 
 
 
@@ -82,81 +154,252 @@ Download the source code to your `$HOME` directory
 
 ```shell
 $ cd $HOME
-$ git clone https://github.com/Canhui/fabric-dbench.git
+$ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.0-kafka
 ```
 
 
-#### 2.2. Copy fabric-samples to fabric-dbench
+#### 2.2. Add an execution authority to .sh files
 
-Copy the `fabric-samples` to the directory of `$HOME/fabric-dbench`
 
 ```shell
-$ cd $HOME
-$ cp -r fabric-samples $HOME/fabric-dbench
+$ cd $HOME/fabric-dbench/fabric-samples
+$ sudo chmod +x *.sh
+$ cd $HOME/fabric-dbench/fabric-samples/run
+$ sudo chmod +x *.sh
 ```
 
 
 
 
-## 3. Usage of `bin/step1_config_cluster.sh`
+
+
+
+## 3. Usage of `run1_config_network.sh`
+
 
 #### 3.1. Config the Network (e.g., of 3 organizations)
 
-Go to `$HOME/fabric-dbench/bin` and config the `step1_config_cluster.sh` file
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run1_config_network.sh` to configure the network.
+
 ```shell
-Hostname="t716"
-Password="T716rrs722"
-Number_of_Organizations=3
+$ cd $HOME/fabric-dbench/fabric-samples 
+$ ./run1_config_network.sh
 ```
 
-then config the network
-```shell
-$ ./step1_config_cluster.sh
-```
 
-Go to `$home/fabric-dbench/solo/orderer` directory and setup the orderer
+Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
+
 ```shell
-$ cd $home/fabric-dbench/solo/orderer
+$ cd $HOME/fabric-dbench/fabric-run/orderer
 $ sudo ./orderer
 ```
 
-Go to `$home/fabric-dbench/solo/peer` directory and setup the peer
+Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
+
 ```shell
-$ cd $home/fabric-dbench/solo/peer
+$ cd $HOME/fabric-dbench/fabric-run/orderer
+$ sudo ./orderer
+```
+
+Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-run/orderer
+$ sudo ./orderer
+```
+
+
+Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-run/peer
 $ sudo ./peer node start
 ```
 
-## 4. Usage of `bin/step2_config_admins.sh`
+
+Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-run/peer
+$ sudo ./peer node start
+```
+
+
+Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-run/peer
+$ sudo ./peer node start
+```
+
+
+**Note:** Modify `ORGS` of files `run/step1_5.sh`, `run/step1_7.sh` to add more peers.
+
+
+
+
+
+
+
+## 4. Usage of `step2_config_admins.sh`
 
 #### 4.1. Config the Adminstrators (e.g., of 3 organizations)
 
-Go to `$HOME/fabric-dbench/bin` and config the `step2_config_admins.sh` file
-```shell
-Number_of_Organizations=3
-```
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run2_config_admins.sh` to configure the administrators.
 
-then config the administrators 
 ```shell
+$ cd $HOME/fabric-dbench/fabric-samples
 $ ./step2_config_admins.sh
 ```
 
-Go to `$HOME/fabric-dbench/Admin@org1.example.com` directory and check the adminstrator of the first organization
+
+
+
+Go to `$HOME/fabric-dbench/fabric-samples/Admin@org1.example.com` directory and check the adminstrator of the first organization.
+
 ```shell
-$ cd $HOME/fabric-dbench/Admin@org1.example.com
+$ cd $HOME/fabric-dbench/fabric-samples/Admin@org1.example.com
 $ ./peer.sh node status
 ```
 
-Go to `$HOME/fabric-dbench/Admin@org2.example.com` directory and check the adminstrator of the second organization
+
+
+Go to `$HOME/fabric-dbench/fabric-samples/Admin@org2.example.com` directory and check the adminstrator of the second organization
 ```shell
-$ cd $HOME/fabric-dbench/Admin@org2.example.com
+$ cd $HOME/fabric-dbench/fabric-samples/Admin@org2.example.com
 $ ./peer.sh node status
 ```
 
-Go to `$HOME/fabric-dbench/Admin@org3.example.com` directory and check the adminstrator of the second organization
+
+
+
+Go to `$HOME/fabric-dbench/fabric-samples/Admin@org3.example.com` directory and check the adminstrator of the second organization
 ```shell
-$ cd $HOME/fabric-dbench/Admin@org3.example.com
+$ cd $HOME/fabric-dbench/fabric-samples/Admin@org3.example.com
 $ ./peer.sh node status
 ```
+
+**Note:** Modify `ORGS` of file `run/step2_1.sh` to add more peers.
+
+
+
+
+
+
+
+## 5. Usage of `run3_config_channel.sh`
+
+#### 5.1. Config the Channels (e.g., of 3 organizations)
+
+
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run3_config_channel.sh` to setup a new channel named "mychannel2".
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples
+$ ./step3_config_channel.sh
+```
+
+
+**Note1:** Modify `ORGS` of file `run/step3_1.sh` to add more peers.<br/>
+**Note2:** Modify `channel_name` of file `run/step3_1.sh` to create another new channel.
+
+
+
+
+
+## 6. Usage of `run4_config_chaincode.sh`
+
+#### 6.1. Config the Chaincodes (e.g., of 3 organizations)
+
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run4_config_chaincode.sh` to create a new chaincode under the channel we created previously.
+
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples
+$ ./step4_config_chaincode.sh
+```
+
+
+**Note1:** Modify `ORGS` of the file `run/step4_1.sh` to add more peers.<br/>
+**Note2:** Modify `chaincode_name` of the file `run/step4_1.sh` to create another new chaincode.<br/>
+**Note3:** Modify `endorsement_policy` of the file `run/step4_1.sh` to create another new endorsement policy.<br/>
+**Note4:** Modify `channel_name` of the file `run/step4_1.sh` to use the channel we created previously.
+
+
+
+
+
+
+## 7. Usage of `run5_config_and_sdk.sh`
+
+#### 7.1. Config the SDK for "AND" Endorsement Policy (e.g., of 3 organizations)
+
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run5_config_and_sdk.sh` to configure a sdk for each peer using the "OR" endorsement policy.
+
+
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples
+$ ./run5_config_or_sdk.sh
+```
+
+Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org1.example.com` directory. Invoke a new transaction. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples/sdk.org1.example.com
+$ node invoke_and_all_orgs.js
+```
+
+Query a transaction. 
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples/sdk.org1.example.com
+$ node query.js
+```
+
+
+Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org2.example.com` directory. Invoke a new transaction. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples/sdk.org2.example.com
+$ node invoke_and_all_orgs.js
+```
+
+Query a transaction. 
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples/sdk.org2.example.com
+$ node query.js
+```
+
+
+Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org3.example.com` directory. Invoke a new transaction. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples/sdk.org3.example.com
+$ node invoke_and_all_orgs.js
+```
+
+Query a transaction. 
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples/sdk.org3.example.com
+$ node query.js
+```
+
+
+
+
+
+
+
+
+
+
+
+**Note1:** Modify `ORGS` of the file `run/step5_1.sh` to add more peers. <br/>
+**Note2:** Modify `chaincode_name` of the file `run/step5_1.sh` to make use of the chaincode we created previously.<br/>
+**Note3:** Modify `channel_name` of the file `run/step4_1.sh` to make use of the channel we created previously.<br/>
+**Note4:** Modify `endorsement_policy` of the file `run/step4_1.sh` to make use of the endorsement policy we created previously.
+
+
 
 
 
@@ -188,7 +431,3 @@ Clean the configuration files
 ```shell
 ./step2_cleanup.sh
 ``` -->
-
-
-
-
