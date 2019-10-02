@@ -17,7 +17,9 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 # ---------------------------------------------------------------------------
 # Hyperledger Cluster Configuration - Pls contact chwang@comp.hkbu.edu.hk Thx.
 # ---------------------------------------------------------------------------
-192.168.0.101 orderer.example.com
+192.168.0.101 orderer1.example.com
+192.168.0.103 orderer3.example.com
+192.168.0.104 orderer4.example.com
 192.168.0.101 peer0.org1.example.com
 192.168.0.103 peer0.org2.example.com
 192.168.0.104 peer0.org3.example.com
@@ -63,6 +65,14 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 192.168.0.116 broker11
 192.168.0.119 broker12
 ```
+
+#### 1.3. Prepare the Kafka/Zookeeper Cluster
+
+Here we need to write something to setup the kafka/zookeeper cluster.
+
+
+
+
 
 ## 2. Setup
 
