@@ -30,11 +30,11 @@ var options = {
     chaincode_id: '$chaincode_name', 
     peer_url: 'grpcs://localhost:7051',// TLS->grpcs; no TLS->grpc 
     event_url: 'grpcs://localhost:7053',
-    orderer_url: 'grpcs://orderer.example.com:7050',
+    orderer_url: 'grpcs://orderer1.example.com:7050',
     privateKeyFolder:'/home/t716/fabric-dbench/fabric-samples/Admin@org1.example.com/msp/keystore', 
     signedCert:'/home/t716/fabric-dbench/fabric-samples/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem', 
     peer_tls_cacerts:'/home/t716/fabric-dbench/fabric-samples/peer0.org1.example.com/tls/ca.crt', 
-    orderer_tls_cacerts:'/home/t716/fabric-dbench/fabric-samples/orderer.example.com/tls/ca.crt', 
+    orderer_tls_cacerts:'/home/t716/fabric-dbench/fabric-samples/orderer1.example.com/tls/ca.crt', 
     server_hostname: "peer0.org1.example.com" 
 };
 
@@ -91,7 +91,7 @@ return sdkUtils.newKeyValueStore({
     let caroots = Buffer.from(odata).toString(); 
     var orderer = client.newOrderer(options.orderer_url, { 
         'pem': caroots, 
-        'ssl-target-name-override': "orderer.example.com" 
+        'ssl-target-name-override': "orderer1.example.com" 
     }); 
     channel.addOrderer(orderer); 
     targets.push(peer); 
@@ -224,3 +224,17 @@ do
     cp -rf /home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_or_individual.sh /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com/invoke_or_individual.sh
 	sed -i "s/org1/org$i/g" /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com/invoke_or_individual.sh
 done
+
+
+# copy sdk files to each remote peer
+
+for ((i=2;i<=$ORGS;i++))
+do
+    ssh t716@peer0.org$i.example.com "echo [T716rrs722] | sudo rm -rf $HOME/fabric-dbench/fabric-samples"
+done
+
+for ((i=2;i<=$ORGS;i++))
+do
+    scp -r /home/t716/fabric-dbench/fabric-samples t716@peer0.org$i.example.com:/home/t716/fabric-dbench
+done
+

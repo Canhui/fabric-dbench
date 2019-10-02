@@ -110,37 +110,169 @@ $ sudo ./peer node start
 
 
 
-## 4. Usage of `bin/step2_config_admins.sh`
+## 4. Usage of `step2_config_admins.sh`
 
 #### 4.1. Config the Adminstrators (e.g., of 3 organizations)
 
-Go to `$HOME/fabric-dbench/bin` and config the `step2_config_admins.sh` file
-```shell
-Number_of_Organizations=3
-```
 
-then config the administrators 
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run2_config_admins.sh` to configure the administrators.
+
 ```shell
+$ cd $HOME/fabric-dbench/fabric-samples
 $ ./step2_config_admins.sh
 ```
 
-Go to `$HOME/fabric-dbench/Admin@org1.example.com` directory and check the adminstrator of the first organization
+
+
+
+
+
+
+Go to `$HOME/fabric-dbench/fabric-samples/Admin@org1.example.com` directory and check the adminstrator of the first organization.
+
 ```shell
-$ cd $HOME/fabric-dbench/Admin@org1.example.com
+$ cd $HOME/fabric-dbench/fabric-samples/Admin@org1.example.com
 $ ./peer.sh node status
 ```
 
-Go to `$HOME/fabric-dbench/Admin@org2.example.com` directory and check the adminstrator of the second organization
+
+
+Go to `$HOME/fabric-dbench/fabric-samples/Admin@org2.example.com` directory and check the adminstrator of the second organization
 ```shell
-$ cd $HOME/fabric-dbench/Admin@org2.example.com
+$ cd $HOME/fabric-dbench/fabric-samples/Admin@org2.example.com
 $ ./peer.sh node status
 ```
 
-Go to `$HOME/fabric-dbench/Admin@org3.example.com` directory and check the adminstrator of the second organization
+
+
+
+Go to `$HOME/fabric-dbench/fabric-samples/Admin@org3.example.com` directory and check the adminstrator of the second organization
 ```shell
-$ cd $HOME/fabric-dbench/Admin@org3.example.com
+$ cd $HOME/fabric-dbench/fabric-samples/Admin@org3.example.com
 $ ./peer.sh node status
 ```
+
+**Note:** Modify `ORGS` of file `run/step2_1.sh` to add more peers.
+
+
+
+
+
+
+
+## 5. Usage of `run3_config_channel.sh`
+
+#### 5.1. Config the Channels (e.g., of 3 organizations)
+
+
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run3_config_channel.sh` to setup a new channel named "mychannel2".
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples
+$ ./step3_config_channel.sh
+```
+
+
+**Note1:** Modify `ORGS` of file `run/step3_1.sh` to add more peers.
+**Note2:** Modify `channel_name` of file `run/step3_1.sh` to create another new channel.
+
+
+
+
+
+## 6. Usage of `run4_config_chaincode.sh`
+
+#### 6.1. Config the Chaincodes (e.g., of 3 organizations)
+
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run4_config_chaincode.sh` to create a new chaincode under the channel we created previously.
+
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples
+$ ./step4_config_chaincode.sh
+```
+
+
+**Note1:** Modify `ORGS` of the file `run/step4_1.sh` to add more peers.
+**Note2:** Modify `chaincode_name` of the file `run/step4_1.sh` to create another new chaincode.
+**Note3:** Modify `endorsement_policy` of the file `run/step4_1.sh` to create another new endorsement policy.
+**Note4:** Modify `channel_name` of the file `run/step4_1.sh` to use the channel we created previously.
+
+
+
+
+
+
+## 7. Usage of `run5_config_and_sdk.sh`
+
+#### 7.1. Config the SDK for "AND" Endorsement Policy (e.g., of 3 organizations)
+
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run5_config_and_sdk.sh` to configure a sdk for each peer using the "OR" endorsement policy.
+
+
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples
+$ ./run5_config_or_sdk.sh
+```
+
+Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org1.example.com` directory. Invoke a new transaction. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples/sdk.org1.example.com
+$ node invoke_and_all_orgs.js
+```
+
+Query a transaction. 
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples/sdk.org1.example.com
+$ node query.js
+```
+
+
+Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org2.example.com` directory. Invoke a new transaction. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples/sdk.org2.example.com
+$ node invoke_and_all_orgs.js
+```
+
+Query a transaction. 
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples/sdk.org2.example.com
+$ node query.js
+```
+
+
+Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org3.example.com` directory. Invoke a new transaction. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples/sdk.org3.example.com
+$ node invoke_and_all_orgs.js
+```
+
+Query a transaction. 
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples/sdk.org3.example.com
+$ node query.js
+```
+
+
+
+
+
+
+
+
+
+
+
+**Note1:** Modify `ORGS` of the file `run/step5_1.sh` to add more peers.
+**Note2:** Modify `chaincode_name` of the file `run/step5_1.sh` to make use of the chaincode we created previously.
+**Note3:** Modify `channel_name` of the file `run/step4_1.sh` to make use of the channel we created previously.
+**Note4:** Modify `endorsement_policy` of the file `run/step4_1.sh` to make use of the endorsement policy we created previously.
+
+
 
 
 

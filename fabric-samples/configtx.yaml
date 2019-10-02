@@ -233,7 +233,7 @@ Orderer: &OrdererDefaults
     OrdererType: solo
  
     Addresses:
-        - orderer.example.com:7050
+        - orderer1.example.com:7050
         # - orderer0.example.com:7050
         # - orderer1.example.com:7050
         # - orderer2.example.com:7050

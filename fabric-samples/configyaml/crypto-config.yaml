@@ -7,7 +7,7 @@ OrdererOrgs:
         Province: HongKong
         Locality: HongKong
     Specs:
-      - Hostname: orderer
+      - Hostname: orderer1
       
 PeerOrgs:
   - Name: Org1

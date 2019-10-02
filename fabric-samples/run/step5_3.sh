@@ -42,11 +42,11 @@ do
     echo "    chaincode_id: '$chaincode_name',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
     echo "    peer_url: 'grpcs://peer0.org$i.example.com:7051',// TLS->grpcs; no TLS->grpc">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
     echo "    event_url: 'grpcs://peer0.org$i.example.com:7053',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-    echo "    orderer_url: 'grpcs://orderer.example.com:7050',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+    echo "    orderer_url: 'grpcs://orderer1.example.com:7050',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
     echo "    privateKeyFolder:'/home/t716/fabric-dbench/fabric-samples/Admin@org$i.example.com/msp/keystore',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
     echo "    signedCert:'/home/t716/fabric-dbench/fabric-samples/Admin@org$i.example.com/msp/signcerts/Admin@org$i.example.com-cert.pem',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
     echo "    peer_tls_cacerts:'/home/t716/fabric-dbench/fabric-samples/peer0.org$i.example.com/tls/ca.crt',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
-    echo "    orderer_tls_cacerts:'/home/t716/fabric-dbench/fabric-samples/orderer.example.com/tls/ca.crt',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
+    echo "    orderer_tls_cacerts:'/home/t716/fabric-dbench/fabric-samples/orderer1.example.com/tls/ca.crt',">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
     echo "    server_hostname: \"peer0.org$i.example.com\"">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
     echo "};">>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js
 done
@@ -127,7 +127,7 @@ cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all
     let caroots = Buffer.from(odata).toString(); 
     var orderer = client.newOrderer(optionsIDXXX.orderer_url, { 
         'pem': caroots, 
-        'ssl-target-name-override': "orderer.example.com" 
+        'ssl-target-name-override': "orderer1.example.com" 
     }); 
     channel.addOrderer(orderer);
 EOF
@@ -283,4 +283,16 @@ done
 for ((i=1;i<=$ORGS;i++))
 do
 	sed -i "s/IDXXX/$i/g" /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com/invoke_and_all_orgs.js
+done
+
+# copy sdk files to each remote peer
+
+for ((i=2;i<=$ORGS;i++))
+do
+    ssh t716@peer0.org$i.example.com "echo [T716rrs722] | sudo rm -rf $HOME/fabric-dbench/fabric-samples"
+done
+
+for ((i=2;i<=$ORGS;i++))
+do
+    scp -r /home/t716/fabric-dbench/fabric-samples t716@peer0.org$i.example.com:/home/t716/fabric-dbench
 done

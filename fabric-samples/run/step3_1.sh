@@ -37,7 +37,7 @@ echo "------------------------------------------------------------"
 echo "Org1 Generates Channel.block and Copy Channel.block to channeltx Folder"
 echo "------------------------------------------------------------"
 cd /home/t716/fabric-dbench/fabric-samples/Admin\@org1.example.com
-/home/t716/fabric-dbench/fabric-samples/Admin\@org1.example.com/peer.sh channel create -o orderer.example.com:7050 -c $channel_name -f /home/t716/fabric-dbench/fabric-samples/channeltx/$channel_name.tx --tls true --cafile tlsca.example.com-cert.pem
+/home/t716/fabric-dbench/fabric-samples/Admin\@org1.example.com/peer.sh channel create -o orderer1.example.com:7050 -c $channel_name -f /home/t716/fabric-dbench/fabric-samples/channeltx/$channel_name.tx --tls true --cafile tlsca.example.com-cert.pem
 cp $channel_name.block /home/t716/fabric-dbench/fabric-samples/channeltx/
 
 
