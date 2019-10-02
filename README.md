@@ -1,5 +1,7 @@
 **Fabric-DBench** is a distributed benchmark platform for Hyperledger Fabric.
 
+## 0. Releases
++ release-v1.4.0-solo https://github.com/Canhui/fabric-dbench/tree/release-v1.4.0-solo
 
 
 ## 1. Prerequirements
