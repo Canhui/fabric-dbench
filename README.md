@@ -58,36 +58,57 @@ $ sudo chmod +x *.sh
 
 
 
-## 3. Usage of `fabric-dbench/fabric-samples/run1_config_network.sh`
+## 3. Usage of `run1_config_network.sh`
 
 
 #### 3.1. Config the Network (e.g., of 3 organizations)
 
-Go to `$HOME/fabric-dbench/bin` and config the `step1_config_cluster.sh` file
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run1_config_network.sh` to configure the network.
+
 ```shell
-Hostname="t716"
-Password="T716rrs722"
-Number_of_Organizations=3
+$ cd $HOME/fabric-dbench/fabric-samples 
+$ ./run1_config_network.sh
 ```
 
 
+Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
 
-then config the network
 ```shell
-$ ./step1_config_cluster.sh
-```
-
-Go to `$home/fabric-dbench/solo/orderer` directory and setup the orderer
-```shell
-$ cd $home/fabric-dbench/solo/orderer
+$ cd $HOME/fabric-dbench/fabric-run/orderer
 $ sudo ./orderer
 ```
 
-Go to `$home/fabric-dbench/solo/peer` directory and setup the peer
+
+Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
+
 ```shell
-$ cd $home/fabric-dbench/solo/peer
+$ cd $HOME/fabric-dbench/fabric-run/peer
 $ sudo ./peer node start
 ```
+
+
+Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-run/peer
+$ sudo ./peer node start
+```
+
+
+Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-run/peer
+$ sudo ./peer node start
+```
+
+**Note:** Modify `ORGS` of files `run/step1_5.sh`, `run/step1_7.sh` to add more peers.
+
+
+
+
+
+
 
 ## 4. Usage of `bin/step2_config_admins.sh`
 
