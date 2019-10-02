@@ -306,8 +306,3 @@ Clean the configuration files
 ``` -->
 
 
-
-./peer.sh chaincode invoke -o orderer.example.com:7050  --tls true --cafile ./tlsca.example.com-cert.pem -C mychannel1 -n demo1 -c '{"Args":["write","key1","key1valueisabc"]}'
-
-./peer.sh chaincode query -C mychannel1 -n demo1 -c '{"Args":["query","key1"]}'
-
