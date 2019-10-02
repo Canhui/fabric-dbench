@@ -267,8 +267,7 @@ $ node query.js
 
 
 
-**Note1:** Modify `ORGS` of the file `run/step5_1.sh` to add more peers.
-
+**Note1:** Modify `ORGS` of the file `run/step5_1.sh` to add more peers. <br/>
 **Note2:** Modify `chaincode_name` of the file `run/step5_1.sh` to make use of the chaincode we created previously.
 
 **Note3:** Modify `channel_name` of the file `run/step4_1.sh` to make use of the channel we created previously.
