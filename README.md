@@ -158,7 +158,7 @@ Download the source code to your `$HOME` directory
 
 ```shell
 $ cd $HOME
-$ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.0-kafka
+$ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.1-kafka
 ```
 
 
