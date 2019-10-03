@@ -34,3 +34,4 @@ cd /home/t716/fabric-dbench/fabric-samples/Admin\@org1.example.com/
 
 #./peer.sh chaincode instantiate -o orderer.example.com:7050 --tls true --cafile ./tlsca.example.com-cert.pem -C $channel_name -n $chaincode_name -v 0.0.1 -c '{"Args":["init"]}' -P "OR('Org1MSP.member','Org2MSP.member')"
 
+

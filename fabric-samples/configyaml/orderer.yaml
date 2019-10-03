@@ -36,8 +36,8 @@ General:
         Certificate: tls/server.crt
         RootCAs:
           - tls/ca.crt
-#        ClientAuthRequired: false
-#        ClientRootCAs:
+        #ClientAuthRequired: false
+        #ClientRootCAs:
     # Keepalive settings for the GRPC server.
     Keepalive:
         # ServerMinInterval is the minimum permitted time between client pings.
@@ -81,7 +81,6 @@ General:
     #  - provisional: Utilizes a genesis profile, specified by GenesisProfile,
     #                 to dynamically generate a new genesis block.
     #  - file: Uses the file provided by GenesisFile as the genesis block.
-    # GenesisMethod: provisional
     GenesisMethod: file
 
     # Genesis profile: The profile to use to dynamically generate the genesis
@@ -106,8 +105,7 @@ General:
     # ID of one of the organizations defined in the orderer system channel's
     # /Channel/Orderer configuration. The sample organization defined in the
     # sample configuration provided has an MSP ID of "SampleOrg".
-    # LocalMSPID: SampleOrg
-    LocalMSPID: OrdererMSP    
+    LocalMSPID: OrdererMSP
 
     # Enable an HTTP service for Go "pprof" profiling as documented at:
     # https://golang.org/pkg/net/http/pprof
@@ -156,7 +154,6 @@ FileLedger:
     # Location: The directory to store the blocks in.
     # NOTE: If this is unset, a new temporary location will be chosen every time
     # the orderer is restarted, using the prefix specified by Prefix.
-    # Location: /var/hyperledger/production/orderer
     Location: /home/t716/fabric-dbench/fabric-run/orderer/data
 
     # The prefix to use when generating a ledger directory in temporary space.

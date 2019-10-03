@@ -79,8 +79,7 @@ peer:
         # Important: The endpoints here have to be endpoints of peers in the same
         # organization, because the peer would refuse connecting to these endpoints
         # unless they are in the same organization as the peer.
-        # bootstrap: 127.0.0.1:7051
-        bootstrap: peer0.org1.example.com:7051    
+        bootstrap: 127.0.0.1:7051
 
         # NOTE: orgLeader and useLeaderElection parameters are mutual exclusive.
         # Setting both to true would result in the termination of the peer
@@ -197,6 +196,10 @@ peer:
             reconcileSleepInterval: 1m
             # reconciliationEnabled is a flag that indicates whether private data reconciliation is enable or not.
             reconciliationEnabled: true
+            # skipPullingInvalidTransactionsDuringCommit is a flag that indicates whether pulling of invalid
+            # transaction's private data from other peers need to be skipped during the commit time and pulled
+            # only through reconciler.
+            skipPullingInvalidTransactionsDuringCommit: false
 
         # Gossip state transfer related configuration
         state:
@@ -265,8 +268,7 @@ peer:
     # Path on the file system where peer will store data (eg ledger). This
     # location must be access control protected to prevent unintended
     # modification that might corrupt the peer operations.
-    # fileSystemPath: /var/hyperledger/production
-    fileSystemPath: /home/t716/fabric-dbench/fabric-run/peer/data    
+    fileSystemPath: /var/hyperledger/production
 
     # BCCSP (Blockchain crypto provider): Select which crypto implementation or
     # library to use
@@ -306,7 +308,6 @@ peer:
     # to match the name of one of the MSPs in each of the channel
     # that this peer is a member of. Otherwise this peer's messages
     # will not be identified as valid by other nodes.
-    # localMspId: SampleOrg
     localMspId: Org1MSP
 
     # CLI common client config options
