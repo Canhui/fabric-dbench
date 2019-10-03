@@ -93,4 +93,3 @@ do
     scp -r /home/t716/fabric-dbench/kafka_2.12-2.3.0 t716@zookeeper$i:/home/t716/fabric-dbench
 done
 
-

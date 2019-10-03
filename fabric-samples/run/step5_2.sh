@@ -17,7 +17,6 @@ echo "Each Org Creates Invoke Function under Endorsement Policy 'OR'"
 echo "------------------------------------------------------------"
 cat>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_or_individual.js<<EOF
 'use strict';
-
 var hfc = require('fabric-client'); 
 var path = require('path'); 
 var util = require('util'); 
@@ -37,15 +36,12 @@ var options = {
     orderer_tls_cacerts:'/home/t716/fabric-dbench/fabric-samples/orderer1.example.com/tls/ca.crt', 
     server_hostname: "peer0.org1.example.com" 
 };
-
 var channel = {}; 
 var client = null; 
 var targets = []; 
 var tx_id = null; 
 var start_counter;
 var end_counter;
-
-
 // Functions to Get the private key files under the keystore directory
 const getKeyFilesInDir = (dir) => { 
         const files = fs.readdirSync(dir) 
@@ -58,7 +54,6 @@ const getKeyFilesInDir = (dir) => {
         }) 
         return keyFiles 
 }
-
 // Get the the private key files under the keystore directory
 Promise.resolve().then(() => { 
     client = new hfc(); 
@@ -99,7 +94,6 @@ return sdkUtils.newKeyValueStore({
 }).then(() => { 
 	// get a transaction id object based on the current user assigned to fabric client
 	tx_id = client.newTransactionID();  
-
     function makeid(length) {
        var result           = '';
        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -109,7 +103,6 @@ return sdkUtils.newKeyValueStore({
        }
         return result;
     }
-
     var request = { 
         targets: targets, 
         chaincodeId: options.chaincode_id, 
@@ -119,7 +112,6 @@ return sdkUtils.newKeyValueStore({
         chainId: options.channel_id, 
         txId: tx_id 
     }; 
-
 	// Peer received proposal result of proposed transaction
     return channel.sendTransactionProposal(request); 
 }).then((results) => { 
@@ -134,9 +126,7 @@ return sdkUtils.newKeyValueStore({
     } else { 
         console.error('transaction_proposal_was_bad: %j', Date.now()/1000); 
     }
-
  	if (isProposalGood) {
-
 		var request = {
             proposalResponses: proposalResponses,
             proposal: proposal
@@ -144,13 +134,10 @@ return sdkUtils.newKeyValueStore({
 		var transaction_id_string = tx_id.getTransactionID(); //Get the transaction ID string to be used by the event processing
         var promises = [];
 		var sendPromise = channel.sendTransaction(request);
-
         // Peer sends the successful proposed transaction
         start_counter = Date.now()/1000;
         promises.push(sendPromise); //we want the send transaction first, so that we know where to check status		
-
         let event_hub = channel.newChannelEventHub('localhost:7051');
-
         // EventHub to listen whenther the transaction has been fianlly accepted
         let data = fs.readFileSync(options.peer_tls_cacerts);
         let grpcOpts = {
@@ -187,7 +174,6 @@ return sdkUtils.newKeyValueStore({
         //console.error([Date.now()/1000],'Failed to send Proposal or receive valid response. Response null or status is not 200. exiting...');
         throw new Error('Failed to send Proposal or receive valid response. Response null or status is not 200. exiting...');
     } 
-
 }).then((results) => {
     var end_counter = Date.now()/1000;
     console.log(end_counter-start_counter+','+ Date.now()/1000)
@@ -195,7 +181,6 @@ return sdkUtils.newKeyValueStore({
     } else {
         console.error('Failed to order the transaction. Error code: ' + response.status);
     }
-
     if(results && results[1] && results[1].event_status === 'VALID') {
     } else {
         console.log('Transaction failed to be committed to the ledger due to ::'+results[1].event_status);

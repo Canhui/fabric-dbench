@@ -59,7 +59,6 @@ var options = {
     tls_cacerts:'/home/t716/fabric-dbench/fabric-samples/peer0.org1.example.com/tls/ca.crt',
     server_hostname:'peer0.org1.example.com'
 };
-
 var channel = {};
 var client = null;
 const getKeyFilesInDir = function(dir) {
@@ -73,7 +72,6 @@ const getKeyFilesInDir = function(dir) {
     });
     return keyFiles;
 };
-
 Promise.resolve().then(function() {
     console.log('Load privateKey and signedCert');
     client = new hfc();
@@ -82,7 +80,6 @@ Promise.resolve().then(function() {
         mspid:options.msp_id,
         cryptoContent:{privateKey:getKeyFilesInDir(options.privateKeyFolder)[0], signedCert:options.signedCert}
     };
-
     return sdkUtils.newKeyValueStore({path:'/tmp/fabric-client-stateStore/'})
     .then(function(store) {
         client.setStateStore(store);
@@ -102,7 +99,6 @@ Promise.resolve().then(function() {
     console.log('Make query');
     var transaction_id = client.newTransactionID();
     console.log('Assigning transaction_id: ', transaction_id._transaction_id);
-
     const request = {
         chaincodeId:options.chaincode_id,
         txId:transaction_id,
@@ -117,7 +113,6 @@ Promise.resolve().then(function() {
     } else {
         console.log('Query result count = ', query_responses.length);
     }
-
     if (query_responses[0] instanceof Error) {
         console.log('error from query = ', query_responses[0]);
     }
