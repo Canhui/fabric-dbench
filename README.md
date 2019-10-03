@@ -253,7 +253,7 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run2_config_admins.sh` t
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
-$ ./step2_config_admins.sh
+$ ./run2_config_admins.sh
 ```
 
 
@@ -300,7 +300,7 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run3_config_channel.sh` 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
-$ ./step3_config_channel.sh
+$ ./run3_config_channel.sh
 ```
 
 
@@ -320,7 +320,7 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run4_config_chaincode.sh
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
-$ ./step4_config_chaincode.sh
+$ ./run4_config_chaincode.sh
 ```
 
 
