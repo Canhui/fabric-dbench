@@ -18,7 +18,6 @@ echo "------------------------------------------------------------"
 
 cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js<<EOF
 'use strict';
-
 var hfc = require('fabric-client'); 
 var path = require('path'); 
 var util = require('util'); 
@@ -66,7 +65,6 @@ const getKeyFilesInDir = (dir) => {
         }) 
         return keyFiles 
 }
-
 //<-------------------------Modification2: Only One Client--------------------------------------->
 // Get the the private key files under the keystore directory
 Promise.resolve().then(() => { 
@@ -84,7 +82,6 @@ return sdkUtils.newKeyValueStore({
                         return client.createUser(createUserOptIDXXX) 
                 }) 
 }).then((user) => {
-
 //<-------------------------Modification3: Only One Channel--------------------------------------->
     // Handle the TLS files for a new Peer
     channel = client.newChannel(options1.channel_id);
@@ -147,7 +144,6 @@ cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all
 }).then(() => { 
 	// get a transaction id object based on the current user assigned to fabric client
 	tx_id = client.newTransactionID();  
-
     function makeid(length) {
        var result           = '';
        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -157,7 +153,6 @@ cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all
        }
         return result;
     }
-
     var request = { 
         targets: targets, 
         chaincodeId: optionsIDXXX.chaincode_id, 
@@ -167,7 +162,6 @@ cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all
         chainId: optionsIDXXX.channel_id, 
         txId: tx_id 
     }; 
-
 	// Peer received proposal result of proposed transaction
     return channel.sendTransactionProposal(request); 
 }).then((results) => { 
@@ -175,7 +169,6 @@ cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all
     var proposal = results[1]; 
     var header = results[2]; 
     //let isProposalGood = false;
-
 //<-------------------------Modification8: Endorsement Policy---------------------------------------> 
 	var all_good = true;
     for(var i in proposalResponses){
@@ -189,7 +182,6 @@ cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all
         }
         all_good = all_good & one_good;
     }
-
  	if (all_good) {
 		var request = {
             proposalResponses: proposalResponses,
@@ -198,13 +190,10 @@ cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all
 		var transaction_id_string = tx_id.getTransactionID(); //Get the transaction ID string to be used by the event processing
         var promises = [];
 		var sendPromise = channel.sendTransaction(request);
-
         // Peer sends the successful proposed transaction
         start_counter = Date.now()/1000;
         promises.push(sendPromise); //we want the send transaction first, so that we know where to check status		
-
         let event_hub = channel.newChannelEventHub('peer0.orgIDXXX.example.com:7051');
-
         // EventHub to listen whenther the transaction has been fianlly accepted
         let data = fs.readFileSync(optionsIDXXX.peer_tls_cacerts);
         let grpcOpts = {
@@ -241,7 +230,6 @@ cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all
         //console.error([Date.now()/1000],'Failed to send Proposal or receive valid response. Response null or status is not 200. exiting...');
         throw new Error('Failed to send Proposal or receive valid response. Response null or status is not 200. exiting...');
     } 
-
 }).then((results) => {
     var end_counter = Date.now()/1000;
     console.log(end_counter-start_counter+','+ Date.now()/1000)
@@ -249,7 +237,6 @@ cat>>/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all
     } else {
         console.error('Failed to order the transaction. Error code: ' + response.status);
     }
-
     if(results && results[1] && results[1].event_status === 'VALID') {
     } else {
         console.log('Transaction failed to be committed to the ledger due to ::'+results[1].event_status);

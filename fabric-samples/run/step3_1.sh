@@ -15,6 +15,7 @@ echo "------------------------------------------------------------"
 /home/t716/fabric-dbench/fabric-samples/bin/configtxgen -profile TwoOrgsChannel -outputCreateChannelTx /home/t716/fabric-dbench/fabric-samples/channeltx/$channel_name.tx -channelID $channel_name
 
 
+
 echo "------------------------------------------------------------"
 echo "Configure Anchor Peers"
 echo "------------------------------------------------------------"
