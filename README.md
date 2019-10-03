@@ -2,7 +2,9 @@
 
 ## 0. Releases
 + [release-v1.4.0-solo (single orderer)](https://github.com/Canhui/fabric-dbench/tree/release-v1.4.0-solo)
++ [release-v1.4.1-kafka (single orderers)](https://github.com/Canhui/fabric-dbench/tree/release-v1.4.1-solo)
 + [release-v1.4.0-kafka (multiple orderers)](https://github.com/Canhui/fabric-dbench/tree/release-v1.4.0-kafka)
+
 
 
 
@@ -46,7 +48,7 @@ Download the source code to your `$HOME` directory
 
 ```shell
 $ cd $HOME
-$ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.0-solo
+$ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.1-solo
 ```
 
 
