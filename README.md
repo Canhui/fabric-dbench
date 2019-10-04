@@ -146,6 +146,14 @@ $ ./bin/kafka-topics.sh --list --zookeeper localhost:2181
 ```
 
 
+#### 1.3. Remove ETCDRaft Files
+
+Before launching the raft cluster, we need to clean up the local environment (check orderer.yaml).
+
+```shell
+$ sudo rm -rf /var/hyperledger
+```
+
 
 
 
@@ -389,10 +397,6 @@ Query a transaction.
 $ cd $HOME/fabric-dbench/fabric-samples/sdk.org3.example.com
 $ node query.js
 ```
-
-
-
-
 
 
 
