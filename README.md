@@ -1,5 +1,6 @@
 **Fabric-DBench** is a distributed benchmark platform for Hyperledger Fabric.
 
+
 ## 0. Releases
 + [release-v1.4.0-solo (single orderer)](https://github.com/Canhui/fabric-dbench/tree/release-v1.4.0-solo)
 + [release-v1.4.0-kafka (multiple orderers)](https://github.com/Canhui/fabric-dbench/tree/release-v1.4.0-kafka)
@@ -7,25 +8,24 @@
 + [release-v1.4.1-kafka (multiple orderers)](https://github.com/Canhui/fabric-dbench/tree/release-v1.4.1-kafka)
 
 
-
-
 ## 1. Prerequirements
 
 #### 1.1. Hyperledger Fabric v1.4.0
 
-Install the Hyperledger Fabric v1.4.0 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric) and ensure running `fabric-samples/first-network` successfully.
-
+Install the Hyperledger Fabric v1.4.0 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric). 
 
 
 #### 1.2. The Hosts File
 
-Each node of the cluster has a host file under the `/etc/hosts` directory. Append the following to the host file.
+Each node of the cluster has a host file under the `/etc/hosts` directory.
 
 ```shell
 # ---------------------------------------------------------------------------
 # Hyperledger Cluster Configuration - Pls contact chwang@comp.hkbu.edu.hk Thx.
 # ---------------------------------------------------------------------------
 192.168.0.101 orderer1.example.com
+192.168.0.103 orderer3.example.com
+192.168.0.104 orderer4.example.com
 192.168.0.101 peer0.org1.example.com
 192.168.0.103 peer0.org2.example.com
 192.168.0.104 peer0.org3.example.com
@@ -38,7 +38,118 @@ Each node of the cluster has a host file under the `/etc/hosts` directory. Appen
 192.168.0.114 peer0.org10.example.com
 192.168.0.116 peer0.org11.example.com
 192.168.0.119 peer0.org12.example.com
+
+# ---------------------------------------------------------------------------
+# Zookeeper PBFT Cluster Configuration - Pls contact chwang@comp.hkbu.edu.hk Thx.
+# ---------------------------------------------------------------------------
+192.168.0.101 zookeeper1
+192.168.0.103 zookeeper2
+192.168.0.104 zookeeper3
+192.168.0.106 zookeeper4
+192.168.0.107 zookeeper5
+192.168.0.109 zookeeper6
+192.168.0.111 zookeeper7
+192.168.0.112 zookeeper8
+192.168.0.113 zookeeper9
+192.168.0.114 zookeeper10
+192.168.0.116 zookeeper11
+192.168.0.119 zookeeper12
+
+# ---------------------------------------------------------------------------
+# Kafka Message Cluster Configuration - Pls contact chwang@comp.hkbu.edu.hk Thx.
+# ---------------------------------------------------------------------------
+192.168.0.101 broker1
+192.168.0.103 broker2
+192.168.0.104 broker3
+192.168.0.106 broker4
+192.168.0.107 broker5
+192.168.0.109 broker6
+192.168.0.111 broker7
+192.168.0.112 broker8
+192.168.0.113 broker9
+192.168.0.114 broker10
+192.168.0.116 broker11
+192.168.0.119 broker12
 ```
+
+#### 1.3. Prepare the Kafka/Zookeeper Cluster
+
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run0_config_zkkafka.sh` to configure the kafka/zookeeper cluster.
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples
+$ ./run0_config_zkkafka.sh
+```
+
+Go to `zookeeper1` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the zookeeper.
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/zookeeper-server-start.sh config/zookeeper-1.properties
+```
+
+
+Go to `zookeeper2` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the zookeeper.
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/zookeeper-server-start.sh config/zookeeper-2.properties
+```
+
+Go to `zookeeper3` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the zookeeper.
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/zookeeper-server-start.sh config/zookeeper-3.properties
+```
+
+
+
+Go to `zookeeper1` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the kafka server (i.e., broker).
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/kafka-server-start.sh config/server-1.properties
+```
+
+
+Go to `zookeeper2` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the kafka server (i.e., broker).
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/kafka-server-start.sh config/server-2.properties
+```
+
+
+Go to `zookeeper3` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the kafka server (i.e., broker).
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/kafka-server-start.sh config/server-3.properties
+```
+
+
+
+One zookeeper node creates a topic. Go to `zookeeper1` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Create a new topic which should has the same name with fabric channel that you are going to make use of.
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mychannel
+```
+
+
+The rest of zookeepers make use of the topic. List tpics
+
+```shell
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+$ ./bin/kafka-topics.sh --list --zookeeper localhost:2181
+```
+
+
+
+
+
+
 
 
 ## 2. Setup
@@ -49,11 +160,12 @@ Download the source code to your `$HOME` directory
 
 ```shell
 $ cd $HOME
-$ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.1-solo
+$ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.1-kafka
 ```
 
 
 #### 2.2. Add an execution authority to .sh files
+
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
@@ -61,6 +173,9 @@ $ sudo chmod +x *.sh
 $ cd $HOME/fabric-dbench/fabric-samples/run
 $ sudo chmod +x *.sh
 ```
+
+
+
 
 
 
@@ -79,6 +194,20 @@ $ ./run1_config_network.sh
 
 
 Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-run/orderer
+$ sudo ./orderer
+```
+
+Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-run/orderer
+$ sudo ./orderer
+```
+
+Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/orderer
@@ -109,6 +238,7 @@ $ cd $HOME/fabric-dbench/fabric-run/peer
 $ sudo ./peer node start
 ```
 
+
 **Note:** Modify `ORGS` of files `run/step1_5.sh`, `run/step1_7.sh` to add more peers.
 
 
@@ -121,16 +251,12 @@ $ sudo ./peer node start
 
 #### 4.1. Config the Adminstrators (e.g., of 3 organizations)
 
-
 Go to `$HOME/fabric-dbench/fabric-samples` and run the `run2_config_admins.sh` to configure the administrators.
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
-$ ./step2_config_admins.sh
+$ ./run2_config_admins.sh
 ```
-
-
-
 
 
 
@@ -176,7 +302,7 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run3_config_channel.sh` 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
-$ ./step3_config_channel.sh
+$ ./run3_config_channel.sh
 ```
 
 
@@ -196,7 +322,7 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run4_config_chaincode.sh
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
-$ ./step4_config_chaincode.sh
+$ ./run4_config_chaincode.sh
 ```
 
 
@@ -284,11 +410,6 @@ $ node query.js
 
 
 
-#### Modify this readme for v1.4.3 kafka.
-
-
-#### Add configuration of configuration files.
-
 
 
 
@@ -316,5 +437,3 @@ Clean the configuration files
 ```shell
 ./step2_cleanup.sh
 ``` -->
-
-
