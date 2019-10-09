@@ -1,0 +1,1015 @@
+[2019-10-09 09:00:54,857] INFO Reading configuration from: config/zookeeper-1.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2019-10-09 09:00:54,867] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:54,867] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:54,867] INFO Resolved hostname: zookeeper1 to address: zookeeper1/192.168.0.101 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:54,868] INFO Defaulting to majority quorums (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2019-10-09 09:00:54,871] INFO autopurge.snapRetainCount set to 3 (org.apache.zookeeper.server.DatadirCleanupManager)
+[2019-10-09 09:00:54,871] INFO autopurge.purgeInterval set to 0 (org.apache.zookeeper.server.DatadirCleanupManager)
+[2019-10-09 09:00:54,871] INFO Purge task is not scheduled. (org.apache.zookeeper.server.DatadirCleanupManager)
+[2019-10-09 09:00:54,882] INFO Starting quorum peer (org.apache.zookeeper.server.quorum.QuorumPeerMain)
+[2019-10-09 09:00:54,886] INFO Using org.apache.zookeeper.server.NIOServerCnxnFactory as server connection factory (org.apache.zookeeper.server.ServerCnxnFactory)
+[2019-10-09 09:00:54,889] INFO binding to port 0.0.0.0/0.0.0.0:2181 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+[2019-10-09 09:00:54,895] INFO tickTime set to 2000 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:54,895] INFO initLimit set to 5 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:54,895] INFO minSessionTimeout set to -1 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:54,895] INFO maxSessionTimeout set to -1 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:54,901] INFO QuorumPeer communication is not secured! (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:54,901] INFO quorum.cnxn.threads.size set to 20 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:54,903] INFO currentEpoch not found! Creating with a reasonable default of 0. This should only happen when you are upgrading your installation (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:54,947] INFO acceptedEpoch not found! Creating with a reasonable default of 0. This should only happen when you are upgrading your installation (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:54,994] INFO My election bind port: zookeeper1/192.168.0.101:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+[2019-10-09 09:00:55,002] INFO LOOKING (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:55,004] INFO New election. My id =  1, proposed zxid=0x0 (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:00:55,007] INFO Notification: 1 (message format version), 1 (n.leader), 0x0 (n.zxid), 0x1 (n.round), LOOKING (n.state), 1 (n.sid), 0x0 (n.peerEpoch) LOOKING (my state) (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:00:55,010] WARN Cannot open channel to 2 at election address zookeeper2/192.168.0.103:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.toSend(QuorumCnxManager.java:534)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection$Messenger$WorkerSender.process(FastLeaderElection.java:454)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection$Messenger$WorkerSender.run(FastLeaderElection.java:435)
+	at java.lang.Thread.run(Thread.java:748)
+[2019-10-09 09:00:55,013] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:55,014] WARN Cannot open channel to 3 at election address zookeeper3/192.168.0.104:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.toSend(QuorumCnxManager.java:534)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection$Messenger$WorkerSender.process(FastLeaderElection.java:454)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection$Messenger$WorkerSender.run(FastLeaderElection.java:435)
+	at java.lang.Thread.run(Thread.java:748)
+[2019-10-09 09:00:55,015] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:55,209] WARN Cannot open channel to 2 at election address zookeeper2/192.168.0.103:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:00:55,210] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:55,210] WARN Cannot open channel to 3 at election address zookeeper3/192.168.0.104:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:00:55,211] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:55,211] INFO Notification time out: 400 (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:00:55,612] WARN Cannot open channel to 2 at election address zookeeper2/192.168.0.103:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:00:55,613] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:55,613] WARN Cannot open channel to 3 at election address zookeeper3/192.168.0.104:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:00:55,614] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:55,614] INFO Notification time out: 800 (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:00:56,415] WARN Cannot open channel to 2 at election address zookeeper2/192.168.0.103:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:00:56,416] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:56,416] WARN Cannot open channel to 3 at election address zookeeper3/192.168.0.104:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:00:56,417] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:56,417] INFO Notification time out: 1600 (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:00:58,018] WARN Cannot open channel to 2 at election address zookeeper2/192.168.0.103:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:00:58,018] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:58,019] WARN Cannot open channel to 3 at election address zookeeper3/192.168.0.104:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:00:58,019] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:00:58,020] INFO Notification time out: 3200 (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:01:01,220] WARN Cannot open channel to 2 at election address zookeeper2/192.168.0.103:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:01:01,221] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:01:01,222] WARN Cannot open channel to 3 at election address zookeeper3/192.168.0.104:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:01:01,222] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:01:01,222] INFO Notification time out: 6400 (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:01:07,623] WARN Cannot open channel to 2 at election address zookeeper2/192.168.0.103:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:01:07,624] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:01:07,624] WARN Cannot open channel to 3 at election address zookeeper3/192.168.0.104:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:01:07,625] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:01:07,625] INFO Notification time out: 12800 (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:01:20,426] WARN Cannot open channel to 2 at election address zookeeper2/192.168.0.103:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:01:20,426] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:01:20,427] WARN Cannot open channel to 3 at election address zookeeper3/192.168.0.104:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:01:20,427] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:01:20,427] INFO Notification time out: 25600 (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:01:32,046] INFO Received connection request /192.168.0.103:35178 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+[2019-10-09 09:01:32,059] INFO Notification: 1 (message format version), 2 (n.leader), 0x0 (n.zxid), 0x1 (n.round), LOOKING (n.state), 2 (n.sid), 0x0 (n.peerEpoch) LOOKING (my state) (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:01:32,060] INFO Notification: 1 (message format version), 2 (n.leader), 0x0 (n.zxid), 0x1 (n.round), LOOKING (n.state), 1 (n.sid), 0x0 (n.peerEpoch) LOOKING (my state) (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:01:32,060] WARN Cannot open channel to 3 at election address zookeeper3/192.168.0.104:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.toSend(QuorumCnxManager.java:534)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection$Messenger$WorkerSender.process(FastLeaderElection.java:454)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection$Messenger$WorkerSender.run(FastLeaderElection.java:435)
+	at java.lang.Thread.run(Thread.java:748)
+[2019-10-09 09:01:32,061] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:01:32,261] INFO FOLLOWING (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:01:32,267] INFO TCP NoDelay set to: true (org.apache.zookeeper.server.quorum.Learner)
+[2019-10-09 09:01:32,274] INFO Server environment:zookeeper.version=3.4.14-4c25d480e66aadd371de8bd2fd8da255ac140bcf, built on 03/06/2019 16:18 GMT (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,275] INFO Server environment:host.name=host01 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,275] INFO Server environment:java.version=1.8.0_201 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,275] INFO Server environment:java.vendor=Oracle Corporation (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,275] INFO Server environment:java.home=/usr/lib/jvm/java-8-oracle/jre (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,275] INFO Server environment:java.class.path=/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/activation-1.1.1.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/aopalliance-repackaged-2.5.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/argparse4j-0.7.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/audience-annotations-0.5.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/commons-lang3-3.8.1.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/connect-api-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/connect-basic-auth-extension-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/connect-file-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/connect-json-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/connect-runtime-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/connect-transforms-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/guava-20.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/hk2-api-2.5.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/hk2-locator-2.5.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/hk2-utils-2.5.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-annotations-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-core-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-databind-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-dataformat-csv-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-datatype-jdk8-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-jaxrs-base-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-jaxrs-json-provider-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-module-jaxb-annotations-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-module-paranamer-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-module-scala_2.12-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jakarta.annotation-api-1.3.4.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jakarta.inject-2.5.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jakarta.ws.rs-api-2.1.5.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/javassist-3.22.0-CR2.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/javax.servlet-api-3.1.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/javax.ws.rs-api-2.1.1.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jaxb-api-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-client-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-common-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-container-servlet-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-container-servlet-core-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-hk2-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-media-jaxb-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-server-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-client-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-continuation-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-http-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-io-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-security-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-server-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-servlet-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-servlets-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-util-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jopt-simple-5.0.4.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jsr305-3.0.2.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka_2.12-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka_2.12-2.3.0-sources.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-clients-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-log4j-appender-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-streams-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-streams-examples-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-streams-scala_2.12-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-streams-test-utils-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-tools-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/log4j-1.2.17.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/lz4-java-1.6.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/maven-artifact-3.6.1.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/metrics-core-2.2.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/osgi-resource-locator-1.0.1.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/paranamer-2.8.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/plexus-utils-3.2.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/reflections-0.9.11.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/rocksdbjni-5.18.3.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/scala-library-2.12.8.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/scala-logging_2.12-3.9.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/scala-reflect-2.12.8.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/slf4j-api-1.7.26.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/slf4j-log4j12-1.7.26.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/snappy-java-1.1.7.3.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/spotbugs-annotations-3.1.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/validation-api-2.0.1.Final.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/zkclient-0.11.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/zookeeper-3.4.14.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/zstd-jni-1.4.0-1.jar (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,275] INFO Server environment:java.library.path=/home/t716/ECStorage/lib:/home/t716/HDWork/lib/native:/usr/local/openmpi3.0/lib:/usr/local/openblas0.2.22/lib:/home/t716/shshi/share/downloads/cudnn7//cuda/lib64:/home/t716/local/openmpi3.0/lib:/usr/local/cuda-9.1/lib64:/usr/local/cuda-9.1/nvvm/libdevice::/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,275] INFO Server environment:java.io.tmpdir=/tmp (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,275] INFO Server environment:java.compiler=<NA> (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,275] INFO Server environment:os.name=Linux (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,276] INFO Server environment:os.arch=amd64 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,276] INFO Server environment:os.version=4.4.0-157-generic (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,276] INFO Server environment:user.name=t716 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,276] INFO Server environment:user.home=/home/t716 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,276] INFO Server environment:user.dir=/home/t716/fabric-dbench/kafka_2.12-2.3.0 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,278] INFO Created server with tickTime 2000 minSessionTimeout 4000 maxSessionTimeout 40000 datadir /tmp/zookeeper/version-2 snapdir /tmp/zookeeper/version-2 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:01:32,279] INFO FOLLOWING - LEADER ELECTION TOOK - 37275 (org.apache.zookeeper.server.quorum.Learner)
+[2019-10-09 09:01:32,281] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:01:32,282] WARN Unexpected exception, tries=0, connecting to zookeeper2/192.168.0.103:2666 (org.apache.zookeeper.server.quorum.Learner)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.Learner.connectToLeader(Learner.java:229)
+	at org.apache.zookeeper.server.quorum.Follower.followLeader(Follower.java:72)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:982)
+[2019-10-09 09:01:33,395] INFO Getting a diff from the leader 0x0 (org.apache.zookeeper.server.quorum.Learner)
+[2019-10-09 09:01:54,557] INFO Received connection request /192.168.0.104:40786 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+[2019-10-09 09:01:54,560] INFO Notification: 1 (message format version), 3 (n.leader), 0x0 (n.zxid), 0x1 (n.round), LOOKING (n.state), 3 (n.sid), 0x0 (n.peerEpoch) FOLLOWING (my state) (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:02:26,363] INFO Registered kafka:type=kafka.Log4jController MBean (kafka.utils.Log4jControllerRegistration$)
+[2019-10-09 09:02:26,792] INFO Registered signal handlers for TERM, INT, HUP (org.apache.kafka.common.utils.LoggingSignalHandler)
+[2019-10-09 09:02:26,792] INFO starting (kafka.server.KafkaServer)
+[2019-10-09 09:02:26,793] INFO Connecting to zookeeper on zookeeper1:2181,zookeeper2:2181,zookeeper3:2181 (kafka.server.KafkaServer)
+[2019-10-09 09:02:26,809] INFO [ZooKeeperClient Kafka server] Initializing a new session to zookeeper1:2181,zookeeper2:2181,zookeeper3:2181. (kafka.zookeeper.ZooKeeperClient)
+[2019-10-09 09:02:26,812] INFO Client environment:zookeeper.version=3.4.14-4c25d480e66aadd371de8bd2fd8da255ac140bcf, built on 03/06/2019 16:18 GMT (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,813] INFO Client environment:host.name=host01 (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,813] INFO Client environment:java.version=1.8.0_201 (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,813] INFO Client environment:java.vendor=Oracle Corporation (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,813] INFO Client environment:java.home=/usr/lib/jvm/java-8-oracle/jre (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,813] INFO Client environment:java.class.path=/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/activation-1.1.1.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/aopalliance-repackaged-2.5.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/argparse4j-0.7.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/audience-annotations-0.5.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/commons-lang3-3.8.1.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/connect-api-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/connect-basic-auth-extension-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/connect-file-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/connect-json-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/connect-runtime-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/connect-transforms-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/guava-20.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/hk2-api-2.5.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/hk2-locator-2.5.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/hk2-utils-2.5.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-annotations-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-core-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-databind-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-dataformat-csv-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-datatype-jdk8-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-jaxrs-base-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-jaxrs-json-provider-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-module-jaxb-annotations-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-module-paranamer-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jackson-module-scala_2.12-2.9.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jakarta.annotation-api-1.3.4.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jakarta.inject-2.5.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jakarta.ws.rs-api-2.1.5.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/javassist-3.22.0-CR2.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/javax.servlet-api-3.1.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/javax.ws.rs-api-2.1.1.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jaxb-api-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-client-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-common-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-container-servlet-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-container-servlet-core-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-hk2-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-media-jaxb-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jersey-server-2.28.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-client-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-continuation-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-http-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-io-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-security-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-server-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-servlet-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-servlets-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jetty-util-9.4.18.v20190429.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jopt-simple-5.0.4.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/jsr305-3.0.2.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka_2.12-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka_2.12-2.3.0-sources.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-clients-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-log4j-appender-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-streams-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-streams-examples-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-streams-scala_2.12-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-streams-test-utils-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/kafka-tools-2.3.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/log4j-1.2.17.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/lz4-java-1.6.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/maven-artifact-3.6.1.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/metrics-core-2.2.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/osgi-resource-locator-1.0.1.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/paranamer-2.8.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/plexus-utils-3.2.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/reflections-0.9.11.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/rocksdbjni-5.18.3.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/scala-library-2.12.8.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/scala-logging_2.12-3.9.0.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/scala-reflect-2.12.8.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/slf4j-api-1.7.26.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/slf4j-log4j12-1.7.26.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/snappy-java-1.1.7.3.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/spotbugs-annotations-3.1.9.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/validation-api-2.0.1.Final.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/zkclient-0.11.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/zookeeper-3.4.14.jar:/home/t716/fabric-dbench/kafka_2.12-2.3.0/bin/../libs/zstd-jni-1.4.0-1.jar (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,813] INFO Client environment:java.library.path=/home/t716/ECStorage/lib:/home/t716/HDWork/lib/native:/usr/local/openmpi3.0/lib:/usr/local/openblas0.2.22/lib:/home/t716/shshi/share/downloads/cudnn7//cuda/lib64:/home/t716/local/openmpi3.0/lib:/usr/local/cuda-9.1/lib64:/usr/local/cuda-9.1/nvvm/libdevice::/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,813] INFO Client environment:java.io.tmpdir=/tmp (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,813] INFO Client environment:java.compiler=<NA> (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,813] INFO Client environment:os.name=Linux (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,813] INFO Client environment:os.arch=amd64 (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,814] INFO Client environment:os.version=4.4.0-157-generic (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,814] INFO Client environment:user.name=t716 (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,814] INFO Client environment:user.home=/home/t716 (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,814] INFO Client environment:user.dir=/home/t716/fabric-dbench/kafka_2.12-2.3.0 (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,815] INFO Initiating client connection, connectString=zookeeper1:2181,zookeeper2:2181,zookeeper3:2181 sessionTimeout=6000 watcher=kafka.zookeeper.ZooKeeperClient$ZooKeeperClientWatcher$@2667f029 (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:02:26,824] INFO [ZooKeeperClient Kafka server] Waiting until connected. (kafka.zookeeper.ZooKeeperClient)
+[2019-10-09 09:02:26,824] INFO Opening socket connection to server zookeeper2/192.168.0.103:2181. Will not attempt to authenticate using SASL (unknown error) (org.apache.zookeeper.ClientCnxn)
+[2019-10-09 09:02:26,828] INFO Socket connection established to zookeeper2/192.168.0.103:2181, initiating session (org.apache.zookeeper.ClientCnxn)
+[2019-10-09 09:02:26,867] WARN Got zxid 0x100000001 expected 0x1 (org.apache.zookeeper.server.quorum.Learner)
+[2019-10-09 09:02:26,867] INFO Creating new log file: log.100000001 (org.apache.zookeeper.server.persistence.FileTxnLog)
+[2019-10-09 09:02:26,941] INFO Session establishment complete on server zookeeper2/192.168.0.103:2181, sessionid = 0x2000cf586b30000, negotiated timeout = 6000 (org.apache.zookeeper.ClientCnxn)
+[2019-10-09 09:02:26,944] INFO [ZooKeeperClient Kafka server] Connected. (kafka.zookeeper.ZooKeeperClient)
+[2019-10-09 09:02:27,420] INFO Cluster ID = lIbzYYemTd6o2-mTvii5Zg (kafka.server.KafkaServer)
+[2019-10-09 09:02:27,423] WARN No meta.properties file under dir /tmp/kafka-logs-1/meta.properties (kafka.server.BrokerMetadataCheckpoint)
+[2019-10-09 09:02:27,474] INFO KafkaConfig values: 
+	advertised.host.name = null
+	advertised.listeners = null
+	advertised.port = null
+	alter.config.policy.class.name = null
+	alter.log.dirs.replication.quota.window.num = 11
+	alter.log.dirs.replication.quota.window.size.seconds = 1
+	authorizer.class.name = 
+	auto.create.topics.enable = true
+	auto.leader.rebalance.enable = true
+	background.threads = 10
+	broker.id = 1
+	broker.id.generation.enable = true
+	broker.rack = null
+	client.quota.callback.class = null
+	compression.type = producer
+	connection.failed.authentication.delay.ms = 100
+	connections.max.idle.ms = 600000
+	connections.max.reauth.ms = 0
+	control.plane.listener.name = null
+	controlled.shutdown.enable = true
+	controlled.shutdown.max.retries = 3
+	controlled.shutdown.retry.backoff.ms = 5000
+	controller.socket.timeout.ms = 30000
+	create.topic.policy.class.name = null
+	default.replication.factor = 1
+	delegation.token.expiry.check.interval.ms = 3600000
+	delegation.token.expiry.time.ms = 86400000
+	delegation.token.master.key = null
+	delegation.token.max.lifetime.ms = 604800000
+	delete.records.purgatory.purge.interval.requests = 1
+	delete.topic.enable = true
+	fetch.purgatory.purge.interval.requests = 1000
+	group.initial.rebalance.delay.ms = 0
+	group.max.session.timeout.ms = 1800000
+	group.max.size = 2147483647
+	group.min.session.timeout.ms = 6000
+	host.name = 
+	inter.broker.listener.name = null
+	inter.broker.protocol.version = 2.3-IV1
+	kafka.metrics.polling.interval.secs = 10
+	kafka.metrics.reporters = []
+	leader.imbalance.check.interval.seconds = 300
+	leader.imbalance.per.broker.percentage = 10
+	listener.security.protocol.map = PLAINTEXT:PLAINTEXT,SSL:SSL,SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_SSL:SASL_SSL
+	listeners = PLAINTEXT://broker1:9092
+	log.cleaner.backoff.ms = 15000
+	log.cleaner.dedupe.buffer.size = 134217728
+	log.cleaner.delete.retention.ms = 86400000
+	log.cleaner.enable = true
+	log.cleaner.io.buffer.load.factor = 0.9
+	log.cleaner.io.buffer.size = 524288
+	log.cleaner.io.max.bytes.per.second = 1.7976931348623157E308
+	log.cleaner.max.compaction.lag.ms = 9223372036854775807
+	log.cleaner.min.cleanable.ratio = 0.5
+	log.cleaner.min.compaction.lag.ms = 0
+	log.cleaner.threads = 1
+	log.cleanup.policy = [delete]
+	log.dir = /tmp/kafka-logs
+	log.dirs = /tmp/kafka-logs-1
+	log.flush.interval.messages = 9223372036854775807
+	log.flush.interval.ms = null
+	log.flush.offset.checkpoint.interval.ms = 60000
+	log.flush.scheduler.interval.ms = 9223372036854775807
+	log.flush.start.offset.checkpoint.interval.ms = 60000
+	log.index.interval.bytes = 4096
+	log.index.size.max.bytes = 10485760
+	log.message.downconversion.enable = true
+	log.message.format.version = 2.3-IV1
+	log.message.timestamp.difference.max.ms = 9223372036854775807
+	log.message.timestamp.type = CreateTime
+	log.preallocate = false
+	log.retention.bytes = -1
+	log.retention.check.interval.ms = 300000
+	log.retention.hours = 168
+	log.retention.minutes = null
+	log.retention.ms = -1
+	log.roll.hours = 168
+	log.roll.jitter.hours = 0
+	log.roll.jitter.ms = null
+	log.roll.ms = null
+	log.segment.bytes = 1073741824
+	log.segment.delete.delay.ms = 60000
+	max.connections = 2147483647
+	max.connections.per.ip = 2147483647
+	max.connections.per.ip.overrides = 
+	max.incremental.fetch.session.cache.slots = 1000
+	message.max.bytes = 10000120
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	min.insync.replicas = 1
+	num.io.threads = 8
+	num.network.threads = 3
+	num.partitions = 1
+	num.recovery.threads.per.data.dir = 1
+	num.replica.alter.log.dirs.threads = null
+	num.replica.fetchers = 1
+	offset.metadata.max.bytes = 4096
+	offsets.commit.required.acks = -1
+	offsets.commit.timeout.ms = 5000
+	offsets.load.buffer.size = 5242880
+	offsets.retention.check.interval.ms = 600000
+	offsets.retention.minutes = 10080
+	offsets.topic.compression.codec = 0
+	offsets.topic.num.partitions = 50
+	offsets.topic.replication.factor = 3
+	offsets.topic.segment.bytes = 104857600
+	password.encoder.cipher.algorithm = AES/CBC/PKCS5Padding
+	password.encoder.iterations = 4096
+	password.encoder.key.length = 128
+	password.encoder.keyfactory.algorithm = null
+	password.encoder.old.secret = null
+	password.encoder.secret = null
+	port = 9092
+	principal.builder.class = null
+	producer.purgatory.purge.interval.requests = 1000
+	queued.max.request.bytes = -1
+	queued.max.requests = 500
+	quota.consumer.default = 9223372036854775807
+	quota.producer.default = 9223372036854775807
+	quota.window.num = 11
+	quota.window.size.seconds = 1
+	replica.fetch.backoff.ms = 1000
+	replica.fetch.max.bytes = 10485760
+	replica.fetch.min.bytes = 1
+	replica.fetch.response.max.bytes = 10485760
+	replica.fetch.wait.max.ms = 500
+	replica.high.watermark.checkpoint.interval.ms = 5000
+	replica.lag.time.max.ms = 10000
+	replica.socket.receive.buffer.bytes = 65536
+	replica.socket.timeout.ms = 30000
+	replication.quota.window.num = 11
+	replication.quota.window.size.seconds = 1
+	request.timeout.ms = 30000
+	reserved.broker.max.id = 1000
+	sasl.client.callback.handler.class = null
+	sasl.enabled.mechanisms = [GSSAPI]
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.principal.to.local.rules = [DEFAULT]
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism.inter.broker.protocol = GSSAPI
+	sasl.server.callback.handler.class = null
+	security.inter.broker.protocol = PLAINTEXT
+	socket.receive.buffer.bytes = 102400
+	socket.request.max.bytes = 104857600
+	socket.send.buffer.bytes = 102400
+	ssl.cipher.suites = []
+	ssl.client.auth = none
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.principal.mapping.rules = [DEFAULT]
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.abort.timed.out.transaction.cleanup.interval.ms = 60000
+	transaction.max.timeout.ms = 900000
+	transaction.remove.expired.transaction.cleanup.interval.ms = 3600000
+	transaction.state.log.load.buffer.size = 5242880
+	transaction.state.log.min.isr = 1
+	transaction.state.log.num.partitions = 50
+	transaction.state.log.replication.factor = 1
+	transaction.state.log.segment.bytes = 104857600
+	transactional.id.expiration.ms = 604800000
+	unclean.leader.election.enable = false
+	zookeeper.connect = zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
+	zookeeper.connection.timeout.ms = 6000
+	zookeeper.max.in.flight.requests = 10
+	zookeeper.session.timeout.ms = 6000
+	zookeeper.set.acl = false
+	zookeeper.sync.time.ms = 2000
+ (kafka.server.KafkaConfig)
+[2019-10-09 09:02:27,483] INFO KafkaConfig values: 
+	advertised.host.name = null
+	advertised.listeners = null
+	advertised.port = null
+	alter.config.policy.class.name = null
+	alter.log.dirs.replication.quota.window.num = 11
+	alter.log.dirs.replication.quota.window.size.seconds = 1
+	authorizer.class.name = 
+	auto.create.topics.enable = true
+	auto.leader.rebalance.enable = true
+	background.threads = 10
+	broker.id = 1
+	broker.id.generation.enable = true
+	broker.rack = null
+	client.quota.callback.class = null
+	compression.type = producer
+	connection.failed.authentication.delay.ms = 100
+	connections.max.idle.ms = 600000
+	connections.max.reauth.ms = 0
+	control.plane.listener.name = null
+	controlled.shutdown.enable = true
+	controlled.shutdown.max.retries = 3
+	controlled.shutdown.retry.backoff.ms = 5000
+	controller.socket.timeout.ms = 30000
+	create.topic.policy.class.name = null
+	default.replication.factor = 1
+	delegation.token.expiry.check.interval.ms = 3600000
+	delegation.token.expiry.time.ms = 86400000
+	delegation.token.master.key = null
+	delegation.token.max.lifetime.ms = 604800000
+	delete.records.purgatory.purge.interval.requests = 1
+	delete.topic.enable = true
+	fetch.purgatory.purge.interval.requests = 1000
+	group.initial.rebalance.delay.ms = 0
+	group.max.session.timeout.ms = 1800000
+	group.max.size = 2147483647
+	group.min.session.timeout.ms = 6000
+	host.name = 
+	inter.broker.listener.name = null
+	inter.broker.protocol.version = 2.3-IV1
+	kafka.metrics.polling.interval.secs = 10
+	kafka.metrics.reporters = []
+	leader.imbalance.check.interval.seconds = 300
+	leader.imbalance.per.broker.percentage = 10
+	listener.security.protocol.map = PLAINTEXT:PLAINTEXT,SSL:SSL,SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_SSL:SASL_SSL
+	listeners = PLAINTEXT://broker1:9092
+	log.cleaner.backoff.ms = 15000
+	log.cleaner.dedupe.buffer.size = 134217728
+	log.cleaner.delete.retention.ms = 86400000
+	log.cleaner.enable = true
+	log.cleaner.io.buffer.load.factor = 0.9
+	log.cleaner.io.buffer.size = 524288
+	log.cleaner.io.max.bytes.per.second = 1.7976931348623157E308
+	log.cleaner.max.compaction.lag.ms = 9223372036854775807
+	log.cleaner.min.cleanable.ratio = 0.5
+	log.cleaner.min.compaction.lag.ms = 0
+	log.cleaner.threads = 1
+	log.cleanup.policy = [delete]
+	log.dir = /tmp/kafka-logs
+	log.dirs = /tmp/kafka-logs-1
+	log.flush.interval.messages = 9223372036854775807
+	log.flush.interval.ms = null
+	log.flush.offset.checkpoint.interval.ms = 60000
+	log.flush.scheduler.interval.ms = 9223372036854775807
+	log.flush.start.offset.checkpoint.interval.ms = 60000
+	log.index.interval.bytes = 4096
+	log.index.size.max.bytes = 10485760
+	log.message.downconversion.enable = true
+	log.message.format.version = 2.3-IV1
+	log.message.timestamp.difference.max.ms = 9223372036854775807
+	log.message.timestamp.type = CreateTime
+	log.preallocate = false
+	log.retention.bytes = -1
+	log.retention.check.interval.ms = 300000
+	log.retention.hours = 168
+	log.retention.minutes = null
+	log.retention.ms = -1
+	log.roll.hours = 168
+	log.roll.jitter.hours = 0
+	log.roll.jitter.ms = null
+	log.roll.ms = null
+	log.segment.bytes = 1073741824
+	log.segment.delete.delay.ms = 60000
+	max.connections = 2147483647
+	max.connections.per.ip = 2147483647
+	max.connections.per.ip.overrides = 
+	max.incremental.fetch.session.cache.slots = 1000
+	message.max.bytes = 10000120
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	min.insync.replicas = 1
+	num.io.threads = 8
+	num.network.threads = 3
+	num.partitions = 1
+	num.recovery.threads.per.data.dir = 1
+	num.replica.alter.log.dirs.threads = null
+	num.replica.fetchers = 1
+	offset.metadata.max.bytes = 4096
+	offsets.commit.required.acks = -1
+	offsets.commit.timeout.ms = 5000
+	offsets.load.buffer.size = 5242880
+	offsets.retention.check.interval.ms = 600000
+	offsets.retention.minutes = 10080
+	offsets.topic.compression.codec = 0
+	offsets.topic.num.partitions = 50
+	offsets.topic.replication.factor = 3
+	offsets.topic.segment.bytes = 104857600
+	password.encoder.cipher.algorithm = AES/CBC/PKCS5Padding
+	password.encoder.iterations = 4096
+	password.encoder.key.length = 128
+	password.encoder.keyfactory.algorithm = null
+	password.encoder.old.secret = null
+	password.encoder.secret = null
+	port = 9092
+	principal.builder.class = null
+	producer.purgatory.purge.interval.requests = 1000
+	queued.max.request.bytes = -1
+	queued.max.requests = 500
+	quota.consumer.default = 9223372036854775807
+	quota.producer.default = 9223372036854775807
+	quota.window.num = 11
+	quota.window.size.seconds = 1
+	replica.fetch.backoff.ms = 1000
+	replica.fetch.max.bytes = 10485760
+	replica.fetch.min.bytes = 1
+	replica.fetch.response.max.bytes = 10485760
+	replica.fetch.wait.max.ms = 500
+	replica.high.watermark.checkpoint.interval.ms = 5000
+	replica.lag.time.max.ms = 10000
+	replica.socket.receive.buffer.bytes = 65536
+	replica.socket.timeout.ms = 30000
+	replication.quota.window.num = 11
+	replication.quota.window.size.seconds = 1
+	request.timeout.ms = 30000
+	reserved.broker.max.id = 1000
+	sasl.client.callback.handler.class = null
+	sasl.enabled.mechanisms = [GSSAPI]
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.principal.to.local.rules = [DEFAULT]
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism.inter.broker.protocol = GSSAPI
+	sasl.server.callback.handler.class = null
+	security.inter.broker.protocol = PLAINTEXT
+	socket.receive.buffer.bytes = 102400
+	socket.request.max.bytes = 104857600
+	socket.send.buffer.bytes = 102400
+	ssl.cipher.suites = []
+	ssl.client.auth = none
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.principal.mapping.rules = [DEFAULT]
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.abort.timed.out.transaction.cleanup.interval.ms = 60000
+	transaction.max.timeout.ms = 900000
+	transaction.remove.expired.transaction.cleanup.interval.ms = 3600000
+	transaction.state.log.load.buffer.size = 5242880
+	transaction.state.log.min.isr = 1
+	transaction.state.log.num.partitions = 50
+	transaction.state.log.replication.factor = 1
+	transaction.state.log.segment.bytes = 104857600
+	transactional.id.expiration.ms = 604800000
+	unclean.leader.election.enable = false
+	zookeeper.connect = zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
+	zookeeper.connection.timeout.ms = 6000
+	zookeeper.max.in.flight.requests = 10
+	zookeeper.session.timeout.ms = 6000
+	zookeeper.set.acl = false
+	zookeeper.sync.time.ms = 2000
+ (kafka.server.KafkaConfig)
+[2019-10-09 09:02:27,505] INFO [ThrottledChannelReaper-Fetch]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2019-10-09 09:02:27,506] INFO [ThrottledChannelReaper-Produce]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2019-10-09 09:02:27,506] INFO [ThrottledChannelReaper-Request]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2019-10-09 09:02:27,528] INFO Log directory /tmp/kafka-logs-1 not found, creating it. (kafka.log.LogManager)
+[2019-10-09 09:02:27,533] INFO Loading logs. (kafka.log.LogManager)
+[2019-10-09 09:02:27,539] INFO Logs loading complete in 6 ms. (kafka.log.LogManager)
+[2019-10-09 09:02:27,550] INFO Starting log cleanup with a period of 300000 ms. (kafka.log.LogManager)
+[2019-10-09 09:02:27,553] INFO Starting log flusher with a default period of 9223372036854775807 ms. (kafka.log.LogManager)
+[2019-10-09 09:02:27,820] INFO Awaiting socket connections on broker1:9092. (kafka.network.Acceptor)
+[2019-10-09 09:02:27,846] INFO [SocketServer brokerId=1] Created data-plane acceptor and processors for endpoint : EndPoint(broker1,9092,ListenerName(PLAINTEXT),PLAINTEXT) (kafka.network.SocketServer)
+[2019-10-09 09:02:27,847] INFO [SocketServer brokerId=1] Started 1 acceptor threads for data-plane (kafka.network.SocketServer)
+[2019-10-09 09:02:27,867] INFO [ExpirationReaper-1-Produce]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:02:27,868] INFO [ExpirationReaper-1-Fetch]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:02:27,868] INFO [ExpirationReaper-1-DeleteRecords]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:02:27,869] INFO [ExpirationReaper-1-ElectPreferredLeader]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:02:27,879] INFO [LogDirFailureHandler]: Starting (kafka.server.ReplicaManager$LogDirFailureHandler)
+[2019-10-09 09:02:27,897] INFO Creating /brokers/ids/1 (is it secure? false) (kafka.zk.KafkaZkClient)
+[2019-10-09 09:02:27,931] INFO Stat of the created znode at /brokers/ids/1 is: 4294967320,4294967320,1570582947910,1570582947910,1,0,0,144129436742254592,184,0,4294967320
+ (kafka.zk.KafkaZkClient)
+[2019-10-09 09:02:27,932] INFO Registered broker 1 at path /brokers/ids/1 with addresses: ArrayBuffer(EndPoint(broker1,9092,ListenerName(PLAINTEXT),PLAINTEXT)), czxid (broker epoch): 4294967320 (kafka.zk.KafkaZkClient)
+[2019-10-09 09:02:27,933] WARN No meta.properties file under dir /tmp/kafka-logs-1/meta.properties (kafka.server.BrokerMetadataCheckpoint)
+[2019-10-09 09:02:28,030] INFO [ExpirationReaper-1-topic]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:02:28,032] INFO [ExpirationReaper-1-Heartbeat]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:02:28,032] INFO [ExpirationReaper-1-Rebalance]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:02:28,050] INFO Successfully created /controller_epoch with initial epoch 0 (kafka.zk.KafkaZkClient)
+[2019-10-09 09:02:28,055] INFO [GroupCoordinator 1]: Starting up. (kafka.coordinator.group.GroupCoordinator)
+[2019-10-09 09:02:28,056] INFO [GroupCoordinator 1]: Startup complete. (kafka.coordinator.group.GroupCoordinator)
+[2019-10-09 09:02:28,060] INFO [GroupMetadataManager brokerId=1] Removed 0 expired offsets in 4 milliseconds. (kafka.coordinator.group.GroupMetadataManager)
+[2019-10-09 09:02:28,079] INFO [ProducerId Manager 1]: Acquired new producerId block (brokerId:1,blockStartProducerId:0,blockEndProducerId:999) by writing to Zk with path version 1 (kafka.coordinator.transaction.ProducerIdManager)
+[2019-10-09 09:02:28,097] INFO [TransactionCoordinator id=1] Starting up. (kafka.coordinator.transaction.TransactionCoordinator)
+[2019-10-09 09:02:28,098] INFO [Transaction Marker Channel Manager 1]: Starting (kafka.coordinator.transaction.TransactionMarkerChannelManager)
+[2019-10-09 09:02:28,098] INFO [TransactionCoordinator id=1] Startup complete. (kafka.coordinator.transaction.TransactionCoordinator)
+[2019-10-09 09:02:28,130] INFO [/config/changes-event-process-thread]: Starting (kafka.common.ZkNodeChangeNotificationListener$ChangeEventProcessThread)
+[2019-10-09 09:02:28,141] INFO [SocketServer brokerId=1] Started data-plane processors for 1 acceptors (kafka.network.SocketServer)
+[2019-10-09 09:02:28,147] INFO Kafka version: 2.3.0 (org.apache.kafka.common.utils.AppInfoParser)
+[2019-10-09 09:02:28,147] INFO Kafka commitId: fc1aaa116b661c8a (org.apache.kafka.common.utils.AppInfoParser)
+[2019-10-09 09:02:28,147] INFO Kafka startTimeMs: 1570582948142 (org.apache.kafka.common.utils.AppInfoParser)
+[2019-10-09 09:02:28,149] INFO [KafkaServer id=1] started (kafka.server.KafkaServer)
+[2019-10-09 09:02:55,865] INFO Accepted socket connection from /192.168.0.103:59020 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+[2019-10-09 09:02:55,873] INFO Client attempting to establish new session at /192.168.0.103:59020 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:02:55,899] INFO Established session 0x1012853c29a0000 with negotiated timeout 6000 for client /192.168.0.103:59020 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:03:05,027] INFO Accepted socket connection from /192.168.0.104:48754 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+[2019-10-09 09:03:05,030] INFO Client attempting to establish new session at /192.168.0.104:48754 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:03:05,049] INFO Established session 0x1012853c29a0001 with negotiated timeout 6000 for client /192.168.0.104:48754 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:03:32,186] INFO Accepted socket connection from /127.0.0.1:55098 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+[2019-10-09 09:03:32,188] INFO Client attempting to establish new session at /127.0.0.1:55098 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:03:32,205] INFO Established session 0x1012853c29a0002 with negotiated timeout 30000 for client /127.0.0.1:55098 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:03:32,505] INFO Closed socket connection for client /127.0.0.1:55098 which had sessionid 0x1012853c29a0002 (org.apache.zookeeper.server.NIOServerCnxn)
+[2019-10-09 09:03:35,714] INFO Accepted socket connection from /127.0.0.1:55114 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+[2019-10-09 09:03:35,719] INFO Client attempting to establish new session at /127.0.0.1:55114 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:03:35,737] INFO Established session 0x1012853c29a0003 with negotiated timeout 30000 for client /127.0.0.1:55114 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:03:36,038] INFO Closed socket connection for client /127.0.0.1:55114 which had sessionid 0x1012853c29a0003 (org.apache.zookeeper.server.NIOServerCnxn)
+[2019-10-09 09:03:39,447] INFO Accepted socket connection from /127.0.0.1:55120 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+[2019-10-09 09:03:39,450] INFO Client attempting to establish new session at /127.0.0.1:55120 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:03:39,468] INFO Established session 0x1012853c29a0004 with negotiated timeout 30000 for client /127.0.0.1:55120 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:03:39,786] INFO Closed socket connection for client /127.0.0.1:55120 which had sessionid 0x1012853c29a0004 (org.apache.zookeeper.server.NIOServerCnxn)
+[2019-10-09 09:03:46,622] INFO Accepted socket connection from /127.0.0.1:55170 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+[2019-10-09 09:03:46,624] INFO Client attempting to establish new session at /127.0.0.1:55170 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:03:46,640] INFO Established session 0x1012853c29a0005 with negotiated timeout 30000 for client /127.0.0.1:55170 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:03:46,696] INFO Closed socket connection for client /127.0.0.1:55170 which had sessionid 0x1012853c29a0005 (org.apache.zookeeper.server.NIOServerCnxn)
+[2019-10-09 09:12:28,056] INFO [GroupMetadataManager brokerId=1] Removed 0 expired offsets in 0 milliseconds. (kafka.coordinator.group.GroupMetadataManager)
+[2019-10-09 09:12:47,242] INFO Accepted socket connection from /127.0.0.1:57344 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+[2019-10-09 09:12:47,244] INFO Client attempting to establish new session at /127.0.0.1:57344 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:12:47,257] INFO Established session 0x1012853c29a0006 with negotiated timeout 30000 for client /127.0.0.1:57344 (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:12:47,305] INFO Closed socket connection for client /127.0.0.1:57344 which had sessionid 0x1012853c29a0006 (org.apache.zookeeper.server.NIOServerCnxn)
+[2019-10-09 09:15:30,415] INFO Creating topic testchainid with configuration {} and initial partition assignment Map(0 -> ArrayBuffer(1)) (kafka.zk.AdminZkClient)
+[2019-10-09 09:15:30,449] INFO [KafkaApi-1] Auto creation of topic testchainid with 1 partitions and replication factor 1 is successful (kafka.server.KafkaApis)
+[2019-10-09 09:15:30,499] INFO [ReplicaFetcherManager on broker 1] Removed fetcher for partitions Set(testchainid-0) (kafka.server.ReplicaFetcherManager)
+[2019-10-09 09:15:30,575] INFO [Log partition=testchainid-0, dir=/tmp/kafka-logs-1] Loading producer state till offset 0 with message format version 2 (kafka.log.Log)
+[2019-10-09 09:15:30,584] INFO [Log partition=testchainid-0, dir=/tmp/kafka-logs-1] Completed load of log with 1 segments, log start offset 0 and log end offset 0 in 53 ms (kafka.log.Log)
+[2019-10-09 09:15:30,586] INFO Created log for partition testchainid-0 in /tmp/kafka-logs-1 with properties {compression.type -> producer, message.downconversion.enable -> true, min.insync.replicas -> 1, segment.jitter.ms -> 0, cleanup.policy -> [delete], flush.ms -> 9223372036854775807, segment.bytes -> 1073741824, retention.ms -> -1, flush.messages -> 9223372036854775807, message.format.version -> 2.3-IV1, file.delete.delay.ms -> 60000, max.compaction.lag.ms -> 9223372036854775807, max.message.bytes -> 10000120, min.compaction.lag.ms -> 0, message.timestamp.type -> CreateTime, preallocate -> false, min.cleanable.dirty.ratio -> 0.5, index.interval.bytes -> 4096, unclean.leader.election.enable -> false, retention.bytes -> -1, delete.retention.ms -> 86400000, segment.ms -> 604800000, message.timestamp.difference.max.ms -> 9223372036854775807, segment.index.bytes -> 10485760}. (kafka.log.LogManager)
+[2019-10-09 09:15:30,586] INFO [Partition testchainid-0 broker=1] No checkpointed highwatermark is found for partition testchainid-0 (kafka.cluster.Partition)
+[2019-10-09 09:15:30,588] INFO Replica loaded for partition testchainid-0 with initial high watermark 0 (kafka.cluster.Replica)
+[2019-10-09 09:15:30,590] INFO [Partition testchainid-0 broker=1] testchainid-0 starts at Leader Epoch 0 from offset 0. Previous Leader Epoch was: -1 (kafka.cluster.Partition)
+[2019-10-09 09:22:28,056] INFO [GroupMetadataManager brokerId=1] Removed 0 expired offsets in 0 milliseconds. (kafka.coordinator.group.GroupMetadataManager)
+[2019-10-09 09:32:28,056] INFO [GroupMetadataManager brokerId=1] Removed 0 expired offsets in 0 milliseconds. (kafka.coordinator.group.GroupMetadataManager)
+[2019-10-09 09:39:03,236] INFO Closed socket connection for client /192.168.0.104:48754 which had sessionid 0x1012853c29a0001 (org.apache.zookeeper.server.NIOServerCnxn)
+[2019-10-09 09:39:05,684] INFO Closed socket connection for client /192.168.0.103:59020 which had sessionid 0x1012853c29a0000 (org.apache.zookeeper.server.NIOServerCnxn)
+[2019-10-09 09:39:06,878] INFO Terminating process due to signal SIGINT (org.apache.kafka.common.utils.LoggingSignalHandler)
+[2019-10-09 09:39:06,882] INFO [KafkaServer id=1] shutting down (kafka.server.KafkaServer)
+[2019-10-09 09:39:06,883] INFO [KafkaServer id=1] Starting controlled shutdown (kafka.server.KafkaServer)
+[2019-10-09 09:39:06,897] INFO [KafkaServer id=1] Controlled shutdown succeeded (kafka.server.KafkaServer)
+[2019-10-09 09:39:06,902] INFO [/config/changes-event-process-thread]: Shutting down (kafka.common.ZkNodeChangeNotificationListener$ChangeEventProcessThread)
+[2019-10-09 09:39:06,903] INFO [/config/changes-event-process-thread]: Stopped (kafka.common.ZkNodeChangeNotificationListener$ChangeEventProcessThread)
+[2019-10-09 09:39:06,903] INFO [/config/changes-event-process-thread]: Shutdown completed (kafka.common.ZkNodeChangeNotificationListener$ChangeEventProcessThread)
+[2019-10-09 09:39:06,904] INFO [SocketServer brokerId=1] Stopping socket server request processors (kafka.network.SocketServer)
+[2019-10-09 09:39:06,921] INFO [SocketServer brokerId=1] Stopped socket server request processors (kafka.network.SocketServer)
+[2019-10-09 09:39:06,922] INFO [data-plane Kafka Request Handler on Broker 1], shutting down (kafka.server.KafkaRequestHandlerPool)
+[2019-10-09 09:39:06,924] INFO [data-plane Kafka Request Handler on Broker 1], shut down completely (kafka.server.KafkaRequestHandlerPool)
+[2019-10-09 09:39:06,927] INFO [KafkaApi-1] Shutdown complete. (kafka.server.KafkaApis)
+[2019-10-09 09:39:06,928] INFO [ExpirationReaper-1-topic]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:06,967] INFO [ExpirationReaper-1-topic]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:06,967] INFO [ExpirationReaper-1-topic]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:06,971] INFO [TransactionCoordinator id=1] Shutting down. (kafka.coordinator.transaction.TransactionCoordinator)
+[2019-10-09 09:39:06,972] INFO [ProducerId Manager 1]: Shutdown complete: last producerId assigned 0 (kafka.coordinator.transaction.ProducerIdManager)
+[2019-10-09 09:39:06,972] INFO [Transaction State Manager 1]: Shutdown complete (kafka.coordinator.transaction.TransactionStateManager)
+[2019-10-09 09:39:06,972] INFO [Transaction Marker Channel Manager 1]: Shutting down (kafka.coordinator.transaction.TransactionMarkerChannelManager)
+[2019-10-09 09:39:06,973] INFO [Transaction Marker Channel Manager 1]: Shutdown completed (kafka.coordinator.transaction.TransactionMarkerChannelManager)
+[2019-10-09 09:39:06,973] INFO [Transaction Marker Channel Manager 1]: Stopped (kafka.coordinator.transaction.TransactionMarkerChannelManager)
+[2019-10-09 09:39:06,973] INFO [TransactionCoordinator id=1] Shutdown complete. (kafka.coordinator.transaction.TransactionCoordinator)
+[2019-10-09 09:39:06,975] INFO [GroupCoordinator 1]: Shutting down. (kafka.coordinator.group.GroupCoordinator)
+[2019-10-09 09:39:06,975] INFO [ExpirationReaper-1-Heartbeat]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,167] INFO [ExpirationReaper-1-Heartbeat]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,167] INFO [ExpirationReaper-1-Heartbeat]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,168] INFO [ExpirationReaper-1-Rebalance]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,367] INFO [ExpirationReaper-1-Rebalance]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,368] INFO [ExpirationReaper-1-Rebalance]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,368] INFO [GroupCoordinator 1]: Shutdown complete. (kafka.coordinator.group.GroupCoordinator)
+[2019-10-09 09:39:07,370] INFO [ReplicaManager broker=1] Shutting down (kafka.server.ReplicaManager)
+[2019-10-09 09:39:07,370] INFO [LogDirFailureHandler]: Shutting down (kafka.server.ReplicaManager$LogDirFailureHandler)
+[2019-10-09 09:39:07,370] INFO [LogDirFailureHandler]: Stopped (kafka.server.ReplicaManager$LogDirFailureHandler)
+[2019-10-09 09:39:07,370] INFO [LogDirFailureHandler]: Shutdown completed (kafka.server.ReplicaManager$LogDirFailureHandler)
+[2019-10-09 09:39:07,371] INFO [ReplicaFetcherManager on broker 1] shutting down (kafka.server.ReplicaFetcherManager)
+[2019-10-09 09:39:07,374] INFO [ReplicaFetcherManager on broker 1] shutdown completed (kafka.server.ReplicaFetcherManager)
+[2019-10-09 09:39:07,374] INFO [ReplicaAlterLogDirsManager on broker 1] shutting down (kafka.server.ReplicaAlterLogDirsManager)
+[2019-10-09 09:39:07,375] INFO [ReplicaAlterLogDirsManager on broker 1] shutdown completed (kafka.server.ReplicaAlterLogDirsManager)
+[2019-10-09 09:39:07,375] INFO [ExpirationReaper-1-Fetch]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,413] INFO [ExpirationReaper-1-Fetch]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,413] INFO [ExpirationReaper-1-Fetch]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,413] INFO [ExpirationReaper-1-Produce]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,606] INFO [ExpirationReaper-1-Produce]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,606] INFO [ExpirationReaper-1-Produce]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,606] INFO [ExpirationReaper-1-DeleteRecords]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,806] INFO [ExpirationReaper-1-DeleteRecords]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,806] INFO [ExpirationReaper-1-DeleteRecords]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:07,806] INFO [ExpirationReaper-1-ElectPreferredLeader]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:08,006] INFO [ExpirationReaper-1-ElectPreferredLeader]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:08,006] INFO [ExpirationReaper-1-ElectPreferredLeader]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+[2019-10-09 09:39:08,045] INFO [ReplicaManager broker=1] Shut down completely (kafka.server.ReplicaManager)
+[2019-10-09 09:39:08,046] INFO Shutting down. (kafka.log.LogManager)
+[2019-10-09 09:39:08,064] INFO [ProducerStateManager partition=testchainid-0] Writing producer snapshot at offset 4 (kafka.log.ProducerStateManager)
+[2019-10-09 09:39:08,172] INFO Shutdown complete. (kafka.log.LogManager)
+[2019-10-09 09:39:08,182] INFO [ZooKeeperClient Kafka server] Closing. (kafka.zookeeper.ZooKeeperClient)
+[2019-10-09 09:39:08,200] INFO Session: 0x2000cf586b30000 closed (org.apache.zookeeper.ZooKeeper)
+[2019-10-09 09:39:08,200] INFO EventThread shut down for session: 0x2000cf586b30000 (org.apache.zookeeper.ClientCnxn)
+[2019-10-09 09:39:08,201] INFO [ZooKeeperClient Kafka server] Closed. (kafka.zookeeper.ZooKeeperClient)
+[2019-10-09 09:39:08,202] INFO [ThrottledChannelReaper-Fetch]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2019-10-09 09:39:08,735] INFO [ThrottledChannelReaper-Fetch]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2019-10-09 09:39:08,735] INFO [ThrottledChannelReaper-Fetch]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2019-10-09 09:39:08,735] INFO [ThrottledChannelReaper-Produce]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2019-10-09 09:39:09,735] INFO [ThrottledChannelReaper-Produce]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2019-10-09 09:39:09,735] INFO [ThrottledChannelReaper-Produce]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2019-10-09 09:39:09,735] INFO [ThrottledChannelReaper-Request]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2019-10-09 09:39:10,735] INFO [ThrottledChannelReaper-Request]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2019-10-09 09:39:10,735] INFO [ThrottledChannelReaper-Request]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+[2019-10-09 09:39:10,737] INFO [SocketServer brokerId=1] Shutting down socket server (kafka.network.SocketServer)
+[2019-10-09 09:39:10,799] INFO [SocketServer brokerId=1] Shutdown completed (kafka.network.SocketServer)
+[2019-10-09 09:39:10,803] INFO [KafkaServer id=1] shut down completed (kafka.server.KafkaServer)
+[2019-10-09 09:39:21,990] WARN Connection broken for id 3, my id = 1, error =  (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager$RecvWorker.run(QuorumCnxManager.java:1010)
+[2019-10-09 09:39:21,991] WARN Interrupting SendWorker (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+[2019-10-09 09:39:21,992] WARN Interrupted while waiting for message on queue (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2088)
+	at java.util.concurrent.ArrayBlockingQueue.poll(ArrayBlockingQueue.java:418)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.pollSendQueue(QuorumCnxManager.java:1094)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.access$700(QuorumCnxManager.java:74)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager$SendWorker.run(QuorumCnxManager.java:929)
+[2019-10-09 09:39:21,992] WARN Send worker leaving thread (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+[2019-10-09 09:39:23,660] WARN Connection broken for id 2, my id = 1, error =  (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager$RecvWorker.run(QuorumCnxManager.java:1010)
+[2019-10-09 09:39:23,660] WARN Interrupting SendWorker (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+[2019-10-09 09:39:23,660] WARN Exception when following the leader (org.apache.zookeeper.server.quorum.Learner)
+java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at org.apache.jute.BinaryInputArchive.readInt(BinaryInputArchive.java:63)
+	at org.apache.zookeeper.server.quorum.QuorumPacket.deserialize(QuorumPacket.java:85)
+	at org.apache.jute.BinaryInputArchive.readRecord(BinaryInputArchive.java:99)
+	at org.apache.zookeeper.server.quorum.Learner.readPacket(Learner.java:153)
+	at org.apache.zookeeper.server.quorum.Follower.followLeader(Follower.java:86)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:982)
+[2019-10-09 09:39:23,661] WARN Interrupted while waiting for message on queue (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2088)
+	at java.util.concurrent.ArrayBlockingQueue.poll(ArrayBlockingQueue.java:418)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.pollSendQueue(QuorumCnxManager.java:1094)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.access$700(QuorumCnxManager.java:74)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager$SendWorker.run(QuorumCnxManager.java:929)
+[2019-10-09 09:39:23,661] WARN Send worker leaving thread (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+[2019-10-09 09:39:23,661] INFO shutdown called (org.apache.zookeeper.server.quorum.Learner)
+java.lang.Exception: shutdown Follower
+	at org.apache.zookeeper.server.quorum.Follower.shutdown(Follower.java:169)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:986)
+[2019-10-09 09:39:23,662] INFO Shutting down (org.apache.zookeeper.server.quorum.FollowerZooKeeperServer)
+[2019-10-09 09:39:23,662] INFO shutting down (org.apache.zookeeper.server.ZooKeeperServer)
+[2019-10-09 09:39:23,662] INFO Shutting down (org.apache.zookeeper.server.quorum.FollowerRequestProcessor)
+[2019-10-09 09:39:23,662] INFO Shutting down (org.apache.zookeeper.server.quorum.CommitProcessor)
+[2019-10-09 09:39:23,662] INFO FollowerRequestProcessor exited loop! (org.apache.zookeeper.server.quorum.FollowerRequestProcessor)
+[2019-10-09 09:39:23,662] INFO CommitProcessor exited loop! (org.apache.zookeeper.server.quorum.CommitProcessor)
+[2019-10-09 09:39:23,662] INFO shutdown of request processor complete (org.apache.zookeeper.server.FinalRequestProcessor)
+[2019-10-09 09:39:23,666] INFO Shutting down (org.apache.zookeeper.server.SyncRequestProcessor)
+[2019-10-09 09:39:23,666] INFO SyncRequestProcessor exited! (org.apache.zookeeper.server.SyncRequestProcessor)
+[2019-10-09 09:39:23,667] INFO LOOKING (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:39:23,668] INFO New election. My id =  1, proposed zxid=0x100000068 (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:39:23,668] INFO Notification: 1 (message format version), 1 (n.leader), 0x100000068 (n.zxid), 0x2 (n.round), LOOKING (n.state), 1 (n.sid), 0x1 (n.peerEpoch) LOOKING (my state) (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:39:23,669] WARN Cannot open channel to 2 at election address zookeeper2/192.168.0.103:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.toSend(QuorumCnxManager.java:534)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection$Messenger$WorkerSender.process(FastLeaderElection.java:454)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection$Messenger$WorkerSender.run(FastLeaderElection.java:435)
+	at java.lang.Thread.run(Thread.java:748)
+[2019-10-09 09:39:23,669] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:39:23,670] WARN Cannot open channel to 3 at election address zookeeper3/192.168.0.104:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.toSend(QuorumCnxManager.java:534)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection$Messenger$WorkerSender.process(FastLeaderElection.java:454)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection$Messenger$WorkerSender.run(FastLeaderElection.java:435)
+	at java.lang.Thread.run(Thread.java:748)
+[2019-10-09 09:39:23,670] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:39:23,869] WARN Cannot open channel to 2 at election address zookeeper2/192.168.0.103:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:39:23,870] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:39:23,870] WARN Cannot open channel to 3 at election address zookeeper3/192.168.0.104:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:39:23,871] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:39:23,871] INFO Notification time out: 400 (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:39:24,271] WARN Cannot open channel to 2 at election address zookeeper2/192.168.0.103:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:39:24,272] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:39:24,273] WARN Cannot open channel to 3 at election address zookeeper3/192.168.0.104:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:39:24,273] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:39:24,273] INFO Notification time out: 800 (org.apache.zookeeper.server.quorum.FastLeaderElection)
+[2019-10-09 09:39:25,074] WARN Cannot open channel to 2 at election address zookeeper2/192.168.0.103:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:39:25,074] INFO Resolved hostname: zookeeper2 to address: zookeeper2/192.168.0.103 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:39:25,075] WARN Cannot open channel to 3 at election address zookeeper3/192.168.0.104:3666 (org.apache.zookeeper.server.quorum.QuorumCnxManager)
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectOne(QuorumCnxManager.java:558)
+	at org.apache.zookeeper.server.quorum.QuorumCnxManager.connectAll(QuorumCnxManager.java:610)
+	at org.apache.zookeeper.server.quorum.FastLeaderElection.lookForLeader(FastLeaderElection.java:838)
+	at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:958)
+[2019-10-09 09:39:25,075] INFO Resolved hostname: zookeeper3 to address: zookeeper3/192.168.0.104 (org.apache.zookeeper.server.quorum.QuorumPeer)
+[2019-10-09 09:39:25,075] INFO Notification time out: 1600 (org.apache.zookeeper.server.quorum.FastLeaderElection)
