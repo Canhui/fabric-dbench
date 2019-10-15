@@ -76,11 +76,11 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run1_config_network.sh` 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples 
-<br/>
+
 # default (recommended): run in backend
 $ sudo ./orderer &>>log &
 
-# options: run in front end
+# options: run in frontend
 $ ./run1_config_network.sh
 ```
 
