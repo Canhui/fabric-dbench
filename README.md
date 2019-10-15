@@ -11,7 +11,6 @@
 
 
 
-
 ## 1. Prerequirements
 
 #### 1.1. Hyperledger Fabric v1.4.0
@@ -56,7 +55,7 @@ $ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.1-
 ```
 
 
-#### 2.2. Add an execution authority to .sh files
+#### 2.2. Add an execution authority to all .sh files
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
@@ -77,6 +76,9 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run1_config_network.sh` 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples 
+# default (recommended): run in backend
+$ sudo ./orderer &>>log &
+# options: run in front end
 $ ./run1_config_network.sh
 ```
 
