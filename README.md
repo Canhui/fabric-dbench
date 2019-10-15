@@ -13,9 +13,9 @@
 
 ## 1. Prerequirements
 
-#### 1.1. Hyperledger Fabric v1.4.0
+#### 1.1. Hyperledger Fabric v1.4.3
 
-Install the Hyperledger Fabric v1.4.0 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric) and ensure running `fabric-samples/first-network` successfully.
+Install the Hyperledger Fabric v1.4.3 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric) and ensure running `fabric-samples/first-network` successfully.
 
 
 
