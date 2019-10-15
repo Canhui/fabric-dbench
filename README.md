@@ -14,9 +14,9 @@
 
 ## 1. Prerequirements
 
-#### 1.1. Hyperledger Fabric v1.4.0
+#### 1.1. Hyperledger Fabric v1.4.3
 
-Install the Hyperledger Fabric v1.4.0 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric). 
+Install the Hyperledger Fabric v1.4.3 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric). 
 
 
 #### 1.2. The Hosts File
@@ -76,7 +76,44 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 192.168.0.119 broker12
 ```
 
-#### 1.3. Prepare the Kafka/Zookeeper Cluster
+
+
+
+
+
+
+
+
+
+## 2. Setup
+
+#### 2.1. Download fabric-dbench from Github
+
+Download the source code to your `$HOME` directory
+
+```shell
+$ cd $HOME
+$ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.3-kafka
+```
+
+
+#### 2.2. Add an execution authority to .sh files
+
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples
+$ sudo chmod +x *.sh
+$ cd $HOME/fabric-dbench/fabric-samples/run
+$ sudo chmod +x *.sh
+$ cd $HOME/fabric-dbench/fabric-samples/bin
+$ sudo chmod +x *
+$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0/bin
+$ sudo chmod +x *.sh
+```
+
+
+
+#### 2.3. Prepare the Zookeeper Cluster
 
 Go to `$HOME/fabric-dbench/fabric-samples` and run the `run0_config_zkkafka.sh` to configure the kafka/zookeeper cluster.
 
@@ -85,52 +122,111 @@ $ cd $HOME/fabric-dbench/fabric-samples
 $ ./run0_config_zkkafka.sh
 ```
 
+
+
+
+
+
 Go to `zookeeper1` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the zookeeper.
 
 ```shell
 $ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+
+# default (recommended): run in backend
+$ ./bin/zookeeper-server-start.sh config/zookeeper-1.properties &>>log_zk1 &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ ./bin/zookeeper-server-start.sh config/zookeeper-1.properties
 ```
+
+
+
 
 
 Go to `zookeeper2` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the zookeeper.
 
 ```shell
 $ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+
+# default (recommended): run in backend
+$ ./bin/zookeeper-server-start.sh config/zookeeper-2.properties &>>log_zk2 &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ ./bin/zookeeper-server-start.sh config/zookeeper-2.properties
 ```
+
+
+
+
+
+
+
 
 Go to `zookeeper3` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the zookeeper.
 
 ```shell
 $ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+
+# default (recommended): run in backend
+$ ./bin/zookeeper-server-start.sh config/zookeeper-3.properties &>>log_zk3 &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ ./bin/zookeeper-server-start.sh config/zookeeper-3.properties
 ```
 
+
+
+
+#### 2.4. Prepare the Kafka Cluster
 
 
 Go to `zookeeper1` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the kafka server (i.e., broker).
 
 ```shell
 $ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+
+# default (recommended): run in backend
+$ ./bin/kafka-server-start.sh config/server-1.properties &>>log_kafka1 &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ ./bin/kafka-server-start.sh config/server-1.properties
 ```
+
+
 
 
 Go to `zookeeper2` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the kafka server (i.e., broker).
 
 ```shell
 $ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+
+# default (recommended): run in backend
+$ ./bin/kafka-server-start.sh config/server-2.properties &>>log_kafka2 &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ ./bin/kafka-server-start.sh config/server-2.properties
 ```
+
+
+
 
 
 Go to `zookeeper3` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the kafka server (i.e., broker).
 
 ```shell
 $ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
+
+# default (recommended): run in backend
+$ ./bin/kafka-server-start.sh config/server-3.properties &>>log_kafka3 &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ ./bin/kafka-server-start.sh config/server-3.properties
 ```
+
+
+
+
+#### 2.5. Kafka creates topics
 
 
 
@@ -155,35 +251,6 @@ $ ./bin/kafka-topics.sh --list --zookeeper localhost:2181
 
 
 
-
-## 2. Setup
-
-#### 2.1. Download fabric-dbench from Github
-
-Download the source code to your `$HOME` directory
-
-```shell
-$ cd $HOME
-$ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.1-kafka
-```
-
-
-#### 2.2. Add an execution authority to .sh files
-
-
-```shell
-$ cd $HOME/fabric-dbench/fabric-samples
-$ sudo chmod +x *.sh
-$ cd $HOME/fabric-dbench/fabric-samples/run
-$ sudo chmod +x *.sh
-```
-
-
-
-
-
-
-
 ## 3. Usage of `run1_config_network.sh`
 
 
@@ -197,40 +264,75 @@ $ ./run1_config_network.sh
 ```
 
 
+
 Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/orderer
-$ sudo ./orderer
+
+# default (recommended): run in backend
+$ sudo ./orderer &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
+$ ./run1_config_network.sh
 ```
+
+
+
 
 Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/orderer
-$ sudo ./orderer
+
+# default (recommended): run in backend
+$ sudo ./orderer &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
+$ ./run1_config_network.sh
 ```
+
+
 
 Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/orderer
-$ sudo ./orderer
+
+# default (recommended): run in backend
+$ sudo ./orderer &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
+$ ./run1_config_network.sh
 ```
+
+
+
 
 
 Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/peer
+
+# default (recommended): run in backend
+$ sudo ./peer node start &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ sudo ./peer node start
 ```
+
 
 
 Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/peer
+
+# default (recommended): run in backend
+$ sudo ./peer node start &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ sudo ./peer node start
 ```
 
@@ -239,11 +341,17 @@ Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer`
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/peer
+
+# default (recommended): run in backend
+$ sudo ./peer node start &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ sudo ./peer node start
 ```
 
 
 **Note:** Modify `ORGS` of files `run/step1_5.sh`, `run/step1_7.sh` to add more peers.
+
 
 
 
@@ -290,6 +398,7 @@ $ ./peer.sh node status
 ```
 
 **Note:** Modify `ORGS` of file `run/step2_1.sh` to add more peers.
+
 
 
 
@@ -350,10 +459,12 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run5_config_and_sdk.sh` 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
-$ ./run5_config_or_sdk.sh
+$ ./run5_config_and_sdk.sh
 ```
 
 Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org1.example.com` directory. Invoke a new transaction. 
+
+
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples/sdk.org1.example.com
@@ -365,6 +476,8 @@ Query a transaction.
 $ cd $HOME/fabric-dbench/fabric-samples/sdk.org1.example.com
 $ node query.js
 ```
+
+
 
 
 Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org2.example.com` directory. Invoke a new transaction. 
@@ -402,8 +515,6 @@ $ node query.js
 
 
 
-
-
 **Note1:** Modify `ORGS` of the file `run/step5_1.sh` to add more peers. <br/>
 **Note2:** Modify `chaincode_name` of the file `run/step5_1.sh` to make use of the chaincode we created previously.<br/>
 **Note3:** Modify `channel_name` of the file `run/step4_1.sh` to make use of the channel we created previously.<br/>
@@ -415,29 +526,27 @@ $ node query.js
 
 
 
+## 8. Usage of `run_bench.java`
 
+Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/workload-generator` directory. Compile the `run_bench.java` source code.
 
-<!-- ## 3. Usage of `step2_config_admins.sh`
-
-#### 3.1. Config Admins (e.g., of 3 organizations)
-
-Config the `step2_config_admins.sh` file
 ```shell
-Number_of_Organizations=3
+$ cd $HOME/fabric-dbench/workload-generator
+$ javac run_bench.java  
 ```
 
-Config the admins
+Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/workload-generator` directory. Compile the `run_bench.java` source code.
+
 ```shell
-./step2_config_admins.sh
+$ cd $HOME/fabric-dbench/workload-generator
+$ javac run_bench.java 
 ```
 
-Check the admins
+Run up all workload generators at the same time.
+
 ```shell
-cd fabric-dbench/Admin@org1.example.com
-./peer.sh node status
+$ java run_bench
 ```
 
-Clean the configuration files
-```shell
-./step2_cleanup.sh
-``` -->
+
+
