@@ -62,6 +62,8 @@ $ cd $HOME/fabric-dbench/fabric-samples
 $ sudo chmod +x *.sh
 $ cd $HOME/fabric-dbench/fabric-samples/run
 $ sudo chmod +x *.sh
+$ cd $HOME/fabric-dbench/fabric-samples/bin
+$ sudo chmod +x *
 ```
 
 
@@ -80,43 +82,84 @@ $ cd $HOME/fabric-dbench/fabric-samples
 # default (recommended): run in backend
 $ sudo ./orderer &>>log &
 
-# options: run in frontend
+# options (not recommended, but useful for debugging): run in frontend
 $ ./run1_config_network.sh
 ```
+
+
+
 
 
 Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/orderer
+
+# default (recommended): run in backend
+$ sudo ./peer node start &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ sudo ./orderer
 ```
+
+
 
 
 Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
 
 ```shell
-$ cd $HOME/fabric-dbench/fabric-run/peer
+$ cd $HOME/fabric-dbench/fabric-run/orderer
+
+# default (recommended): run in backend
+$ sudo ./peer node start &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ sudo ./peer node start
 ```
+
+
+
+
 
 
 Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
 
 ```shell
-$ cd $HOME/fabric-dbench/fabric-run/peer
+$ cd $HOME/fabric-dbench/fabric-run/orderer
+
+# default (recommended): run in backend
+$ sudo ./peer node start &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ sudo ./peer node start
 ```
+
+
+
+
+
 
 
 Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
 
+
 ```shell
-$ cd $HOME/fabric-dbench/fabric-run/peer
+$ cd $HOME/fabric-dbench/fabric-run/orderer
+
+# default (recommended): run in backend
+$ sudo ./peer node start &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ sudo ./peer node start
 ```
 
+
+
+
 **Note:** Modify `ORGS` of files `run/step1_5.sh`, `run/step1_7.sh` to add more peers.
+
+
+
 
 
 
@@ -133,7 +176,7 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run2_config_admins.sh` t
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
-$ ./step2_config_admins.sh
+$ ./run2_config_admins.sh
 ```
 
 
@@ -160,6 +203,8 @@ $ ./peer.sh node status
 
 
 
+
+
 Go to `$HOME/fabric-dbench/fabric-samples/Admin@org3.example.com` directory and check the adminstrator of the second organization
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples/Admin@org3.example.com
@@ -167,6 +212,7 @@ $ ./peer.sh node status
 ```
 
 **Note:** Modify `ORGS` of file `run/step2_1.sh` to add more peers.
+
 
 
 
@@ -183,12 +229,14 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run3_config_channel.sh` 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
-$ ./step3_config_channel.sh
+$ ./run3_config_channel.sh
 ```
 
 
 **Note1:** Modify `ORGS` of file `run/step3_1.sh` to add more peers.<br/>
 **Note2:** Modify `channel_name` of file `run/step3_1.sh` to create another new channel.
+
+
 
 
 
@@ -203,7 +251,7 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run4_config_chaincode.sh
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
-$ ./step4_config_chaincode.sh
+$ ./run4_config_chaincode.sh
 ```
 
 
@@ -211,6 +259,7 @@ $ ./step4_config_chaincode.sh
 **Note2:** Modify `chaincode_name` of the file `run/step4_1.sh` to create another new chaincode.<br/>
 **Note3:** Modify `endorsement_policy` of the file `run/step4_1.sh` to create another new endorsement policy.<br/>
 **Note4:** Modify `channel_name` of the file `run/step4_1.sh` to use the channel we created previously.
+
 
 
 
@@ -227,8 +276,10 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run5_config_and_sdk.sh` 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
-$ ./run5_config_or_sdk.sh
+$ ./run5_config_and_sdk.sh
 ```
+
+
 
 Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org1.example.com` directory. Invoke a new transaction. 
 
@@ -244,6 +295,9 @@ $ node query.js
 ```
 
 
+
+
+
 Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org2.example.com` directory. Invoke a new transaction. 
 
 ```shell
@@ -256,6 +310,10 @@ Query a transaction.
 $ cd $HOME/fabric-dbench/fabric-samples/sdk.org2.example.com
 $ node query.js
 ```
+
+
+
+
 
 
 Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org3.example.com` directory. Invoke a new transaction. 
@@ -292,31 +350,27 @@ $ node query.js
 
 
 
+## 8. Usage of `run_bench.java`
 
+Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/workload-generator` directory. Compile the `run_bench.java` source code.
 
-<!-- ## 3. Usage of `step2_config_admins.sh`
-
-#### 3.1. Config Admins (e.g., of 3 organizations)
-
-Config the `step2_config_admins.sh` file
 ```shell
-Number_of_Organizations=3
+$ cd $HOME/fabric-dbench/workload-generator
+$ javac run_bench.java  
 ```
 
-Config the admins
+Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/workload-generator` directory. Compile the `run_bench.java` source code.
+
 ```shell
-./step2_config_admins.sh
+$ cd $HOME/fabric-dbench/workload-generator
+$ javac run_bench.java 
 ```
 
-Check the admins
+Run up all workload generators at the same time.
+
 ```shell
-cd fabric-dbench/Admin@org1.example.com
-./peer.sh node status
+$ java run_bench
 ```
 
-Clean the configuration files
-```shell
-./step2_cleanup.sh
-``` -->
 
 
