@@ -261,7 +261,7 @@ echo "------------------------------------------------------------"
 for ((i=2;i<=$ORGS;i++))
 do
 	cp -rf /home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com
-	cp -rf /home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.js /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com/invoke_and_all_orgs.sh
+	cp -rf /home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.sh /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com/invoke_and_all_orgs.sh
 	sed -i "s/org1/org$i/g" /home/t716/fabric-dbench/fabric-samples/sdk.org$i.example.com/invoke_and_all_orgs.sh
 done
 

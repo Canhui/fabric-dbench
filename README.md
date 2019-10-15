@@ -13,9 +13,9 @@
 
 ## 1. Prerequirements
 
-#### 1.1. Hyperledger Fabric v1.4.0
+#### 1.1. Hyperledger Fabric v1.4.3
 
-Install the Hyperledger Fabric v1.4.0 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric). 
+Install the Hyperledger Fabric v1.4.3 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric). 
 
 
 #### 1.2. The Hosts File
@@ -75,87 +75,6 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 192.168.0.119 broker12
 ```
 
-#### 1.3. Prepare the Kafka/Zookeeper Cluster
-
-Go to `$HOME/fabric-dbench/fabric-samples` and run the `run0_config_zkkafka.sh` to configure the kafka/zookeeper cluster.
-
-```shell
-$ cd $HOME/fabric-dbench/fabric-samples
-$ ./run0_config_zkkafka.sh
-```
-
-Go to `zookeeper1` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the zookeeper.
-
-```shell
-$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
-$ ./bin/zookeeper-server-start.sh config/zookeeper-1.properties
-```
-
-
-Go to `zookeeper2` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the zookeeper.
-
-```shell
-$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
-$ ./bin/zookeeper-server-start.sh config/zookeeper-2.properties
-```
-
-Go to `zookeeper3` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the zookeeper.
-
-```shell
-$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
-$ ./bin/zookeeper-server-start.sh config/zookeeper-3.properties
-```
-
-
-
-Go to `zookeeper1` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the kafka server (i.e., broker).
-
-```shell
-$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
-$ ./bin/kafka-server-start.sh config/server-1.properties
-```
-
-
-Go to `zookeeper2` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the kafka server (i.e., broker).
-
-```shell
-$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
-$ ./bin/kafka-server-start.sh config/server-2.properties
-```
-
-
-Go to `zookeeper3` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the kafka server (i.e., broker).
-
-```shell
-$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
-$ ./bin/kafka-server-start.sh config/server-3.properties
-```
-
-
-
-One zookeeper node creates a topic. Go to `zookeeper1` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Create a new topic which should has the same name with fabric channel that you are going to make use of.
-
-```shell
-$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
-$ ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mychannel
-```
-
-
-The rest of zookeepers make use of the topic. List tpics
-
-```shell
-$ cd $HOME/fabric-dbench/kafka_2.12-2.3.0
-$ ./bin/kafka-topics.sh --list --zookeeper localhost:2181
-```
-
-
-#### 1.3. Remove ETCDRaft Files
-
-Before launching the raft cluster, we need to clean up the local environment (check orderer.yaml).
-
-```shell
-$ sudo rm -rf /var/hyperledger
-```
 
 
 
@@ -171,7 +90,7 @@ Download the source code to your `$HOME` directory
 
 ```shell
 $ cd $HOME
-$ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.1-kafka
+$ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.3-raft
 ```
 
 
@@ -183,6 +102,8 @@ $ cd $HOME/fabric-dbench/fabric-samples
 $ sudo chmod +x *.sh
 $ cd $HOME/fabric-dbench/fabric-samples/run
 $ sudo chmod +x *.sh
+$ cd $HOME/fabric-dbench/fabric-samples/bin
+$ sudo chmod +x *
 ```
 
 
@@ -192,7 +113,6 @@ $ sudo chmod +x *.sh
 
 
 ## 3. Usage of `run1_config_network.sh`
-
 
 #### 3.1. Config the Network (e.g., of 3 organizations)
 
@@ -204,53 +124,105 @@ $ ./run1_config_network.sh
 ```
 
 
+
+
 Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/orderer
+
+# default (recommended): run in backend
+$ sudo ./orderer &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ sudo ./orderer
 ```
+
+
+
+
 
 Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/orderer
+
+# default (recommended): run in backend
+$ sudo ./orderer &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ sudo ./orderer
 ```
+
+
+
 
 Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/orderer` directory. Setup the orderer. 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/orderer
+
+# default (recommended): run in backend
+$ sudo ./orderer &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ sudo ./orderer
 ```
+
+
 
 
 Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/peer
+
+# default (recommended): run in backend
+$ sudo ./peer node start &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ sudo ./peer node start
 ```
+
+
+
 
 
 Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/peer
+
+# default (recommended): run in backend
+$ sudo ./peer node start &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ sudo ./peer node start
 ```
+
+
+
+
 
 
 Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-run/peer
+
+# default (recommended): run in backend
+$ sudo ./peer node start &>>log &
+
+# options (not recommended, but useful for debugging): run in frontend
 $ sudo ./peer node start
 ```
 
 
+
+
+
 **Note:** Modify `ORGS` of files `run/step1_5.sh`, `run/step1_7.sh` to add more peers.
+
 
 
 
@@ -278,6 +250,9 @@ Go to `$HOME/fabric-dbench/fabric-samples/Admin@org1.example.com` directory and 
 $ cd $HOME/fabric-dbench/fabric-samples/Admin@org1.example.com
 $ ./peer.sh node status
 ```
+
+
+
 
 
 
@@ -324,6 +299,8 @@ $ ./run3_config_channel.sh
 
 
 
+
+
 ## 6. Usage of `run4_config_chaincode.sh`
 
 #### 6.1. Config the Chaincodes (e.g., of 3 organizations)
@@ -357,8 +334,11 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run5_config_and_sdk.sh` 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples
-$ ./run5_config_or_sdk.sh
+$ ./run5_config_and_sdk.sh
 ```
+
+
+
 
 Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org1.example.com` directory. Invoke a new transaction. 
 
@@ -374,6 +354,8 @@ $ node query.js
 ```
 
 
+
+
 Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org2.example.com` directory. Invoke a new transaction. 
 
 ```shell
@@ -386,6 +368,8 @@ Query a transaction.
 $ cd $HOME/fabric-dbench/fabric-samples/sdk.org2.example.com
 $ node query.js
 ```
+
+
 
 
 Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-samples/sdk.org3.example.com` directory. Invoke a new transaction. 
@@ -417,30 +401,34 @@ $ node query.js
 
 
 
+## 8. Usage of `run_bench.java`
 
+Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/workload-generator` directory. Compile the `run_bench.java` source code.
 
-
-<!-- ## 3. Usage of `step2_config_admins.sh`
-
-#### 3.1. Config Admins (e.g., of 3 organizations)
-
-Config the `step2_config_admins.sh` file
 ```shell
-Number_of_Organizations=3
+$ cd $HOME/fabric-dbench/workload-generator
+$ javac run_bench.java  
 ```
 
-Config the admins
+Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/workload-generator` directory. Compile the `run_bench.java` source code.
+
 ```shell
-./step2_config_admins.sh
+$ cd $HOME/fabric-dbench/workload-generator
+$ javac run_bench.java 
 ```
 
-Check the admins
+Run up all workload generators at the same time.
+
 ```shell
-cd fabric-dbench/Admin@org1.example.com
-./peer.sh node status
+$ java run_bench
 ```
 
-Clean the configuration files
-```shell
-./step2_cleanup.sh
-``` -->
+
+
+Next steps: generate run_bench.java automatically
+
+Next steps: run java benchmark at the same time
+
+Next steps: run up several peers
+
+
