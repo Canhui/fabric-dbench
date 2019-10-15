@@ -51,7 +51,7 @@ Download the source code to your `$HOME` directory
 
 ```shell
 $ cd $HOME
-$ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.1-solo
+$ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.3-solo
 ```
 
 
