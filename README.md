@@ -377,3 +377,5 @@ $ java run_bench
 Next steps: generate run_bench.java automatically
 
 Next steps: run java benchmark at the same time
+
+Next steps: run up several peers
