@@ -108,7 +108,7 @@ $ sudo ./orderer
 Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
 
 ```shell
-$ cd $HOME/fabric-dbench/fabric-run/orderer
+$ cd $HOME/fabric-dbench/fabric-run/peer
 
 # default (recommended): run in backend
 $ sudo ./peer node start &>>log &
@@ -125,7 +125,7 @@ $ sudo ./peer node start
 Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer` directory. Setup the peer. 
 
 ```shell
-$ cd $HOME/fabric-dbench/fabric-run/orderer
+$ cd $HOME/fabric-dbench/fabric-run/peer
 
 # default (recommended): run in backend
 $ sudo ./peer node start &>>log &
@@ -144,7 +144,7 @@ Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/peer`
 
 
 ```shell
-$ cd $HOME/fabric-dbench/fabric-run/orderer
+$ cd $HOME/fabric-dbench/fabric-run/peer
 
 # default (recommended): run in backend
 $ sudo ./peer node start &>>log &
