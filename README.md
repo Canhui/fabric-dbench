@@ -83,7 +83,7 @@ $ cd $HOME/fabric-dbench/fabric-samples
 $ sudo ./orderer &>>log &
 
 # options (not recommended, but useful for debugging): run in frontend
-$ ./run1_config_network.sh
+$ sudo ./orderer
 ```
 
 
@@ -99,7 +99,7 @@ $ cd $HOME/fabric-dbench/fabric-run/orderer
 $ sudo ./peer node start &>>log &
 
 # options (not recommended, but useful for debugging): run in frontend
-$ sudo ./orderer
+$ sudo ./peer node start
 ```
 
 
