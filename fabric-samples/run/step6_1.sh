@@ -1,6 +1,6 @@
 ORGS=3
 COMMANDS="invoke_and_all_orgs.sh"
-THREADS=50
+THREADS=30
 SECS_PER_THREADS=1
 
 rm -rf /home/t716/fabric-dbench/workload-generator/src/run_bench.java
