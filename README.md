@@ -78,6 +78,15 @@ Go to `$HOME/fabric-dbench/fabric-samples` and run the `run1_config_network.sh` 
 
 ```shell
 $ cd $HOME/fabric-dbench/fabric-samples 
+$ ./run1_config_network.sh
+```
+
+
+
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run1_config_network.sh` to configure the network.
+
+```shell
+$ cd $HOME/fabric-dbench/fabric-samples 
 
 # default (recommended): run in backend
 $ sudo ./orderer &>>log &
