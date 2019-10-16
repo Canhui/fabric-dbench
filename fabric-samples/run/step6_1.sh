@@ -77,6 +77,7 @@ echo "Copy Bench Files to All Peers"
 echo "------------------------------------------------------------"
 for ((i=2;i<=$ORGS;i++))
 do
+    mkdir -p /home/t716/fabric-dbench/workload-generator/tmp/bench$i
     cp -rf /home/t716/fabric-dbench/workload-generator/src/* /home/t716/fabric-dbench/workload-generator/tmp/bench$i
     sed -i "s/org1/org$i/g" /home/t716/fabric-dbench/workload-generator/tmp/bench$i/run_bench.java
 done
