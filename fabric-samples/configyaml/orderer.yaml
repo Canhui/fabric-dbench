@@ -369,7 +369,9 @@ Consensus:
     # WALDir specifies the location at which Write Ahead Logs for etcd/raft are
     # stored. Each channel will have its own subdir named after channel ID.
     WALDir: /var/hyperledger/production/orderer/etcdraft/wal
+    # WALDir:/home/t716/fabric-dbench/fabric-samples/var/hyperledger/production/orderer/etcdraft/wal
 
     # SnapDir specifies the location at which snapshots for etcd/raft are
     # stored. Each channel will have its own subdir named after channel ID.
     SnapDir: /var/hyperledger/production/orderer/etcdraft/snapshot
+    # SnapDir:/home/t716/fabric-dbench/fabric-samples/var/hyperledger/production/orderer/etcdraft/snapshot
