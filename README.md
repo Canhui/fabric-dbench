@@ -97,6 +97,8 @@ $ git clone https://github.com/Canhui/fabric-dbench.git --branch release-v1.4.3-
 ```
 
 
+
+
 #### 2.2. Add an execution authority to .sh files
 
 
@@ -138,6 +140,7 @@ $ ./bin/zookeeper-server-start.sh config/zookeeper-1.properties &>>log_zk1 &
 # options (not recommended, but useful for debugging): run in frontend
 $ ./bin/zookeeper-server-start.sh config/zookeeper-1.properties
 ```
+
 
 
 
@@ -524,22 +527,20 @@ $ node query.js
 
 
 
+## 8. Usage of `run6_config_bench.sh`
 
-
-## 8. Usage of `run_bench.java`
-
-Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/workload-generator` directory. Compile the `run_bench.java` source code.
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run6_config_bench.sh` to configure a Java multi-thread benchmark tool for each peer.
 
 ```shell
-$ cd $HOME/fabric-dbench/workload-generator
-$ javac run_bench.java  
+$ cd $HOME/fabric-dbench/fabric-samples
+$ ./run6_config_bench.sh
 ```
 
-Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/workload-generator` directory. Compile the `run_bench.java` source code.
+Go to all workload generators, compile the java code.
 
 ```shell
-$ cd $HOME/fabric-dbench/workload-generator
-$ javac run_bench.java 
+$ cd $HOME/fabric-dbench/workload-generator/src
+$ javac run_bench.java
 ```
 
 Run up all workload generators at the same time.
