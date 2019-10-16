@@ -1,7 +1,5 @@
 import java.util.concurrent.CountDownLatch;
 //import java.io.*;
-
-
 public class run_bench {
  
 	public static void main(String[] args) throws InterruptedException {
@@ -28,8 +26,6 @@ public class run_bench {
 	}
 	
 }
-
- 
 class benchmark implements Runnable {
  
 	private final CountDownLatch countDownLatch;
@@ -37,11 +33,10 @@ class benchmark implements Runnable {
 	public benchmark(CountDownLatch countDownLatch) {
 		this.countDownLatch = countDownLatch;
 	}
-
 	public void Invoke() {
 		Process proc = null;
         try {
-            String command = "/home/t716/fabric-dbench/fabric-samples/sdk.org1.example.com/invoke_and_all_orgs.sh";
+            String command = "/home/t716/fabric-dbench/fabric-samples/sdk.org2.example.com/invoke_and_all_orgs.sh";
 	        //String command = "/home/t716/fabric-dbench/multi-threads/run.sh";
 	        proc = Runtime.getRuntime().exec(new String[] { "/bin/sh", "-c", command });
 	        if (proc != null) {
@@ -51,7 +46,6 @@ class benchmark implements Runnable {
 	        return;
 	    }
 	}	
-
 	@Override
 	public void run() {
 		try {
