@@ -83,19 +83,6 @@ $ ./run1_config_network.sh
 
 
 
-Go to `$HOME/fabric-dbench/fabric-samples` and run the `run1_config_network.sh` to configure the network.
-
-```shell
-$ cd $HOME/fabric-dbench/fabric-samples 
-
-# default (recommended): run in backend
-$ sudo ./orderer &>>log &
-
-# options (not recommended, but useful for debugging): run in frontend
-$ sudo ./orderer
-```
-
-
 
 
 
@@ -105,11 +92,17 @@ Go to `peer0.org1.example.com` node. Go to `$HOME/fabric-dbench/fabric-run/order
 $ cd $HOME/fabric-dbench/fabric-run/orderer
 
 # default (recommended): run in backend
-$ sudo ./peer node start &>>log &
+$ sudo ./orderer &>>log &
 
 # options (not recommended, but useful for debugging): run in frontend
-$ sudo ./peer node start
+$ sudo ./orderer
+
+# if the port 8443 is in use, pls use the following command to free the port
+$ sudo fuser -k 8443/tcp
 ```
+
+
+
 
 
 
@@ -124,7 +117,13 @@ $ sudo ./peer node start &>>log &
 
 # options (not recommended, but useful for debugging): run in frontend
 $ sudo ./peer node start
+
+# if the port 9443 is in use, pls use the following command to free the port
+$ sudo fuser -k 9443/tcp
 ```
+
+
+
 
 
 
@@ -357,22 +356,20 @@ $ node query.js
 
 
 
+## 8. Usage of `run6_config_bench.sh`
 
-
-## 8. Usage of `run_bench.java`
-
-Go to `peer0.org2.example.com` node. Go to `$HOME/fabric-dbench/workload-generator` directory. Compile the `run_bench.java` source code.
+Go to `$HOME/fabric-dbench/fabric-samples` and run the `run6_config_bench.sh` to configure a Java multi-thread benchmark tool for each peer.
 
 ```shell
-$ cd $HOME/fabric-dbench/workload-generator
-$ javac run_bench.java  
+$ cd $HOME/fabric-dbench/fabric-samples
+$ ./run6_config_bench.sh
 ```
 
-Go to `peer0.org3.example.com` node. Go to `$HOME/fabric-dbench/workload-generator` directory. Compile the `run_bench.java` source code.
+Go to all workload generators, compile the java code.
 
 ```shell
-$ cd $HOME/fabric-dbench/workload-generator
-$ javac run_bench.java 
+$ cd $HOME/fabric-dbench/workload-generator/src
+$ javac run_bench.java
 ```
 
 Run up all workload generators at the same time.
@@ -380,11 +377,3 @@ Run up all workload generators at the same time.
 ```shell
 $ java run_bench
 ```
-
-
-
-Next steps: generate run_bench.java automatically
-
-Next steps: run java benchmark at the same time
-
-Next steps: run up several peers
