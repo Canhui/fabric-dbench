@@ -76,7 +76,21 @@ Each node of the cluster has a host file under the `/etc/hosts` directory.
 192.168.0.119 broker12
 ```
 
+In particular, `192.168.0.101`is the Ansible cluster manager. We configure the `/etc/ansible/hosts` file at the `192.168.0.101` node.
 
+```shell
+[orderer]
+192.168.0.101
+
+[peer]
+192.168.0.102
+192.168.0.103
+192.168.0.106
+192.168.0.107
+192.168.0.109
+192.168.0.111
+192.168.0.112
+```
 
 
 
