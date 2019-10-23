@@ -15,7 +15,8 @@
 
 #### 1.1. Hyperledger Fabric v1.4.3
 
-Install the Hyperledger Fabric v1.4.3 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric). 
+Ensure that Hyperledger Fabric v1.4.3 is installed, and fabric-samples can run well according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric).
+
 
 
 #### 1.2. The Hosts File
