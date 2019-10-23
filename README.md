@@ -16,7 +16,9 @@
 
 #### 1.1. Hyperledger Fabric v1.4.3
 
-Ensure that Hyperledger Fabric v1.4.3 is installed, and fabric-samples can run well according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric).
+Install the Hyperledger Fabric v1.4.3 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric) and ensure running `fabric-samples/first-network` successfully.
+
+
 
 
 
