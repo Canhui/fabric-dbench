@@ -15,11 +15,14 @@
 
 #### 1.1. Hyperledger Fabric v1.4.3
 
+
+
 Install the Hyperledger Fabric v1.4.3 according to the [Hyperledger Fabric official website](https://github.com/hyperledger/fabric) and ensure running `fabric-samples/first-network` successfully.
 
 
 
 #### 1.2. The Hosts File
+
 
 Each node of the cluster has a host file under the `/etc/hosts` directory. Append the following to the host file.
 
