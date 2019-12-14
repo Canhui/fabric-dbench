@@ -145,8 +145,6 @@ $ ./run0_config_zkkafka.sh
 
 
 
-
-
 Go to `zookeeper1` node. Go to `$HOME/fabric-dbench/kafka_2.12-2.3.0` directory. Setup the zookeeper.
 
 ```shell
@@ -194,6 +192,11 @@ $ ./bin/zookeeper-server-start.sh config/zookeeper-3.properties &>>log_zk3 &
 # options (not recommended, but useful for debugging): run in frontend
 $ ./bin/zookeeper-server-start.sh config/zookeeper-3.properties
 ```
+
+
+
+**Note:** Modify `ZKS` of files `run/step0_2.sh` to add more nodes, where `ZKS` should be smaller than `KAFKAS`.
+
 
 
 
@@ -268,6 +271,7 @@ $ ./bin/kafka-topics.sh --list --zookeeper localhost:2181
 
 
 
+**Note:** Modify `KAFKAS` of files `run/step0_1.sh` and `run/step0_2.sh` to add more nodes, where `ZKS` should be smaller than `KAFKAS`.
 
 
 
@@ -371,6 +375,7 @@ $ sudo ./peer node start
 ```
 
 
+**Note:** Modify `ORDERERS` of files `run/step1_6.sh`, `run/step1_8.sh` to add more peers.
 **Note:** Modify `ORGS` of files `run/step1_5.sh`, `run/step1_7.sh` to add more peers.
 
 
