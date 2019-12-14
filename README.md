@@ -375,7 +375,7 @@ $ sudo ./peer node start
 ```
 
 
-**Note:** Modify `ORDERERS` of files `run/step1_4.sh`, `run/step1_6.sh`, `run/step1_8.sh` to add more peers.
+**Note:** Modify `ORDERERS` of files `run/step1_4.sh`, `run/step1_6.sh`, `run/step1_8.sh` to add more orderers.
 
 **Note:** Modify `ORGS` of files `run/step1_5.sh`, `run/step1_7.sh` to add more peers.
 
