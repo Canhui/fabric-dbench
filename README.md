@@ -400,7 +400,7 @@ $ java run_bench
 
 ## 9. Experiment Results
 
-#### 9.1. Throughput and Latency of 1-Byte Transactions
+#### 9.1. Throughput and Latency of 1-Byte Transactions with Endorsing Policy "OR"
 
 **Round 1:**
 
@@ -480,7 +480,7 @@ $ java run_bench
 | 450 |                 |                |                    |              |                |               |                   |             |
 | 500 |                 |                |                    |              |                |               |                   |             |
 
-#### 9.2. Throughput and Latency of 1500-Bytes Transactions
+#### 9.2. Throughput and Latency of 1500-Bytes Transactions with Endorsing Policy "OR"
 
 **Round 1:**
 
@@ -560,7 +560,7 @@ $ java run_bench
 | 450 |                 |                |                    |              |                |               |                   |             |
 | 500 |                 |                |                    |              |                |               |                   |             |
 
-#### 9.3. Throughput and Latency of 3000-Bytes Transactions
+#### 9.3. Throughput and Latency of 3000-Bytes Transactions with Endorsing Policy "OR"
 
 **Round 1:**
 
