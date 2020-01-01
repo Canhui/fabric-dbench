@@ -397,9 +397,29 @@ Run up all workload generators at the same time.
 $ java run_bench
 ```
 
-This is the experimental results
 
-| 1 |
-|:-:|
-| 2 |
-| 3 |
+## 9. Experiment Results
+
+#### 9.1. Throughput and Latency of 1-Byte Transactions
+
+**Round 1:**
+
+| TAR | Endorsing (tps) | Ordering (tps) | Verification (tps) | Commit (tps) | Endorsing (ms) | Ordering (ms) | Verification (ms) | Commit (ms) |
+|-----|-----------------|----------------|--------------------|--------------|----------------|---------------|-------------------|-------------|
+| 50  |                 |                |                    |              |                |               |                   |             |
+| 100 |                 |                |                    |              |                |               |                   |             |
+| 150 |                 |                |                    |              |                |               |                   |             |
+| 200 |                 |                |                    |              |                |               |                   |             |
+| 250 |                 |                |                    |              |                |               |                   |             |
+| 300 |                 |                |                    |              |                |               |                   |             |
+| 350 |                 |                |                    |              |                |               |                   |             |
+| 400 |                 |                |                    |              |                |               |                   |             |
+| 450 |                 |                |                    |              |                |               |                   |             |
+| 500 |                 |                |                    |              |                |               |                   |             |
+
+
+
+
+
+
+
