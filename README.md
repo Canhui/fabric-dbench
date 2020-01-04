@@ -485,3 +485,10 @@ All traffics go to only one orderer node, see "step5_4.sh"
 |     | 350                    | 344                   | 243.03             | 243.03       | [74,719,338,114.76]         | [3,3000,546,578.18]        | [20,25,22,1.56]                | [276,311,297,10.73]      |
 |     | 350                    | 343                   | 240.31             | 240.31       | [55,579,339,99.50]          | [3,3000,527,513.44]        | [18,26,22,2.20]                | [291,319,305,8.50]       |
 
+
+
+#### 9.2. Throughput and Latency of 1-Byte Transactions with Endorsing Policy "OR" 
+
+All traffics go to all orderer nodes in balance, see "step5_6.sh"
+
+
