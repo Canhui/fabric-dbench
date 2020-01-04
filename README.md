@@ -402,6 +402,9 @@ $ java run_bench
 
 #### 9.1. Throughput and Latency of 1-Byte Transactions with Endorsing Policy "OR"
 
+All traffics go to only one orderer node, see "step5_4.sh"
+
+
 | TAR | Sendto Endorsing (tps) | Sendto Ordering (tps) | Verification (tps) | Commit (tps) | Endorsing [Low,Up,Mean,Std] | Ordering [Low,Up,Mean,Std] | Verification [Low,Up,Mean,Std] | Commit [Low,Up,Mean,Std] |
 |-----|------------------------|-----------------------|--------------------|--------------|-----------------------------|----------------------------|--------------------------------|--------------------------|
 | 50  | 50                     | 50                    | 49.45              | 49.45        | [233,258,241,8.38]          | [490,938,715,119.90]       | [18,27,22,2.54]                | [277,299,287,7.92]       |
@@ -451,12 +454,10 @@ $ java run_bench
 
 
 
+All traffics go to only one orderer node, 1500-Bytes Transactions, see "step5_4.sh"
 
 
 
-
-
-#### 9.2. Throughput and Latency of 1500-Bytes Transactions with Endorsing Policy "OR"
 
 | TAR | Sendto Endorsing (tps) | Sendto Ordering (tps) | Verification (tps) | Commit (tps) | Endorsing [Low,Up,Mean,Std] | Ordering [Low,Up,Mean,Std] | Verification [Low,Up,Mean,Std] | Commit [Low,Up,Mean,Std] |
 |-----|------------------------|-----------------------|--------------------|--------------|-----------------------------|----------------------------|--------------------------------|--------------------------|
