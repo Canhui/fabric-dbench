@@ -575,3 +575,56 @@ $ java run_bench
 
 
 
+
+
+## 9. Experiment Results
+
+#### 9.1. Throughput and Latency of 1-Byte Transactions with Endorsing Policy "OR" 
+
+All traffics go to only one orderer node, see "step5_4.sh"
+
+
+
+
+
+#### 9.2. Throughput and Latency of 1-Byte Transactions with Endorsing Policy "OR" 
+
+All traffics go to all orderer nodes in balance, see "step5_6.sh"
+
+| TAR | Sendto Endorsing (tps) | Sendto Ordering (tps) | Verification (tps) | Commit (tps) | Endorsing [Low,Up,Mean,Std] | Ordering [Low,Up,Mean,Std] | Verification [Low,Up,Mean,Std] | Commit [Low,Up,Mean,Std] |
+|-----|------------------------|-----------------------|--------------------|--------------|-----------------------------|----------------------------|--------------------------------|--------------------------|
+| 50  |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+| 100 |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+| 150 |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+| 200 |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+| 250 |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+| 300 |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+| 350 |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
+|     |                        |                       |                    |              |                             |                            |                                |                          |
