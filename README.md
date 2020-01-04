@@ -455,6 +455,7 @@ $ java run_bench
 
 
 
+
 #### 9.2. Throughput and Latency of 1500-Bytes Transactions with Endorsing Policy "OR"
 
 | TAR | Sendto Endorsing (tps) | Sendto Ordering (tps) | Verification (tps) | Commit (tps) | Endorsing [Low,Up,Mean,Std] | Ordering [Low,Up,Mean,Std] | Verification [Low,Up,Mean,Std] | Commit [Low,Up,Mean,Std] |
