@@ -592,9 +592,13 @@ All traffics go to only one orderer node, see "step5_4.sh"
 All traffics go to all orderer nodes in balance, see "step5_6.sh"
 
 3 zookeeper nodes
+
 3 kafka nodes
+
 3 orderers
+
 20 peers
+
 
 | TAR | Sendto Endorsing (tps) | Sendto Ordering (tps) | Verification (tps) | Commit (tps) | Endorsing [Low,Up,Mean,Std] | Ordering [Low,Up,Mean,Std] | Verification [Low,Up,Mean,Std] | Commit [Low,Up,Mean,Std] |
 |-----|------------------------|-----------------------|--------------------|--------------|-----------------------------|----------------------------|--------------------------------|--------------------------|
