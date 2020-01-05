@@ -510,6 +510,20 @@ All traffics go to only one orderer node, 1500-Bytes Transactions, see "step5_4.
 
 
 
+#### 9.3. Throughput and Latency of 1-Bytes Transactions with Endorsing Policy "AND-5"
+
+All traffics go to only one orderer node, 1-Byte Transactions, see "step5_5.sh"
+
+1 orderer
+
+20 peers
+
+
+
+
+
+
+
 
 
 
