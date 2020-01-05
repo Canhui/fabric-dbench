@@ -550,5 +550,3 @@ All traffics go to all orderer nodes in balance, see "step5_7.sh"
 
 
 
-
-
