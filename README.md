@@ -642,10 +642,17 @@ All traffics go to all orderer nodes in balance, see "step5_6.sh"
 
 #### 9.3. Throughput and Latency of 1-Byte Transactions with Endorsing Policy "AND-5" 
 
-All traffics go to all orderer nodes in balance, see "step5_7.sh"
+All traffics go to one orderer node, see "step5_7.sh"
 
 3 orderers
 
 20 peers
 
+#### 9.4. Throughput and Latency of 1-Byte Transactions with Endorsing Policy "AND-5" 
+
+All traffics go to all orderer nodes in balance, see "step5_9.sh"
+
+3 orderers
+
+20 peers
 
