@@ -441,7 +441,7 @@ $ java run_bench
 
 ## 9. Experiment Results
 
-#### 9.1. Throughput and Latency of 1-Byte Transactions with Endorsing Policy "OR" 
+#### 9.1. Throughput and Latency of 1-Byte Transactions with Endorsing Policy "OR-10" 
 
 All traffics go to only one orderer node, see "step5_4.sh"
 
@@ -490,7 +490,7 @@ All traffics go to only one orderer node, see "step5_4.sh"
 
 
 
-#### 9.2. Throughput and Latency of 1-Byte Transactions with Endorsing Policy "OR" 
+#### 9.2. Throughput and Latency of 1-Byte Transactions with Endorsing Policy "OR-10" 
 
 All traffics go to all orderer nodes in balance, see "step5_6.sh"
 
@@ -536,6 +536,19 @@ All traffics go to all orderer nodes in balance, see "step5_6.sh"
 |     | 346                    | 342                   | 230.49             | 230.49       | [93,585,324,94.39]          | [3,3000,547,583.51]        | [19,25,21,1.98]                | [289,760,349,144.69]     |
 |     | 346                    | 340                   | 240.28             | 240.28       | [133,723,346,106.73]        | [23,3000,528,559.13]       | [16,24,19,2.44]                | [276,313,303,11.68]      |
 |     | 350                    | 340                   | 239.43             | 239.43       | [59,620,363,131.12]         | [3,3000,602,556.33]        | [21,25,22,1.07]                | [293,314,302,5.93]       |
+
+
+
+
+#### 9.3. Throughput and Latency of 1-Byte Transactions with Endorsing Policy "AND-5" 
+
+All traffics go to all orderer nodes in balance, see "step5_7.sh"
+
+3 orderers
+
+20 peers
+
+
 
 
 
