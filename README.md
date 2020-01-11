@@ -410,6 +410,7 @@ All traffics go to only one orderer node, see "step5_4.sh"
 
 Average Transaction Size: 297.914KB/100
 
+Bottleneck of policy evaluation in OSNs: see https://drive.google.com/file/d/1Yq8txIvF1F5a-N8Yrg4ogBekSNQuHp3j/view?usp=sharing
 
 | TAR | Sendto Endorsing (tps) | Sendto Ordering (tps) | Verification (tps) | Commit (tps) | Endorsing [Low,Up,Mean,Std] | Ordering [Low,Up,Mean,Std] | Verification [Low,Up,Mean,Std] | Commit [Low,Up,Mean,Std] |
 |-----|------------------------|-----------------------|--------------------|--------------|-----------------------------|----------------------------|--------------------------------|--------------------------|
