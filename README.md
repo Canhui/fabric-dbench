@@ -541,6 +541,14 @@ All traffics go to all orderer nodes in balance, see "step5_6.sh"
 
 
 
+Performance Bottleneck Analysis
+
+
+
+
+
+
+
 #### 9.3. Throughput and Latency of 1-Byte Transactions with Endorsing Policy "AND-5" 
 
 All traffics go to one orderer node, see "step5_7.sh"
