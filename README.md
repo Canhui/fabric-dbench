@@ -408,9 +408,6 @@ All traffics go to only one orderer node, see "step5_4.sh"
 
 20 peers
 
-Average Transaction Size: 297.914KB/100
-
-Bottleneck of policy evaluation in OSNs: see https://drive.google.com/file/d/1Yq8txIvF1F5a-N8Yrg4ogBekSNQuHp3j/view?usp=sharing
 
 | TAR | Sendto Endorsing (tps) | Sendto Ordering (tps) | Verification (tps) | Commit (tps) | Endorsing [Low,Up,Mean,Std] | Ordering [Low,Up,Mean,Std] | Verification [Low,Up,Mean,Std] | Commit [Low,Up,Mean,Std] |
 |-----|------------------------|-----------------------|--------------------|--------------|-----------------------------|----------------------------|--------------------------------|--------------------------|
@@ -456,7 +453,13 @@ Bottleneck of policy evaluation in OSNs: see https://drive.google.com/file/d/1Yq
 |     | 400                    | 386.39                | 265.30             | 265.30       | [49,855,388,178.51]         | [3,3000,702,670.20]        | [17,28,21,2.97]                | [268,309,287,13.16]      |
 
 
+Performance Bottleneck Analysis
 
+| Average Number of Transactions per Block        | 100                                                                                |
+|-------------------------------------------------|------------------------------------------------------------------------------------|
+| Average Transaction Size                        | 297.914KB/100                                                                      |
+| Average Block Size                              | 297.914KB                                                                          |
+| Bottleneck Details of Policy Evaluation in OSNs | https://drive.google.com/file/d/1Yq8txIvF1F5a-N8Yrg4ogBekSNQuHp3j/view?usp=sharing |
 
 
 
