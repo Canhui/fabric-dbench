@@ -613,4 +613,18 @@ All traffics go to all orderer nodes in balance, see "step5_9.sh"
 
 
 
+Performance Bottleneck Analysis
+
+
+
+
+| Performance Metrics                             | Details                                                                            |
+|-------------------------------------------------|------------------------------------------------------------------------------------|
+| Average Number of Transactions per Block        | 79                                                                                 |
+| Average Transaction Size                        | 520.326KB/79                                                                       |
+| Average Block Size                              | 520.326KB                                                                          |
+| Bottleneck Details of Policy Evaluation in OSNs | https://drive.google.com/file/d/1KHDVnLjtI1tgvURuPbkyY45MlZDj_qO4/view?usp=sharing |
+
+
+
 
