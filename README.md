@@ -113,6 +113,9 @@ $ cd $HOME/fabric-dbench/fabric-run/orderer
 # default (recommended): run in backend
 $ sudo ./orderer &>>log &
 
+# options (see orderer debug logs): run in background
+$ sudo ./orderer.sh &>>log &
+
 # options (not recommended, but useful for debugging): run in frontend
 $ sudo ./orderer
 
