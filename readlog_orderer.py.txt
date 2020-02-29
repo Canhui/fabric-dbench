@@ -1,0 +1,18 @@
+infile = r"/home/t716/fabric-dbench/fabric-run/orderer/log"
+
+new_block=["Broadcasting about update checkpointInfo"]
+create_time=[]
+#block_id=[]
+
+with open(infile) as f:
+    f = f.readlines()
+
+for line in f:
+    for phrase in new_block:
+        if phrase in line:
+            #print line.split(" ")[1] # creation timestamp
+            print line.split(" ")[15] # block id
+            create_time.append(line.split(" ")[1])
+        
+for i in create_time[-50:]:
+    print i
